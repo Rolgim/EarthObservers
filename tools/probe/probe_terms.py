@@ -3,11 +3,11 @@
 Usage : python tools/probe/probe_terms.py URL [URL …]  Écrit tools/probe/_out/terms.txt."""
 import os, re, sys, html, requests
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_out"); os.makedirs(OUT, exist_ok=True)
-S = requests.Session(); S.headers["User-Agent"] = "Mozilla/5.0 (licence check; earthobservers)"
+S = requests.Session(); S.headers["User-Agent"] = "earthobservers-probe/1.0 (+https://github.com/Rolgim/EarthObservers)"
 KW = re.compile(r"copyright|licen[cs]e|terms|permission|free(ly)? (to|available)|public domain|attribut|redistribut|acknowledg|cite|citation", re.I)
 o = []
 for u in sys.argv[1:]:
-    try: r = S.get(u, timeout=60)
+    try: r = S.get(u, timeout=(20, 60))
     except Exception as e: o.append("## %s ÉCHEC %r" % (u, e)); continue
     t = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", r.text, flags=re.S | re.I)
     links = sorted(set(re.findall(r'href="([^"]*(?:faq|term|licen|copyright|about|policy|usage|webmaster)[^"]*)"', t, re.I)))
