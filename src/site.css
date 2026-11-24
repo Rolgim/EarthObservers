@@ -189,3 +189,5 @@ sup.ref a{ text-decoration:none; }
 .lieu-z{ margin-top:8px; image-rendering:pixelated; width:100%; height:auto; aspect-ratio:1 / 1; object-fit:cover; }
 .lieu-zc{ font-size:12px; color:var(--ink-2); margin:3px 0 6px; }
 .real.lieu figcaption code, .real.lieu figcaption a{ overflow-wrap:anywhere; word-break:break-all; }
+/* liste des satellites de l'accueil : défile dans son panneau (une vingtaine d'entrées), le globe reste visible */
+@media (min-width: 900px){ #eo-list{ max-height:46vh; overflow-y:auto; padding-right:4px; } }

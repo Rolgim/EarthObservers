@@ -128,7 +128,7 @@ function select(k){
   S.sel = S.sel === k ? '' : k;
   /* satellite géostationnaire (≈ 6,6 rayons terrestres) : recul de la caméra pour le voir avec la Terre */
   var s = S.sel && R && R.list.filter(function(x){ return x.key === S.sel; })[0], p = s && eci(s, S.t);
-  if (p){ var d = v3(p.position).length(); if (d > 2.5 && S.dist < d * 3.4) S.dist = Math.min(30, d * 3.4); }
+  if (p){ var d = v3(p.position).length(); if (d > 2.5 && S.dist < d * 2.3) S.dist = Math.min(30, d * 2.3); }
   document.querySelectorAll('#eo-list [data-eo]').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-eo') === S.sel)); });
   S.orbAt = 0; kick(); info();
 }
