@@ -12,6 +12,7 @@ for u in sys.argv[1:]:
     t = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", r.text, flags=re.S | re.I)
     links = sorted(set(re.findall(r'href="([^"]*(?:faq|term|licen|copyright|about|policy|usage|webmaster)[^"]*)"', t, re.I)))
     t = html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t)))
+    open(os.path.join(OUT, "full_%d.txt" % sys.argv[1:].index(u)), "w").write(u + "\n\n" + t)   # texte entier de la page
     o.append("## %s %s (%d car.)\nliens utiles : %s" % (u, r.status_code, len(t), " ".join(links)[:1500]))
     seen = set()
     for m in KW.finditer(t):
