@@ -17,7 +17,7 @@
  "cloud": 0.094293,
  "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/bbox/6.3,45.8,7.0,46.4/647x800.png?collection=sentinel-2-l2a&item=S2A_MSIL2A_20261012T102911_R108_T32TLS_20261012T170607&assets=visual&asset_bidx=visual%7C1%2C2%2C3&nodata=0",
  "page": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2A_MSIL2A_20261012T102911_R108_T32TLS_20261012T170607",
- "credit": "Contains modified Copernicus Sentinel data 2026 ; découpe : Microsoft Planetary Computer",
+ "credit": "Contains modified Copernicus Sentinel data 2026 (via Microsoft Planetary Computer)",
  "crop_lieu": true,
  "mosaic": 4,
  "full_size": [

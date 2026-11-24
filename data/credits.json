@@ -114,7 +114,7 @@
    "archive": "Microsoft Planetary Computer (catalogue STAC, découpe par son service de rendu)",
    "license": "Domaine public (USGS) ; crédit demandé",
    "license_url": "https://www.usgs.gov/information-policies-and-instructions/acknowledging-or-crediting-usgs",
-   "credit": "Landsat 9 : USGS ; découpe : Microsoft Planetary Computer",
+   "credit": "Landsat 9: USGS (via Microsoft Planetary Computer)",
    "fetched": "2026-11-24",
    "transform": "découpé sur la zone de la galerie (lon 6.86 à 6.96, lat 45.885 à 45.955), à la taille réelle des pixels de l'instrument (agrandi à l'affichage, sans lissage), enregistré en JPEG",
    "status": "ok"
@@ -129,7 +129,7 @@
    "archive": "Microsoft Planetary Computer (catalogue STAC, découpe par son service de rendu)",
    "license": "Domaine public (USGS) ; crédit demandé",
    "license_url": "https://www.usgs.gov/information-policies-and-instructions/acknowledging-or-crediting-usgs",
-   "credit": "Landsat 9 : USGS ; découpe : Microsoft Planetary Computer",
+   "credit": "Landsat 9: USGS (via Microsoft Planetary Computer)",
    "fetched": "2026-11-24",
    "transform": "découpé sur la zone de la galerie (lon 6.3 à 7.0, lat 45.8 à 46.4), enregistré en JPEG",
    "status": "ok"
@@ -259,7 +259,7 @@
    "file": "data/sentinel3-olci.jpg",
    "title": "S3A_OL_2_WFR_20261122T105431_20261122T105731_0179_146_265_2160",
    "instrument": "OLCI",
-   "source": "https://sentinel3euwest.blob.core.windows.net/sentinel-3/OLCI/OL_2_WFR___/2026/11/22/S3A_OL_2_WFR____20261122T105431_20261122T105731_20261123T161811_0179_146_265_2160_MAR_O_NT_004.SEN3/browse.jpg?st=2026-11-23T14%3A03%3A41Z&se=2026-11-24T14%3A48%3A41Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-11-20T00%3A38%3A10Z&ske=2026-11-27T00%3A38%3A10Z&sks=b&skv=2025-07-05&sig=UcwROg/CxRCXeApCIC8Smb0QDjXkGQm9Jz7NwCQoOK8%3D",
+   "source": "https://sentinel3euwest.blob.core.windows.net/sentinel-3/OLCI/OL_2_WFR___/2026/11/22/S3A_OL_2_WFR____20261122T105431_20261122T105731_20261123T161811_0179_146_265_2160_MAR_O_NT_004.SEN3/browse.jpg?st=2026-11-23T14%3A14%3A10Z&se=2026-11-24T14%3A59%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-11-20T00%3A31%3A46Z&ske=2026-11-27T00%3A31%3A46Z&sks=b&skv=2025-07-05&sig=HzMDC4D8dUrbAazFonJ3bKpBdYvqVZe1hU2nbco1Xx0%3D",
    "page": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-wfr-l2-netcdf/items/S3A_OL_2_WFR_20261122T105431_20261122T105731_0179_146_265_2160",
    "archive": "Microsoft Planetary Computer (catalogue STAC)",
    "license": "Données Copernicus Sentinel, libres et gratuites ; mention « Contains modified Copernicus Sentinel data 2026 »",
@@ -336,7 +336,7 @@
    "license": "Éléments publiés librement par CelesTrak (d'après le catalogue de la Space Force américaine) ; aucune licence écrite trouvée",
    "license_url": "https://celestrak.org/NORAD/elements/",
    "credit": "CelesTrak (T.S. Kelso)",
-   "fetched": "2026-11-24T14:04Z",
+   "fetched": "2026-11-24T14:14Z",
    "transform": "aucune : propagés par SGP4 dans le navigateur",
    "status": "à confirmer"
   },
