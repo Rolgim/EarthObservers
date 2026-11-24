@@ -92,7 +92,8 @@ def pc_recipe(name, collection, query, instrument, alt_asset=None, need=None, da
         if not href and alt_asset and alt_asset in a: href = pc_sign(a[alt_asset]["href"])
         if not href: continue
         r = S.get(href, timeout=300)
-        if not r.ok or not r.headers.get("content-type", "").startswith("image/"): print("  aperçu refusé", r.status_code, f["id"]); continue
+        # le stockage Azure sert les aperçus signés en application/octet-stream : on reconnaît le JPEG ou le PNG à leurs premiers octets
+        if not r.ok or not (r.headers.get("content-type", "").startswith("image/") or r.content[:3] == b"\xff\xd8\xff" or r.content[:4] == b"\x89PNG"): print("  aperçu refusé", r.status_code, f["id"]); continue
         im = Image.open(io.BytesIO(r.content))
         if im.mode in ("RGBA", "LA", "P"):   # fond transparent (hors fauchée) -> noir
             im = im.convert("RGBA"); bg = Image.new("RGB", im.size, (0, 0, 0)); bg.paste(im, mask=im.split()[3]); im = bg
@@ -107,7 +108,7 @@ ALPS = [5.8, 45.6, 7.2, 46.6]   # lon min, lat min, lon max, lat max : Léman et
 def sentinel1(): pc_recipe("sentinel1-sar", "sentinel-1-grd", {"sar:instrument_mode": {"eq": "IW"}, "platform": {"in": ["SENTINEL-1C", "SENTINEL-1D", "sentinel-1c", "sentinel-1d"]}}, "C-SAR",
                           need=lambda f: "rendered_preview" in f["assets"], bbox=ALPS)
 def sentinel2(): pc_recipe("sentinel2-msi", "sentinel-2-l2a", {"eo:cloud_cover": {"lt": 10}, "s2:nodata_pixel_percentage": {"lt": 5}}, "MSI", bbox=ALPS, days=90)
-def sentinel3(): pc_recipe("sentinel3-olci", "sentinel-3-olci-wfr-l2-netcdf", None, "OLCI", alt_asset="browse-jpg", days=730, bbox=[-5, 41, 10, 51.5],
+def sentinel3(): pc_recipe("sentinel3-olci", "sentinel-3-olci-wfr-l2-netcdf", None, "OLCI", alt_asset="browse-jpg", days=10, bbox=[-5, 41, 10, 51.5],
                           need=lambda f: "browse-jpg" in f["assets"] or "rendered_preview" in f["assets"])
 
 # ---------- NASA GIBS (Global Imagery Browse Services) : images des produits NASA, sans compte ; remerciement demandé par GIBS ----------
