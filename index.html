@@ -598,6 +598,22 @@ sup.ref a{ text-decoration:none; }
 .so-orb.hid{ stroke-dasharray:3 4; stroke-opacity:.5; }
 /* barre de séparation entre l'en-tête et le contenu, comme la rangée du haut des pages Flotte et Comparer d'Observatories */
 #top{ border-bottom:2px solid var(--ink); }
+/* ---------- accueil « La Terre » (src/earth.js) : globe three.js, étiquettes HTML posées sur la scène ---------- */
+.eo-sky{ position:relative; background:#000; }
+.eo-sky canvas{ display:block; width:100%; height:100%; touch-action:none; cursor:grab; }
+.eo-labs{ position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.eo-lab{ position:absolute; transform:translate(8px, -50%); pointer-events:none; white-space:nowrap; font:600 12px/1.2 var(--f); color:#fff; background:rgba(5,7,10,.7); border:1px solid rgba(255,255,255,.35); padding:2px 6px; }
+.eo-lab:hover, .eo-lab:focus-visible{ border-color:#fff; }
+.eo-lab.on{ background:#2F6FE4; border-color:#fff; }
+.eo-lab[hidden]{ display:none; }
+.eo-dl{ display:grid; grid-template-columns:auto 1fr; gap:2px 10px; margin:8px 0; font-size:13px; }
+.eo-dl dt{ font-weight:600; }
+.eo-dl dd{ margin:0; font-variant-numeric:tabular-nums; }
+.sp-vis{ fill:var(--rule); fill-opacity:.35; }
+.gtrack svg{ max-width:720px; }
+.gtrack .gt{ fill:none; stroke:#FFD21F; stroke-width:2; stroke-linejoin:round; }
+.gtrack .gt2{ stroke:#6FA8FF; stroke-dasharray:5 3; }
+.gtrack .gt-bg{ fill:#0b1d33; }
 
 </style>
 </head>
@@ -1090,6 +1106,64 @@ var EN_UI = {
   "Donnée de GRAIL":"GRAIL data",
   "Date du produit dans le catalogue":"Product date in the catalogue",
   "après la fin de la mission : ce n'est pas la date de prise de vue":"after the end of the mission: this is not the acquisition date",
+  "10 fois plus vite":"10 times faster",
+  "Agences, thèmes, étapes datées":"Agencies, themes, dated milestones",
+  "Altitude moyenne de l'orbite, telle que la publie la source citée. L'orbite réelle du jour, calculée à partir des éléments orbitaux, est sur la page « Orbite » de chaque satellite.":"Mean orbit altitude, as published by the cited source. Today's real orbit, computed from the orbital elements, is on each satellite's “Orbit” page.",
+  "Altitude, inclinaison, période, revisite":"Altitude, inclination, period, revisit",
+  "Années, altitudes, thèmes, agences":"Years, altitudes, themes, agencies",
+  "Bandes spectrales des instruments":"Spectral bands of the instruments",
+  "Bandes, résolution, fauchée":"Bands, resolution, swath",
+  "Chaque satellite a sa fiche, sa vue 3D et ses données. Les filtres se combinent ; le nombre affiché est celui des satellites retenus.":"Each satellite has its fact sheet, 3D view and data. Filters combine; the count shown is the number of satellites kept.",
+  "Choisissez un satellite pour voir son orbite et sa position. Glisser pour tourner, molette ou boutons pour zoomer.":"Choose a satellite to see its orbit and position. Drag to rotate, wheel or buttons to zoom.",
+  "Comparer : les satellites sur les mêmes axes, avec les valeurs et les sources de leurs fiches":"Compare: the satellites on the same axes, with the values and sources of their fact sheets",
+  "Fauchée":"Swath",
+  "Frise chronologique des satellites":"Timeline of the satellites",
+  "Instruments, orbite réelle et données tirées des archives.":"Instruments, real orbit and data drawn from the archives.",
+  "La Terre":"The Earth",
+  "La Terre vue d'en haut":"The Earth seen from above",
+  "Les bandes spectrales":"The spectral bands",
+  "Les satellites côte à côte":"The satellites side by side",
+  "Les satellites d'observation de la Terre à leur position réelle, calculée dans votre navigateur à partir de leurs éléments orbitaux du jour. La lecture part de l'instant présent.":"Earth observation satellites at their real position, computed in your browser from today's orbital elements. Playback starts from the present moment.",
+  "Les satellites, du lancement à la fin":"The satellites, from launch to end",
+  "Observateurs de la Terre":"Earth Observers",
+  "Pixel au sol":"Ground pixel",
+  "Positions : éléments orbitaux de CelesTrak téléchargés le":"Positions: CelesTrak orbital elements downloaded on",
+  "propagés par le modèle SGP4 (satellite.js) ; précision ≈ quelques kilomètres. La Terre, les altitudes et les orbites sont à l'échelle ; les points des satellites sont agrandis. Éclairage d'après la position calculée du Soleil.":"propagated with the SGP4 model (satellite.js); accuracy ≈ a few kilometres. The Earth, altitudes and orbits are to scale; satellite dots are enlarged. Lighting from the computed position of the Sun.",
+  "Relevé des catalogues STAC et CMR par ce site (tools/data/catalog.py)":"Survey of the STAC and CMR catalogues by this site (tools/data/catalog.py)",
+  "Résolution":"Resolution",
+  "Satellites affichés":"Satellites shown",
+  "Satellites du côté visible":"Satellites on the visible side",
+  "Scène en couleurs naturelles prise par Landsat 9":"Natural-colour scene taken by Landsat 9",
+  "Thème":"Theme",
+  "Thème principal":"Main theme",
+  "Thèmes":"Themes",
+  "Tous les instruments":"All instruments",
+  "Tous les instruments, leurs bandes côte à côte":"All instruments, their bands side by side",
+  "Tous les satellites présentés sur ce site":"All the satellites on this site",
+  "Une barre par satellite, du lancement à la fin de mission ; pleine et fléchée s'il est en service. Les étapes datées sont marquées sur la barre ; leurs sources sont dans « Qui a fait quoi ». Cliquer une barre ouvre le satellite en 3D.":"One bar per satellite, from launch to end of mission; solid with an arrow if still in service. Dated milestones are marked on the bar; their sources are in “Who did what”. Clicking a bar opens the satellite in 3D.",
+  "Une ligne par instrument, une barre par bande, de la limite basse à la limite haute publiées (échelle logarithmique). Les radars et altimètres, qui travaillent en ondes radio ou avec un laser, ne figurent pas sur cette échelle. Cliquer une ligne ouvre la page de l'instrument.":"One row per instrument, one bar per band, from the published lower to upper limit (logarithmic scale). Radars and altimeters, which work with radio waves or a laser, do not appear on this scale. Clicking a row opens the instrument page.",
+  "Valeurs de la section « Images » de chaque fiche.":"Values from the “Images” section of each fact sheet.",
+  "Valeurs de la section « Orbite » de chaque fiche.":"Values from the “Orbit” section of each fact sheet.",
+  "Valeurs des fiches de chaque satellite, avec leur source. Cliquer un nom ouvre le satellite en 3D, un instrument ouvre sa page.":"Values from each satellite's fact sheet, with their source. Clicking a name opens the satellite in 3D, an instrument opens its page.",
+  "Valeurs des pages d'instrument, avec leur source.":"Values from the instrument pages, with their source.",
+  "Vue 3D du satellite":"3D view of the satellite",
+  "Vue du globe le":"Globe view on",
+  "dix minutes par seconde":"ten minutes per second",
+  "temps réel":"real time",
+  "une minute par seconde":"one minute per second",
+  "Mise en service":"Entry into service",
+  "En service":"In service",
+  "en service":"in service",
+  "satellite en service":"satellite in service",
+  "Aucun satellite ne correspond à ces filtres.":"No satellite matches these filters.",
+  "visible":"visible",
+  "Satellite":"Satellite",
+  "Instrument":"Instrument",
+  "Type":"Type",
+  "Altitude":"Altitude",
+  "Images":"Images",
+  "aucun":"none",
+  "Globe":"Globe",
 };
 
 /* =================================================================
@@ -1505,7 +1579,7 @@ function mount(){
 }
 function texCredit(){
   var t = (window.DATA_FILES || {})['tex-earth']; if (!t) return '';
-  return '<br>' + esc(T('Globe')) + colon() + esc(t.title) + ' (' + esc(t.credit || 'NASA') + ') · ' + esc(T('Licence')) + colon() + '<a href="' + esc(t.page) + '" rel="noopener" target="_blank">' + esc(T(t.license_fr || t.license)) + '</a>';
+  return '<br>' + esc(T('Globe')) + colon() + esc(t.title) + ' (' + esc(t.credit || 'NASA') + ') · ' + esc(T('Licence')) + colon() + '<a href="' + esc(t.page) + '" rel="noopener" target="_blank">' + esc((en() ? t.license_en : t.license_fr) || t.license) + '</a>';
 }
 return { html:html, mount:mount, stop:stop };
 })();
@@ -1514,12 +1588,12 @@ return { html:html, mount:mount, stop:stop };
    VUES D'ENSEMBLE « FLOTTE » ET « COMPARER », sur le modèle des pages du même nom d'Observatories (src/fleet.js, inst-render.js) :
    sous-pages dans une colonne à gauche (.inst-nav), en-tête (.inst-head), filtres en pastilles (.chip), frise et tableaux (.ctable).
    Tout vient du registre (src/data-missions.js) : chaque date, chaque valeur garde la source de la fiche (règle 1).
-   Aucune agence n'a de couleur ni de badge (règle 5) : les couleurs sont celles des sondes, dans l'ordre du registre.
+   Aucune agence n'a de couleur ni de badge (règle 5) : les couleurs sont celles des satellites, dans l'ordre du registre.
    Views.page(route) rend #flotte, #flotte-qui, #comparer, #comparer-<sous-page> ; null pour une autre route.
 ================================================================= */
 var Views = (function(){
 'use strict';
-var DAY = 864e5, COL = ['#D63C6E', '#0E8FA3', '#7B5CC4', '#C77700', '#3F8F46'];   /* une couleur par sonde, ordre du registre (même ordre que l'accueil) */
+var DAY = 864e5, COL = ['#D63C6E', '#0E8FA3', '#7B5CC4', '#C77700', '#3F8F46', '#B5446E', '#2D7DD2', '#8F6A00', '#5E8C31', '#9C4FB0'];   /* une couleur par satellite, ordre du registre (même ordre que l'accueil) */
 var FS = { ag:null, st:null, body:null }, CS = { body:null, st:null }, cur = null;
 function T(s){ return OBS_T(s); }
 function en(){ return OBS_LANG === 'en'; }
@@ -1531,21 +1605,20 @@ function fmt(s){ var o = { month:'long', year:'numeric', timeZone:'UTC' }; if (s
 function today(){ var d = new Date(); return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) / DAY; }
 function src(m, k){ var r = k && m.refs && m.refs[k]; return r ? ' <a class="src" href="' + esc(r.u) + '" rel="noopener" target="_blank" title="' + esc(r.t) + '">' + esc(r.p) + '</a>' : ''; }
 function col(m){ return COL[MISSIONS.indexOf(m) % COL.length]; }
-var EV = { launch:'Lancement', flyby:'Survol', arrival:'Arrivée', orbit:'Mise en orbite', landing:'Atterrissage de Huygens', end:'Fin de mission' };
-function evName(e){ var b = e.type === 'launch' || e.type === 'landing' ? '' : colon() + T(e.body); return T(EV[e.type]) + b; }
+var EV = { launch:'Lancement', orbit:'Mise en service', end:'Fin de mission' };
+function evName(e){ return T(EV[e.type]); }
 function ev(m, ty){ return (m.events || []).filter(function(e){ return ty.indexOf(e.type) >= 0; })[0]; }
 function launch(m){ return ev(m, ['launch']); }
-function arrival(m){ return ev(m, ['arrival', 'orbit']); }
 function end(m){ return ev(m, ['end']); }
 /* agences nommées dans le texte de la fiche, telles qu'écrites (sigles) */
-function agencies(m){ var a = []; (String(m.agency).match(/\b(NASA|ESA|ASI|JAXA|CNES|DLR|ISRO|KARI|Roscosmos|CNSA)\b/g) || []).forEach(function(x){ if (a.indexOf(x) < 0) a.push(x); }); return a; }
+function agencies(m){ var a = []; (String(m.agency).match(/\b(NASA|USGS|ESA|EUMETSAT|NOAA|ASI|JAXA|CNES|UKSA|CSA|DLR|GFZ|ISRO|KARI|Roscosmos|CNSA)\b/g) || []).forEach(function(x){ if (a.indexOf(x) < 0) a.push(x); }); return a; }
 function allAgencies(){ var n = {}; MISSIONS.forEach(function(m){ agencies(m).forEach(function(a){ n[a] = (n[a] || 0) + 1; }); });
   return Object.keys(n).sort(function(a, b){ return n[b] - n[a] || (a < b ? -1 : 1); }); }
-function bodies(){ var b = []; MISSIONS.forEach(function(m){ if (b.indexOf(m.targets[0]) < 0) b.push(m.targets[0]); }); return b; }
+function themes(){ var b = []; MISSIONS.forEach(function(m){ m.targets.forEach(function(t){ if (b.indexOf(t) < 0) b.push(t); }); }); return b; }
 function keep(F, m){
   if (F.ag && agencies(m).indexOf(F.ag) < 0) return false;
   if (F.st === 'on' && end(m)) return false; if (F.st === 'off' && !end(m)) return false;
-  if (F.body && m.targets[0] !== F.body) return false;
+  if (F.body && m.targets.indexOf(F.body) < 0) return false;
   return true;
 }
 function chips(scope, F, key, label, opts){
@@ -1553,7 +1626,7 @@ function chips(scope, F, key, label, opts){
     '<button class="chip" data-xf="' + scope + ':' + key + ':" aria-pressed="' + !F[key] + '">' + esc(T('Toutes')) + '</button>' +
     opts.map(function(o){ return '<button class="chip" data-xf="' + scope + ':' + key + ':' + esc(o[0]) + '" aria-pressed="' + (F[key] === o[0]) + '">' + esc(T(o[1])) + '</button>'; }).join('') + '</div></div>';
 }
-var STATES = [['on', 'En cours'], ['off', 'Terminées']];
+var STATES = [['on', 'En service'], ['off', 'Terminées']];
 /* gabarit commun : sous-pages à gauche, contenu à droite */
 function shell(label, items, on, main){
   return '<div class="xp inst-body"><nav class="inst-nav" aria-label="' + esc(T(label)) + '">' + items.map(function(x){
@@ -1565,14 +1638,11 @@ function head(name, full, right){
 }
 
 /* ---------- Flotte ---------- */
-var FLEET_SECS = [['flotte', 'Frise chronologique', 'Du lancement à la fin de mission'], ['flotte-qui', 'Qui a fait quoi', 'Agences, corps visés, étapes datées']];
+var FLEET_SECS = [['flotte', 'Frise chronologique', 'Du lancement à la fin de mission'], ['flotte-qui', 'Qui a fait quoi', 'Agences, thèmes, étapes datées']];
 var SHAPE = {
-  flyby:function(x, y){ return '<circle cx="' + x + '" cy="' + y + '" r="3.5"/>'; },
   end:function(x, y){ return '<rect x="' + (x - 4) + '" y="' + (y - 4) + '" width="8" height="8"/>'; },
-  landing:function(x, y){ return '<path d="M' + x + ' ' + (y - 6) + 'l6 10h-12z"/>'; },
   orbit:function(x, y){ return '<path d="M' + x + ' ' + (y - 6) + 'l6 6l-6 6l-6-6z"/>'; }
 };
-SHAPE.arrival = SHAPE.orbit;
 function timeline(L){
   var y0 = Math.floor(Math.min.apply(null, [2000].concat(L.map(function(m){ return +String(m.year).slice(0, 4); }))) / 5) * 5, y1 = Math.max(2028, new Date().getUTCFullYear() + 2), W = 1000, lw = 120, rh = 30, top = 26, H = top + L.length * rh + 30, now = today();
   var t0 = Date.UTC(y0, 0, 1) / DAY, t1 = Date.UTC(y1, 0, 1) / DAY;
@@ -1582,7 +1652,7 @@ function timeline(L){
   s += '<line x1="' + X(now) + '" y1="' + (top - 6) + '" x2="' + X(now) + '" y2="' + (H - 22) + '" stroke-width="1.5" stroke-dasharray="3 3" class="fl-now"/><text x="' + X(now) + '" y="' + (H - 8) + '" text-anchor="middle" class="fl-nowt">' + esc(T('aujourd\'hui')) + '</text>';
   L.forEach(function(m, i){
     var l = launch(m), e = end(m), a = X(day(l.date)), b = e ? X(day(e.date)) : X(now), yy = top + i * rh, cy = yy + 12, c = col(m);
-    var tip = m.short + colon() + fmt(l.date) + ' – ' + (e ? fmt(e.date) : T('en cours'));
+    var tip = m.short + colon() + fmt(l.date) + ' – ' + (e ? fmt(e.date) : T('en service'));
     s += '<g class="fl-row" data-go="' + m.id + '" tabindex="0" role="link" aria-label="' + esc(tip) + '"><title>' + esc(tip) + '</title>' +
       '<rect x="0" y="' + (yy - 3) + '" width="' + W + '" height="' + rh + '" fill="transparent"/>' +
       '<text x="' + (lw - 10) + '" y="' + (cy + 4.5) + '" text-anchor="end" class="fl-lab">' + esc(m.short) + '</text>' +
@@ -1590,19 +1660,19 @@ function timeline(L){
       (e ? '' : '<path d="M' + b + ' ' + (cy - 7) + ' l7 7 l-7 7 z" fill="' + c + '"/>') +
       '<g class="fl-ev">' + (m.events || []).filter(function(x){ return SHAPE[x.type]; }).map(function(x){ return SHAPE[x.type](X(day(x.date)), cy); }).join('') + '</g></g>';
   });
-  var leg = [['Survol', SHAPE.flyby(8, 8)], ['Arrivée ou mise en orbite', SHAPE.orbit(8, 8)], ['Atterrissage', SHAPE.landing(8, 8)], ['Fin de mission', SHAPE.end(8, 8)]];
-  return '<div class="isec"><h3>' + esc(T('Les missions, du lancement à la fin')) + '</h3><div class="svgwrap fl-tl"><svg viewBox="0 0 ' + W + ' ' + H + '" role="group" aria-label="' + esc(T('Frise chronologique des missions')) + '">' + s + '</svg></div>' +
-    '<p class="fl-leg">' + leg.map(function(l){ return '<span><svg viewBox="0 0 16 16" aria-hidden="true">' + l[1] + '</svg>' + esc(T(l[0])) + '</span>'; }).join('') + '<span><i class="fl-live"></i>' + esc(T('mission en cours')) + '</span></p>' +
-    '<div class="cap">' + esc(T('Une barre par mission, du lancement à la fin de mission ; pleine et fléchée si elle est en cours. Les étapes datées sont marquées sur la barre ; leurs sources sont dans « Qui a fait quoi ». Cliquer une barre ouvre la sonde en 3D.')) + '</div></div>';
+  var leg = [['Mise en service', SHAPE.orbit(8, 8)], ['Fin de mission', SHAPE.end(8, 8)]];
+  return '<div class="isec"><h3>' + esc(T('Les satellites, du lancement à la fin')) + '</h3><div class="svgwrap fl-tl"><svg viewBox="0 0 ' + W + ' ' + H + '" role="group" aria-label="' + esc(T('Frise chronologique des satellites')) + '">' + s + '</svg></div>' +
+    '<p class="fl-leg">' + leg.map(function(l){ return '<span><svg viewBox="0 0 16 16" aria-hidden="true">' + l[1] + '</svg>' + esc(T(l[0])) + '</span>'; }).join('') + '<span><i class="fl-live"></i>' + esc(T('satellite en service')) + '</span></p>' +
+    '<div class="cap">' + esc(T('Une barre par satellite, du lancement à la fin de mission ; pleine et fléchée s\'il est en service. Les étapes datées sont marquées sur la barre ; leurs sources sont dans « Qui a fait quoi ». Cliquer une barre ouvre le satellite en 3D.')) + '</div></div>';
 }
 function who(L){
   var nums = {}, refs = [], h = '';
   function ref(m, k){ if (!k || !m.refs || !m.refs[k]) return ''; var id = m.id + ':' + k; if (!nums[id]){ refs.push(m.refs[k]); nums[id] = refs.length; } return '<sup class="ref">' + nums[id] + '</sup>'; }
   L.forEach(function(m){
     var l = launch(m), e = end(m);
-    h += '<div class="fl-who"><h3><a href="#' + m.id + '">' + esc(m.name) + '</a> <small>' + fmt(l.date) + ' – ' + (e ? fmt(e.date) : esc(T('en cours'))) + '</small></h3>' +
+    h += '<div class="fl-who"><h3><a href="#' + m.id + '">' + esc(m.name) + '</a> <small>' + fmt(l.date) + ' – ' + (e ? fmt(e.date) : esc(T('en service'))) + '</small></h3>' +
       '<div class="spec-row"><div class="k"><b>' + esc(T('Agences')) + '</b></div><div class="v">' + esc(m.agency) + '</div></div>' +
-      '<div class="spec-row"><div class="k"><b>' + esc(T('Corps visés')) + '</b></div><div class="v">' + m.targets.map(function(b){ return esc(T(b)); }).join(', ') + '</div></div>' +
+      '<div class="spec-row"><div class="k"><b>' + esc(T('Thèmes')) + '</b></div><div class="v">' + m.targets.map(function(b){ return esc(T(b)); }).join(', ') + '</div></div>' +
       (m.events || []).map(function(x){ return '<div class="spec-row"><div class="k"><b>' + esc(evName(x)) + '</b></div><div class="v">' + fmt(x.date) + ref(m, x.ref) + '</div></div>'; }).join('') + '</div>';
   });
   return h + (refs.length ? '<div class="spec-section"><div class="spec-section-title">' + esc(T('Sources')) + '</div><ol class="refs">' + refs.map(function(r){
@@ -1611,68 +1681,95 @@ function who(L){
 }
 function fleet(sec){
   var L = MISSIONS.filter(function(m){ return keep(FS, m); }).sort(function(a, b){ return day(launch(a).date) - day(launch(b).date); });
-  var main = head('Flotte', 'Toutes les sondes présentées sur ce site', '<p class="inst-sum">' + esc(T('Chaque sonde a sa fiche, sa maquette et ses données. Les filtres se combinent ; le nombre affiché est celui des missions retenues.')) + '</p>') +
+  var main = head('Flotte', 'Tous les satellites présentés sur ce site', '<p class="inst-sum">' + esc(T('Chaque satellite a sa fiche, sa vue 3D et ses données. Les filtres se combinent ; le nombre affiché est celui des satellites retenus.')) + '</p>') +
     '<div class="fl-filters">' + chips('f', FS, 'ag', 'Agence', allAgencies().map(function(a){ return [a, a]; })) + chips('f', FS, 'st', 'État', STATES) +
-      chips('f', FS, 'body', 'Corps visé', bodies().map(function(b){ return [b, b]; })) + '</div>' +
-    '<p class="fl-count">' + esc(T('Missions affichées')) + colon() + '<b>' + L.length + '</b> / ' + MISSIONS.length + '</p>';
-  main += !L.length ? '<p class="cap">' + esc(T('Aucune mission ne correspond à ces filtres.')) + '</p>' : sec === 'flotte-qui' ? who(L) : timeline(L);
+      chips('f', FS, 'body', 'Thème', themes().map(function(b){ return [b, b]; })) + '</div>' +
+    '<p class="fl-count">' + esc(T('Satellites affichés')) + colon() + '<b>' + L.length + '</b> / ' + MISSIONS.length + '</p>';
+  main += !L.length ? '<p class="cap">' + esc(T('Aucun satellite ne correspond à ces filtres.')) + '</p>' : sec === 'flotte-qui' ? who(L) : timeline(L);
   return shell('Flotte', FLEET_SECS, sec, main);
 }
 
 /* ---------- Comparer ---------- */
-var CMP_SECS = [['comparer', 'Vue d\'ensemble', 'Années, masses, corps visés, agences'], ['comparer-voyage', 'Durée du voyage', 'Du lancement à l\'arrivée'],
-                ['comparer-masse', 'Masse au lancement', 'Ergols compris'], ['comparer-vehicules', 'Véhicules', 'Dimensions et construction'],
-                ['comparer-orbites', 'Orbites', 'Autour du corps visé'], ['comparer-instruments', 'Instruments', 'Tous les instruments, côte à côte']];
-function massRow(m){ return (m.sections && m.sections[0] && m.sections[0].rows || []).filter(function(r){ return /^(Masse au lancement|Launch mass)$/.test(r[0]); })[0]; }
-function num(s){ var m = /^[\d\s  ,.]+/.exec(s); return m ? +m[0].replace(en() ? /[^\d.]/g : /[^\d,]/g, '').replace(',', '.') : NaN; }
-function trip(m){ var l = launch(m), a = arrival(m); return l && a ? day(a.date) - day(l.date) : null; }
-function years(d){ return (d / 365.25).toFixed(1).replace('.', en() ? '.' : ','); }
-function bars(items){
+/* La fiche de chaque satellite suit le même ordre de sections (data-missions.js) : 0 Mission, 1 Orbite, 2 Images ; en anglais, les titres sont traduits
+   mais l'ordre est le même, d'où la lecture par position. Les lignes sont lues par libellé (français ou anglais). */
+var SEC = { mission:0, orbit:1, images:2 };
+var CMP_SECS = [['comparer', 'Vue d\'ensemble', 'Années, altitudes, thèmes, agences'], ['comparer-orbites', 'Orbites', 'Altitude, inclinaison, période, revisite'],
+                ['comparer-images', 'Images', 'Bandes, résolution, fauchée'], ['comparer-instruments', 'Instruments', 'Tous les instruments, leurs bandes côte à côte']];
+function row(m, idx, re){ var s = m.sections && m.sections[idx]; return s && s.rows.filter(function(r){ return re.test(r[0]); })[0]; }
+function num(s){ var m = /[\d][\d\s  ,.]*/.exec(s); return m ? +m[0].replace(/[\s  ]/g, '').replace(en() ? /,/g : /\./g, '').replace(',', '.') : NaN; }
+function insts(m){ return (typeof INST_DATA !== 'undefined' && INST_DATA[m.id] && INST_DATA[m.id].instruments) || []; }
+function bars(items, unit){
   var max = Math.max.apply(null, items.map(function(i){ return i.v; }));
   return '<ul class="cp-bars">' + items.map(function(i){
     return '<li><a href="#' + i.m.id + '" class="cp-n">' + esc(i.m.short) + '</a><span class="cp-t"><i style="width:' + (i.v / max * 100).toFixed(1) + '%;background:' + col(i.m) + '"></i></span><span class="cp-v">' + i.label + '</span></li>';
   }).join('') + '</ul>';
 }
+var RE_ALT = /^(Altitude)$/, RE_RES = /^(Résolution|Resolution)$/;
 function overview(L){
-  var maxK = Math.max.apply(null, L.map(function(m){ var r = massRow(m); return r ? num(r[1]) || 0 : 0; })) || 1;
   var rows = L.map(function(m){
-    var l = launch(m), e = end(m), r = massRow(m), k = r ? num(r[1]) : NaN, d = trip(m), a = arrival(m), ins = m.sections && m.sections[3];
+    var l = launch(m), e = end(m), a = row(m, SEC.orbit, RE_ALT), r = row(m, SEC.images, RE_RES);
     return '<tr><td class="o" style="--c:' + col(m) + '"><a href="#' + m.id + '">' + esc(m.short) + '</a></td>' +
       '<td>' + l.date.slice(0, 4) + '–' + (e ? e.date.slice(0, 4) : ' <small>' + esc(T('en cours')) + '</small>') + '</td>' +
-      '<td>' + (isNaN(k) ? '—' : '<div class="barcell"><i class="alt" style="width:' + Math.round(k / maxK * 54) + 'px"></i>' + esc(OBS_NUM((r[1].match(/^\D*[\d\s  ,.]*\d\s*kg/) || [r[1]])[0])) + '</div>') + '</td>' +
+      '<td>' + (a ? esc(OBS_NUM(a[1])) + src(m, a[2]) : '—') + '</td>' +
       '<td>' + m.targets.map(function(b){ return esc(T(b)); }).join(', ') + '</td>' +
       '<td>' + esc(agencies(m).join(', ')) + '</td>' +
-      '<td>' + (d == null ? '—' : OBS_NUM(Math.round(d).toLocaleString('fr-FR')) + ' ' + esc(T('jours')) + ' <small>' + (a ? esc(T(a.body)) : '') + '</small>') + '</td>' +
-      '<td>' + (ins ? ins.rows.length : '—') + '</td></tr>';
+      '<td>' + (r ? esc(OBS_NUM(r[1])) + src(m, r[2]) : '—') + '</td>' +
+      '<td>' + (insts(m).map(function(i){ return '<a href="#' + m.id + '-donnees-' + i.id + '">' + esc(i.name) + '</a>'; }).join(', ') || '—') + '</td></tr>';
   }).join('');
-  return '<div class="isec"><h3>' + esc(T('Les missions côte à côte')) + '</h3><div class="tablewrap"><table class="ctable"><thead><tr><th scope="col">' + esc(T('Mission')) + '</th><th scope="col">' + esc(T('Années')) + '</th><th scope="col">' + esc(T('Masse au lancement')) + '</th>' +
-    '<th scope="col">' + esc(T('Corps visés')) + '</th><th scope="col">' + esc(T('Agences')) + '</th><th scope="col">' + esc(T('Durée du voyage')) + '</th><th scope="col">' + esc(T('Instruments')) + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
-    '<div class="cap">' + esc(T('Valeurs des fiches de chaque sonde, où leur source est citée ; « Durée du voyage » : du lancement à l\'arrivée (ou à la mise en orbite) autour du corps visé. Cliquer un nom ouvre la sonde en 3D.')) + '</div></div>';
+  return '<div class="isec"><h3>' + esc(T('Les satellites côte à côte')) + '</h3><div class="tablewrap"><table class="ctable"><thead><tr><th scope="col">' + esc(T('Satellite')) + '</th><th scope="col">' + esc(T('Années')) + '</th><th scope="col">' + esc(T('Altitude')) + '</th>' +
+    '<th scope="col">' + esc(T('Thèmes')) + '</th><th scope="col">' + esc(T('Agences')) + '</th><th scope="col">' + esc(T('Résolution')) + '</th><th scope="col">' + esc(T('Instruments')) + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+    '<div class="cap">' + esc(T('Valeurs des fiches de chaque satellite, avec leur source. Cliquer un nom ouvre le satellite en 3D, un instrument ouvre sa page.')) + '</div></div>';
 }
 function rowsTable(L, idx, title, cap){
   var rows = '';
   L.forEach(function(m){ var s = m.sections && m.sections[idx]; if (!s) return;
-    s.rows.forEach(function(r, j){ rows += '<tr' + (j ? '' : ' class="first"') + '><td class="o" style="--c:' + col(m) + '">' + (j ? '' : '<a href="#' + m.id + '">' + esc(m.short) + '</a><small class="cp-sec">' + esc(s.title) + '</small>') + '</td>' +
+    s.rows.forEach(function(r, j){ rows += '<tr' + (j ? '' : ' class="first"') + '><td class="o" style="--c:' + col(m) + '">' + (j ? '' : '<a href="#' + m.id + '">' + esc(m.short) + '</a>') + '</td>' +
       '<td class="n">' + esc(r[0]) + '</td><td>' + esc(OBS_NUM(r[1])) + src(m, r[2]) + '</td></tr>'; }); });
-  return '<div class="isec"><h3>' + esc(T(title)) + '</h3><div class="tablewrap"><table class="ctable cp-rows"><thead><tr><th scope="col">' + esc(T('Mission')) + '</th><th scope="col">' + esc(T('Élément')) + '</th><th scope="col">' + esc(T('Valeur et source')) + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+  return '<div class="isec"><h3>' + esc(T(title)) + '</h3><div class="tablewrap"><table class="ctable cp-rows"><thead><tr><th scope="col">' + esc(T('Satellite')) + '</th><th scope="col">' + esc(T('Élément')) + '</th><th scope="col">' + esc(T('Valeur et source')) + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
     '<div class="cap">' + esc(T(cap)) + '</div></div>';
+}
+/* bandes spectrales de tous les instruments (µm, échelle logarithmique de 0,3 à 15 µm) : valeurs des pages d'instrument (data-inst.js) */
+var SP = [0.3, 15];
+function spectrum(L){
+  var list = []; L.forEach(function(m){ insts(m).forEach(function(i){ if (i.bands && i.bands.length) list.push([m, i]); }); });
+  if (!list.length) return '';
+  var W = 1000, lw = 150, rh = 28, top = 24, H = top + list.length * rh + 34;
+  function X(u){ return +(lw + Math.log(u / SP[0]) / Math.log(SP[1] / SP[0]) * (W - lw - 20)).toFixed(1); }
+  var s = '', zones = [[0.38, 0.75, 'visible']];
+  zones.forEach(function(z){ s += '<rect x="' + X(z[0]) + '" y="' + (top - 6) + '" width="' + (X(z[1]) - X(z[0])) + '" height="' + (H - top - 22) + '" class="sp-vis"/><text x="' + ((X(z[0]) + X(z[1])) / 2) + '" y="' + (H - 6) + '" text-anchor="middle" class="fl-nowt">' + esc(T('visible')) + '</text>'; });
+  [0.3, 0.5, 1, 2, 5, 10, 15].forEach(function(u){ s += '<line x1="' + X(u) + '" y1="' + (top - 6) + '" x2="' + X(u) + '" y2="' + (H - 22) + '" class="fl-grid"/><text x="' + X(u) + '" y="14" text-anchor="middle" class="fl-year">' + OBS_NUM(String(u).replace('.', en() ? '.' : ',')) + ' µm</text>'; });
+  list.forEach(function(p, k){
+    var m = p[0], i = p[1], cy = top + k * rh + 12, c = col(m), tip = m.short + ' · ' + i.name + colon() + i.bands.map(function(b){ return b.l; }).join(', ');
+    s += '<g class="fl-row" data-go="' + m.id + '-donnees-' + i.id + '" tabindex="0" role="link" aria-label="' + esc(tip) + '"><title>' + esc(tip) + '</title>' +
+      '<rect x="0" y="' + (cy - 12) + '" width="' + W + '" height="' + rh + '" fill="transparent"/>' +
+      '<text x="' + (lw - 10) + '" y="' + (cy + 4.5) + '" text-anchor="end" class="fl-lab">' + esc(m.short + ' · ' + i.name) + '</text>' +
+      i.bands.map(function(b){ return '<rect x="' + X(b.lo) + '" y="' + (cy - 7) + '" width="' + Math.max(2, X(b.hi) - X(b.lo)).toFixed(1) + '" height="14" fill="' + c + '" fill-opacity="0.75"/>'; }).join('') + '</g>';
+  });
+  return '<div class="isec"><h3>' + esc(T('Les bandes spectrales')) + '</h3><div class="svgwrap fl-tl"><svg viewBox="0 0 ' + W + ' ' + H + '" role="group" aria-label="' + esc(T('Bandes spectrales des instruments')) + '">' + s + '</svg></div>' +
+    '<div class="cap">' + esc(T('Une ligne par instrument, une barre par bande, de la limite basse à la limite haute publiées (échelle logarithmique). Les radars et altimètres, qui travaillent en ondes radio ou avec un laser, ne figurent pas sur cette échelle. Cliquer une ligne ouvre la page de l\'instrument.')) + '</div></div>';
+}
+function instTable(L){
+  var RP = /^(Pixel au sol|Ground pixel)$/, RF = /^(Fauchée|Swath)$/, rows = '';
+  L.forEach(function(m){ insts(m).forEach(function(i, j){
+    var p = (i.specs || []).filter(function(r){ return RP.test(r[0]); })[0], f = (i.specs || []).filter(function(r){ return RF.test(r[0]); })[0], ty = INST_TYPES[i.type];
+    rows += '<tr' + (j ? '' : ' class="first"') + '><td class="o" style="--c:' + col(m) + '">' + (j ? '' : '<a href="#' + m.id + '">' + esc(m.short) + '</a>') + '</td>' +
+      '<td><a href="#' + m.id + '-donnees-' + i.id + '">' + esc(i.name) + '</a> <small>' + esc(i.full) + '</small></td><td>' + esc(ty ? ty.l : i.type) + '</td>' +
+      '<td>' + (p ? esc(OBS_NUM(p[1])) + src(m, p[2]) : '—') + '</td><td>' + (f ? esc(OBS_NUM(f[1])) + src(m, f[2]) : '—') + '</td></tr>'; }); });
+  return '<div class="isec"><h3>' + esc(T('Tous les instruments')) + '</h3><div class="tablewrap"><table class="ctable cp-rows"><thead><tr><th scope="col">' + esc(T('Satellite')) + '</th><th scope="col">' + esc(T('Instrument')) + '</th><th scope="col">' + esc(T('Type')) + '</th><th scope="col">' + esc(T('Pixel au sol')) + '</th><th scope="col">' + esc(T('Fauchée')) + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+    '<div class="cap">' + esc(T('Valeurs des pages d\'instrument, avec leur source.')) + '</div></div>';
 }
 function compare(sec){
   var L = MISSIONS.filter(function(m){ return keep(CS, m); }), cs = CMP_SECS.filter(function(x){ return x[0] === sec; })[0];
-  var main = head(cs[1], 'Comparer : les missions sur les mêmes axes, avec les valeurs et les sources de leurs fiches',
-    '<div class="fl-filters">' + chips('c', CS, 'body', 'Corps visé', bodies().map(function(b){ return [b, b]; })) + chips('c', CS, 'st', 'État', STATES) + '</div>');
-  if (!L.length) return shell('Comparer', CMP_SECS, sec, main + '<p class="cap">' + esc(T('Aucune mission ne correspond à ces filtres.')) + '</p>');
+  var main = head(cs[1], 'Comparer : les satellites sur les mêmes axes, avec les valeurs et les sources de leurs fiches',
+    '<div class="fl-filters">' + chips('c', CS, 'body', 'Thème', themes().map(function(b){ return [b, b]; })) + chips('c', CS, 'st', 'État', STATES) + '</div>');
+  if (!L.length) return shell('Comparer', CMP_SECS, sec, main + '<p class="cap">' + esc(T('Aucun satellite ne correspond à ces filtres.')) + '</p>');
   if (sec === 'comparer') main += overview(L);
-  else if (sec === 'comparer-voyage'){
-    var tr = L.map(function(m){ var d = trip(m), a = arrival(m); if (d == null) return null;
-      return { m:m, v:d, label:OBS_NUM(Math.round(d).toLocaleString('fr-FR')) + ' ' + esc(T('jours')) + ' (' + years(d) + ' ' + esc(T('ans')) + ') · ' + esc(T(a.body)) + src(m, a.ref) }; }).filter(Boolean);
-    main += '<div class="isec"><h3>' + esc(T('Du lancement à l\'arrivée')) + '</h3>' + bars(tr) + '<div class="cap">' + esc(T('Du lancement à l\'arrivée (ou à la mise en orbite) autour du corps visé, calculé à partir des dates des fiches. Les survols en chemin allongent le voyage mais économisent du carburant.')) + '</div></div>';
-  } else if (sec === 'comparer-masse'){
-    var ms = L.map(function(m){ var r = massRow(m); if (!r) return null; var v = num(r[1]); return isNaN(v) ? null : { m:m, v:v, label:esc(OBS_NUM(r[1])) + src(m, r[2]) }; }).filter(Boolean);
-    main += '<div class="isec"><h3>' + esc(T('Masse au lancement')) + '</h3>' + bars(ms) + '<div class="cap">' + esc(T('Masse totale au lancement, ergols compris, telle que la publie la source citée ; les valeurs suivies de « ≈ » sont approchées.')) + '</div></div>';
-  } else if (sec === 'comparer-vehicules') main += rowsTable(L, 0, 'Véhicules', 'Valeurs de la section « Véhicule » de chaque fiche.');
-  else if (sec === 'comparer-orbites') main += rowsTable(L, 2, 'Orbites', 'Valeurs de la section « Orbite » de chaque fiche ; Cassini a changé d\'orbite autour de Saturne tout au long de sa mission.');
-  else main += rowsTable(L, 3, 'Instruments', 'Valeurs de la section « Instruments » de chaque fiche ; le détail de chaque instrument est dans « Mission et données » de la sonde.');
+  else if (sec === 'comparer-orbites'){
+    var al = L.map(function(m){ var r = row(m, SEC.orbit, RE_ALT); if (!r) return null; var v = num(r[1]); return isNaN(v) ? null : { m:m, v:v, label:esc(OBS_NUM(r[1])) + src(m, r[2]) }; }).filter(Boolean);
+    main += '<div class="isec"><h3>' + esc(T('Altitude')) + '</h3>' + bars(al) + '<div class="cap">' + esc(T('Altitude moyenne de l\'orbite, telle que la publie la source citée. L\'orbite réelle du jour, calculée à partir des éléments orbitaux, est sur la page « Orbite » de chaque satellite.')) + '</div></div>';
+    main += rowsTable(L, SEC.orbit, 'Orbites', 'Valeurs de la section « Orbite » de chaque fiche.');
+  } else if (sec === 'comparer-images') main += rowsTable(L, SEC.images, 'Images', 'Valeurs de la section « Images » de chaque fiche.');
+  else main += spectrum(L) + instTable(L);
   return shell('Comparer', CMP_SECS, sec, main);
 }
 
@@ -1690,7 +1787,7 @@ document.addEventListener('click', function(e){
   mm = document.getElementById('xp-main'); if (mm) mm.scrollTop = top;
   var nb = document.querySelector('[data-xf="' + key.replace(/"/g, '\\"') + '"]'); if (nb) nb.focus();
 });
-/* lignes de la frise : Entrée ou Espace ouvrent la sonde (role=link) */
+/* lignes de la frise et des bandes : Entrée ou Espace ouvrent la page (role=link) */
 document.addEventListener('keydown', function(e){
   var g = e.target.closest && e.target.closest('.fl-row[data-go]'); if (!g || (e.key !== 'Enter' && e.key !== ' ')) return;
   e.preventDefault(); location.hash = g.getAttribute('data-go');
@@ -2122,7 +2219,7 @@ function html(m, sec, X){
   var it = sec && get(m, sec); if (sec && !it && sec !== 'mission' && sec !== 'orbite') sec = '';
   var nav = navItem(m, '', sec || '', L('Vue d\'ensemble', 'Overview'), L('Spectre, instruments, archives', 'Spectrum, instruments, archives')) +
     (MISSION[m.id] ? navItem(m, 'mission', sec, L('Mission et traitements', 'Mission and processing'), L('Déroulé, exploitation, chaîne de traitement', 'Timeline, operations, processing chain')) : '') +
-    navItem(m, 'orbite', sec, L('Trajectoire et orbite', 'Trajectory and orbit'), L('Croisière réelle, orbite autour du corps', 'Real cruise, orbit around the body')) +
+    navItem(m, 'orbite', sec, L('Orbite', 'Orbit'), L('Trace au sol, éléments du jour', 'Ground track, today\'s elements')) +
     d.instruments.map(function(x){ return navItem(m, x.id, sec, x.name, kind(x), color(x)); }).join('');
   var main = it ? detail(m, it, X) : sec === 'mission' ? missionSec(m) : sec === 'orbite' ? orbitSec(m) : overview(m, X);
   return '<div class="xp inst-body"><nav class="inst-nav" aria-label="' + esc(L('Sous-pages de ', 'Sub-pages of ') + m.short) + '">' + nav + '</nav><div class="inst-main" id="xp-main">' + main + '</div></div>';

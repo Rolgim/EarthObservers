@@ -203,7 +203,7 @@ function mount(){
 }
 function texCredit(){
   var t = (window.DATA_FILES || {})['tex-earth']; if (!t) return '';
-  return '<br>' + esc(T('Globe')) + colon() + esc(t.title) + ' (' + esc(t.credit || 'NASA') + ') · ' + esc(T('Licence')) + colon() + '<a href="' + esc(t.page) + '" rel="noopener" target="_blank">' + esc(T(t.license_fr || t.license)) + '</a>';
+  return '<br>' + esc(T('Globe')) + colon() + esc(t.title) + ' (' + esc(t.credit || 'NASA') + ') · ' + esc(T('Licence')) + colon() + '<a href="' + esc(t.page) + '" rel="noopener" target="_blank">' + esc((en() ? t.license_en : t.license_fr) || t.license) + '</a>';
 }
 return { html:html, mount:mount, stop:stop };
 })();

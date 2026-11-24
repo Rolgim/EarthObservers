@@ -10,7 +10,7 @@ const FRENCH = /[àâçéèêëîïôùûœ«»]|\b(le|la|les|des|du|de|et|un|un
 (async () => {
   const b = await chromium.launch();
   const pg = await b.newPage({ viewport: { width: 1360, height: 820 }, locale: 'en-US' });
-  await pg.addInitScript(() => { window.__i18nMiss = {}; try { localStorage.setItem('sse-lang', 'en'); } catch (e) {} });
+  await pg.addInitScript(() => { window.__i18nMiss = {}; try { localStorage.setItem('eo-lang', 'en'); } catch (e) {} });
   await serve.offline(pg, PORT);
   const miss = {};
   for (const h of ALL) {

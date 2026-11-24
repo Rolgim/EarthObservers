@@ -230,7 +230,7 @@ function html(m, sec, X){
   var it = sec && get(m, sec); if (sec && !it && sec !== 'mission' && sec !== 'orbite') sec = '';
   var nav = navItem(m, '', sec || '', L('Vue d\'ensemble', 'Overview'), L('Spectre, instruments, archives', 'Spectrum, instruments, archives')) +
     (MISSION[m.id] ? navItem(m, 'mission', sec, L('Mission et traitements', 'Mission and processing'), L('Déroulé, exploitation, chaîne de traitement', 'Timeline, operations, processing chain')) : '') +
-    navItem(m, 'orbite', sec, L('Trajectoire et orbite', 'Trajectory and orbit'), L('Croisière réelle, orbite autour du corps', 'Real cruise, orbit around the body')) +
+    navItem(m, 'orbite', sec, L('Orbite', 'Orbit'), L('Trace au sol, éléments du jour', 'Ground track, today\'s elements')) +
     d.instruments.map(function(x){ return navItem(m, x.id, sec, x.name, kind(x), color(x)); }).join('');
   var main = it ? detail(m, it, X) : sec === 'mission' ? missionSec(m) : sec === 'orbite' ? orbitSec(m) : overview(m, X);
   return '<div class="xp inst-body"><nav class="inst-nav" aria-label="' + esc(L('Sous-pages de ', 'Sub-pages of ') + m.short) + '">' + nav + '</nav><div class="inst-main" id="xp-main">' + main + '</div></div>';

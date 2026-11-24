@@ -12,9 +12,10 @@ module.exports.offline = async (pg, port) => {
   const V = process.env.VENDOR;
   await pg.route('**/*', r => { const u = r.request().url();
     if (V && u.includes('three.min.js')) return r.fulfill({ path: path.join(V, 'three.min.js'), contentType: 'text/javascript' });
+    if (V && u.includes('satellite.min.js')) return r.fulfill({ path: path.join(V, 'satellite.min.js'), contentType: 'text/javascript' });
     if (V && u.includes('GLTFLoader.js')) return r.fulfill({ path: path.join(V, 'GLTFLoader.js'), contentType: 'text/javascript' });
     if (V && u.includes('fonts.googleapis')) return r.fulfill({ contentType: 'text/css', body: '' });
     return u.startsWith('http://localhost:' + port) || !V ? r.continue() : r.abort(); });
 };
 /* langue du site imposée une fois par onglet (le site est en anglais par défaut ; le bouton de langue reste libre ensuite) */
-module.exports.lang = (pg, l) => pg.addInitScript(l => { try { if (!sessionStorage.getItem('sse-test-lang')){ localStorage.setItem('sse-lang', l); sessionStorage.setItem('sse-test-lang', '1'); } } catch(e){} }, l);
+module.exports.lang = (pg, l) => pg.addInitScript(l => { try { if (!sessionStorage.getItem('eo-test-lang')){ localStorage.setItem('eo-lang', l); sessionStorage.setItem('eo-test-lang', '1'); } } catch(e){} }, l);
