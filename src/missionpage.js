@@ -182,6 +182,7 @@ function orbitSec(m){
 
 /* ---------- un instrument ---------- */
 function stacCode(c){
+  if (!/stac/.test(c.api || '')) return '# ' + L('Recherche CMR (sans compte) : produits de la collection, du plus récent au plus ancien', 'CMR search (no account): products of the collection, newest first') + '\ncurl "https://cmr.earthdata.nasa.gov/search/granules.json?short_name=' + c.id + (c.version ? '&version=' + c.version : '') + '&sort_key=-start_date&page_size=10"';
   var api = c.api.replace(/\/$/, ''), f = c.sat_filter ? JSON.stringify(c.sat_filter) : '';
   return 'curl -X POST "' + api + '/search" -H "Content-Type: application/json" \\\n  -d \'{"collections": ["' + c.id + '"], "limit": 1' + (f ? ', "query": ' + f : '') + '}\'\n\n# Python\nfrom pystac_client import Client\ncat = Client.open("' + api + '")\nitems = cat.search(collections=["' + c.id + '"]' + (f ? ', query=' + f : '') + ', max_items=10).item_collection()\nfor it in items:\n    print(it.id, it.datetime, list(it.assets))';
 }
@@ -217,7 +218,7 @@ function detail(m, it, X){
   } else s += '<p class="note">' + L('Aucune collection de cet instrument relevée dans les catalogues : ses données sont à chercher dans les archives ci-dessous.', 'No collection for this instrument found in the catalogues: look for its data in the archives below.') + '</p>';
   s += '</div>';
   if (cs.length){ var top = cs.filter(function(c){ return c.api && !/cmr/.test(c.api); })[0] || cs[0];
-    s += '<div class="isec wide"><h3>' + L('Accéder aux données', 'Accessing the data') + '</h3><div class="ex-head"><span class="ex-title">' + L('Interroger le catalogue STAC', 'Query the STAC catalogue') + ' (' + esc(catName(top)) + ')</span></div>' + code(stacCode(top)) + '</div>'; }
+    s += '<div class="isec wide"><h3>' + L('Accéder aux données', 'Accessing the data') + '</h3><div class="ex-head"><span class="ex-title">' + (/stac/.test(top.api || '') ? L('Interroger le catalogue STAC', 'Query the STAC catalogue') : L('Interroger le catalogue', 'Query the catalogue')) + ' (' + esc(catName(top)) + ')</span></div>' + code(stacCode(top)) + '</div>'; }
   var links = INST_DATA[m.id].archives.map(function(a){ return { l:a.label, u:a.url }; }).concat(it.docs || []);
   s += mk.list(INST_DATA[m.id].checked || (MISSION[m.id] || {}).checked);
   s += '<div class="isec wide"><h3>' + L('Archive et documentation', 'Archive and documentation') + '</h3><div class="lnks">' + links.map(function(l){ return '<a class="lnk" href="' + esc(l.u) + '" target="_blank" rel="noopener">' + esc(l.l) + '<em>' + esc(host(l.u)) + '</em></a>'; }).join('') + '</div></div>';

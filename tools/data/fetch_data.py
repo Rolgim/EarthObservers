@@ -3,7 +3,7 @@
 en tire un aperçu léger dans data/, et écrit à côté une fiche JSON (archive, collection, produit, date, URL, licence de la source) (règle 3).
 Le champ « src » de chaque fiche nomme la règle de licence appliquée par tools/data/credits.py.
 Usage : python tools/data/fetch_data.py [recette …]   (sans argument : toutes)."""
-import io, json, os, re, sys, datetime, requests
+import time, io, json, os, re, sys, datetime, requests
 from PIL import Image
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 DATA = os.path.join(ROOT, "data"); os.makedirs(DATA, exist_ok=True)
@@ -73,15 +73,20 @@ def landsat9():
 
 # ---------- Planetary Computer (Microsoft) : catalogue STAC public, aperçus rendus par son API de données, sans compte ----------
 PC = "https://planetarycomputer.microsoft.com/api/stac/v1"
-def pc_items(collection, query=None, days=40, n=60):
+def pc_items(collection, query=None, days=40, n=60, bbox=None):
     end = datetime.date.today(); start = end - datetime.timedelta(days=days)
     body = {"collections": [collection], "datetime": start.isoformat() + "T00:00:00Z/" + end.isoformat() + "T23:59:59Z", "limit": n, "sortby": [{"field": "datetime", "direction": "desc"}]}
     if query: body["query"] = query
+    if bbox: body["bbox"] = bbox
     r = S.post(PC + "/search", json=body, timeout=120); r.raise_for_status(); return r.json().get("features", [])
 def pc_sign(href):
-    r = S.get("https://planetarycomputer.microsoft.com/api/sas/v1/sign", params={"href": href}, timeout=60); r.raise_for_status(); return r.json()["href"]
-def pc_recipe(name, collection, query, instrument, alt_asset=None, need=None, days=40):
-    for f in pc_items(collection, query, days):
+    for k in range(5):   # le service de signature limite le débit (429) : on attend et on réessaie
+        r = S.get("https://planetarycomputer.microsoft.com/api/sas/v1/sign", params={"href": href}, timeout=60)
+        if r.status_code != 429: break
+        time.sleep(10 * (k + 1))
+    r.raise_for_status(); return r.json()["href"]
+def pc_recipe(name, collection, query, instrument, alt_asset=None, need=None, days=40, bbox=None):
+    for f in pc_items(collection, query, days, bbox=bbox):
         if need and not need(f): continue
         a = f["assets"]; href = (a.get("rendered_preview") or {}).get("href")
         if not href and alt_asset and alt_asset in a: href = pc_sign(a[alt_asset]["href"])
@@ -98,9 +103,10 @@ def pc_recipe(name, collection, query, instrument, alt_asset=None, need=None, da
              "credit": "Contains modified Copernicus Sentinel data " + str(p.get("datetime", ""))[:4] + " ; aperçu : Microsoft Planetary Computer"})
         return
     raise RuntimeError("aucun produit retenu dans " + collection)
+ALPS = [5.8, 45.6, 7.2, 46.6]   # lon min, lat min, lon max, lat max : Léman et Mont-Blanc (dans la zone EUROPE de la galerie)
 def sentinel1(): pc_recipe("sentinel1-sar", "sentinel-1-grd", {"sar:instrument_mode": {"eq": "IW"}, "platform": {"in": ["SENTINEL-1C", "SENTINEL-1D", "sentinel-1c", "sentinel-1d"]}}, "C-SAR",
-                          need=lambda f: "rendered_preview" in f["assets"])
-def sentinel2(): pc_recipe("sentinel2-msi", "sentinel-2-l2a", {"eo:cloud_cover": {"lt": 3}, "s2:nodata_pixel_percentage": {"lt": 5}}, "MSI")
+                          need=lambda f: "rendered_preview" in f["assets"], bbox=ALPS)
+def sentinel2(): pc_recipe("sentinel2-msi", "sentinel-2-l2a", {"eo:cloud_cover": {"lt": 10}, "s2:nodata_pixel_percentage": {"lt": 5}}, "MSI", bbox=ALPS, days=90)
 def sentinel3(): pc_recipe("sentinel3-olci", "sentinel-3-olci-wfr-l2-netcdf", {"eo:cloud_cover": {"lt": 20}}, "OLCI", alt_asset="browse-jpg", days=20)
 
 # ---------- NASA GIBS (Global Imagery Browse Services) : images des produits NASA, sans compte ; remerciement demandé par GIBS ----------
@@ -145,7 +151,7 @@ def commons(name, title, instrument, what_fr, max_px=1000):
     im = Image.open(io.BytesIO(S.get(ii.get("thumburl") or ii["url"], timeout=300).content))
     save(name, im, {"src": "commons", "press": True, "archive": "Wikimedia Commons", "collection": "", "product": title[5:], "title": v("ObjectName") or title[5:],
          "datetime": v("DateTimeOriginal")[:10] or ii.get("timestamp", "")[:10], "instrument": instrument, "href": ii["url"], "page": ii.get("descriptionurl"),
-         "credit": (v("Artist") or v("Credit"))[:240], "license": lic, "license_url": v("LicenseUrl"), "source": v("Credit")[:240],
+         "credit": (v("Artist") if v("Artist") and not v("Artist").startswith("http") else v("Credit"))[:240], "license": lic, "license_url": v("LicenseUrl"), "source": v("Credit")[:240],
          "description": v("ImageDescription")[:500], "what_fr": what_fr}, max_px)
 def sentinel5p(): commons("sentinel5p-tropomi", "File:Nitrogen dioxide over the Netherlands (TROPOMI, 2017-12-01).png", "TROPOMI", "dioxyde d'azote")
 def swot(): commons("swot-karin", "File:Global sea surface height by the Surface Water and Ocean Topography (SWOT) mission – the first 21-day cycle (SVS31265 - swot 2023-10-30-A 0001).tiff", "KaRIn", "hauteur de la mer")

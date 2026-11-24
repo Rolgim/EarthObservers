@@ -34,9 +34,9 @@ COLS = [
   ("aqua", "airs", "cmr", "AIRS3STD_7.0", None, "GES_DISC"),
   ("icesat2", "atlas", "cmr", "ATL06_007", None, "NSIDC_CPRD"),
   ("icesat2", "atlas", "cmr", "ATL03_007", None, "NSIDC_CPRD"),
-  ("gracefo", "kbr", "cmr", "TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4", None, "POCLOUD"),
-  ("swot", "karin", "cmr", "SWOT_L2_LR_SSH_2.0", None, "POCLOUD"),
-  ("swot", "karin", "cmr", "SWOT_L2_HR_Raster_2.0", None, "POCLOUD"),
+  ("gracefo", "kbr", "cmr", "TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4", None, "POCLOUD:short"),
+  ("swot", "karin", "cmr", "SWOT_L2_LR_SSH", None, "POCLOUD:short"),
+  ("swot", "karin", "cmr", "SWOT_L2_HR_Raster", None, "POCLOUD:short"),
 ]
 def stac_col(cat, cid, q, prov):
     root = CATS[cat]["api"] + (prov or "")
@@ -53,19 +53,26 @@ def stac_col(cat, cid, q, prov):
                 r2 = S.post(root.rstrip("/") + "/search", json=dict(body, sortby=[{"field": "properties.datetime", "direction": d}]), timeout=120)
                 if r2.ok and r2.json().get("features"): rec[k] = r2.json()["features"][0]["properties"].get("datetime")
     return rec
-def cmr_umm(cid):
-    short, ver = cid.rsplit("_", 1)
-    r = S.get("https://cmr.earthdata.nasa.gov/search/collections.umm_json", params={"short_name": short, "version": ver}, timeout=90); r.raise_for_status()
+def cmr_umm(cid, short_only=False):
+    # short_only : identifiant = nom court seul (collections PO.DAAC absentes de CMR-STAC) ; on garde la version la plus récente
+    short, ver = (cid, None) if short_only else cid.rsplit("_", 1)
+    p = {"short_name": short} if short_only else {"short_name": short, "version": ver}
+    r = S.get("https://cmr.earthdata.nasa.gov/search/collections.umm_json", params=dict(p, sort_key="-revision_date"), timeout=90); r.raise_for_status()
     it = r.json()["items"][0]; u = it["umm"]
-    h = S.get("https://cmr.earthdata.nasa.gov/search/granules.json", params={"short_name": short, "version": ver, "page_size": 0}, timeout=90)
-    return {"level": (u.get("ProcessingLevel") or {}).get("Id"), "doi": (u.get("DOI") or {}).get("DOI"), "concept": it["meta"]["concept-id"],
+    if short_only: p["version"] = u.get("Version")
+    h = S.get("https://cmr.earthdata.nasa.gov/search/granules.json", params=dict(p, page_size=0), timeout=90)
+    t = (u.get("TemporalExtents") or [{}])[0].get("RangeDateTimes") or [{}]
+    return {"version": u.get("Version"), "title_umm": u.get("EntryTitle"), "period_umm": [t[0].get("BeginningDateTime"), t[0].get("EndingDateTime")],"level": (u.get("ProcessingLevel") or {}).get("Id"), "doi": (u.get("DOI") or {}).get("DOI"), "concept": it["meta"]["concept-id"],
             "page": "https://cmr.earthdata.nasa.gov/search/concepts/" + it["meta"]["concept-id"] + ".html", "matched_all": int(h.headers.get("CMR-Hits", 0)) or None,
             "use": ((u.get("UseConstraints") or {}).get("LicenseURL") or {}).get("Linkage") or (u.get("UseConstraints") or {}).get("Description")}
 out = {"fetched": datetime.date.today().isoformat(), "cats": CATS, "cols": {}}
 for mid, inst, cat, cid, q, prov in COLS:
     try:
-        rec = stac_col(cat, cid, q, prov)
-        if cat == "cmr": rec.update(cmr_umm(cid))
+        if prov and prov.endswith(":short"):
+            rec = cmr_umm(cid, True); rec.update(title=rec.get("title_umm"), period=rec.get("period_umm"), api="https://cmr.earthdata.nasa.gov/search/", matched=rec.get("matched_all"))
+        else:
+            rec = stac_col(cat, cid, q, prov)
+            if cat == "cmr": rec.update(cmr_umm(cid))
         rec.update(inst=inst, cat=cat, id=cid, sat_filter=q)
         out["cols"].setdefault(mid, []).append(rec); print(mid, inst, cid, rec.get("matched"), rec.get("level"), rec.get("license"))
     except Exception as e: print("ÉCHEC", mid, cid, repr(e)[:200])
