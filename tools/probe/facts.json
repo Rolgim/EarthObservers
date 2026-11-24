@@ -90,5 +90,29 @@
   "https://swot.jpl.nasa.gov/mission/swot-instruments/",
   "https://www.jpl.nasa.gov/missions/surface-water-and-ocean-topography-swot",
   "https://swot.cnes.fr/en/SWOT/index.htm"
+ ],
+ "instr": [
+  "https://www.earthdata.nasa.gov/data/instruments/modis",
+  "https://www.earthdata.nasa.gov/data/instruments/aster",
+  "https://www.earthdata.nasa.gov/data/instruments/misr",
+  "https://www.earthdata.nasa.gov/data/instruments/mopitt",
+  "https://www.earthdata.nasa.gov/data/instruments/ceres",
+  "https://www.earthdata.nasa.gov/data/instruments/airs",
+  "https://www.earthdata.nasa.gov/data/instruments/amsu-a",
+  "https://www.earthdata.nasa.gov/data/instruments/atlas",
+  "https://www.earthdata.nasa.gov/data/instruments/karin",
+  "https://www.earthdata.nasa.gov/data/instruments/tropomi",
+  "https://www.earthdata.nasa.gov/data/instruments/msi",
+  "https://www.earthdata.nasa.gov/data/instruments/olci",
+  "https://www.earthdata.nasa.gov/data/instruments/slstr",
+  "https://www.earthdata.nasa.gov/data/instruments/c-sar",
+  "https://www.earthdata.nasa.gov/data/instruments/kbr",
+  "https://www.earthdata.nasa.gov/data/instruments/lri",
+  "https://airs.jpl.nasa.gov/mission/airs-project-instrument-suite/",
+  "https://www.tropomi.eu/data-products/level-2-products",
+  "https://sentiwiki.copernicus.eu/web/s1-mission",
+  "https://ceres.larc.nasa.gov/instruments/",
+  "https://mopitt.ucar.edu/",
+  "https://terra.nasa.gov/about/terra-instruments/modis"
  ]
 }
