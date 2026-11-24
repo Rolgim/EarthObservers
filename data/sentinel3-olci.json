@@ -7,7 +7,7 @@
  "instrument": "OLCI",
  "platform": "Sentinel-3A",
  "cloud": 36.0,
- "href": "https://sentinel3euwest.blob.core.windows.net/sentinel-3/OLCI/OL_2_WFR___/2026/11/22/S3A_OL_2_WFR____20261122T105431_20261122T105731_20261123T161811_0179_146_265_2160_MAR_O_NT_004.SEN3/browse.jpg?st=2026-11-23T13%3A56%3A31Z&se=2026-11-24T14%3A41%3A31Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-11-20T00%3A27%3A34Z&ske=2026-11-27T00%3A27%3A34Z&sks=b&skv=2025-07-05&sig=8KeAC6f7YsV6zqunxzXC9qxYj%2BPFwO/8proPZMPfdCg%3D",
+ "href": "https://sentinel3euwest.blob.core.windows.net/sentinel-3/OLCI/OL_2_WFR___/2026/11/22/S3A_OL_2_WFR____20261122T105431_20261122T105731_20261123T161811_0179_146_265_2160_MAR_O_NT_004.SEN3/browse.jpg?st=2026-11-23T14%3A01%3A38Z&se=2026-11-24T14%3A46%3A38Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-11-22T00%3A28%3A22Z&ske=2026-11-29T00%3A28%3A22Z&sks=b&skv=2025-07-05&sig=iKyvhtAJOkofJEJO2P/w7QTDrgx0E9QvmzNAmwA2IdQ%3D",
  "page": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-wfr-l2-netcdf/items/S3A_OL_2_WFR_20261122T105431_20261122T105731_0179_146_265_2160",
  "credit": "Contains modified Copernicus Sentinel data 2026 ; aperçu : Microsoft Planetary Computer",
  "full_size": [

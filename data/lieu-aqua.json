@@ -1,0 +1,40 @@
+{
+ "src": "nasa-cc0",
+ "archive": "NASA GIBS (Worldview)",
+ "collection": "MODIS_Aqua_CorrectedReflectance_TrueColor",
+ "product": "MODIS Aqua, réflectance corrigée, couleurs naturelles",
+ "datetime": "2026-11-21",
+ "instrument": "MODIS",
+ "bbox_lat_lon": [
+  45.8,
+  6.3,
+  46.4,
+  7.0
+ ],
+ "href": "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS=MODIS_Aqua_CorrectedReflectance_TrueColor&CRS=EPSG%3A4326&STYLES=&BBOX=45.8%2C6.3%2C46.4%2C7.0&WIDTH=324&HEIGHT=400&FORMAT=image%2Fpng&TIME=2026-11-21",
+ "page": "https://worldview.earthdata.nasa.gov/?l=MODIS_Aqua_CorrectedReflectance_TrueColor&t=2026-11-21",
+ "credit": "NASA ; Imagery from NASA's Global Imagery Browse Services (GIBS), part of NASA's Earth Science Data and Information System (ESDIS)",
+ "full_size": [
+  324,
+  400
+ ],
+ "out_size": [
+  324,
+  400
+ ],
+ "fetched": "2026-11-24",
+ "lieu": [
+  6.3,
+  45.8,
+  7.0,
+  46.4
+ ],
+ "sat": "aqua",
+ "res_m": 250,
+ "crop_lieu": true,
+ "license_fr": "CC0 1.0 (données des missions de la NASA, politique d'usage d'Earthdata) ; citer le jeu de données",
+ "license_en": "CC0 1.0 (NASA mission data, Earthdata use policy); cite the dataset",
+ "license_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+ "credit_line": "NASA ; Imagery from NASA's Global Imagery Browse Services (GIBS), part of NASA's Earth Science Data and Information System (ESDIS)",
+ "status": "ok"
+}
