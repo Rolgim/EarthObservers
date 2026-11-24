@@ -1,16 +1,94 @@
 {
- "landsat9": ["https://landsat.gsfc.nasa.gov/satellites/landsat-9/",
-              "https://www.usgs.gov/landsat-missions/landsat-9",
-              "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2021-088A",
-              "https://www.eoportal.org/satellite-missions/landsat-9",
-              "https://landsat.gsfc.nasa.gov/satellites/landsat-9/landsat-9-instruments/",
-              "https://landsat.gsfc.nasa.gov/satellites/landsat-9/landsat-9-instruments/oli-2-design/",
-              "https://landsat.gsfc.nasa.gov/satellites/landsat-9/landsat-9-instruments/tirs-2-design/",
-              "https://landsat.gsfc.nasa.gov/satellites/landsat-9/landsat-9-mission-details/",
-              "https://landsat.gsfc.nasa.gov/satellites/landsat-9/landsat-9-overview/",
-              "https://www.usgs.gov/faqs/what-are-band-designations-landsat-satellites",
-              "https://www.usgs.gov/landsat-missions/landsat-9-data-users-handbook",
-              "https://www.nasa.gov/wp-content/uploads/2021/09/landsat9_presskit_final.pdf",
-              "https://www.lpdaac.usgs.gov/products/hlsl30v002/",
-              "https://lpdaac.usgs.gov/data/data-citation-and-policies/"]
+ "landsat9": [
+  "https://landsat.gsfc.nasa.gov/satellites/landsat-9/",
+  "https://www.usgs.gov/landsat-missions/landsat-9",
+  "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2021-088A",
+  "https://www.eoportal.org/satellite-missions/landsat-9",
+  "https://landsat.gsfc.nasa.gov/satellites/landsat-9/landsat-9-instruments/",
+  "https://landsat.gsfc.nasa.gov/satellites/landsat-9/landsat-9-instruments/oli-2-design/",
+  "https://landsat.gsfc.nasa.gov/satellites/landsat-9/landsat-9-instruments/tirs-2-design/",
+  "https://landsat.gsfc.nasa.gov/satellites/landsat-9/landsat-9-mission-details/",
+  "https://landsat.gsfc.nasa.gov/satellites/landsat-9/landsat-9-overview/",
+  "https://www.usgs.gov/faqs/what-are-band-designations-landsat-satellites",
+  "https://www.usgs.gov/landsat-missions/landsat-9-data-users-handbook",
+  "https://www.nasa.gov/wp-content/uploads/2021/09/landsat9_presskit_final.pdf",
+  "https://www.lpdaac.usgs.gov/products/hlsl30v002/",
+  "https://lpdaac.usgs.gov/data/data-citation-and-policies/"
+ ],
+ "sentinel1": [
+  "https://www.eoportal.org/satellite-missions/copernicus-sentinel-1",
+  "https://sentiwiki.copernicus.eu/web/s1-mission",
+  "https://sentiwiki.copernicus.eu/web/s1-applications",
+  "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Facts_and_figures",
+  "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1",
+  "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Sentinel-1C_launched"
+ ],
+ "sentinel2": [
+  "https://www.eoportal.org/satellite-missions/copernicus-sentinel-2",
+  "https://sentiwiki.copernicus.eu/web/s2-mission",
+  "https://sentiwiki.copernicus.eu/web/s2-msi",
+  "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2/Facts_and_figures",
+  "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2"
+ ],
+ "sentinel3": [
+  "https://www.eoportal.org/satellite-missions/copernicus-sentinel-3",
+  "https://sentiwiki.copernicus.eu/web/s3-mission",
+  "https://sentiwiki.copernicus.eu/web/s3-olci-instrument",
+  "https://sentiwiki.copernicus.eu/web/s3-slstr-instrument",
+  "https://sentiwiki.copernicus.eu/web/s3-sral-instrument",
+  "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-3/Facts_and_figures",
+  "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-3"
+ ],
+ "sentinel5p": [
+  "https://www.eoportal.org/satellite-missions/copernicus-sentinel-5p",
+  "https://sentiwiki.copernicus.eu/web/s5p-mission",
+  "https://sentiwiki.copernicus.eu/web/s5p-tropomi-instrument",
+  "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-5P/Facts_and_figures",
+  "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-5P",
+  "https://www.tropomi.eu/"
+ ],
+ "terra": [
+  "https://www.eoportal.org/satellite-missions/terra",
+  "https://science.nasa.gov/mission/terra/",
+  "https://terra.nasa.gov/about",
+  "https://terra.nasa.gov/about/terra-instruments",
+  "https://modis.gsfc.nasa.gov/about/specifications.php",
+  "https://asterweb.jpl.nasa.gov/characteristics.asp",
+  "https://misr.jpl.nasa.gov/mission/misr-instrument/",
+  "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1999-068A"
+ ],
+ "aqua": [
+  "https://www.eoportal.org/satellite-missions/aqua",
+  "https://science.nasa.gov/mission/aqua/",
+  "https://aqua.nasa.gov/content/about-aqua",
+  "https://aqua.nasa.gov/content/instruments",
+  "https://airs.jpl.nasa.gov/mission/airs-project-instrument-suite/airs-instrument-suite/",
+  "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2002-022A"
+ ],
+ "icesat2": [
+  "https://www.eoportal.org/satellite-missions/icesat-2",
+  "https://science.nasa.gov/mission/icesat-2/",
+  "https://icesat-2.gsfc.nasa.gov/",
+  "https://icesat-2.gsfc.nasa.gov/how-it-works",
+  "https://icesat-2.gsfc.nasa.gov/science/specs",
+  "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2018-070A"
+ ],
+ "gracefo": [
+  "https://www.eoportal.org/satellite-missions/grace-fo",
+  "https://science.nasa.gov/mission/grace-fo/",
+  "https://gracefo.jpl.nasa.gov/mission/overview/",
+  "https://gracefo.jpl.nasa.gov/mission/spacecraft/",
+  "https://gracefo.jpl.nasa.gov/mission/instruments/",
+  "https://www.gfz.de/en/grace-fo",
+  "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2018-047A"
+ ],
+ "swot": [
+  "https://www.eoportal.org/satellite-missions/swot",
+  "https://science.nasa.gov/mission/swot/",
+  "https://swot.jpl.nasa.gov/mission/overview/",
+  "https://swot.jpl.nasa.gov/mission/swot-spacecraft/",
+  "https://swot.jpl.nasa.gov/mission/swot-instruments/",
+  "https://www.jpl.nasa.gov/missions/surface-water-and-ocean-topography-swot",
+  "https://swot.cnes.fr/en/SWOT/index.htm"
+ ]
 }
