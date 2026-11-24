@@ -180,3 +180,11 @@ sup.ref a{ text-decoration:none; }
 .gtrack .gt-bg{ fill:#0b1d33; }
 .fl-ev .ev-o, .fl-leg .ev-o{ fill:none; }
 .fl-ev .ev-x, .fl-leg .ev-x{ fill:none; stroke-width:2.5; }
+/* galerie « le même lieu » */
+.lieu-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:18px; margin:8px 0 14px; }
+.real.lieu{ margin:0; }
+.real.lieu img{ max-width:none; aspect-ratio:auto; }
+.lieu-h{ display:block; font-weight:700; color:var(--ink); text-decoration:none; border-left:5px solid var(--c); padding:2px 8px; margin:0 0 6px; }
+.lieu-h:hover{ text-decoration:underline; }
+.lieu-z{ margin-top:8px; image-rendering:pixelated; width:100%; height:auto; aspect-ratio:1 / 1; object-fit:cover; }
+.lieu-zc{ font-size:12px; color:var(--ink-2); margin:3px 0 6px; }

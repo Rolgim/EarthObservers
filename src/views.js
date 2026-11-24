@@ -111,7 +111,8 @@ function fleet(sec){
    mais l'ordre est le même, d'où la lecture par position. Les lignes sont lues par libellé (français ou anglais). */
 var SEC = { mission:0, orbit:1, images:2 };
 var CMP_SECS = [['comparer', 'Vue d\'ensemble', 'Années, altitudes, thèmes, agences'], ['comparer-orbites', 'Orbites', 'Altitude, inclinaison, période, revisite'],
-                ['comparer-images', 'Images', 'Bandes, résolution, fauchée'], ['comparer-instruments', 'Instruments', 'Tous les instruments, leurs bandes côte à côte']];
+                ['comparer-images', 'Images', 'Bandes, résolution, fauchée'], ['comparer-instruments', 'Instruments', 'Tous les instruments, leurs bandes côte à côte'],
+                ['comparer-lieu', 'Le même lieu', 'Une zone des Alpes vue par plusieurs satellites']];
 function row(m, idx, re){ var s = m.sections && m.sections[idx]; return s && s.rows.filter(function(r){ return re.test(r[0]); })[0]; }
 function num(s){ var m = /[\d][\d\s  ,.]*/.exec(s); return m ? +m[0].replace(/[\s  ]/g, '').replace(en() ? /,/g : /\./g, '').replace(',', '.') : NaN; }
 function insts(m){ return (typeof INST_DATA !== 'undefined' && INST_DATA[m.id] && INST_DATA[m.id].instruments) || []; }
@@ -186,8 +187,32 @@ function compare(sec){
     main += '<div class="isec"><h3>' + esc(T('Altitude')) + '</h3>' + bars(al) + '<div class="cap">' + esc(T('Altitude moyenne de l\'orbite, telle que la publie la source citée. L\'orbite réelle du jour, calculée à partir des éléments orbitaux, est sur la page « Orbite » de chaque satellite.')) + '</div></div>';
     main += rowsTable(L, SEC.orbit, 'Orbites', 'Valeurs de la section « Orbite » de chaque fiche.');
   } else if (sec === 'comparer-images') main += rowsTable(L, SEC.images, 'Images', 'Valeurs de la section « Images » de chaque fiche.');
+  else if (sec === 'comparer-lieu') main += sameplace(L);
   else main += spectrum(L) + instTable(L);
   return shell('Comparer', CMP_SECS, sec, main);
+}
+
+/* galerie « le même lieu » : la même zone découpée dans l'image de chaque satellite (tools/data/fetch_data.py, recette lieu), de la plus fine à la plus grossière */
+function sameplace(L){
+  var F = window.DATA_FILES || {}, ids = L.map(function(m){ return m.id; }), en = OBS_LANG === 'en', z = null;
+  var G = Object.keys(F).filter(function(k){ return /^lieu-[a-z0-9]+$/.test(k) && ids.indexOf(F[k].sat) >= 0; }).map(function(k){ return [k, F[k]]; })
+    .sort(function(a, b){ return a[1].res_m - b[1].res_m; });
+  var intro = '<div class="isec"><p class="lead">' + esc(T('La même zone des Alpes (le Mont-Blanc, Chamonix, le lac d\'Annecy et l\'est du Léman, ≈ 54 × 67 km), découpée à l\'identique dans une image récente de chaque satellite. Toutes sont affichées à la même taille ; le gros plan, en dessous, montre la taille réelle des pixels de chaque instrument.')) + '</p></div>';
+  if (!G.length) return intro + '<p class="note">' + esc(T('Images pas encore téléchargées (workflow « Données réelles »).')) + '</p>';
+  z = G[0][1].lieu;
+  return intro + '<div class="lieu-grid">' + G.map(function(g){
+    var k = g[0], d = g[1], m = MISSIONS.filter(function(x){ return x.id === d.sat; })[0], out = d.out_size || [800, 800];
+    var what = d.instrument === 'C-SAR' ? T('radar, fausses couleurs (polarisations VV et VH), relief corrigé') : T('couleurs naturelles');
+    return '<figure class="real lieu"><a href="#' + m.id + '" class="lieu-h" style="--c:' + col(m) + '">' + esc(m.short) + ' · ' + esc(T(d.instrument)) + '</a>' +
+      '<img src="data/' + k + '.jpg" width="' + out[0] + '" height="' + out[1] + '" loading="lazy" alt="' + esc(T('Le massif du Mont-Blanc et l\'est du Léman vus par') + ' ' + m.short + ', ' + what) + '">' +
+      (F[k + '-zoom'] ? '<img class="lieu-z" src="data/' + k + '-zoom.jpg" width="' + F[k + '-zoom'].out_size[0] + '" height="' + F[k + '-zoom'].out_size[1] + '" loading="lazy" alt="' +
+        esc(T('Gros plan sur Chamonix et la Mer de Glace vus par') + ' ' + m.short) + '"><p class="lieu-zc">' + esc(T('Gros plan ≈ 7,8 × 7,8 km (Chamonix, Mer de Glace) :')) + ' ' +
+        esc(OBS_NUM(F[k + '-zoom'].out_size[0] + ' × ' + F[k + '-zoom'].out_size[1])) + ' ' + esc(T('pixels de l\'instrument, agrandis sans lissage')) + '</p>' : '') +
+      '<figcaption>' + esc(what) + ' · ' + esc(T('pixel au sol')) + ' ' + esc(OBS_NUM(String(d.res_m))) + ' m · ' + esc(T('date')) + ' ' + esc(String(d.datetime || '').slice(0, 10)) + '<br>' +
+      T('Produit') + ' <a href="' + esc(d.page) + '" rel="noopener" target="_blank"><code>' + esc(T(d.product)) + '</code></a> · ' + T(d.archive) + (typeof licLine === 'function' ? licLine(d) : '') + '</figcaption></figure>';
+  }).join('') + '</div><div class="cap">' + esc(T('Zone : longitudes')) + ' ' + esc(OBS_NUM(String(z[0]).replace('.', en ? '.' : ','))) + '° E ' + esc(T('à')) + ' ' + esc(OBS_NUM(String(z[2]).replace('.', en ? '.' : ','))) + '° E, ' + esc(T('latitudes')) + ' ' +
+    esc(OBS_NUM(String(z[1]).replace('.', en ? '.' : ','))) + '° N ' + esc(T('à')) + ' ' + esc(OBS_NUM(String(z[3]).replace('.', en ? '.' : ','))) + '° N. ' +
+    esc(T('Les images Copernicus et Landsat sont découpées par le service de rendu du Planetary Computer avec les réglages de son aperçu officiel ; celles de MODIS viennent de GIBS, le même jour que Sentinel-2 quand c\'est possible. Les dates diffèrent : neige et nuages changent d\'une image à l\'autre.')) + '</div>';
 }
 
 function page(r){

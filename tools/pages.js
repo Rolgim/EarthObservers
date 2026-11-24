@@ -7,7 +7,7 @@ const IDS = [...fs.readFileSync(path.join(ROOT, 'src', 'data-missions.js'), 'utf
 const inst = fs.readFileSync(path.join(ROOT, 'src', 'data-inst.js'), 'utf8');
 const INST = [];
 inst.split(/^(\w+):\{\s*$/m).forEach((blk, i, a) => { if (i % 2 === 1) for (const m of a[i + 1].matchAll(/\{ id:'(\w+)', name:/g)) INST.push([blk, m[1]]); });
-const PAGES = ['accueil', 'missions', 'comparer', 'flotte', 'flotte-qui', 'comparer-orbites', 'comparer-images', 'comparer-instruments',
+const PAGES = ['accueil', 'missions', 'comparer', 'flotte', 'flotte-qui', 'comparer-orbites', 'comparer-images', 'comparer-instruments', 'comparer-lieu',
   ...IDS, ...IDS.map(i => i + '-donnees'), ...IDS.map(i => i + '-donnees-mission'), ...IDS.map(i => i + '-donnees-orbite')];
 const ALL = PAGES.concat(INST.map(([m, i]) => m + '-donnees-' + i));
 module.exports = { ROOT, IDS, INST, PAGES, ALL };

@@ -53,7 +53,7 @@ const overflow = async (pg, where) => { const [sw, iw] = await pg.evaluate(() =>
     }
     // ---- règle 6 : les boutons de vue d'ensemble ne bougent pas d'une page à l'autre
     const pos = [];
-    for (const p of ['accueil', 'missions', 'comparer', 'flotte', 'flotte-qui', 'comparer-orbites', 'comparer-images', 'comparer-instruments']) { await go(pg, (lang === 'en' ? 'en-' : '') + p);
+    for (const p of ['accueil', 'missions', 'comparer', 'flotte', 'flotte-qui', 'comparer-orbites', 'comparer-images', 'comparer-instruments', 'comparer-lieu']) { await go(pg, (lang === 'en' ? 'en-' : '') + p);
       pos.push(await pg.evaluate(() => [...document.querySelectorAll('.vbtn')].map(e => { const r = e.getBoundingClientRect(); return [Math.round(r.x), Math.round(r.y), Math.round(r.width)].join(','); }).join(' '))); }
     if (new Set(pos).size !== 1) fail('vues d\'ensemble : les boutons bougent (' + lang + ') : ' + pos.join(' | '));
     await pg.close();

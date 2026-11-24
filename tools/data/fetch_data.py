@@ -162,6 +162,10 @@ def icesat2(): commons("icesat2-atlas", "File:ICESat-2 Sea Ice Thickness 2023 (S
 # ---------- galerie « le même lieu » : la même zone, découpée à l'identique dans les images de plusieurs satellites ----------
 LIEU = [6.3, 45.8, 7.0, 46.4]   # lon min, lat min, lon max, lat max : Mont-Blanc, Chamonix, Annecy et l'est du Léman (≈ 54 × 67 km)
 LIEU_PX = 800
+ZOOM = [6.86, 45.885, 6.96, 45.955]   # gros plan ≈ 7,8 × 7,8 km (Chamonix et la Mer de Glace), découpé à la taille réelle des pixels de chaque instrument
+def zoom_px(res_m):
+    import math
+    return max(8, round((ZOOM[2] - ZOOM[0]) * 111320 * math.cos(math.radians((ZOOM[1] + ZOOM[3]) / 2)) / res_m)), max(8, round((ZOOM[3] - ZOOM[1]) * 110950 / res_m))
 def lieu_size(px=LIEU_PX):
     import math
     w = (LIEU[2] - LIEU[0]) * math.cos(math.radians((LIEU[1] + LIEU[3]) / 2)); h = LIEU[3] - LIEU[1]
@@ -176,11 +180,11 @@ def inside(geom, pts):
         return c
     return all(any(pin([tuple(q[:2]) for q in pl[0]], x, y) for pl in polys) for x, y in pts)
 def corners(b): return [(b[0], b[1]), (b[2], b[1]), (b[2], b[3]), (b[0], b[3]), ((b[0] + b[2]) / 2, (b[1] + b[3]) / 2)]
-def pc_crop(f, w, h):
+def pc_crop(f, w, h, box=None):
     """Découpe LIEU dans un produit du Planetary Computer, avec les réglages de rendu de son aperçu officiel (rendered_preview)."""
     from urllib.parse import urlsplit, parse_qsl
     pv = f["assets"]["rendered_preview"]["href"]; q = [(k, v) for k, v in parse_qsl(urlsplit(pv).query) if k != "format"]
-    bb = ",".join(str(v) for v in LIEU)
+    bb = ",".join(str(v) for v in (box or LIEU))
     for path in ("item/bbox/%s/%dx%d.png" % (bb, w, h), "item/crop/%s/%dx%d.png" % (bb, w, h)):
         r = S.get("https://planetarycomputer.microsoft.com/api/data/v1/" + path, params=q, timeout=300)
         if r.ok and (r.content[:4] == b"\x89PNG" or r.content[:3] == b"\xff\xd8\xff"): return r.url, Image.open(io.BytesIO(r.content))
@@ -189,20 +193,41 @@ def pc_crop(f, w, h):
 def black_share(im):
     g = im.convert("L").resize((100, 100)); return sum(1 for v in g.getdata() if v < 4) / 10000
 def lieu_pc(key, sat, collection, query, instrument, src, credit, days, ms):
-    w, h = lieu_size()
-    for f in pc_items(collection, query, days, n=100, bbox=LIEU):
-        if "rendered_preview" not in f["assets"] or not inside(f["geometry"], corners(LIEU)): continue
-        url, im = pc_crop(f, w, h)
-        if im is None: continue
-        if im.mode in ("RGBA", "LA", "P"): im = im.convert("RGBA"); bg = Image.new("RGB", im.size, (0, 0, 0)); bg.paste(im, mask=im.split()[3]); im = bg
-        if black_share(im) > 0.02: print("  zone incomplète", f["id"]); continue
-        p = f["properties"]
+    """Produits du même jour et du même satellite réunis (une tuile ne couvre pas toujours toute la zone) : chaque découpe est collée
+    sur la précédente là où elle a des pixels ; on garde le jour le plus récent où la zone est entière."""
+    w, h = lieu_size(); groups = {}
+    for f in pc_items(collection, query, days, n=200, bbox=LIEU):
+        if "rendered_preview" not in f["assets"]: continue
+        p = f["properties"]; groups.setdefault((str(p.get("datetime"))[:10], p.get("platform")), []).append(f)
+    for (day, plat), fs in sorted(groups.items(), key=lambda x: x[0][0], reverse=True):
+        full = [f for f in fs if inside(f["geometry"], corners(LIEU))]
+        fs = (full[:1] or fs)[:4]; acc = None; urls = []
+        for f in fs:
+            url, im = pc_crop(f, w, h)
+            if im is None: continue
+            im = im.convert("RGBA"); urls.append(url)
+            if acc is None: acc = Image.new("RGBA", im.size, (0, 0, 0, 0))
+            acc.alpha_composite(im)
+        if acc is None: continue
+        im = Image.new("RGB", acc.size, (0, 0, 0)); im.paste(acc, mask=acc.split()[3])
+        if black_share(im) > 0.02: print("  zone incomplète", day, plat, len(fs)); continue
+        f = fs[0]; p = f["properties"]
         save("lieu-" + key, im, {"src": src, "lieu": LIEU, "sat": sat, "res_m": ms, "archive": "Microsoft Planetary Computer (catalogue STAC, découpe par son service de rendu)",
-             "collection": collection, "product": f["id"], "datetime": p.get("datetime"), "instrument": instrument, "platform": p.get("platform"),
-             "cloud": p.get("eo:cloud_cover"), "href": url.split("&st=")[0], "page": PC + "/collections/" + collection + "/items/" + f["id"],
-             "credit": credit.replace("{y}", str(p.get("datetime", ""))[:4]), "crop_lieu": True}, max_px=LIEU_PX)
-        print("lieu", key, f["id"], p.get("datetime")); return p.get("datetime")
-    raise RuntimeError("lieu : aucun produit de " + collection + " ne couvre toute la zone")
+             "collection": collection, "product": " + ".join(x["id"] for x in fs), "datetime": p.get("datetime"), "instrument": instrument, "platform": p.get("platform"),
+             "cloud": p.get("eo:cloud_cover"), "href": urls[0].split("&st=")[0], "page": PC + "/collections/" + collection + "/items/" + f["id"],
+             "credit": credit.replace("{y}", str(p.get("datetime", ""))[:4]), "crop_lieu": True, "mosaic": len(urls)}, max_px=LIEU_PX)
+        zw, zh = zoom_px(ms); acc = None
+        for x in fs:
+            u, zi = pc_crop(x, zw, zh, ZOOM)
+            if zi is None: continue
+            zi = zi.convert("RGBA"); acc = acc or Image.new("RGBA", zi.size, (0, 0, 0, 0)); acc.alpha_composite(zi)
+        if acc is not None:
+            zi = Image.new("RGB", acc.size, (0, 0, 0)); zi.paste(acc, mask=acc.split()[3])
+            save("lieu-" + key + "-zoom", zi, {"src": src, "lieu": ZOOM, "zoom_of": "lieu-" + key, "sat": sat, "res_m": ms, "archive": "Microsoft Planetary Computer (catalogue STAC, découpe par son service de rendu)",
+                 "collection": collection, "product": " + ".join(x["id"] for x in fs), "datetime": p.get("datetime"), "instrument": instrument, "href": u.split("&st=")[0],
+                 "page": PC + "/collections/" + collection + "/items/" + f["id"], "credit": credit.replace("{y}", str(p.get("datetime", ""))[:4]), "crop_lieu": True, "native_px": True}, max_px=4000)
+        print("lieu", key, day, plat, len(urls), "produit(s)"); return p.get("datetime")
+    raise RuntimeError("lieu : aucun jour de " + collection + " ne couvre toute la zone")
 def lieu():
     bad = 0; dates = {}
     for key, args in (("sentinel2", ("sentinel2", "sentinel-2-l2a", {"eo:cloud_cover": {"lt": 10}}, "MSI", "copernicus", "Contains modified Copernicus Sentinel data {y} ; découpe : Microsoft Planetary Computer", 120, 10)),
@@ -216,6 +241,9 @@ def lieu():
         try:
             gibs("lieu-" + key, layer, bb, (w, h), "MODIS", "MODIS " + key.capitalize() + ", réflectance corrigée, couleurs naturelles", d)
             f = os.path.join(DATA, "lieu-" + key + ".json"); m = json.load(open(f, encoding="utf-8")); m.update(lieu=LIEU, sat=sat, res_m=250, crop_lieu=True)
+            json.dump(m, open(f, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+            zb = [ZOOM[1], ZOOM[0], ZOOM[3], ZOOM[2]]; gibs("lieu-" + key + "-zoom", layer, zb, zoom_px(250), "MODIS", "MODIS " + key.capitalize() + ", réflectance corrigée, couleurs naturelles", d)
+            f = os.path.join(DATA, "lieu-" + key + "-zoom.json"); m = json.load(open(f, encoding="utf-8")); m.update(lieu=ZOOM, zoom_of="lieu-" + key, sat=sat, res_m=250, crop_lieu=True, native_px=True)
             json.dump(m, open(f, "w", encoding="utf-8"), indent=1, ensure_ascii=False); print("lieu", key, d)
         except Exception as e: bad += 1; print("ÉCHEC lieu", key, repr(e)[:200])
     if bad == 5: raise RuntimeError("lieu : aucune image")
