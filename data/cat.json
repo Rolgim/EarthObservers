@@ -53,6 +53,29 @@
     }
    },
    {
+    "title": "Landsat Collection 2 Level-2 UTM Surface Reflectance (SR) Product",
+    "license": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/Landsat_Data_Policy.pdf",
+    "license_links": [],
+    "license_links_declared": [],
+    "period": [
+     "1982-08-22T00:00:00.000Z",
+     null
+    ],
+    "api": "https://landsatlook.usgs.gov/stac-server",
+    "doi": null,
+    "matched": 1112927,
+    "first": "2021-10-31T04:40:14.262694Z",
+    "last": "2026-11-19T23:41:04.577507Z",
+    "inst": "oli2",
+    "cat": "usgs",
+    "id": "landsat-c2l2-sr",
+    "sat_filter": {
+     "platform": {
+      "eq": "LANDSAT_9"
+     }
+    }
+   },
+   {
     "title": "HLS Landsat Operational Land Imager Surface Reflectance and TOA Brightness Daily Global 30m v2.0",
     "license": "CC0-1.0",
     "license_links": [
@@ -84,6 +107,29 @@
     "cat": "cmr",
     "id": "HLSL30_2.0",
     "sat_filter": null
+   },
+   {
+    "title": "Landsat Collection 2 Level-1 Product",
+    "license": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/Landsat_Data_Policy.pdf",
+    "license_links": [],
+    "license_links_declared": [],
+    "period": [
+     "1972-07-25T00:00:00.000Z",
+     null
+    ],
+    "api": "https://landsatlook.usgs.gov/stac-server",
+    "doi": null,
+    "matched": 1316218,
+    "first": "2021-10-31T04:40:14.262694Z",
+    "last": "2026-11-24T15:15:15.012679Z",
+    "inst": "tirs2",
+    "cat": "usgs",
+    "id": "landsat-c2l1",
+    "sat_filter": {
+     "platform": {
+      "eq": "LANDSAT_9"
+     }
+    }
    },
    {
     "title": "Landsat Collection 2 Level-2 UTM Surface Temperature (ST) Product",

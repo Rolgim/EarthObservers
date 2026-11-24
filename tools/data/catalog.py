@@ -96,6 +96,8 @@ def cmr_umm(cid, short_only=False, provider="POCLOUD"):
     return {"short_name": u.get("ShortName"), "version": u.get("Version"), "title_umm": u.get("EntryTitle"), "period_umm": [t[0].get("BeginningDateTime"), t[0].get("EndingDateTime")],"level": (u.get("ProcessingLevel") or {}).get("Id"), "doi": (u.get("DOI") or {}).get("DOI"), "concept": it["meta"]["concept-id"],
             "page": "https://cmr.earthdata.nasa.gov/search/concepts/" + it["meta"]["concept-id"] + ".html", "matched_all": int(h.headers.get("CMR-Hits", 0)) or None,
             "use": ((u.get("UseConstraints") or {}).get("LicenseURL") or {}).get("Linkage") or (u.get("UseConstraints") or {}).get("Description")}
+try: PREV = json.load(open(os.path.join(ROOT, "data", "cat.json"), encoding="utf-8")).get("cols", {})
+except Exception: PREV = {}
 out = {"fetched": datetime.date.today().isoformat(), "cats": CATS, "cols": {}}
 for mid, inst, cat, cid, q, prov in COLS:
     try:
@@ -106,5 +108,8 @@ for mid, inst, cat, cid, q, prov in COLS:
             if cat == "cmr": rec.update(cmr_umm(cid))
         rec.update(inst=inst, cat=cat, id=cid, sat_filter=q)
         out["cols"].setdefault(mid, []).append(rec); print(mid, inst, cid, rec.get("matched"), rec.get("level"), rec.get("license"))
-    except Exception as e: print("ÉCHEC", mid, cid, repr(e)[:200])
+    except Exception as e:   # archive momentanément injoignable : on garde le relevé précédent de cette collection
+        print("ÉCHEC", mid, cid, repr(e)[:200])
+        old = [c for c in PREV.get(mid, []) if c.get("inst") == inst and (c.get("id") == cid or c.get("id") == cid.split("@")[0])]
+        if old: out["cols"].setdefault(mid, []).append(dict(old[0], stale=True)); print("  relevé précédent gardé")
 json.dump(out, open(os.path.join(ROOT, "data", "cat.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
