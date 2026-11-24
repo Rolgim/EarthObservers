@@ -13,7 +13,8 @@
 var EarthPage = (function(){
 'use strict';
 var RE = 6371;   /* rayon moyen de la Terre, km (NASA NSSDCA, « Earth Fact Sheet ») */
-var COL = ['#FF6B9A', '#4DD0E1', '#B39DDB', '#FFB74D', '#81C784', '#F06292', '#64B5F6', '#FFD54F', '#A1887F', '#E57373'];   /* une couleur par satellite, dans l'ordre du registre */
+var COL = ['#FF6B9A', '#4DD0E1', '#B39DDB', '#FFB74D', '#81C784', '#F06292', '#64B5F6', '#FFD54F', '#A1887F', '#E57373',
+           '#AED581', '#FF8A65', '#9575CD', '#4DB6AC', '#F8BBD0', '#90CAF9', '#FFF176', '#BCAAA4', '#CE93D8', '#80CBC4'];   /* une couleur par satellite, dans l'ordre du registre */
 var SPEED = [[1, 'temps réel'], [10, '10 fois plus vite'], [60, 'une minute par seconde'], [600, 'dix minutes par seconde']];
 var S = { t:Date.now(), speed:1, run:true, raf:0, last:0, sel:'', az:0, el:0.35, dist:4.2, frame:0, built:false };
 var R = null;   /* objets three.js */
@@ -116,7 +117,7 @@ function build(){
   cv.addEventListener('pointerup', function(e){ cv.classList.remove('dragging'); if (drag && !drag.moved) pick(e); drag = null; });
   cv.addEventListener('wheel', function(e){ e.preventDefault(); zoom(1 + Math.sign(e.deltaY) * 0.1); }, { passive:false });
 }
-function zoom(f){ S.dist = Math.max(1.35, Math.min(14, S.dist * f)); kick(); }
+function zoom(f){ S.dist = Math.max(1.35, Math.min(30, S.dist * f)); kick(); }
 /* clic sur la vue : le satellite visible le plus proche du pointeur, à 14 px près */
 function pick(e){
   var rect = R.renderer.domElement.getBoundingClientRect(), best = null, bd = 14;
@@ -125,6 +126,9 @@ function pick(e){
 }
 function select(k){
   S.sel = S.sel === k ? '' : k;
+  /* satellite géostationnaire (≈ 6,6 rayons terrestres) : recul de la caméra pour le voir avec la Terre */
+  var s = S.sel && R && R.list.filter(function(x){ return x.key === S.sel; })[0], p = s && eci(s, S.t);
+  if (p){ var d = v3(p.position).length(); if (d > 2.5 && S.dist < d * 3.4) S.dist = Math.min(30, d * 3.4); }
   document.querySelectorAll('#eo-list [data-eo]').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-eo') === S.sel)); });
   S.orbAt = 0; kick(); info();
 }

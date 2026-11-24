@@ -113,15 +113,39 @@ def sentinel3(): pc_recipe("sentinel3-olci", "sentinel-3-olci-wfr-l2-netcdf", No
 
 # ---------- NASA GIBS (Global Imagery Browse Services) : images des produits NASA, sans compte ; remerciement demandé par GIBS ----------
 GIBS_ACK = "Imagery from NASA's Global Imagery Browse Services (GIBS), part of NASA's Earth Science Data and Information System (ESDIS)"
-def gibs(name, layer, bbox, size, instrument, product, date=None, legend=None):
+def gibs_get(layer, bbox, size, date=None):
     q = {"SERVICE": "WMS", "REQUEST": "GetMap", "VERSION": "1.3.0", "LAYERS": layer, "CRS": "EPSG:4326", "STYLES": "",
          "BBOX": ",".join(str(v) for v in bbox), "WIDTH": size[0], "HEIGHT": size[1], "FORMAT": "image/png"}
     if date: q["TIME"] = date
     url = "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi"; r = S.get(url, params=q, timeout=300)
     if not r.ok or not r.headers.get("content-type", "").startswith("image/"): raise RuntimeError("GIBS %s %s" % (r.status_code, r.text[:200]))
-    im = Image.open(io.BytesIO(r.content)).convert("RGBA"); bg = Image.new("RGB", im.size, (0, 0, 0)); bg.paste(im, mask=im.split()[3]); im = bg
+    return Image.open(io.BytesIO(r.content)).convert("RGBA"), r.url
+_CAP = {}
+def gibs_cap(layer):
+    """Date par défaut (la plus récente) et légende horizontale d'une couche, lues dans le GetCapabilities WMTS de GIBS."""
+    if "x" not in _CAP: _CAP["x"] = S.get("https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabilities.xml", timeout=180).text
+    cap = _CAP["x"]; i = cap.find("<ows:Identifier>" + layer + "</ows:Identifier>")
+    if i < 0: raise RuntimeError("couche GIBS absente : " + layer)
+    blk = cap[i - 4000:][:9000]
+    leg = re.findall(r'xlink:href="([^"]+?(?:_H|horizontal)[^"]*?\.png)"', blk) or re.findall(r'xlink:href="([^"]+?\.png)"', blk)
+    dflt = re.search(r'<Dimension>.*?<Default>([^<]+)</Default>', blk[4000:], re.S)
+    return (dflt.group(1) if dflt else None), (leg[0] if leg else None)
+def gibs(name, layer, bbox, size, instrument, product, date=None, legend=None, stack=0, extra=None):
+    """Image d'une couche GIBS. stack = n : superpose les n jours qui finissent à date (couches à traces étroites, comme OCO-2 ou NISAR)."""
+    days = [date] if not stack else [(datetime.date.fromisoformat(date[:10]) - datetime.timedelta(days=k)).isoformat() for k in range(stack - 1, -1, -1)]
+    im = None; url = None
+    for d in days:
+        try: a, url1 = gibs_get(layer, bbox, size, d)
+        except Exception as e:
+            if not stack: raise
+            print("GIBS", layer, d, repr(e)[:120]); continue
+        im = a if im is None else Image.alpha_composite(im, a); url = url or url1
+    if im is None: raise RuntimeError("GIBS : aucune image pour " + layer)
+    bg = Image.new("RGB", im.size, (0, 0, 0)); bg.paste(im, mask=im.split()[3]); im = bg
     meta = {"src": "nasa-cc0", "archive": "NASA GIBS (Worldview)", "collection": layer, "product": product, "datetime": date or "", "instrument": instrument,
-            "bbox_lat_lon": bbox, "href": r.url, "page": "https://worldview.earthdata.nasa.gov/?l=" + layer + ("&t=" + date if date else ""), "credit": "NASA ; " + GIBS_ACK}
+            "bbox_lat_lon": bbox, "href": url, "page": "https://worldview.earthdata.nasa.gov/?l=" + layer + ("&t=" + date if date else ""), "credit": "NASA ; " + GIBS_ACK}
+    if stack: meta.update(stack_days=stack, date_first=days[0])
+    if extra: meta.update(extra)
     if legend:   # légende officielle de la couche (GIBS), collée sous l'image
         lg = S.get(legend, timeout=60)
         if lg.ok and lg.headers.get("content-type", "").startswith("image/png"):
@@ -129,18 +153,35 @@ def gibs(name, layer, bbox, size, instrument, product, date=None, legend=None):
             out = Image.new("RGB", (im.width, im.height + L.height + 8), (255, 255, 255)); out.paste(im, (0, 0)); out.paste(L, ((im.width - L.width) // 2, im.height + 4), L); im = out
             meta["legend"] = legend
     save(name, im, meta, max_px=1000)
+def gibs_latest(name, layers, bbox, size, instrument, product, stack=0, legend=True, extra=None):
+    """Première couche disponible de la liste, à sa date par défaut (la plus récente), avec sa légende."""
+    err = None
+    for layer in layers:
+        try:
+            d, leg = gibs_cap(layer)
+            return gibs(name, layer, bbox, size, instrument, product, d, leg if legend else None, stack, extra)
+        except Exception as e: err = e; print("GIBS", layer, repr(e)[:160])
+    raise err
 def days_ago(n): return (datetime.date.today() - datetime.timedelta(days=n)).isoformat()
 EUROPE = [41, -5, 51.5, 10]   # lat min, lon min, lat max, lon max : France et Alpes (même lieu que la galerie)
 def terra(): gibs("terra-modis", "MODIS_Terra_CorrectedReflectance_TrueColor", EUROPE, (1000, 700), "MODIS", "MODIS Terra, réflectance corrigée, couleurs naturelles", days_ago(3))
 def aqua(): gibs("aqua-modis", "MODIS_Aqua_CorrectedReflectance_TrueColor", EUROPE, (1000, 700), "MODIS", "MODIS Aqua, réflectance corrigée, couleurs naturelles", days_ago(3))
-def gracefo():
-    layer = "GRACE_Tellus_Liquid_Water_Equivalent_Thickness_Mascon_CRI"
-    cap = S.get("https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabilities.xml", timeout=120).text
-    blk = cap[cap.find("<ows:Identifier>" + layer + "</ows:Identifier>") - 4000:][:9000]
-    leg = re.findall(r'xlink:href="([^"]+?(?:_H|horizontal)[^"]*?\.png)"', blk) or re.findall(r'xlink:href="([^"]+?\.png)"', blk)
-    dflt = re.search(r'<Dimension>.*?<Default>([^<]+)</Default>', blk[blk.find(layer):], re.S)
-    date = dflt.group(1)[:10] if dflt else None
-    gibs("gracefo-mascon", layer, [-90, -180, 90, 180], (1000, 500), "KBR / LRI", "GRACE et GRACE-FO, épaisseur d'eau équivalente (mascons JPL RL06.3 CRI)", date, leg[0] if leg else None)
+def gracefo(): gibs_latest("gracefo-mascon", ["GRACE_Tellus_Liquid_Water_Equivalent_Thickness_Mascon_CRI"], WORLD, (1000, 500), "KBR / LRI",
+                            "GRACE et GRACE-FO, épaisseur d'eau équivalente (mascons JPL RL06.3 CRI)")
+WORLD = [-90, -180, 90, 180]
+NAMERICA = [14, -128, 58, -58]   # Amérique du Nord, champ de TEMPO
+GOES_DISK = [-81.3, -156.2, 81.3, 6.2]   # disque vu depuis 75,2° O
+def pace(): gibs_latest("pace-oci", ["OCI_PACE_True_Color"], WORLD, (1000, 500), "OCI", "PACE OCI, réflectance corrigée, couleurs naturelles (une journée)", legend=False)
+def jpss(): gibs_latest("jpss-viirs", ["VIIRS_NOAA21_CorrectedReflectance_TrueColor", "VIIRS_NOAA20_CorrectedReflectance_TrueColor"], EUROPE, (1000, 700), "VIIRS",
+                        "VIIRS, réflectance corrigée, couleurs naturelles", legend=False)
+def smap(): gibs_latest("smap-radiometer", ["SMAP_L3_Passive_Enhanced_Day_Soil_Moisture", "SMAP_L3_Passive_Day_Soil_Moisture", "SMAP_L4_Analyzed_Root_Zone_Soil_Moisture"],
+                        WORLD, (1000, 500), "Radiomètre", "SMAP, humidité du sol", stack=3)
+def oco2(): gibs_latest("oco2-co2", ["OCO-2_Carbon_Dioxide_Total_Column_Average"], WORLD, (1000, 500), "OCO-2", "OCO-2, CO₂ moyen sur la colonne d'air (XCO₂), traces de 16 jours", stack=16)
+def gpm(): gibs_latest("gpm-imerg", ["IMERG_Precipitation_Rate"], WORLD, (1000, 500), "GMI / DPR", "IMERG, taux de précipitation (une journée)")
+def nisar(): gibs_latest("nisar-sar", ["NISAR_L2_Geocoded_Polarimetric_Covariance"], WORLD, (1000, 500), "L-SAR", "NISAR, rétrodiffusion radar en fausses couleurs (GCOV), traces de 12 jours", stack=12, legend=False)
+def aura(): gibs_latest("aura-omi", ["OMI_Ozone_DOAS_Total_Column", "OMI_Ozone_TOMS_Total_Column"], WORLD, (1000, 500), "OMI", "OMI, colonne totale d'ozone (une journée)")
+def tempo(): gibs_latest("tempo-no2", ["TEMPO_L3_NO2_Vertical_Column_Troposphere"], NAMERICA, (1000, 629), "TEMPO", "TEMPO, NO₂ troposphérique (un balayage horaire)")
+def goes(): gibs_latest("goes-abi", ["GOES-East_ABI_GeoColor"], GOES_DISK, (900, 900), "ABI", "GOES-East (GOES-19) ABI, GeoColor (une image du disque)", legend=False)
 
 # ---------- images publiées (Wikimedia Commons) : licence relue dans les métadonnées ; domaine public ou CC BY-SA seulement ----------
 def commons(name, title, instrument, what_fr, max_px=1000):
@@ -157,6 +198,7 @@ def commons(name, title, instrument, what_fr, max_px=1000):
          "description": v("ImageDescription")[:500], "what_fr": what_fr}, max_px)
 def sentinel5p(): commons("sentinel5p-tropomi", "File:Nitrogen dioxide over the Netherlands (TROPOMI, 2017-12-01).png", "TROPOMI", "dioxyde d'azote")
 def swot(): commons("swot-karin", "File:Global sea surface height by the Surface Water and Ocean Topography (SWOT) mission – the first 21-day cycle (SVS31265 - swot 2023-10-30-A 0001).tiff", "KaRIn", "hauteur de la mer")
+def sentinel6(): commons("sentinel6-poseidon", "File:Sea Surface Height Anomaly from Sentinel-6 MF (SVS31174).png", "Poseidon-4", "anomalie de hauteur de la mer")
 def icesat2(): commons("icesat2-atlas", "File:ICESat-2 Sea Ice Thickness 2023 (SVS5100 - sea ice thickness 2023 1570 print).jpg", "ATLAS", "épaisseur de la banquise")
 
 # ---------- galerie « le même lieu » : la même zone, découpée à l'identique dans les images de plusieurs satellites ----------
@@ -249,7 +291,8 @@ def lieu():
     if bad == 5: raise RuntimeError("lieu : aucune image")
 
 RECIPES = {"textures": earth_texture, "landsat9": landsat9, "sentinel1": sentinel1, "sentinel2": sentinel2, "sentinel3": sentinel3, "sentinel5p": sentinel5p,
-           "terra": terra, "aqua": aqua, "icesat2": icesat2, "gracefo": gracefo, "swot": swot, "lieu": lieu}
+           "terra": terra, "aqua": aqua, "icesat2": icesat2, "gracefo": gracefo, "swot": swot, "lieu": lieu,
+           "pace": pace, "jpss": jpss, "smap": smap, "oco2": oco2, "gpm": gpm, "nisar": nisar, "aura": aura, "tempo": tempo, "goes": goes, "sentinel6": sentinel6}
 if __name__ == "__main__":
     want = sys.argv[1:] or list(RECIPES); bad = 0
     for k in want:

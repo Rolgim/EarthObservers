@@ -37,6 +37,28 @@ COLS = [
   ("gracefo", "kbr", "cmr", "TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4", None, "POCLOUD:short"),
   ("swot", "karin", "cmr", "SWOT_L2_LR_SSH", None, "POCLOUD:short"),
   ("swot", "karin", "cmr", "SWOT_L2_HR_Raster", None, "POCLOUD:short"),
+  ("pace", "oci", "cmr", "PACE_OCI_L1B_SCI", None, "OB_CLOUD:short"),
+  ("pace", "oci", "cmr", "PACE_OCI_L2_BGC", None, "OB_CLOUD:short"),
+  ("pace", "harp2", "cmr", "PACE_HARP2_L1C_SCI@4", None, "OB_CLOUD:short"),
+  ("pace", "spexone", "cmr", "PACE_SPEXONE_L1C_SCI@4", None, "OB_CLOUD:short"),
+  ("jpss", "viirs", "cmr", "VJ109GA@002", None, "LPCLOUD:short"),
+  ("jpss", "viirs", "cmr", "VJ209GA@002", None, "LPCLOUD:short"),
+  ("smap", "radiometer", "cmr", "SPL2SMP_E", None, "NSIDC_CPRD:short"),
+  ("smap", "radiometer", "cmr", "SPL3SMP_E", None, "NSIDC_CPRD:short"),
+  ("oco2", "oco2", "cmr", "OCO2_L2_Lite_FP@11.2r", None, "GES_DISC:short"),
+  ("gpm", "gmi", "cmr", "GPM_1CGPMGMI@08", None, "GES_DISC:short"),
+  ("gpm", "dpr", "cmr", "GPM_2ADPR@08", None, "GES_DISC:short"),
+  ("gpm", "gmi", "cmr", "GPM_3IMERGHHL@07", None, "GES_DISC:short"),
+  ("nisar", "lsar", "cmr", "NISAR_L1_RSLC_V1", None, "ASF:short"),
+  ("nisar", "lsar", "cmr", "NISAR_L2_GCOV_V1", None, "ASF:short"),
+  ("aura", "omi", "cmr", "OMNO2@004", None, "GES_DISC:short"),
+  ("aura", "omi", "cmr", "OMTO3@004", None, "GES_DISC:short"),
+  ("aura", "mls", "cmr", "ML2O3@006", None, "GES_DISC:short"),
+  ("tempo", "tempo", "cmr", "TEMPO_NO2_L2@V04", None, "LARC_CLOUD:short"),
+  ("tempo", "tempo", "cmr", "TEMPO_NO2_L3@V04", None, "LARC_CLOUD:short"),
+  ("sentinel6", "poseidon4", "cmr", "JASON_CS_S6A_L2_ALT_LR_STD_OST_NTC_G01", None, "POCLOUD:short"),
+  ("sentinel6", "poseidon4", "cmr", "JASON_CS_S6A_L2P_ALT_HR_OST_NTC_G01", None, "POCLOUD:short"),
+  ("sentinel6", "amrc", "cmr", "JASON_CS_S6A_L2_AMR_RAD_NTC_G01", None, "POCLOUD:short"),
 ]
 # liens de licence déclarés par les catalogues mais morts (sites fermés) -> page actuelle de la même notice
 LEGAL = "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice"
@@ -58,13 +80,15 @@ def stac_col(cat, cid, q, prov):
                 r2 = S.post(root.rstrip("/") + "/search", json=dict(body, sortby=[{"field": "properties.datetime", "direction": d}]), timeout=120)
                 if r2.ok and r2.json().get("features"): rec[k] = r2.json()["features"][0]["properties"].get("datetime")
     return rec
-def cmr_umm(cid, short_only=False):
-    # short_only : identifiant = nom court seul (collections PO.DAAC absentes de CMR-STAC) ; on garde la version la plus récente
-    short, ver = (cid, None) if short_only else cid.rsplit("_", 1)
-    p = {"short_name": short} if short_only else {"short_name": short, "version": ver}
+def cmr_umm(cid, short_only=False, provider="POCLOUD"):
+    # short_only : identifiant = nom court seul (collections absentes de CMR-STAC) ; on garde la version la plus récente,
+    # ou celle écrite après « @ » (ex. PACE_HARP2_L1C_SCI@4)
+    if short_only: short, ver = (cid.split("@", 1) + [None])[:2]
+    else: short, ver = cid.rsplit("_", 1)
+    p = {"short_name": short, "version": ver} if ver else {"short_name": short}
     r = S.get("https://cmr.earthdata.nasa.gov/search/collections.umm_json", params=dict(p, sort_key="-revision_date"), timeout=90); r.raise_for_status()
     if short_only and not r.json().get("items"):   # nom court suivi d'un suffixe de version (ex. SWOT_L2_LR_SSH_D) : recherche par motif
-        r = S.get("https://cmr.earthdata.nasa.gov/search/collections.umm_json", params={"short_name": short + "*", "options[short_name][pattern]": "true", "provider": "POCLOUD", "sort_key": "-revision_date"}, timeout=90); r.raise_for_status()
+        r = S.get("https://cmr.earthdata.nasa.gov/search/collections.umm_json", params={"short_name": short + "*", "options[short_name][pattern]": "true", "provider": provider, "sort_key": "-revision_date"}, timeout=90); r.raise_for_status()
     it = r.json()["items"][0]; u = it["umm"]
     if short_only: p = {"short_name": u.get("ShortName"), "version": u.get("Version")}
     h = S.get("https://cmr.earthdata.nasa.gov/search/granules.json", params=dict(p, page_size=0), timeout=90)
@@ -76,7 +100,7 @@ out = {"fetched": datetime.date.today().isoformat(), "cats": CATS, "cols": {}}
 for mid, inst, cat, cid, q, prov in COLS:
     try:
         if prov and prov.endswith(":short"):
-            rec = cmr_umm(cid, True); cid = rec.get("short_name") or cid; rec.update(title=rec.get("title_umm"), period=rec.get("period_umm"), api="https://cmr.earthdata.nasa.gov/search/", matched=rec.get("matched_all"))
+            rec = cmr_umm(cid, True, prov.split(":")[0]); cid = rec.get("short_name") or cid; rec.update(title=rec.get("title_umm"), period=rec.get("period_umm"), api="https://cmr.earthdata.nasa.gov/search/", matched=rec.get("matched_all"))
         else:
             rec = stac_col(cat, cid, q, prov)
             if cat == "cmr": rec.update(cmr_umm(cid))

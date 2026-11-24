@@ -51,6 +51,8 @@ def transform(d):
     t = []
     if d.get("crop_lieu"): t.append("découpé sur la zone de la galerie (lon %s à %s, lat %s à %s)" % (d["lieu"][0], d["lieu"][2], d["lieu"][1], d["lieu"][3]))
     if d.get("mosaic", 1) > 1: t.append("assemblage de %d produits du même jour" % d["mosaic"])
+    if d.get("stack_days"): t.append("superposition des images quotidiennes de GIBS du %s au %s (%d jours)" % (d.get("date_first"), str(d.get("datetime"))[:10], d["stack_days"]))
+    if d.get("legend"): t.append("légende officielle de la couche collée sous l'image")
     if d.get("native_px"): t.append("à la taille réelle des pixels de l'instrument (agrandi à l'affichage, sans lissage)")
     if d.get("crop"): t.append("recadré (partie centrale %d × %d px)" % tuple(d["crop"][:2]))
     if d.get("crop_px"): t.append("carré central de %d px" % d["crop_px"])

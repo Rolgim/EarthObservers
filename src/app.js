@@ -116,6 +116,8 @@ function renderPanel(m){
 /* date de l'aperçu : la date STAC d'une mosaïque assemblée après la mission n'est pas celle de la prise de vue */
 function when(m, d){
   var day = String(d.datetime).slice(0, 10), end = (m.events || []).filter(function(e){ return e.type === 'end'; })[0];
+  if (d.stack_days) return T('Superposition des images quotidiennes du') + ' ' + esc(d.date_first) + ' ' + T('au') + ' ' + esc(day) + ' (' + d.stack_days + ' ' + T('jours') + '). ';
+  if (String(d.datetime).length > 10) return T('Prise le') + ' ' + esc(day) + (OBS_LANG === 'en' ? ' at ' : ' à ') + esc(String(d.datetime).slice(11, 16)) + ' UTC. ';
   return end && day > end.date ? T('Date du produit dans le catalogue') + ' : ' + esc(day) + ' (' + T('après la fin de la mission : ce n\'est pas la date de prise de vue') + '). '
     : T('Prise le') + ' ' + esc(day) + '. ';
 }
@@ -143,6 +145,7 @@ function realData(m, R){
                             : 'Aperçu entier publié par l\'archive (' + d.full_size[0] + ' × ' + d.full_size[1] + ' pixels)' + (out[0] !== d.full_size[0] ? ', ramené à ' + out[0] + ' × ' + out[1] : ''));
   return '<figure class="real"><img src="data/' + key + '.jpg" width="' + out[0] + '" height="' + out[1] + '" alt="' + (R.altRaw ? esc(R.altRaw) : T(R.alt)) + ' (' + esc(T(d.product)) + ')">' +
     '<figcaption><strong>' + esc(T(d.instrument)) + ' · ' + esc(T(d.product)) + '</strong><br>' + when(m, d) + how +
+    (d.legend ? (en ? ', with the layer\'s official legend below' : ', avec la légende officielle de la couche en dessous') : '') +
     (d.stretch ? (en ? ', contrast stretched between the ' + d.stretch[0] + ' and ' + d.stretch[1] + ' percentiles' : ', contraste étiré entre les centiles ' + OBS_NUM(String(d.stretch[0]).replace('.', ',')) + ' et ' + OBS_NUM(String(d.stretch[1]).replace('.', ','))) : '') + '.<br>' +
     T('Archive') + ' : ' + T(d.archive) + ' · ' + T('collection') + ' <code>' + esc(d.collection) + '</code> · <a href="' + esc(d.href) + '" rel="noopener" target="_blank">' + T('aperçu d\'origine') + '</a> · ' + T('téléchargé le') + ' ' + esc(d.fetched) + licLine(d) + '</figcaption></figure>';
 }
