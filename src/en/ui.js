@@ -329,4 +329,13 @@ var EN_UI = {
   "Lancement de Sentinel-3A":"Launch of Sentinel-3A",
   "Lancement de Sentinel-3B":"Launch of Sentinel-3B",
   "Lancement de Sentinel-3C":"Launch of Sentinel-3C",
+  "Carte du monde des variations d'eau stockée mesurées par GRACE et GRACE-FO":"World map of changes in stored water measured by GRACE and GRACE-FO",
+  "Image radar de Sentinel-1 en fausses couleurs (polarisations VV et VH)":"Sentinel-1 radar image in false colour (VV and VH polarisations)",
+  "GRACE et GRACE-FO, épaisseur d'eau équivalente (mascons JPL RL06.3 CRI)":"GRACE and GRACE-FO, equivalent water thickness (JPL RL06.3 CRI mascons)",
+  "La France et les Alpes vues par MODIS sur Aqua, en couleurs naturelles":"France and the Alps seen by MODIS on Aqua, in natural colour",
+  "La France et les Alpes vues par MODIS sur Terra, en couleurs naturelles":"France and the Alps seen by MODIS on Terra, in natural colour",
+  "MODIS Aqua, réflectance corrigée, couleurs naturelles":"MODIS Aqua, corrected reflectance, natural colour",
+  "MODIS Terra, réflectance corrigée, couleurs naturelles":"MODIS Terra, corrected reflectance, natural colour",
+  "Scène en couleurs naturelles prise par Sentinel-2":"Natural-colour scene taken by Sentinel-2",
+  "Scène en couleurs naturelles prise par Sentinel-3 (OLCI)":"Natural-colour scene taken by Sentinel-3 (OLCI)",
 };

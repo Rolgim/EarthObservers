@@ -58,18 +58,20 @@ def cmr_umm(cid, short_only=False):
     short, ver = (cid, None) if short_only else cid.rsplit("_", 1)
     p = {"short_name": short} if short_only else {"short_name": short, "version": ver}
     r = S.get("https://cmr.earthdata.nasa.gov/search/collections.umm_json", params=dict(p, sort_key="-revision_date"), timeout=90); r.raise_for_status()
+    if short_only and not r.json().get("items"):   # nom court suivi d'un suffixe de version (ex. SWOT_L2_LR_SSH_D) : recherche par motif
+        r = S.get("https://cmr.earthdata.nasa.gov/search/collections.umm_json", params={"short_name": short + "*", "options[short_name][pattern]": "true", "provider": "POCLOUD", "sort_key": "-revision_date"}, timeout=90); r.raise_for_status()
     it = r.json()["items"][0]; u = it["umm"]
-    if short_only: p["version"] = u.get("Version")
+    if short_only: p = {"short_name": u.get("ShortName"), "version": u.get("Version")}
     h = S.get("https://cmr.earthdata.nasa.gov/search/granules.json", params=dict(p, page_size=0), timeout=90)
     t = (u.get("TemporalExtents") or [{}])[0].get("RangeDateTimes") or [{}]
-    return {"version": u.get("Version"), "title_umm": u.get("EntryTitle"), "period_umm": [t[0].get("BeginningDateTime"), t[0].get("EndingDateTime")],"level": (u.get("ProcessingLevel") or {}).get("Id"), "doi": (u.get("DOI") or {}).get("DOI"), "concept": it["meta"]["concept-id"],
+    return {"short_name": u.get("ShortName"), "version": u.get("Version"), "title_umm": u.get("EntryTitle"), "period_umm": [t[0].get("BeginningDateTime"), t[0].get("EndingDateTime")],"level": (u.get("ProcessingLevel") or {}).get("Id"), "doi": (u.get("DOI") or {}).get("DOI"), "concept": it["meta"]["concept-id"],
             "page": "https://cmr.earthdata.nasa.gov/search/concepts/" + it["meta"]["concept-id"] + ".html", "matched_all": int(h.headers.get("CMR-Hits", 0)) or None,
             "use": ((u.get("UseConstraints") or {}).get("LicenseURL") or {}).get("Linkage") or (u.get("UseConstraints") or {}).get("Description")}
 out = {"fetched": datetime.date.today().isoformat(), "cats": CATS, "cols": {}}
 for mid, inst, cat, cid, q, prov in COLS:
     try:
         if prov and prov.endswith(":short"):
-            rec = cmr_umm(cid, True); rec.update(title=rec.get("title_umm"), period=rec.get("period_umm"), api="https://cmr.earthdata.nasa.gov/search/", matched=rec.get("matched_all"))
+            rec = cmr_umm(cid, True); cid = rec.get("short_name") or cid; rec.update(title=rec.get("title_umm"), period=rec.get("period_umm"), api="https://cmr.earthdata.nasa.gov/search/", matched=rec.get("matched_all"))
         else:
             rec = stac_col(cat, cid, q, prov)
             if cat == "cmr": rec.update(cmr_umm(cid))
