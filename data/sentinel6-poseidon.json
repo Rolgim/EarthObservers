@@ -1,0 +1,31 @@
+{
+ "src": "commons",
+ "press": true,
+ "archive": "Wikimedia Commons",
+ "collection": "",
+ "product": "Sea Surface Height Anomaly from Sentinel-6 MF (SVS31174).png",
+ "title": "Sea Surface Height Anomaly from Sentinel-6 MF (SVS31174)",
+ "datetime": "28 January",
+ "instrument": "Poseidon-4",
+ "href": "https://upload.wikimedia.org/wikipedia/commons/8/81/Sea_Surface_Height_Anomaly_from_Sentinel-6_MF_%28SVS31174%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+ "page": "https://commons.wikimedia.org/wiki/File:Sea_Surface_Height_Anomaly_from_Sentinel-6_MF_(SVS31174).png",
+ "credit": "NASA's Scientific Visualization Studio - Marit Jentoft-Nilsen",
+ "license": "Public domain",
+ "license_url": "https://commons.wikimedia.org/wiki/File:Sea_Surface_Height_Anomaly_from_Sentinel-6_MF_(SVS31174).png",
+ "source": "Sea Surface Height Anomaly from Sentinel-6 MF",
+ "description": "Global map of Along Track Sea Surface Height Anomaly data from Sentinel-6 MF",
+ "what_fr": "anomalie de hauteur de la mer",
+ "full_size": [
+  1920,
+  1080
+ ],
+ "out_size": [
+  1000,
+  562
+ ],
+ "fetched": "2026-11-24",
+ "license_fr": "Domaine public (données et images de la NASA, non protégées par le droit d'auteur)",
+ "license_en": "Public domain (NASA data and images, not copyrighted)",
+ "credit_line": "NASA's Scientific Visualization Studio - Marit Jentoft-Nilsen",
+ "status": "ok"
+}

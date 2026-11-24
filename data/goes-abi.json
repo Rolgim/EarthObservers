@@ -1,0 +1,31 @@
+{
+ "src": "nasa-cc0",
+ "archive": "NASA GIBS (Worldview)",
+ "collection": "GOES-East_ABI_GeoColor",
+ "product": "GOES-East (GOES-19) ABI, GeoColor (une image du disque)",
+ "datetime": "2026-11-24T17:00:00Z",
+ "instrument": "ABI",
+ "bbox_lat_lon": [
+  -81.3,
+  -156.2,
+  81.3,
+  6.2
+ ],
+ "href": "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS=GOES-East_ABI_GeoColor&CRS=EPSG%3A4326&STYLES=&BBOX=-81.3%2C-156.2%2C81.3%2C6.2&WIDTH=900&HEIGHT=900&FORMAT=image%2Fpng&TIME=2026-11-24T17%3A00%3A00Z",
+ "page": "https://worldview.earthdata.nasa.gov/?l=GOES-East_ABI_GeoColor&t=2026-11-24T17:00:00Z",
+ "credit": "NASA ; Imagery from NASA's Global Imagery Browse Services (GIBS), part of NASA's Earth Science Data and Information System (ESDIS)",
+ "full_size": [
+  900,
+  900
+ ],
+ "out_size": [
+  900,
+  900
+ ],
+ "fetched": "2026-11-24",
+ "license_fr": "CC0 1.0 (données des missions de la NASA, politique d'usage d'Earthdata) ; citer le jeu de données",
+ "license_en": "CC0 1.0 (NASA mission data, Earthdata use policy); cite the dataset",
+ "license_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+ "credit_line": "NASA ; Imagery from NASA's Global Imagery Browse Services (GIBS), part of NASA's Earth Science Data and Information System (ESDIS)",
+ "status": "ok"
+}
