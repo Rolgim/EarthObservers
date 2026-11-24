@@ -1,0 +1,3 @@
+{ "BUS":"bus", "BUS_instruments":"bus", "BUS_plates":"bus", "baked_instruments":"bus",
+  "OLI":"inst", "OLI_cams":"inst", "OLI_plate":"inst", "OLI_plates":"inst",
+  "solarPanels":"solar", "solarPanels_foil":"solar", "solarPanels_base":"solar", "solarPanels_gimbal":"solar", "solarPanelHinges":"solar" }

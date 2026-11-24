@@ -1,0 +1,164 @@
+/* Squelette : pages défilantes sous l'en-tête (la vue 3D d'Observatories reviendra à l'étape 4). */
+#page{ flex:1; min-height:0; overflow-y:auto; background:var(--paper); padding:24px var(--gr) 48px var(--gl); }
+#page:focus{ outline:none; }
+.sk{ max-width:760px; }
+.sk h2{ font-weight:800; font-stretch:75%; font-size:clamp(26px, 4vw, 38px); line-height:1.05; margin:8px 0 12px; }
+.sk h3{ font-size:15px; margin:24px 0 6px; }
+.sk .lead{ font-size:16px; line-height:1.5; color:var(--ink-2); margin:0 0 14px; }
+.sk-state{ display:inline-block; font-size:12.5px; font-weight:700; color:var(--ink); border-left:4px solid var(--mark); padding:3px 9px; background:var(--sheet); margin:0; }
+.sk-table{ border-collapse:collapse; width:100%; font-size:13.5px; }
+.sk-table th, .sk-table td{ text-align:left; vertical-align:top; padding:6px 8px 6px 0; border-bottom:1px solid var(--rule); }
+.sk-table th{ font-weight:600; color:var(--ink-2); width:38%; }
+.src{ font-size:11.5px; color:var(--ink-2); }
+.home-link{ color:inherit; text-decoration:none; }
+/* onglets des sondes (comme les onglets d'observatoires) : le titre ne se laisse pas recouvrir ; sur écran moyen, l'année disparaît */
+@media (min-width: 861px){ .brand{ flex:none; } }
+#tabs .tab{ white-space:nowrap; }
+@media (max-width: 860px){ .brand{ padding-right:92px; } .brand h1{ font-size:16px; } #tabs, #tabs .trow{ max-width:100vw; } #tabs .tab{ padding-left:7px; padding-right:7px; font-size:13px; } }
+/* écran moyen : les onglets des sondes passent sur une seconde rangée de l'en-tête, pleine largeur (sinon certains sortent du cadre) */
+@media (min-width: 861px) and (max-width: 1500px){
+  #top{ flex-wrap:wrap; row-gap:0; }
+  #views{ margin-left:auto; }
+  .brand, #views, #utils{ min-height:55px; }   /* première rangée de hauteur fixe : les boutons de vue ne bougent pas quand les onglets apparaissent (règle 6) */
+  #tabs{ order:5; flex:0 0 calc(100% + var(--gl) + var(--gr)); margin:0 calc(-1 * var(--gr)) 0 calc(-1 * var(--gl)); border-top:1px solid var(--rule); padding-left:var(--gl); }
+  #tabs .trow, #tabs .drow{ justify-content:flex-start; }
+  #tabs .drow{ padding-top:4px; }
+  #tabs .tab{ margin-top:0; padding-top:7px; padding-bottom:7px; }
+  #tabs .tab:first-child{ border-left:0; }
+}
+@media (max-width: 720px){
+  #top{ flex-wrap:wrap; gap:0 12px; }
+  #views{ order:3; margin-left:0; width:100%; overflow-x:auto; padding-bottom:8px; }
+}
+
+/* ---------- page d'une mission : vue 3D + panneau ---------- */
+#page.is-mission{ padding:0; overflow:hidden; display:flex; }
+.mission{ flex:1; display:flex; min-height:0; min-width:0; }
+#stage.m-stage{ flex:1; position:relative; min-width:0; min-height:420px; background:var(--black); color:#fff; overflow:hidden; }
+.m-stage canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none; cursor:grab; }
+.m-stage canvas.dragging{ cursor:grabbing; } .m-stage canvas.over-part{ cursor:pointer; }
+.m-hud{ position:absolute; left:var(--gl); top:16px; right:var(--gr); pointer-events:none; }
+.m-name{ font-weight:800; font-stretch:75%; font-size:clamp(24px, 3.4vw, 40px); line-height:1; text-shadow:0 2px 14px #000; }
+.m-sub{ color:#C9CED2; font-size:13px; margin-top:7px; text-shadow:0 1px 8px #000; }
+.m-body-note{ margin:5px 0 0; font-size:12px; color:#AEB5BA; text-shadow:0 1px 8px #000; max-width:520px; }
+.m-msg{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); margin:0; background:#14171A; color:#fff; padding:8px 12px; font-size:13px; max-width:80%; }
+.m-tools{ position:absolute; left:0; right:0; margin:0 auto; width:max-content; bottom:calc(14px + env(safe-area-inset-bottom, 0px)); display:flex; align-items:stretch; background:var(--paper); color:var(--ink); max-width:calc(100% - 24px); }
+.m-ex{ display:flex; align-items:center; gap:9px; padding:0 13px; height:38px; font-size:13px; font-weight:600; color:var(--ink); }
+.m-ex input{ width:120px; accent-color:var(--ink); }
+.m-tools svg{ width:16px; height:16px; flex:none; }
+.m-b{ display:flex; align-items:center; gap:7px; height:38px; padding:0 13px; border:0; border-left:1px solid var(--rule); background:transparent; color:var(--ink); font:600 13px var(--f); cursor:pointer; white-space:nowrap; }
+.m-b:hover{ background:var(--sheet); }
+.m-b[aria-pressed="true"]{ background:var(--mark); color:var(--on-mark); }
+.m-b:first-child{ border-left:0; }
+.m-b:focus-visible, .m-ex input:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
+.m-hint{ position:absolute; left:0; right:0; margin:0 auto !important; width:max-content; bottom:calc(66px + env(safe-area-inset-bottom, 0px)); white-space:nowrap; max-width:92%; overflow:hidden; text-overflow:ellipsis; pointer-events:none; margin:0; font-size:12px; color:#E3E6E8; background:rgba(0,0,0,.72); padding:2px 8px; }
+.m-panel{ width:min(400px, 42vw); flex:none; overflow-y:auto; background:var(--sheet); padding:14px 18px 32px; border-left:1px solid var(--rule); }
+.m-panel .ptl-row{ display:flex; align-items:stretch; gap:4px; border-bottom:1px solid var(--rule); margin-bottom:12px; }
+.m-panel .ptl{ display:flex; gap:4px; }
+.m-panel .ptab small{ font-weight:400; opacity:.75; margin-left:3px; }
+.m-panel .ptab.go{ margin-left:auto; color:var(--ink); text-decoration:underline; text-underline-offset:3px; display:flex; align-items:center; }
+.m-panel .ptab{ border:0; border-bottom:3px solid transparent; background:transparent; font:600 14px var(--f); color:var(--ink-2); padding:6px 10px; cursor:pointer; }
+.m-panel .ptab[aria-selected="true"]{ color:var(--ink); border-bottom-color:var(--ink); }
+.m-panel .desc{ font-size:14px; line-height:1.5; color:var(--ink-2); }
+.m-panel h3{ font-size:13px; text-transform:uppercase; letter-spacing:.4px; margin:18px 0 4px; }
+.m-panel .cta{ display:block; width:100%; text-align:left; margin-top:20px; border:1.5px solid var(--ink); background:transparent; color:var(--ink); font:700 14px var(--f); padding:10px 12px; cursor:pointer; }
+.m-panel .cta small{ display:block; font-weight:400; color:var(--ink-2); margin-top:3px; }
+.parts{ list-style:none; margin:0; padding:0; }
+.part > button{ width:100%; text-align:left; border:0; border-bottom:1px solid var(--rule); background:transparent; font:600 14px var(--f); color:var(--ink); padding:9px 2px; cursor:pointer; }
+.part.on > button{ background:var(--mark); color:var(--on-mark); padding-left:8px; }
+.part-body{ font-size:13.5px; line-height:1.45; color:var(--ink-2); padding:4px 2px 10px; }
+.note{ font-size:12px; color:var(--ink-2); margin-top:14px; }
+.sk.wide{ max-width:960px; }
+.sk.full{ max-width:none; }
+.traj svg{ width:100%; max-width:520px; height:auto; background:var(--black); display:block; }
+.traj .sun{ fill:#FFD21F; }
+.traj .orb-b{ fill:none; stroke-width:1.2; } .traj .orb-p{ fill:none; stroke:#fff; stroke-width:2; } .traj .pt-e{ fill:#6FA8FF; } .traj .pt-t{ fill:#E07A4F; }
+.traj text{ fill:#fff; font:12px var(--f); }
+figure{ margin:0 0 10px; } figcaption{ font-size:12.5px; line-height:1.45; color:var(--ink-2); margin-top:6px; }
+.real img{ width:100%; max-width:600px; height:auto; display:block; background:#000; }
+@media (max-width: 720px){
+  #page.is-mission{ overflow-y:auto; display:block; }
+  .mission{ flex-direction:column; }
+  #stage.m-stage{ flex:none; height:46vh; min-height:300px; }
+  .m-hint{ display:none; }
+  .m-tools .lbl{ display:none; }
+  .m-b{ padding:0 11px; } .m-ex input{ width:84px; }
+  .m-tools{ bottom:8px; }
+  .m-hud{ top:10px; }
+  .m-panel{ width:auto; border-left:0; }
+}
+
+/* ---------- accueil « Système solaire » : mise en page du « Ciel » d'Observatories (.home…, inst.css) ---------- */
+#page.is-solar{ padding:0; }
+.home.solar{ min-height:100%; }
+.so-sky{ padding:0; height:calc(100vh - 300px); min-height:340px; overflow:hidden; }
+.so-sky svg{ display:block; width:100%; height:100%; touch-action:none; cursor:grab; user-select:none; -webkit-user-select:none; font-family:var(--f); }
+.so-sky .home-zoom{ flex-wrap:wrap; justify-content:flex-end; left:16px; }
+.so-sky .home-zoom button{ background:rgba(5,7,10,.75); }
+.so-ctl .dep-b{ font-size:12px; }
+.so-ctl .home-yr{ min-width:0; flex:0 1 auto; }
+.so-fut{ display:inline-block; font-size:11.5px; font-weight:700; margin-left:6px; padding:1px 6px; border:1px solid var(--ink); }
+.so-sel{ display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; }
+.so-sel select{ font:inherit; font-weight:400; padding:4px 6px; background:var(--paper); color:var(--ink); border:1px solid var(--ink); }
+.so-o{ fill:none; stroke-width:1px; stroke-opacity:.55; }
+.so-mo{ stroke:#9FB3C8; stroke-opacity:.45; }
+.so-tr{ fill:none; stroke-width:1.6px; }
+.so-tr.done{ stroke-opacity:.35; stroke-dasharray:4 3; }
+.so-sun{ fill:#FFD54F; }
+.so-moon{ fill:#E3E6E8; }
+.so-p{ stroke:#05070A; stroke-width:1.5px; }
+.so-ring{ fill:none; stroke-width:2px; }
+.so-sky text{ fill:#E3E6E8; font-size:12px; font-weight:600; paint-order:stroke; stroke:#05070A; stroke-width:3px; stroke-linejoin:round; }
+.so-sky text.so-ml{ font-weight:400; fill:#C9D2DA; }
+.so-scale path{ fill:none; stroke:#E3E6E8; stroke-width:1.5px; }
+.so-sky .home-tip{ transform:translateY(-50%); }
+.home-li b{ font-weight:700; }
+.solar .home-li[aria-pressed="false"]{ opacity:1; }
+.solar .home-li[aria-pressed="false"] i{ outline:0; }
+.solar .home-li[aria-pressed="true"]{ border-color:var(--mark); box-shadow:inset 4px 0 0 var(--mark); background:var(--sheet); }
+#so-probes .home-li small{ grid-column:2 / 4; }
+@media (max-width: 860px){ .so-sky{ height:min(110vw, 70vh); min-height:300px; } .so-sky .home-zoom{ top:8px; right:8px; left:8px; } }
+
+/* ---------- Flotte et Comparer : mise en page d'Observatories (.inst-nav, .inst-head, .ctable…, inst.css) ---------- */
+#page.is-xp{ padding:0; overflow:hidden; display:flex; }
+.xp{ flex:1; min-width:0; }
+a.nav-i{ color:inherit; text-decoration:none; }
+.inst-head h2.inst-name{ margin:0; }
+.isec h3{ font-weight:800; font-stretch:75%; font-size:17px; margin:0 0 10px; padding-bottom:5px; border-bottom:2px solid var(--ink); }
+.inst-head .fl-filters{ margin:0; }
+.fl-grid{ stroke:var(--rule); stroke-width:1; }
+.fl-year{ font-size:11px; fill:var(--ink-2); }
+.fl-lab{ font-size:12.5px; font-weight:700; fill:var(--ink); }
+.fl-tl svg{ font-family:var(--f); }
+.fl-ev{ fill:var(--paper); stroke:var(--ink); stroke-width:1.5; }
+.fl-nowt{ font-size:11px; }
+.fl-leg{ display:flex; flex-wrap:wrap; gap:6px 18px; font-size:12.5px; color:var(--ink-2); margin:8px 0 0; }
+.fl-leg span{ display:inline-flex; align-items:center; gap:6px; }
+.fl-leg svg{ width:16px; height:16px; fill:var(--paper); stroke:var(--ink); stroke-width:1.5; }
+.fl-live{ display:inline-block; width:22px; height:8px; background:var(--ink-2); clip-path:polygon(0 0, 75% 0, 100% 50%, 75% 100%, 0 100%); }
+.fl-who h3{ margin:0 0 4px; font-size:15px; } .fl-who h3 a{ color:var(--ink); }
+.fl-who h3 small{ font-weight:400; color:var(--mute); font-size:12px; margin-left:6px; }
+.ctable td.o a{ color:var(--ink); }
+.ctable td small{ color:var(--mute); }
+.ctable td.o .cp-sec{ display:block; font-weight:400; font-stretch:100%; font-size:11.5px; }
+.cp-rows td.n{ white-space:normal; width:24%; }
+.cp-bars{ list-style:none; padding:0; margin:6px 0 0; }
+.cp-bars li{ display:grid; grid-template-columns:120px 1fr; grid-template-rows:auto auto; gap:2px 10px; align-items:center; padding:6px 0; border-bottom:1px solid var(--rule); font-size:13px; }
+.cp-n{ font-weight:800; font-stretch:75%; font-size:15px; color:var(--ink); grid-row:span 2; }
+.cp-t{ height:14px; background:var(--sheet); } .cp-t i{ display:block; height:100%; }
+.cp-v{ color:var(--ink-2); font-size:12.5px; }
+#tabs .tab[aria-selected="true"] small{ opacity:1; }
+.fl-who .spec-row .k{ max-width:none; }
+.nav-i.on .k{ opacity:1; }
+/* page « Mission et instruments » : cases et liens en <a> (pas de soulignement), source surlignée après un clic sur son numéro */
+a.icard{ text-decoration:none; color:inherit; }
+a.icard:focus-visible{ outline:2px solid var(--focus, #2F6FE4); outline-offset:-2px; }
+.cov-row a:focus-visible rect:first-child{ stroke:var(--ink); stroke-width:1.5; }
+ol.refs li.hl{ background:var(--mark, #FFE9A8); }
+sup.ref a{ text-decoration:none; }
+/* Système solaire : fond noir (carte schématique vue de dessus, sans ciel)  */
+.so-sky{ background:#05070A; }
+.so-orb{ fill:none; stroke-width:1.6px; }
+.so-orb.hid{ stroke-dasharray:3 4; stroke-opacity:.5; }
+/* barre de séparation entre l'en-tête et le contenu, comme la rangée du haut des pages Flotte et Comparer d'Observatories */
+#top{ border-bottom:2px solid var(--ink); }
