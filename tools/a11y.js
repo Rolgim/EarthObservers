@@ -17,7 +17,7 @@ const PAGES = [...ALL.map(h => [h]), ...IDS.map(i => [i, '[data-ptab="parts"]'])
     await serve.lang(pg, lang); await serve.offline(pg, PORT);
     for (const [hash, click] of PAGES) {
       await pg.goto('http://localhost:' + PORT + '/index.html#' + (lang === 'en' ? 'en-' : '') + hash); await pg.waitForTimeout(500);
-      if (click) { await pg.click(click); await pg.waitForTimeout(400); }
+      if (click && await pg.locator(click).count()) { await pg.click(click); await pg.waitForTimeout(400); }
       await pg.addScriptTag({ content: AXE });
       const res = await pg.evaluate(async () => (await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] }, resultTypes: ['violations'] }))
         .violations.map(v => ({ id: v.id, impact: v.impact, help: v.help, n: v.nodes.length, ex: v.nodes.slice(0, 3).map(n => n.target.join(' ') + (n.any[0] && n.any[0].message ? ' — ' + n.any[0].message.slice(0, 140) : '')) })));

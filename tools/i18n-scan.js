@@ -20,7 +20,7 @@ const FRENCH = /[àâçéèêëîïôùûœ«»]|\b(le|la|les|des|du|de|et|un|un
       if (FRENCH.test(t)) miss[t] = 1;
   }
   await b.close(); srv.close();
-  const out = Object.keys(miss).filter(k => FRENCH.test(k) && /[a-zA-Zà-ÿ]{3}/.test(k)).sort();
+  const out = Object.keys(miss).filter(k => FRENCH.test(k) && /[a-zA-Zà-ÿ]{3}/.test(k) && !/^[\w.-]+\.[a-z]{2,}$/.test(k)).sort();
   out.forEach(k => console.log(JSON.stringify(k)));
   console.error(out.length + ' chaîne(s) sans traduction');
   process.exit(out.length ? 1 : 0);

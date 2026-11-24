@@ -36,6 +36,9 @@ def rule(name, d):
     if src == "commons":
         lic = d.get("license", "")
         if re.search(r"public domain|^PD", lic, re.I): return (PD[0] if "NASA" in (d.get("credit") or "NASA") else "Domaine public", PD[1], d.get("page"), d.get("credit"), "ok")
+        if re.search(r"CC BY(-SA)? [34]\.0", lic, re.I):   # licence libre avec attribution (et partage à l'identique pour BY-SA) : le site la reprend telle quelle
+            u = d.get("license_url") or d.get("page")
+            return (lic + " ; attribution : " + (d.get("credit") or "") + " ; image réduite par ce site, publiée sous la même licence", lic + "; attribution: " + (d.get("credit") or "") + "; image scaled down by this site, shared under the same licence", u, d.get("credit"), "ok")
         return (lic, lic, d.get("page"), d.get("credit"), "à confirmer")
     if d.get("press"):
         return (PD[0] + " ; sans logo de la NASA", PD[1] + "; no NASA logo", NASA_MEDIA, d.get("credit") or "NASA", "ok")

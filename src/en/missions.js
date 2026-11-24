@@ -24,4 +24,179 @@ var EN_MISSIONS = {
         ['Scene', '185 × 180 km'], ['Quantization', '14 bits'] ]}
     ]
   }
+  ,
+  sentinel1:{
+    agency:'ESA and European Union (Copernicus programme); Thales Alenia Space satellites, Airbus radar',
+    targets:['Land', 'Ice', 'Oceans'],
+    desc:'The Sentinel-1 satellites of the European Copernicus programme carry a C-band radar, which sees the ground by day and night and through clouds: sea ice, glaciers, oil spills, floods, ground deformation after an earthquake. Sentinel-1C (2024) and Sentinel-1D (2025) took over from Sentinel-1B, stopped in 2022, and Sentinel-1A, stopped in June 2026.',
+    refs:{ ct:'GP elements of SENTINEL-1C and -1D (NORAD nos. 62261, 66315)' },
+    sections:[
+      { title:'Mission', rows:[
+        ['Launches', '1A: 3 April 2014; 1B: 25 April 2016; 1C: 5 December 2024; 1D: 4 November 2025'], ['Launchers', 'Soyuz (1A, 1B), Vega-C (1C), Ariane 6 (1D), from Kourou'],
+        ['End of mission', '1B: August 2022; 1A: June 2026'], ['Design life', 'at least 7 years per satellite'],
+        ['Satellite', '21 m long with two 10 m solar arrays and a 12 m radar antenna; 2,185 kg'] ]},
+      { title:'Orbit', rows:[
+        ['Type', 'near-polar, sun-synchronous'], ['Altitude', '693 km'], ['Inclination', '98.18°'], ['Period', '98.6 minutes'],
+        ['Equator crossing', '6 p.m. local time, ascending'], ['Repeat cycle', '12 days per satellite; 6 days with two'] ]},
+      { title:'Images', rows:[
+        ['Radar', 'synthetic aperture, C band, 5.405 GHz'], ['Main mode (IW)', '250 km swath, 5 × 20 m pixels'],
+        ['Other modes', 'Stripmap: 80 km, 5 × 5 m; Extra-wide: 400 km, 20 × 40 m; Wave: 20 × 20 km vignettes every 100 km'], ['Resolution', '5 × 20 m (IW mode)'] ]}
+    ]
+  },
+  sentinel2:{
+    agency:'ESA and European Union (Copernicus programme); Airbus satellites and camera',
+    targets:['Land', 'Oceans'],
+    desc:'The Sentinel-2 satellites photograph all land and coasts in thirteen bands, from blue to infrared, with 10 m pixels. Two satellites placed opposite each other on the same orbit revisit every place every five days at the equator: crops, forests, cities, coastal waters, disasters.',
+    refs:{ ct:'GP elements of SENTINEL-2A, -2B and -2C (NORAD nos. 40697, 42063, 60989)' },
+    sections:[
+      { title:'Mission', rows:[
+        ['Launches', '2A: 23 June 2015; 2B: 7 March 2017; 2C: 5 September 2024'], ['Launcher', 'Vega, from Kourou'], ['Design life', 'at least 7 years'],
+        ['Satellite', '3.4 × 1.8 × 2.35 m; 1,140 kg including 123 kg of propellant'], ['Coverage', 'land and coasts between 84° N and 84° S'] ]},
+      { title:'Orbit', rows:[
+        ['Type', 'polar, sun-synchronous'], ['Altitude', '786 km'], ['Inclination', '98.62°'], ['Period', '100.6 minutes'],
+        ['Equator crossing', '10:30 a.m. local time, descending'], ['Repeat cycle', '10 days per satellite; 5-day revisit with two (at the equator)'] ]},
+      { title:'Images', rows:[
+        ['Bands', '13, from 443 to 2,190 nm'], ['Resolution', '10 m (4 bands), 20 m (6 bands), 60 m (3 bands)'], ['Swath', '290 km'] ]}
+    ]
+  },
+  sentinel3:{
+    agency:'ESA and European Union (Copernicus programme), operated with EUMETSAT; Thales Alenia Space satellites',
+    targets:['Oceans', 'Land', 'Ice'],
+    desc:'The Sentinel-3 satellites mainly watch the oceans: water colour (plankton, sediments), sea and land temperature, the height of the sea, lakes and rivers. Each satellite carries a 21-band camera (OLCI), an infrared radiometer (SLSTR) and a radar altimeter (SRAL). Sentinel-3C joined the first two in September 2026.',
+    refs:{ ct:'GP elements of SENTINEL-3A, -3B and -3C (NORAD nos. 41335, 43437, 100690)' },
+    sections:[
+      { title:'Mission', rows:[
+        ['Launches', '3A: 16 February 2016; 3B: 25 April 2018; 3C: 15 September 2026'], ['Launchers', 'Rockot from Plesetsk (3A, 3B); Vega-C from Kourou (3C)'],
+        ['Design life', '7 years; consumables for 12 years'], ['Satellite', '2.2 × 2.2 × 3.7 m; 1,150 kg including 130 kg of propellant'], ['Operations', 'ESA and EUMETSAT'] ]},
+      { title:'Orbit', rows:[
+        ['Type', 'polar, sun-synchronous'], ['Altitude', '814.5 km (mean)'], ['Inclination', '98.65°'], ['Period', '100.99 minutes'],
+        ['Equator crossing', '10 a.m. local time, descending'], ['Repeat cycle', '27 days (385 orbits)'] ]},
+      { title:'Images', rows:[
+        ['OLCI', '21 bands from 400 to 1,020 nm, 1,270 km swath'], ['SLSTR', '9 bands from 550 to 12,000 nm, dual view: 1,400 km (nadir) and 740 km (oblique) swaths'],
+        ['SRAL', 'Ku- and C-band radar altimeter (300 m after SAR processing)'], ['Resolution', '300 m (OLCI); 500 m and 1 km (SLSTR)'], ['Revisit (oceans, two satellites)', 'SLSTR ≈ 1 day, OLCI ≈ 2 days'] ]}
+    ]
+  },
+  sentinel5p:{
+    agency:'ESA, Netherlands Space Office and European Union (Copernicus); Airbus satellite; data processed by DLR',
+    targets:['Atmosphere'],
+    desc:'Sentinel-5P measures every day, over the whole Earth, the gases that pollute the air or warm the climate: nitrogen dioxide, ozone, carbon monoxide, methane, sulphur dioxide, as well as aerosols and clouds. Its TROPOMI spectrometer covers a 2,600 km strip with pixels a few kilometres across.',
+    refs:{ ct:'GP elements of SENTINEL-5P (NORAD no. 42969)' },
+    sections:[
+      { title:'Mission', rows:[
+        ['Launch', '13 October 2017, Rockot, from Plesetsk (Russia)'], ['Design life', 'at least 7 years; consumables for 10 years'], ['Satellite', '820 kg including 82 kg of propellant'],
+        ['Agencies', 'ESA and Netherlands Space Office; data processing: DLR'] ]},
+      { title:'Orbit', rows:[
+        ['Type', 'polar, sun-synchronous, in formation with the US Suomi-NPP satellite'], ['Altitude', '824 km'], ['Inclination', '98.74°'], ['Period', '101 minutes'],
+        ['Equator crossing', '1:30 p.m. local time, ascending'], ['Repeat cycle', '17 days (227 orbits); whole-Earth coverage every day'] ]},
+      { title:'Images', rows:[
+        ['Bands', 'ultraviolet and visible (270 – 495 nm), near infrared (675 – 775 nm), short-wave infrared (2,305 – 2,385 nm)'], ['Resolution', 'down to 7 × 3.5 km'], ['Swath', '2,600 km'] ]}
+    ]
+  },
+  terra:{
+    agency:'NASA, with Japan (METI, ASTER instrument) and Canada (CSA, MOPITT instrument)',
+    targets:['Land', 'Atmosphere', 'Oceans'],
+    desc:'Terra, the “flagship” of NASA\'s EOS programme, has observed the Earth since 1999 with five instruments: MODIS photographs the whole planet almost every day, ASTER takes detailed images, MISR looks from nine angles, CERES measures the energy received and sent back, MOPITT tracks pollution. Out of fuel, its orbit has been drifting since 2020: it passes earlier and earlier in the morning.',
+    refs:{ ct:'GP elements of TERRA (NORAD no. 25994)', modis:'Aqua (eoPortal, description of MODIS)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      bus:{ name:'Platform and instruments', desc:'The body of the satellite, with its five instruments on the Earth-facing side (MODIS, ASTER, MISR, CERES, MOPITT). The model does not separate them: they are described one by one under “Mission and instruments”.', facts:['Platform: 6.8 m long, 3.5 m wide', 'Launch mass: 5,190 kg'] },
+      solar:{ name:'Solar array', desc:'One large solar array at the end of an arm, which powers the satellite.' },
+      antenna:{ name:'High-gain antenna', desc:'Dish antenna at the end of a mast, which sends the data to NASA\'s relay satellites.' }
+    },
+    sections:[
+      { title:'Mission', rows:[
+        ['Launch', '18 December 1999'], ['Launch mass', '5,190 kg'], ['Instruments', 'ASTER, CERES, MISR, MODIS, MOPITT; ASTER short-wave infrared data are no longer available'],
+        ['Drift', 'since February 2020; crossing before 10:15 a.m. since October 2022, before 9 a.m. since December 2025'] ]},
+      { title:'Orbit', rows:[
+        ['Type', 'near-polar, sun-synchronous (morning crossing)'], ['Altitude', '705 km'], ['Inclination', '98.5°'], ['Period', '99 minutes, 14 orbits per day'],
+        ['Equator crossing', '10:30 a.m. local time, descending (original orbit, before the drift)'], ['Repeat cycle', '16 days'] ]},
+      { title:'Images', rows:[
+        ['MODIS', '36 bands from 0.4 to 14.4 µm, 2,330 km swath'], ['ASTER', '14 bands; 15 m (visible), 30 m (short-wave IR), 90 m (thermal); 60 km swath'],
+        ['MISR', '9 cameras, 4 bands; common swath of about 400 km'], ['Resolution', '15 m (ASTER, visible)'] ]}
+    ]
+  },
+  aqua:{
+    agency:'NASA, with Japan (JAXA, AMSR-E instrument) and Brazil (INPE, HSB instrument); TRW (Northrop Grumman) platform',
+    targets:['Atmosphere', 'Oceans', 'Ice'],
+    desc:'Aqua studies the water cycle: water vapour and air temperature (AIRS, AMSU), clouds and energy budget (CERES), seas, ice and vegetation (MODIS). Launched in 2002 for six years, it still works with four of its six instruments. It passes in the afternoon, three hours after Terra; out of fuel since late 2021, it is slowly sinking and passing later and later.',
+    refs:{ nasa:'Aqua (mission page)', ct:'GP elements of AQUA (NORAD no. 27424)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      inst:{ name:'Instruments', desc:'The instruments on the Earth-facing side: AIRS, AMSU-A, CERES, MODIS, and the AMSR-E antenna at the end of the satellite. The model groups them in a single set.', facts:['Six instruments, four of which still work'] },
+      solar:{ name:'Solar array', desc:'One large single-piece solar array.', facts:['Power: 4,860 W at end of life'] },
+      bus:{ name:'Platform', desc:'The satellite structure (TRW AB1200 platform, now Northrop Grumman): power, attitude control, hydrazine propulsion, transmission.', facts:['Launch mass: 2,934 kg', 'Deployed size: 4.8 × 16.7 × 8 m'] }
+    },
+    sections:[
+      { title:'Mission', rows:[
+        ['Launch', '4 May 2002, Delta II 7920-10L, Vandenberg Air Force Base (California)'], ['Launch mass', '2,934 kg'], ['Design life', '6 years'],
+        ['Instruments', 'AIRS, AMSU-A, HSB, AMSR-E, MODIS, CERES; AIRS, AMSU, CERES and MODIS still work'] ]},
+      { title:'Orbit', rows:[
+        ['Type', 'near-polar, sun-synchronous (afternoon crossing)'], ['Altitude', '705 km'], ['Inclination', '98.2°'], ['Period', '98.8 minutes'],
+        ['Equator crossing', '1:30 p.m. local time, ascending (original orbit, before the drift)'], ['Repeat cycle', '16 days'] ]},
+      { title:'Images', rows:[
+        ['MODIS', '36 bands from 0.4 to 14.4 µm, 2,330 km swath'], ['AIRS', 'more than 2,300 infrared channels, 1,650 km swath'],
+        ['AMSR-E', '12 channels from 6.9 to 89 GHz, swath over 1,450 km'], ['Resolution', '13.5 km (AIRS, at nadir)'] ]}
+    ]
+  },
+  icesat2:{
+    agency:'NASA; Northrop Grumman platform',
+    targets:['Ice', 'Land', 'Oceans'],
+    desc:'ICESat-2 measures surface height with a green laser: six beams, 10,000 pulses per second, and a telescope that counts the returning photons one by one. It tracks the thinning of the Greenland and Antarctic ice sheets, sea ice thickness, forest height.',
+    refs:{ ct:'GP elements of ICESAT-2 (NORAD no. 43613)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      atlas:{ name:'ATLAS telescope', desc:'The aperture of the receiving telescope of the ATLAS laser altimeter, facing the Earth; it collects the photons of the six beams after their round trip.', facts:['Laser wavelength: 532 nm (green)', 'Six beams, in three pairs'] },
+      solar:{ name:'Solar arrays', desc:'A wing of four solar panels, with its hinges.' },
+      bus:{ name:'Platform and instrument', desc:'The satellite body (Northrop Grumman LEOStar-3 platform) and the rest of the ATLAS instrument, which the model does not separate.', facts:['Platform: LEOStar-3', 'Mass: 1,580 kg'] }
+    },
+    sections:[
+      { title:'Mission', rows:[
+        ['Launch', '15 September 2018'], ['Mass', '1,580 kg'], ['Design life', '3 years, 5-year goal; propellant for 7 years'], ['Instrument', 'ATLAS laser altimeter, the only instrument on board'] ]},
+      { title:'Orbit', rows:[
+        ['Type', 'near-polar, not sun-synchronous'], ['Altitude', '≈ 500 km'], ['Inclination', '92° (coverage up to 88° N and S)'], ['Repeat cycle', '91 days, monthly sub-cycle over the poles and oceans'] ]},
+      { title:'Images', rows:[
+        ['Beams', '6, in 3 pairs'], ['Footprint', '11 m'], ['Rate', '10,000 pulses per second (one every ≈ 0.7 m on the ground)'], ['Resolution', '11 m footprint every 0.7 m along the track'], ['Pointing', '45 m pointing control'] ]}
+    ]
+  },
+  gracefo:{
+    agency:'NASA (JPL) and GFZ (Germany); Airbus satellites',
+    targets:['Gravity', 'Ice', 'Oceans'],
+    desc:'GRACE-FO is two identical satellites flying about 220 km apart. By measuring the distance between them continuously and very precisely, they “weigh” the Earth: when they fly over a larger mass, the first one speeds up before the second. Every month this yields ice melt, falling groundwater, droughts.',
+    refs:{ nasa:'GRACE-FO (mission page)', ct:'GP elements of GRACE-FO 1 and 2 (NORAD nos. 43476, 43477)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      inst:{ name:'Antennas and sensors', desc:'What sticks out of the shell: the horn of the microwave ranging (towards the other satellite), the star cameras, the GPS antennas. The laser (LRI) and the accelerometer are inside.', facts:['Ranging in K (24 GHz) and Ka (32 GHz) bands'] },
+      bus:{ name:'Shell and platform', desc:'The roof-shaped shell, covered with solar cells, of one of the two twin satellites, derived from those of CHAMP, GRACE and Swarm.', facts:['About 3 × 3 × 0.8 m and 600 kg'] }
+    },
+    sections:[
+      { title:'Mission', rows:[
+        ['Launch', '22 May 2018, Falcon 9, Vandenberg, with five Iridium-NEXT satellites'], ['Satellites', 'two, about 3 × 3 × 0.8 m and 600 kg'],
+        ['Science phase', 'since January 2019, planned for 5 years after launch'], ['Agencies', 'NASA (JPL) and GFZ; satellites built with Airbus'] ]},
+      { title:'Orbit', rows:[
+        ['Type', 'polar, both satellites on the same orbit'], ['Altitude', '≈ 490 km'], ['Inclination', '89.0° (± 0.1°)'], ['Period', '≈ 90 minutes'], ['Separation', '≈ 220 km (kept between 170 and 270 km)'] ]},
+      { title:'Images', rows:[
+        ['Measurement', 'change in the distance between the two satellites'], ['Microwave (KBR)', 'K (24 GHz) and Ka (32 GHz) bands'], ['Laser (LRI)', 'demonstrator, nanometre precision'], ['Resolution', 'monthly maps of the gravity field'] ]}
+    ]
+  },
+  swot:{
+    agency:'NASA and CNES, with the Canadian Space Agency and the UK Space Agency',
+    targets:['Oceans', 'Land'],
+    desc:'SWOT measures water height over a 120 km wide strip, rather than along a single line like classic altimeters: it sees ocean eddies about twenty kilometres across, and the height of lakes and rivers. Its KaRIn radar has two antennas at the ends of a 10 m boom.',
+    refs:{ ct:'GP elements of SWOT (NORAD no. 54754)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      karin:{ name:'KaRIn radar', desc:'The 10 m boom and, at each end, an antenna of the KaRIn interferometric radar. Both antennas receive the same echo: the small path difference gives the water height on each side of the track.', facts:['10 m boom', 'KaRIn mass: 294 kg'] },
+      nadir:{ name:'Poseidon-3C altimeter', desc:'The antenna of the classic altimeter, which measures straight below the satellite, in the middle of KaRIn\'s strip.' },
+      solar:{ name:'Solar arrays', desc:'Two wings of solar panels.' },
+      bus:{ name:'Platform', desc:'The satellite body (platform supplied by CNES) and the other instruments: AMR-S radiometer, DORIS and GPS receivers, laser reflectors.' }
+    },
+    sections:[
+      { title:'Mission', rows:[
+        ['Launch', '16 December 2022, Falcon 9'], ['Mass', '≈ 2,000 kg, including 294 kg for KaRIn'], ['Planned duration', '3 years'], ['Instruments', '6, including KaRIn and the Poseidon-3C altimeter'] ]},
+      { title:'Orbit', rows:[
+        ['Type', 'near-circular, not sun-synchronous'], ['Altitude', '890 km'], ['Inclination', '77.6°'], ['Repeat cycle', '21 days (science orbit since July 2023)'], ['Coverage', 'between 78° N and 78° S, 90 to 95% of the surface'] ]},
+      { title:'Images', rows:[
+        ['KaRIn', 'Ka-band interferometric radar, two 50 km strips on either side of the track'], ['Swath', '≈ 120 km'], ['Resolution', '15 km (ocean); eddies visible from ≈ 20 km'], ['Water bodies', 'lakes and reservoirs from 250 × 250 m'] ]}
+    ]
+  }
 };

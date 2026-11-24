@@ -10,6 +10,7 @@ CATS = {
   "usgs": {"label": "USGS LandsatLook STAC", "api": "https://landsatlook.usgs.gov/stac-server", "page": "https://landsatlook.usgs.gov/"},
   "es": {"label": "Earth Search (Element 84, AWS)", "api": "https://earth-search.aws.element84.com/v1", "page": "https://element84.com/earth-search/"},
   "cdse": {"label": "Copernicus Data Space Ecosystem", "api": "https://stac.dataspace.copernicus.eu/v1", "page": "https://dataspace.copernicus.eu/"},
+  "pc": {"label": "Microsoft Planetary Computer", "api": "https://planetarycomputer.microsoft.com/api/stac/v1", "page": "https://planetarycomputer.microsoft.com/catalog"},
 }
 # (satellite, instrument, catalogue, collection, filtre propre au satellite pour le compte, fournisseur CMR)
 COLS = [
@@ -18,6 +19,24 @@ COLS = [
   ("landsat9", "oli2", "cmr", "HLSL30_2.0", None, "LPCLOUD"),
   ("landsat9", "tirs2", "usgs", "landsat-c2l1", {"platform": {"eq": "LANDSAT_9"}}, None),
   ("landsat9", "tirs2", "usgs", "landsat-c2l2-st", {"platform": {"eq": "LANDSAT_9"}}, None),
+  ("sentinel1", "csar", "pc", "sentinel-1-grd", None, None),
+  ("sentinel1", "csar", "es", "sentinel-1-grd", None, None),
+  ("sentinel2", "msi", "pc", "sentinel-2-l2a", None, None),
+  ("sentinel2", "msi", "es", "sentinel-2-l2a", None, None),
+  ("sentinel2", "msi", "es", "sentinel-2-c1-l2a", None, None),
+  ("sentinel3", "olci", "pc", "sentinel-3-olci-wfr-l2-netcdf", None, None),
+  ("sentinel3", "olci", "pc", "sentinel-3-olci-lfr-l2-netcdf", None, None),
+  ("sentinel3", "slstr", "pc", "sentinel-3-slstr-lst-l2-netcdf", None, None),
+  ("sentinel5p", "tropomi", "pc", "sentinel-5p-l2-netcdf", None, None),
+  ("terra", "modis", "cmr", "MOD09GA_061", None, "LPCLOUD"),
+  ("terra", "aster", "cmr", "AST_L1T_003", None, "LPCLOUD"),
+  ("aqua", "modis", "cmr", "MYD09GA_061", None, "LPCLOUD"),
+  ("aqua", "airs", "cmr", "AIRS3STD_7.0", None, "GES_DISC"),
+  ("icesat2", "atlas", "cmr", "ATL06_007", None, "NSIDC_CPRD"),
+  ("icesat2", "atlas", "cmr", "ATL03_007", None, "NSIDC_CPRD"),
+  ("gracefo", "kbr", "cmr", "TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4", None, "POCLOUD"),
+  ("swot", "karin", "cmr", "SWOT_L2_LR_SSH_2.0", None, "POCLOUD"),
+  ("swot", "karin", "cmr", "SWOT_L2_HR_Raster_2.0", None, "POCLOUD"),
 ]
 def stac_col(cat, cid, q, prov):
     root = CATS[cat]["api"] + (prov or "")

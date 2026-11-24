@@ -5,6 +5,13 @@ Reprise de SolarExplorers. Les fichiers `models/<id>.glb` du site sont produits 
 | Maquette | Source | Traitement |
 |---|---|---|
 | `landsat9.glb` | NASA Eyes on the Earth « Landsat 9 » (`sc_landsat_9/Landsat9.gltf`, NASA/JPL-Caltech) | `gltf-transform copy` → `rename.mjs` + `maps/landsat9.json` (nœuds déjà séparés par pièce) → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `terra.glb` | NASA Eyes on the Earth « Terra » (NASA/JPL-Caltech) | `gltf-transform copy` → `rename.mjs` + `maps/terra.json` → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `aqua.glb` | NASA Eyes on the Earth « Aqua » (NASA/JPL-Caltech) | `gltf-transform copy` → `rename.mjs` + `maps/aqua.json` → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `icesat2.glb` | NASA Eyes on the Earth « ICESat-2 » (NASA/JPL-Caltech) | `gltf-transform copy` → `rename.mjs` + `maps/icesat2.json` → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `gracefo.glb` | NASA Eyes on the Earth « GRACE-FO » (NASA/JPL-Caltech) | `gltf-transform copy` → `rename.mjs` + `maps/gracefo.json` → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `swot.glb` | NASA Eyes on the Earth « SWOT » (NASA/JPL-Caltech) | `gltf-transform copy` → `rename.mjs` + `maps/swot.json` → `resize` 1024 → `weld` → `quantize` → `webp` ; pièces attribuées par boîte englobante (`bbox.mjs`) |
+
+Les Sentinel n'ont pas de maquette libre de droits : le site les montre comme un point bleu (`file: null`).
 
 Les maquettes d'Eyes on the Earth sont déjà découpées en nœuds nommés (instruments, panneaux, plateforme) : `rename.mjs` renomme chaque nœud d'après la table `maps/<id>.json` en `<pièce>_<n>`, sans passer par `seg_lib.js`.
 

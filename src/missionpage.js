@@ -107,7 +107,7 @@ function overview(m, X){
       var it = get(m, c.inst);
       return [(it ? it.name : c.inst) + ' · ' + c.id, (c.matched != null ? big(c.matched) + ' ' + (c.sat_filter ? L('produits de ce satellite', 'products from this satellite') : L('produits (toute la collection)', 'products (whole collection)')) : L('nombre non publié', 'count not published')) + ' · ' + catName(c), 'cat']; }), mk) +
     '<div class="cap">' + L('Relevé des catalogues le ', 'Catalogues surveyed on ') + esc(cd) + L('. Une même scène figure dans plusieurs collections (niveau 1, niveau 2…).', '. One scene appears in several collections (level 1, level 2…).') + '</div>'
-    : '<p class="note">' + L('Catalogues pas encore relevés (workflow « Données réelles »).', 'Catalogues not surveyed yet (“Données réelles” workflow).') + '</p>') + '</div>';
+    : '<p class="note">' + L('Catalogues pas encore relevés (workflow « Données réelles »).', 'Catalogues not surveyed yet (“Real data” workflow).') + '</p>') + '</div>';
   s += '<div class="isec wide"><h3>' + L('Instruments', 'Instruments') + '</h3><div class="icards">' + d.instruments.map(function(it){
     return '<a class="icard" style="--c:' + color(it) + '" href="#' + m.id + '-donnees-' + it.id + '"><span class="ic-n">' + esc(it.name) + '</span><span class="ic-k">' + esc(kind(it)) + '</span><span class="ic-r">' + esc(range(it)) + '</span></a>';
   }).join('') + '</div></div>';
@@ -174,7 +174,7 @@ function orbitSec(m){
       [L('Tours par jour', 'Orbits per day'), num(1440 / (2 * Math.PI / r.no), 2)]
     ]) + '<div class="cap">' + L('Calculé par ce site à partir des éléments moyens SGP4 (n° NORAD ', 'Computed by this site from the mean SGP4 elements (NORAD no. ') + list.map(function(x){ return x.n; }).join(', ') +
       L(') ; l\'altitude réelle varie aussi avec l\'aplatissement de la Terre (≈ 20 km entre l\'équateur et les pôles).', '); the real altitude also varies with the Earth\'s flattening (≈ 20 km between equator and poles).') + '</div></div>';
-  } else s += '<div class="isec wide"><p class="note">' + L('Éléments orbitaux pas encore téléchargés (workflow « Données réelles »).', 'Orbital elements not downloaded yet (“Données réelles” workflow).') + '</p></div>';
+  } else s += '<div class="isec wide"><p class="note">' + L('Éléments orbitaux pas encore téléchargés (workflow « Données réelles »).', 'Orbital elements not downloaded yet (“Real data” workflow).') + '</p></div>';
   var sec = (m.sections || []).filter(function(x){ return /^Orbit/.test(x.title); })[0];
   if (sec) s += '<div class="isec"><h3>' + L('Orbite prévue', 'Planned orbit') + '</h3>' + table(sec.rows.map(function(r){ return [OBS_T(r[0]), OBS_T(r[1]), r[2]]; }), mk) + '</div>';
   return s + mk.list() + '</div>';

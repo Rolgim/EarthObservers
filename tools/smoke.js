@@ -30,7 +30,7 @@ const overflow = async (pg, where) => { const [sw, iw] = await pg.evaluate(() =>
     if (lang === 'fr' && !dark) {
       await go(pg, 'missions');
       const miss = await pg.evaluate(() => MISSIONS.map(m => {
-        const k = ['name', 'short', 'year', 'agency', 'targets', 'refs', 'sections', 'checked', 'parts', 'model', 'view', 'sun'].filter(x => !m[x]);
+        const k = ['name', 'short', 'year', 'agency', 'targets', 'refs', 'sections', 'checked', 'parts', 'view', 'sun'].concat(m.file ? ['model'] : []).filter(x => !m[x]);
         (m.parts || []).forEach(p => (p.facts || []).forEach(f => { if (f[1] && !(m.refs || {})[f[1]]) k.push('source inconnue « ' + f[1] + ' » (pièce ' + p.key + ')'); }));
         (m.sections || []).forEach(s => s.rows.forEach(r => { if (r[2] && !(m.refs || {})[r[2]]) k.push('source inconnue « ' + r[2] + ' »'); }));
         if (!EN_MISSIONS[m.id]) k.push('EN_MISSIONS');
@@ -63,7 +63,7 @@ const overflow = async (pg, where) => { const [sw, iw] = await pg.evaluate(() =>
     for (const id of IDS) {
       await go(pg, id);
       await pg.waitForFunction(() => document.getElementById('m-msg').hidden, null, { timeout: 60000 }).catch(() => fail(id + ' : la maquette ne se charge pas'));
-      await pg.click('[data-ptab="parts"]');
+      if (await pg.locator('[data-ptab="parts"]').count()) await pg.click('[data-ptab="parts"]');
       for (const k of await pg.evaluate(i => MISSIONS.filter(m => m.id === i)[0].parts.map(p => p.key), id)) {
         await pg.click('[data-part="' + k + '"]'); await pg.waitForTimeout(80);
         if (!(await pg.locator('.part.on [data-part="' + k + '"]').count())) fail(id + ' : la pièce ' + k + ' ne se sélectionne pas');

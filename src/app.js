@@ -84,7 +84,7 @@ function missionPage(m){
     '<p class="m-hint">' + T(m.file ? 'Glisser pour tourner, molette pour zoomer, cliquer une pièce pour l\'identifier' : 'Glisser pour tourner, molette pour zoomer') + '</p>' +
     '</section><aside class="m-panel"><h2 class="sr-only">' + esc(m.name) + '</h2>' +
     '<div class="ptl-row"><div class="ptl" role="tablist" aria-label="' + T('Contenu du panneau') + '">' +
-      ['fiche', 'parts'].map(function(k){ return '<button class="ptab" role="tab" data-ptab="' + k + '" aria-selected="' + (MS.tab === k) + '">' + T(k === 'fiche' ? 'Fiche' : 'Pièces') + (k === 'parts' ? ' <small>' + m.parts.length + '</small>' : '') + '</button>'; }).join('') +
+      (m.parts.length ? ['fiche', 'parts'] : ['fiche']).map(function(k){ return '<button class="ptab" role="tab" data-ptab="' + k + '" aria-selected="' + (MS.tab === k) + '">' + T(k === 'fiche' ? 'Fiche' : 'Pièces') + (k === 'parts' ? ' <small>' + m.parts.length + '</small>' : '') + '</button>'; }).join('') +
     '</div><a class="ptab go" href="#' + m.id + '-donnees">' + T('Mission et instruments') + '</a></div><div id="m-body">' + (MS.tab === 'fiche' ? fiche(m) : partsHtml(m, MS.part)) + '</div></aside></div>';
 }
 /* icônes de la barre d'outils de la vue 3D (mêmes traits que celles d'Observatories) */
@@ -107,6 +107,7 @@ function mountMission(m){
   $('m-run').addEventListener('click', function(e){ MS.run = !MS.run; Viewer.run(MS.run); e.currentTarget.setAttribute('aria-pressed', String(!MS.run)); });
 }
 function renderPanel(m){
+  if (!m.parts.length) MS.tab = 'fiche';
   document.querySelectorAll('.m-panel [data-ptab]').forEach(function(b){ b.setAttribute('aria-selected', String(b.getAttribute('data-ptab') === MS.tab)); });
   $('m-body').innerHTML = MS.tab === 'fiche' ? fiche(m) : partsHtml(m, MS.part);
 }

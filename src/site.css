@@ -178,3 +178,5 @@ sup.ref a{ text-decoration:none; }
 .gtrack .gt{ fill:none; stroke:#FFD21F; stroke-width:2; stroke-linejoin:round; }
 .gtrack .gt2{ stroke:#6FA8FF; stroke-dasharray:5 3; }
 .gtrack .gt-bg{ fill:#0b1d33; }
+.fl-ev .ev-o, .fl-leg .ev-o{ fill:none; }
+.fl-ev .ev-x, .fl-leg .ev-x{ fill:none; stroke-width:2.5; }

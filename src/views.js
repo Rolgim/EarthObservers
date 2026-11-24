@@ -19,8 +19,8 @@ function fmt(s){ var o = { month:'long', year:'numeric', timeZone:'UTC' }; if (s
 function today(){ var d = new Date(); return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) / DAY; }
 function src(m, k){ var r = k && m.refs && m.refs[k]; return r ? ' <a class="src" href="' + esc(r.u) + '" rel="noopener" target="_blank" title="' + esc(r.t) + '">' + esc(r.p) + '</a>' : ''; }
 function col(m){ return COL[MISSIONS.indexOf(m) % COL.length]; }
-var EV = { launch:'Lancement', orbit:'Mise en service', end:'Fin de mission' };
-function evName(e){ return T(EV[e.type]); }
+var EV = { launch:'Lancement', orbit:'Mise en service', add:'Lancement d\'un satellite de la série', loss:'Perte d\'un satellite ou d\'un instrument', note:'Autre étape', end:'Fin de mission' };
+function evName(e){ return T(e.label || EV[e.type]); }
 function ev(m, ty){ return (m.events || []).filter(function(e){ return ty.indexOf(e.type) >= 0; })[0]; }
 function launch(m){ return ev(m, ['launch']); }
 function end(m){ return ev(m, ['end']); }
@@ -55,6 +55,9 @@ function head(name, full, right){
 var FLEET_SECS = [['flotte', 'Frise chronologique', 'Du lancement à la fin de mission'], ['flotte-qui', 'Qui a fait quoi', 'Agences, thèmes, étapes datées']];
 var SHAPE = {
   end:function(x, y){ return '<rect x="' + (x - 4) + '" y="' + (y - 4) + '" width="8" height="8"/>'; },
+  add:function(x, y){ return '<path d="M' + x + ' ' + (y - 5) + 'l5 9h-10z"/>'; },
+  loss:function(x, y){ return '<path d="M' + (x - 4) + ' ' + (y - 4) + 'l8 8m0-8l-8 8" class="ev-x"/>'; },
+  note:function(x, y){ return '<circle cx="' + x + '" cy="' + y + '" r="3.5" class="ev-o"/>'; },
   orbit:function(x, y){ return '<path d="M' + x + ' ' + (y - 6) + 'l6 6l-6 6l-6-6z"/>'; }
 };
 function timeline(L){
@@ -74,7 +77,7 @@ function timeline(L){
       (e ? '' : '<path d="M' + b + ' ' + (cy - 7) + ' l7 7 l-7 7 z" fill="' + c + '"/>') +
       '<g class="fl-ev">' + (m.events || []).filter(function(x){ return SHAPE[x.type]; }).map(function(x){ return SHAPE[x.type](X(day(x.date)), cy); }).join('') + '</g></g>';
   });
-  var leg = [['Mise en service', SHAPE.orbit(8, 8)], ['Fin de mission', SHAPE.end(8, 8)]];
+  var leg = [['Mise en service', SHAPE.orbit(8, 8)], ['Lancement d\'un satellite de la série', SHAPE.add(8, 8)], ['Perte d\'un satellite ou d\'un instrument', SHAPE.loss(8, 8)], ['Autre étape', SHAPE.note(8, 8)], ['Fin de mission', SHAPE.end(8, 8)]];
   return '<div class="isec"><h3>' + esc(T('Les satellites, du lancement à la fin')) + '</h3><div class="svgwrap fl-tl"><svg viewBox="0 0 ' + W + ' ' + H + '" role="group" aria-label="' + esc(T('Frise chronologique des satellites')) + '">' + s + '</svg></div>' +
     '<p class="fl-leg">' + leg.map(function(l){ return '<span><svg viewBox="0 0 16 16" aria-hidden="true">' + l[1] + '</svg>' + esc(T(l[0])) + '</span>'; }).join('') + '<span><i class="fl-live"></i>' + esc(T('satellite en service')) + '</span></p>' +
     '<div class="cap">' + esc(T('Une barre par satellite, du lancement à la fin de mission ; pleine et fléchée s\'il est en service. Les étapes datées sont marquées sur la barre ; leurs sources sont dans « Qui a fait quoi ». Cliquer une barre ouvre le satellite en 3D.')) + '</div></div>';
@@ -143,7 +146,7 @@ function rowsTable(L, idx, title, cap){
     '<div class="cap">' + esc(T(cap)) + '</div></div>';
 }
 /* bandes spectrales de tous les instruments (µm, échelle logarithmique de 0,3 à 15 µm) : valeurs des pages d'instrument (data-inst.js) */
-var SP = [0.3, 15];
+var SP = [0.25, 15];
 function spectrum(L){
   var list = []; L.forEach(function(m){ insts(m).forEach(function(i){ if (i.bands && i.bands.length) list.push([m, i]); }); });
   if (!list.length) return '';
