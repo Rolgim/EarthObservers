@@ -9,7 +9,7 @@ S = requests.Session(); S.headers["User-Agent"] = "earthobservers-probe/1.0 (+ht
 o = []
 cap = S.get("https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabilities.xml", timeout=180).text
 layers = re.findall(r"<Layer>(.*?)</Layer>", cap, re.S)
-for pat in [a for a in sys.argv[1:] if not a.startswith("commons:")]:
+for pat in [a for a in sys.argv[1:] if not a.startswith(("commons:", "raw:"))]:
     o.append("## motif " + pat)
     n = 0
     for b in layers:
@@ -23,6 +23,8 @@ for pat in [a for a in sys.argv[1:] if not a.startswith("commons:")]:
         o.append("- %s | %s | défaut %s | valeurs %s … %s | légendes %s" % (ident, title.group(1) if title else "", dflt.group(1) if dflt else "-",
                  vals[:1], vals[-1:], legs[:2]))
     if n == 0: o.append("  (aucune)")
+for a in [a for a in sys.argv[1:] if a.startswith("raw:")]:   # extrait brut du GetCapabilities autour d'une couche
+    i = cap.find("<ows:Identifier>" + a[4:] + "</ows:Identifier>"); o.append("## raw " + a[4:] + "\n" + cap[max(0, i - 3000):i + 4000])
 for a in [a for a in sys.argv[1:] if a.startswith("commons:")]:
     q = a[8:].replace("_", " ")
     r = S.get("https://commons.wikimedia.org/w/api.php", params={"action": "query", "generator": "search", "gsrsearch": q, "gsrnamespace": 6, "gsrlimit": 40,
