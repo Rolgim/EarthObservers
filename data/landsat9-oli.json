@@ -9,8 +9,7 @@
  "cloud": "2",
  "tile": "57LXJ",
  "href": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-public/HLSL30.020/HLS.L30.T57LXJ.2026323T232506.v2.0/HLS.L30.T57LXJ.2026323T232506.v2.0.jpg",
- "page": "https://cmr.earthdata.nasa.gov/search/concepts/G4420036001-LPCLOUD.html",
- "doi": "10.5067/HLS/HLSL30.002",
+ "page": "https://cmr.earthdata.nasa.gov/search/concepts/G4420036001-LPCLOUD.umm_json",
  "credit": "NASA/USGS Landsat 9 ; HLS : NASA LP DAAC",
  "attrs": {
   "LANDSAT_PRODUCT_ID": "LC09_L1TP_087067_20261119_20261120_02_T1",
@@ -54,8 +53,8 @@
   900
  ],
  "fetched": "2026-11-24",
- "license_fr": "CC0 1.0 (données des missions de la NASA, politique d'usage d'Earthdata) ; citer le jeu de données (DOI 10.5067/HLS/HLSL30.002)",
- "license_en": "CC0 1.0 (NASA mission data, Earthdata use policy); cite the dataset (DOI 10.5067/HLS/HLSL30.002)",
+ "license_fr": "CC0 1.0 (données des missions de la NASA, politique d'usage d'Earthdata) ; citer le jeu de données",
+ "license_en": "CC0 1.0 (NASA mission data, Earthdata use policy); cite the dataset",
  "license_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
  "credit_line": "NASA/USGS Landsat 9 ; HLS : NASA LP DAAC",
  "status": "ok"
