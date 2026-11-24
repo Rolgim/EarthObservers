@@ -171,7 +171,7 @@
    "license": "Éléments publiés librement par CelesTrak (d'après le catalogue de la Space Force américaine) ; aucune licence écrite trouvée",
    "license_url": "https://celestrak.org/NORAD/elements/",
    "credit": "CelesTrak (T.S. Kelso)",
-   "fetched": "2026-11-24T13:27Z",
+   "fetched": "2026-11-24T13:46Z",
    "transform": "aucune : propagés par SGP4 dans le navigateur",
    "status": "à confirmer"
   },

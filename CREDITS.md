@@ -48,7 +48,7 @@ Généré le 2026-11-24. Statuts : **ok** (licence vérifiée sur la page citée
 | Fichier | Titre / produit | Crédit | Licence | Statut | Source | Téléchargé le | Transformations |
 |---|---|---|---|---|---|---|---|
 | `data/cat.json` | Relevé des catalogues (titres, niveaux, licences déclarées, nombres de produits) | NASA CMR, USGS, Element 84, Copernicus | métadonnées publiques des catalogues, citées comme faits | ok | fichier | 2026-11-24 | extraits par tools/data/catalog.py |
-| `data/tle.json` | CelesTrak, éléments GP au format TLE (gp.php?CATNR=…&FORMAT=TLE ; au-delà du n° 99999, FORMAT=JSON remis en TLE avec un numéro Alpha-5) | CelesTrak (T.S. Kelso) | [Éléments publiés librement par CelesTrak (d'après le catalogue de la Space Force américaine) ; aucune licence écrite trouvée](https://celestrak.org/NORAD/elements/) | à confirmer | [fichier](https://celestrak.org/NORAD/elements/) | 2026-11-24T13:27Z | aucune : propagés par SGP4 dans le navigateur |
+| `data/tle.json` | CelesTrak, éléments GP au format TLE (gp.php?CATNR=…&FORMAT=TLE ; au-delà du n° 99999, FORMAT=JSON remis en TLE avec un numéro Alpha-5) | CelesTrak (T.S. Kelso) | [Éléments publiés librement par CelesTrak (d'après le catalogue de la Space Force américaine) ; aucune licence écrite trouvée](https://celestrak.org/NORAD/elements/) | à confirmer | [fichier](https://celestrak.org/NORAD/elements/) | 2026-11-24T13:46Z | aucune : propagés par SGP4 dans le navigateur |
 
 ## Maquette 3D (6)
 
