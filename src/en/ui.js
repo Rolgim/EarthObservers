@@ -338,4 +338,5 @@ var EN_UI = {
   "MODIS Terra, réflectance corrigée, couleurs naturelles":"MODIS Terra, corrected reflectance, natural colour",
   "Scène en couleurs naturelles prise par Sentinel-2":"Natural-colour scene taken by Sentinel-2",
   "Scène en couleurs naturelles prise par Sentinel-3 (OLCI)":"Natural-colour scene taken by Sentinel-3 (OLCI)",
+  "Aperçu publié avec le produit OLCI de niveau 2 « eaux » (WFR) de Sentinel-3":"Quick-look published with the Sentinel-3 OLCI level-2 \u201cwater\u201d product (WFR)",
 };

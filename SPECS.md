@@ -19,11 +19,13 @@ Version de travail du cahier des charges (document partagé : « EarthObservers 
    - Éléments orbitaux CelesTrak pour tous les satellites ; satellite.js (MIT) sur jsDelivr.
    - Maquettes NASA Eyes on the Earth : Landsat 9, Terra, Aqua, ICESat-2, GRACE-FO, SWOT (règles d'usage des médias de la NASA, qui couvrent les maquettes 3D). Rien de libre pour les Sentinel : point bleu.
    - Aperçus publics sans compte : MODIS (Terra, Aqua), ASTER, HLS, ICESat-2 (NASA, CC0) ; Sentinel-2 sur Earth Search (Copernicus).
-   - Compte Earthdata nécessaire pour SWOT, les grilles GRACE-FO et Sentinel-5P (question posée).
+   - Compte Earthdata nécessaire pour SWOT, les grilles GRACE-FO et Sentinel-5P : refusé, on prend des images déjà publiées (Commons, GIBS).
    - Globe : Blue Marble de la NASA via Wikimedia Commons (domaine public), le serveur de la NASA refusant GitHub Actions.
-2. Squelette repris de SolarExplorers, accueil « La Terre vue d'en haut » avec SGP4 (en cours).
-3. Landsat 9 complet : vue 3D, mission, instruments, orbite réelle, donnée réelle, registre (en cours).
-4. Les neuf autres satellites : Sentinel-1, -2, -3, -5P, Terra, Aqua, ICESat-2, GRACE-FO, SWOT.
-5. Pages Flotte et Comparer.
+2. Squelette repris de SolarExplorers, accueil « La Terre vue d'en haut » avec SGP4 (fait).
+3. Landsat 9 complet : vue 3D, mission, instruments, orbite réelle, donnée réelle, registre (fait).
+4. Les neuf autres satellites : Sentinel-1, -2, -3, -5P, Terra, Aqua, ICESat-2, GRACE-FO, SWOT (fait le 24/11/2026 ; images publiées pour SWOT, GRACE-FO et Sentinel-5P, sans compte, décision du 24/11/2026).
+5. Pages Flotte et Comparer (fait).
 6. Galerie « le même lieu vu par plusieurs satellites ».
 7. Audit complet (traductions, accessibilité, liens, licences) et version 1.0.
+
+Couleur de surlignage : vert #127A46 (décision du 24/11/2026).
