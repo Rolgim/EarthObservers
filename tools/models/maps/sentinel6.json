@@ -1,0 +1,11 @@
+{
+"array": "solar",
+"array_locks": "solar",
+"AMR": "amr",
+"pos4Antenna": "poseidon",
+"DORIS-A": "doris",
+"GNSS": "gnss",
+"GNSS_POD_RO_SPA": "gnss",
+"LRA": "lra",
+"*": "bus"
+}

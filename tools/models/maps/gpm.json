@@ -1,0 +1,5 @@
+{
+"GPM_antenna": "gmi",
+"antenna.001": "gmi",
+"*": "bus"
+}

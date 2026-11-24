@@ -114,5 +114,69 @@
   "https://ceres.larc.nasa.gov/instruments/",
   "https://mopitt.ucar.edu/",
   "https://terra.nasa.gov/about/terra-instruments/modis"
+ ],
+ "pace": [
+  "https://www.eoportal.org/satellite-missions/pace",
+  "https://pace.gsfc.nasa.gov/",
+  "https://science.nasa.gov/mission/pace/",
+  "https://pace.oceansciences.org/mission.htm",
+  "https://pace.oceansciences.org/oci.htm"
+ ],
+ "jpss": [
+  "https://www.eoportal.org/satellite-missions/suomi-npp",
+  "https://www.eoportal.org/satellite-missions/jpss-1",
+  "https://www.eoportal.org/satellite-missions/jpss-2",
+  "https://www.nesdis.noaa.gov/our-satellites/currently-flying/joint-polar-satellite-system",
+  "https://www.jpss.noaa.gov/viirs.html",
+  "https://www.nesdis.noaa.gov/our-satellites/currently-flying/joint-polar-satellite-system/visible-infrared-imaging-radiometer-suite-viirs"
+ ],
+ "smap": [
+  "https://www.eoportal.org/satellite-missions/smap",
+  "https://smap.jpl.nasa.gov/mission/description/",
+  "https://smap.jpl.nasa.gov/observatory/specifications/",
+  "https://science.nasa.gov/mission/smap/"
+ ],
+ "oco2": [
+  "https://www.eoportal.org/satellite-missions/oco-2",
+  "https://ocov2.jpl.nasa.gov/mission/quick-facts/",
+  "https://science.nasa.gov/mission/oco-2/",
+  "https://ocov2.jpl.nasa.gov/observatory/instrument/"
+ ],
+ "gpm": [
+  "https://www.eoportal.org/satellite-missions/gpm",
+  "https://gpm.nasa.gov/missions/GPM/core-observatory",
+  "https://gpm.nasa.gov/missions/GPM",
+  "https://science.nasa.gov/mission/gpm/"
+ ],
+ "nisar": [
+  "https://www.eoportal.org/satellite-missions/nisar",
+  "https://nisar.jpl.nasa.gov/mission/quick-facts/",
+  "https://science.nasa.gov/mission/nisar/",
+  "https://www.jpl.nasa.gov/missions/nisar/"
+ ],
+ "aura": [
+  "https://www.eoportal.org/satellite-missions/aura",
+  "https://aura.gsfc.nasa.gov/",
+  "https://aura.gsfc.nasa.gov/omi.html",
+  "https://science.nasa.gov/mission/aura/"
+ ],
+ "tempo": [
+  "https://www.eoportal.org/satellite-missions/tempo",
+  "https://tempo.si.edu/overview.html",
+  "https://science.nasa.gov/mission/tempo/",
+  "https://asdc.larc.nasa.gov/project/TEMPO"
+ ],
+ "goes": [
+  "https://www.eoportal.org/satellite-missions/goes-r",
+  "https://www.goes-r.gov/mission/mission.html",
+  "https://www.goes-r.gov/spacesegment/abi.html",
+  "https://www.nesdis.noaa.gov/our-satellites/currently-flying/geostationary-operational-environmental-satellites-r-series"
+ ],
+ "sentinel6": [
+  "https://www.eoportal.org/satellite-missions/jason-cs-sentinel-6",
+  "https://sentiwiki.copernicus.eu/web/sentinel-6",
+  "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-6",
+  "https://sealevel.jpl.nasa.gov/missions/jason-cs-sentinel-6/summary/",
+  "https://science.nasa.gov/mission/sentinel-6/"
  ]
 }

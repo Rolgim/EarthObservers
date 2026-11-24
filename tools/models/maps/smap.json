@@ -1,0 +1,11 @@
+{
+"antenna_01": "reflector",
+"antenna_01.001": "reflector",
+"antenna_03": "reflector",
+"antenna_03.001": "reflector",
+"arm_etc": "boom",
+"arm_etc.001": "boom",
+"array": "solar",
+"solar_array": "solar",
+"*": "bus"
+}

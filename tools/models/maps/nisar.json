@@ -1,0 +1,20 @@
+{
+"antenna_dish": "reflector",
+"antenna_mesh_bottom": "reflector",
+"antenna_mesh_top": "reflector",
+"antenna_railing": "reflector",
+"antenna_base": "reflector",
+"Arm": "boom",
+"Arm.001": "boom",
+"Arm.003": "boom",
+"Arm.004": "boom",
+"Left_panel_3": "solar",
+"Left_panel_2": "solar",
+"Left_panel_1": "solar",
+"Left_panel_base": "solar",
+"Right_panel_3": "solar",
+"Right_panel_2": "solar",
+"Right_panel_1": "solar",
+"Right_panel_base": "solar",
+"*": "bus"
+}

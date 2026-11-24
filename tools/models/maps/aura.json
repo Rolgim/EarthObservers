@@ -1,0 +1,6 @@
+{
+"panel": "solar",
+"shiny_panel": "solar",
+"instruments": "inst",
+"*": "bus"
+}
