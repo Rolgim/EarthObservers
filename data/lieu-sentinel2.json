@@ -1,0 +1,37 @@
+{
+ "src": "copernicus",
+ "lieu": [
+  6.3,
+  45.8,
+  7.0,
+  46.4
+ ],
+ "sat": "sentinel2",
+ "res_m": 10,
+ "archive": "Microsoft Planetary Computer (catalogue STAC, découpe par son service de rendu)",
+ "collection": "sentinel-2-l2a",
+ "product": "S2A_MSIL2A_20261012T102911_R108_T32TLS_20261012T170607 + S2A_MSIL2A_20261012T102911_R108_T32TLR_20261012T170607 + S2A_MSIL2A_20261012T102911_R108_T31TGM_20261012T170607 + S2A_MSIL2A_20261012T102911_R108_T31TGL_20261012T170607",
+ "datetime": "2026-10-12T10:29:11.024000Z",
+ "instrument": "MSI",
+ "platform": "Sentinel-2A",
+ "cloud": 0.094293,
+ "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/bbox/6.3,45.8,7.0,46.4/647x800.png?collection=sentinel-2-l2a&item=S2A_MSIL2A_20261012T102911_R108_T32TLS_20261012T170607&assets=visual&asset_bidx=visual%7C1%2C2%2C3&nodata=0",
+ "page": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2A_MSIL2A_20261012T102911_R108_T32TLS_20261012T170607",
+ "credit": "Contains modified Copernicus Sentinel data 2026 ; découpe : Microsoft Planetary Computer",
+ "crop_lieu": true,
+ "mosaic": 4,
+ "full_size": [
+  647,
+  800
+ ],
+ "out_size": [
+  647,
+  800
+ ],
+ "fetched": "2026-11-24",
+ "license_fr": "Données Copernicus Sentinel, libres et gratuites ; mention « Contains modified Copernicus Sentinel data 2026 »",
+ "license_en": "Copernicus Sentinel data, free and open; notice “Contains modified Copernicus Sentinel data 2026”",
+ "license_url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+ "credit_line": "Contains modified Copernicus Sentinel data 2026",
+ "status": "ok"
+}

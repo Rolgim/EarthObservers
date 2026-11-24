@@ -19,6 +19,7 @@
  "page": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC09_L2SP_196028_20260912_02_T1",
  "credit": "Landsat 9 : USGS ; découpe : Microsoft Planetary Computer",
  "crop_lieu": true,
+ "mosaic": 1,
  "full_size": [
   647,
   800
