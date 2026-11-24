@@ -357,4 +357,5 @@ var EN_UI = {
   "Gros plan autour de Chamonix vu par":"Close-up around Chamonix seen by",
   "Gros plan ≈ 7,8 × 7,8 km autour de Chamonix :":"Close-up ≈ 7.8 × 7.8 km around Chamonix:",
   "pixels de l'instrument, agrandis sans lissage":"instrument pixels, enlarged without smoothing",
+  "diffusion libre, sans licence écrite":"freely distributed, no written licence",
 };

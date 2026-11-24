@@ -16,7 +16,7 @@ Généré le 2026-11-24. Statuts : **ok** (licence vérifiée sur la page citée
 | Wikimedia Commons | Licence relue dans les métadonnées de Commons au téléchargement ; seul le domaine public est accepté pour le globe | https://commons.wikimedia.org/ |
 | Bibliothèque d'images de la NASA | Domaine public, sans logo de la NASA | https://www.nasa.gov/nasa-brand-center/images-and-media/ |
 | Maquettes NASA Eyes on the Earth et NASA 3D Resources | Usage libre (règles d'usage des médias de la NASA, qui couvrent les maquettes 3D) | https://www.nasa.gov/nasa-brand-center/images-and-media/ |
-| Éléments orbitaux CelesTrak | à confirmer : diffusés librement, sans licence écrite | https://celestrak.org/NORAD/elements/ |
+| Éléments orbitaux CelesTrak | à confirmer : diffusés librement (« freely available to all users »), sans licence écrite ; politique d'usage respectée (un téléchargement par jour) | https://celestrak.org/usage-policy.php |
 
 ## Aperçu d'archive (17)
 
@@ -59,7 +59,7 @@ Généré le 2026-11-24. Statuts : **ok** (licence vérifiée sur la page citée
 | Fichier | Titre / produit | Crédit | Licence | Statut | Source | Téléchargé le | Transformations |
 |---|---|---|---|---|---|---|---|
 | `data/cat.json` | Relevé des catalogues (titres, niveaux, licences déclarées, nombres de produits) | NASA CMR, USGS, Element 84, Copernicus | métadonnées publiques des catalogues, citées comme faits | ok | fichier | 2026-11-24 | extraits par tools/data/catalog.py |
-| `data/tle.json` | CelesTrak, éléments GP au format TLE (gp.php?CATNR=…&FORMAT=TLE ; au-delà du n° 99999, FORMAT=JSON remis en TLE avec un numéro Alpha-5) | CelesTrak (T.S. Kelso) | [Éléments publiés librement par CelesTrak (d'après le catalogue de la Space Force américaine) ; aucune licence écrite trouvée](https://celestrak.org/NORAD/elements/) | à confirmer | [fichier](https://celestrak.org/NORAD/elements/) | 2026-11-24T14:20Z | aucune : propagés par SGP4 dans le navigateur |
+| `data/tle.json` | CelesTrak, éléments GP au format TLE (gp.php?CATNR=…&FORMAT=TLE ; au-delà du n° 99999, FORMAT=JSON remis en TLE avec un numéro Alpha-5) | CelesTrak (T.S. Kelso) | [Aucune licence écrite : la politique d'usage de CelesTrak (22/05/2026) parle de données « freely available to all users » et ne fixe que des limites d'accès (un téléchargement par mise à jour, toutes les 2 h au plus) ; ce site les respecte (un téléchargement par jour) et cite la source. Éléments dérivés du catalogue de la Space Force américaine](https://celestrak.org/usage-policy.php) | à confirmer | [fichier](https://celestrak.org/NORAD/elements/) | 2026-11-24T14:20Z | aucune : propagés par SGP4 dans le navigateur |
 
 ## Maquette 3D (6)
 

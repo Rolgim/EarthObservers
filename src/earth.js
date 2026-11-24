@@ -190,7 +190,7 @@ function mount(){
   var tx = d.fetched;
   $('eo-note').innerHTML = esc(T('Positions : éléments orbitaux de CelesTrak téléchargés le') + ' ' + tx.replace('T', ' ').replace('Z', en() ? ' UTC' : ' TU') + ', ' +
     T('propagés par le modèle SGP4 (satellite.js) ; précision ≈ quelques kilomètres. La Terre, les altitudes et les orbites sont à l\'échelle ; les points des satellites sont agrandis. Éclairage d\'après la position calculée du Soleil.')) +
-    ' <a class="src" href="https://celestrak.org/NORAD/elements/" rel="noopener" target="_blank">CelesTrak</a> <a class="src" href="https://github.com/shashwatak/satellite-js" rel="noopener" target="_blank">satellite.js</a>' + texCredit();
+    ' <a class="src" href="https://celestrak.org/NORAD/elements/" rel="noopener" target="_blank">CelesTrak</a> (<a class="src" href="https://celestrak.org/usage-policy.php" rel="noopener" target="_blank">' + esc(T('diffusion libre, sans licence écrite')) + '</a>) <a class="src" href="https://github.com/shashwatak/satellite-js" rel="noopener" target="_blank">satellite.js</a>' + texCredit();
   $('eo-play').addEventListener('click', function(){ play(!S.run); });
   $('eo-now').addEventListener('click', function(){ S.t = Date.now(); S.orbAt = 0; kick(); info(); });
   $('eo-speed').addEventListener('change', function(e){ S.speed = +e.target.value; kick(); });

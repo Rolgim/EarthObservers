@@ -16,6 +16,7 @@ EARTHDATA = "https://www.earthdata.nasa.gov/engage/open-data-services-software-p
 USGS = "https://www.usgs.gov/information-policies-and-instructions/acknowledging-or-crediting-usgs"
 COPERNICUS = "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice"
 CELESTRAK = "https://celestrak.org/NORAD/elements/"
+CELESTRAK_POLICY = "https://celestrak.org/usage-policy.php"   # « CelesTrak Usage Policy », T.S. Kelso, 15/05/2026, mise à jour 22/05/2026 (relue le 24/11/2026)
 CC0 = "https://creativecommons.org/publicdomain/zero/1.0/"
 
 PD = ("Domaine public (données et images de la NASA, non protégées par le droit d'auteur)", "Public domain (NASA data and images, not copyrighted)")
@@ -72,8 +73,8 @@ def main():
             d.update(license_fr=lf, license_en=le, license_url=lu, credit_line=cr, status=st)
         elif name == "tle":
             rows.append(dict(kind="orbites", file="data/tle.json", title=d.get("source"), source=d.get("page"), page=CELESTRAK,
-                             license="Éléments publiés librement par CelesTrak (d'après le catalogue de la Space Force américaine) ; aucune licence écrite trouvée",
-                             license_url=CELESTRAK, credit="CelesTrak (T.S. Kelso)", fetched=d.get("fetched"), transform="aucune : propagés par SGP4 dans le navigateur", status="à confirmer"))
+                             license="Aucune licence écrite : la politique d'usage de CelesTrak (22/05/2026) parle de données « freely available to all users » et ne fixe que des limites d'accès (un téléchargement par mise à jour, toutes les 2 h au plus) ; ce site les respecte (un téléchargement par jour) et cite la source. Éléments dérivés du catalogue de la Space Force américaine",
+                             license_url=CELESTRAK_POLICY, credit="CelesTrak (T.S. Kelso)", fetched=d.get("fetched"), transform="aucune : propagés par SGP4 dans le navigateur", status="à confirmer"))
             continue
         elif name == "cat":
             rows.append(dict(kind="orbites", file="data/cat.json", title="Relevé des catalogues (titres, niveaux, licences déclarées, nombres de produits)", source=None, page=None,
@@ -144,7 +145,7 @@ def main():
            "| Wikimedia Commons | Licence relue dans les métadonnées de Commons au téléchargement ; seul le domaine public est accepté pour le globe | https://commons.wikimedia.org/ |",
            "| Bibliothèque d'images de la NASA | Domaine public, sans logo de la NASA | " + NASA_MEDIA + " |",
            "| Maquettes NASA Eyes on the Earth et NASA 3D Resources | Usage libre (règles d'usage des médias de la NASA, qui couvrent les maquettes 3D) | " + NASA_MEDIA + " |",
-           "| Éléments orbitaux CelesTrak | à confirmer : diffusés librement, sans licence écrite | " + CELESTRAK + " |", ""]
+           "| Éléments orbitaux CelesTrak | à confirmer : diffusés librement (« freely available to all users »), sans licence écrite ; politique d'usage respectée (un téléchargement par jour) | " + CELESTRAK_POLICY + " |", ""]
     for kind in ("aperçu d'archive", "tracé", "image de presse", "image Commons", "texture", "orbites", "maquette 3D", "police", "bibliothèque", "schémas", "code"):
         sel = [r for r in rows if r["kind"] == kind]
         if not sel: continue

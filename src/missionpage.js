@@ -157,7 +157,7 @@ function track(m, list){
     (tex ? '<image href="data/tex-earth.jpg" x="0" y="0" width="' + W + '" height="' + H + '" preserveAspectRatio="none" opacity="0.85"/>' : '<rect width="' + W + '" height="' + H + '" class="gt-bg"/>') +
     segs.join('') + '</svg><figcaption>' +
     L('Trace au sol d\'un tour complet à partir de l\'époque des éléments orbitaux (', 'Ground track of one full orbit from the epoch of the orbital elements (') + esc(list[0].e.epoch.replace('T', ' ').replace('Z', en() ? ' UTC' : ' TU')) + '), ' +
-    L('calculée par SGP4 (satellite.js) à partir des éléments de CelesTrak téléchargés le ', 'computed by SGP4 (satellite.js) from CelesTrak elements downloaded on ') + esc(String((window.DATA_FILES.tle || {}).fetched).slice(0, 10)) + '. ' +
+    L('calculée par SGP4 (satellite.js) à partir des éléments de CelesTrak téléchargés le ', 'computed by SGP4 (satellite.js) from CelesTrak elements downloaded on ') + esc(String((window.DATA_FILES.tle || {}).fetched).slice(0, 10)) + ' (<a href="https://celestrak.org/usage-policy.php" rel="noopener" target="_blank">' + L('diffusion libre, sans licence écrite', 'freely distributed, no written licence') + '</a>). ' +
     L('Projection équirectangulaire. D\'un tour à l\'autre, la trace se décale vers l\'ouest parce que la Terre tourne dessous.', 'Equirectangular projection. From one orbit to the next, the track shifts west because the Earth turns underneath.') + '</figcaption></figure>';
 }
 function orbitSec(m){
