@@ -2,21 +2,21 @@
  "src": "copernicus",
  "archive": "Microsoft Planetary Computer (catalogue STAC)",
  "collection": "sentinel-1-grd",
- "product": "S1C_IW_GRDH_1SDV_20261124T063917_20261124T063931_010475_014EF8",
- "datetime": "2026-11-24T06:39:24.971794Z",
+ "product": "S1D_IW_GRDH_1SDV_20261124T054313_20261124T054338_005605_00ABE1",
+ "datetime": "2026-11-24T05:43:25.548008Z",
  "instrument": "C-SAR",
- "platform": "sentinel-1c",
+ "platform": "sentinel-1d",
  "cloud": null,
- "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-1-grd&item=S1C_IW_GRDH_1SDV_20261124T063917_20261124T063931_010475_014EF8&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
- "page": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1C_IW_GRDH_1SDV_20261124T063917_20261124T063931_010475_014EF8",
+ "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-1-grd&item=S1D_IW_GRDH_1SDV_20261124T054313_20261124T054338_005605_00ABE1&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+ "page": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1D_IW_GRDH_1SDV_20261124T054313_20261124T054338_005605_00ABE1",
  "credit": "Contains modified Copernicus Sentinel data 2026 ; aperçu : Microsoft Planetary Computer",
  "full_size": [
   1024,
-  496
+  531
  ],
  "out_size": [
   900,
-  436
+  467
  ],
  "fetched": "2026-11-24",
  "license_fr": "Données Copernicus Sentinel, libres et gratuites ; mention « Contains modified Copernicus Sentinel data 2026 »",

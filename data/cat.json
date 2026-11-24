@@ -39,7 +39,7 @@
     ],
     "api": "https://landsatlook.usgs.gov/stac-server",
     "doi": null,
-    "matched": 1316141,
+    "matched": 1316156,
     "first": "2021-10-31T04:40:14.262694Z",
     "last": "2026-11-24T11:16:28.625337Z",
     "inst": "oli2",
@@ -86,6 +86,12 @@
     "api": "https://cmr.earthdata.nasa.gov/stac/LPCLOUD",
     "doi": "10.5067/HLS/HLSL30.002",
     "matched": 16274387,
+    "version": "2.0",
+    "title_umm": "HLS Landsat Operational Land Imager Surface Reflectance and TOA Brightness Daily Global 30m v2.0",
+    "period_umm": [
+     "2013-04-11T00:00:00.000Z",
+     null
+    ],
     "level": "3",
     "concept": "C2021957657-LPCLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2021957657-LPCLOUD.html",
@@ -106,7 +112,7 @@
     ],
     "api": "https://landsatlook.usgs.gov/stac-server",
     "doi": null,
-    "matched": 1316141,
+    "matched": 1316156,
     "first": "2021-10-31T04:40:14.262694Z",
     "last": "2026-11-24T11:16:28.625337Z",
     "inst": "tirs2",
@@ -172,7 +178,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 3832348,
+    "matched": 3832350,
     "inst": "csar",
     "cat": "es",
     "id": "sentinel-1-grd",
@@ -210,7 +216,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 52219018,
+    "matched": 52219084,
     "inst": "msi",
     "cat": "es",
     "id": "sentinel-2-l2a",
@@ -228,7 +234,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 31277682,
+    "matched": 31277748,
     "inst": "msi",
     "cat": "es",
     "id": "sentinel-2-c1-l2a",
@@ -317,6 +323,12 @@
     "api": "https://cmr.earthdata.nasa.gov/stac/LPCLOUD",
     "doi": "10.5067/MODIS/MOD09GA.061",
     "matched": 3092345,
+    "version": "061",
+    "title_umm": "MODIS/Terra Surface Reflectance Daily L2G Global 1km and 500m SIN Grid V061",
+    "period_umm": [
+     "2000-02-24T00:00:00.000Z",
+     null
+    ],
     "level": "2G",
     "concept": "C2202497474-LPCLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2202497474-LPCLOUD.html",
@@ -340,6 +352,12 @@
     "api": "https://cmr.earthdata.nasa.gov/stac/LPCLOUD",
     "doi": "10.5067/ASTER/AST_L1T.003",
     "matched": 0,
+    "version": "003",
+    "title_umm": "ASTER Level 1 precision terrain corrected registered at-sensor radiance V003",
+    "period_umm": [
+     "2000-03-04T20:34:04.000Z",
+     "2025-12-15T23:59:59.999Z"
+    ],
     "level": "1T",
     "concept": "C3553657415-LPCLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3553657415-LPCLOUD.html",
@@ -365,6 +383,12 @@
     "api": "https://cmr.earthdata.nasa.gov/stac/LPCLOUD",
     "doi": "10.5067/MODIS/MYD09GA.061",
     "matched": 2816476,
+    "version": "061",
+    "title_umm": "MODIS/Aqua Surface Reflectance Daily L2G Global 1km and 500m SIN Grid V061",
+    "period_umm": [
+     "2002-07-04T00:00:00.000Z",
+     null
+    ],
     "level": "2G",
     "concept": "C2202498116-LPCLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2202498116-LPCLOUD.html",
@@ -388,6 +412,12 @@
     "api": "https://cmr.earthdata.nasa.gov/stac/GES_DISC",
     "doi": "10.5067/UO3Q64CTTS1U",
     "matched": 8764,
+    "version": "7.0",
+    "title_umm": "Aqua/AIRS L3 Daily Standard Physical Retrieval (AIRS-only) 1 degree x 1 degree V7.0",
+    "period_umm": [
+     "2002-08-31T00:00:00.000Z",
+     null
+    ],
     "level": "3",
     "concept": "C1701805652-GES_DISC",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C1701805652-GES_DISC.html",
@@ -413,6 +443,12 @@
     "api": "https://cmr.earthdata.nasa.gov/stac/NSIDC_CPRD",
     "doi": "10.5067/ATLAS/ATL06.007",
     "matched": 448704,
+    "version": "007",
+    "title_umm": "ATLAS/ICESat-2 L3A Land Ice Height V007",
+    "period_umm": [
+     "2018-10-14T00:00:00.000Z",
+     null
+    ],
     "level": "3",
     "concept": "C3564876127-NSIDC_CPRD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3564876127-NSIDC_CPRD.html",
@@ -436,6 +472,12 @@
     "api": "https://cmr.earthdata.nasa.gov/stac/NSIDC_CPRD",
     "doi": "10.5067/ATLAS/ATL03.007",
     "matched": 597432,
+    "version": "007",
+    "title_umm": "ATLAS/ICESat-2 L2A Global Geolocated Photon Data V007",
+    "period_umm": [
+     "2018-10-13T00:00:00.000Z",
+     null
+    ],
     "level": "2A",
     "concept": "C3326974349-NSIDC_CPRD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3326974349-NSIDC_CPRD.html",
@@ -444,6 +486,33 @@
     "inst": "atlas",
     "cat": "cmr",
     "id": "ATL03_007",
+    "sat_filter": null
+   }
+  ],
+  "gracefo": [
+   {
+    "version": "RL06.3Mv04",
+    "title_umm": "JPL GRACE and GRACE-FO Mascon Ocean, Ice, and Hydrology Equivalent Water Height Coastal Resolution Improvement (CRI) Filtered Release 06.3 Version 04",
+    "period_umm": [
+     "2002-04-04T00:00:00.000Z",
+     null
+    ],
+    "level": "3",
+    "doi": "10.5067/TEMSC-3JC634",
+    "concept": "C3195527175-POCLOUD",
+    "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3195527175-POCLOUD.html",
+    "matched_all": 1,
+    "use": null,
+    "title": "JPL GRACE and GRACE-FO Mascon Ocean, Ice, and Hydrology Equivalent Water Height Coastal Resolution Improvement (CRI) Filtered Release 06.3 Version 04",
+    "period": [
+     "2002-04-04T00:00:00.000Z",
+     null
+    ],
+    "api": "https://cmr.earthdata.nasa.gov/search/",
+    "matched": 1,
+    "inst": "kbr",
+    "cat": "cmr",
+    "id": "TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4",
     "sat_filter": null
    }
   ]

@@ -1,7 +1,7 @@
 {
- "source": "CelesTrak, éléments GP au format TLE (gp.php?CATNR=…&FORMAT=TLE)",
+ "source": "CelesTrak, éléments GP au format TLE (gp.php?CATNR=…&FORMAT=TLE ; au-delà du n° 99999, FORMAT=JSON remis en TLE avec un numéro Alpha-5)",
  "page": "https://celestrak.org/NORAD/elements/",
- "fetched": "2026-11-24T13:16Z",
+ "fetched": "2026-11-24T13:27Z",
  "sats": {
   "49260": {
    "name": "LANDSAT 9",
@@ -49,6 +49,12 @@
    "name": "SENTINEL-3B",
    "l1": "1 43437U 18039A   26327.45461526  .00000041  00000+0  34927-4 0  9998",
    "l2": "2 43437  98.6290  32.6911 0001058 127.0792 233.0486 14.26733369446836",
+   "epoch": "2026-11-23T10:54Z"
+  },
+  "100690": {
+   "name": "SENTINEL-3C",
+   "l1": "1 A0690U 26209B   26327.45425801  .00000069  00000+0  46396-4 0  9999",
+   "l2": "2 A0690  98.6293  32.5650 0001046 126.6491 233.4786 14.26735689  9873",
    "epoch": "2026-11-23T10:54Z"
   },
   "42969": {

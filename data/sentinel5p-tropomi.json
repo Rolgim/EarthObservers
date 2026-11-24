@@ -9,7 +9,7 @@
  "instrument": "TROPOMI",
  "href": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Nitrogen_dioxide_over_the_Netherlands_%28TROPOMI%2C_2017-12-01%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
  "page": "https://commons.wikimedia.org/wiki/File:Nitrogen_dioxide_over_the_Netherlands_(TROPOMI,_2017-12-01).png",
- "credit": "http://www.esa.int/spaceinimages/Images/2017/12/Nitrogen_dioxide_over_the_Netherlands",
+ "credit": "European Space Agency",
  "license": "CC BY-SA 3.0 igo",
  "license_url": "https://creativecommons.org/licenses/by-sa/3.0/igo/deed.en",
  "source": "European Space Agency",
@@ -24,8 +24,8 @@
   997
  ],
  "fetched": "2026-11-24",
- "license_fr": "CC BY-SA 3.0 igo ; attribution : http://www.esa.int/spaceinimages/Images/2017/12/Nitrogen_dioxide_over_the_Netherlands ; image réduite par ce site, publiée sous la même licence",
- "license_en": "CC BY-SA 3.0 igo; attribution: http://www.esa.int/spaceinimages/Images/2017/12/Nitrogen_dioxide_over_the_Netherlands; image scaled down by this site, shared under the same licence",
- "credit_line": "http://www.esa.int/spaceinimages/Images/2017/12/Nitrogen_dioxide_over_the_Netherlands",
+ "license_fr": "CC BY-SA 3.0 igo ; attribution : European Space Agency ; image réduite par ce site, publiée sous la même licence",
+ "license_en": "CC BY-SA 3.0 igo; attribution: European Space Agency; image scaled down by this site, shared under the same licence",
+ "credit_line": "European Space Agency",
  "status": "ok"
 }
