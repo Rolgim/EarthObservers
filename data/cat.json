@@ -192,7 +192,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 3832657,
+    "matched": 3832662,
     "inst": "csar",
     "cat": "es",
     "id": "sentinel-1-grd",
@@ -236,7 +236,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 52221914,
+    "matched": 52221928,
     "inst": "msi",
     "cat": "es",
     "id": "sentinel-2-l2a",
@@ -257,7 +257,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 31280599,
+    "matched": 31280611,
     "inst": "msi",
     "cat": "es",
     "id": "sentinel-2-c1-l2a",
@@ -607,7 +607,7 @@
     "doi": "10.5067/SWOT-RASTER-D",
     "concept": "C3233942299-POCLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3233942299-POCLOUD.html",
-    "matched_all": 1346475,
+    "matched_all": 1346557,
     "use": null,
     "title": "SWOT Level 2 Water Mask Raster Image 250m Data Product, Version D",
     "period": [
@@ -615,7 +615,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 1346475,
+    "matched": 1346557,
     "inst": "karin",
     "cat": "cmr",
     "id": "SWOT_L2_HR_Raster_250m_D",
@@ -795,7 +795,7 @@
     "doi": "10.5067/BN36FXOMMC4C",
     "concept": "C2938663676-NSIDC_CPRD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2938663676-NSIDC_CPRD.html",
-    "matched_all": 120183,
+    "matched_all": 120184,
     "use": null,
     "title": "SMAP Enhanced L2 Radiometer Half-Orbit 9 km EASE-Grid Soil Moisture V006",
     "period": [
@@ -803,7 +803,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 120183,
+    "matched": 120184,
     "inst": "radiometer",
     "cat": "cmr",
     "id": "SPL2SMP_E",
@@ -957,7 +957,7 @@
     "doi": "10.5067/NIL1RSLC-V1",
     "concept": "C3622236985-ASF",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3622236985-ASF.html",
-    "matched_all": 45916,
+    "matched_all": 45917,
     "use": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
     "title": "NISAR Validated Range Doppler Single Look Complex Product (Version 1) ",
     "period": [
@@ -965,7 +965,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 45916,
+    "matched": 45917,
     "inst": "lsar",
     "cat": "cmr",
     "id": "NISAR_L1_RSLC_V1",
@@ -983,7 +983,7 @@
     "doi": "10.5067/NIL2GCOV-V1",
     "concept": "C3622241360-ASF",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3622241360-ASF.html",
-    "matched_all": 45733,
+    "matched_all": 45737,
     "use": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
     "title": "NISAR Validated Geocoded Polarimetric Covariance Product (Version 1)",
     "period": [
@@ -991,7 +991,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 45733,
+    "matched": 45737,
     "inst": "lsar",
     "cat": "cmr",
     "id": "NISAR_L2_GCOV_V1",
