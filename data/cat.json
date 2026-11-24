@@ -40,9 +40,9 @@
     ],
     "api": "https://landsatlook.usgs.gov/stac-server",
     "doi": null,
-    "matched": 1316186,
+    "matched": 1316200,
     "first": "2021-10-31T04:40:14.262694Z",
-    "last": "2026-11-24T12:08:14.317588Z",
+    "last": "2026-11-24T12:31:23.762298Z",
     "inst": "oli2",
     "cat": "usgs",
     "id": "landsat-c2l1",
@@ -76,39 +76,6 @@
     }
    },
    {
-    "title": "HLS Landsat Operational Land Imager Surface Reflectance and TOA Brightness Daily Global 30m v2.0",
-    "license": "CC0-1.0",
-    "license_links": [
-     "https://earthdata.nasa.gov/earth-observation-data/data-use-policy"
-    ],
-    "license_links_declared": [
-     "https://earthdata.nasa.gov/earth-observation-data/data-use-policy"
-    ],
-    "period": [
-     "2013-04-11T00:00:00.000Z",
-     null
-    ],
-    "api": "https://cmr.earthdata.nasa.gov/stac/LPCLOUD",
-    "doi": "10.5067/HLS/HLSL30.002",
-    "matched": 16274387,
-    "short_name": "HLSL30",
-    "version": "2.0",
-    "title_umm": "HLS Landsat Operational Land Imager Surface Reflectance and TOA Brightness Daily Global 30m v2.0",
-    "period_umm": [
-     "2013-04-11T00:00:00.000Z",
-     null
-    ],
-    "level": "3",
-    "concept": "C2021957657-LPCLOUD",
-    "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2021957657-LPCLOUD.html",
-    "matched_all": 16274387,
-    "use": "https://earthdata.nasa.gov/earth-observation-data/data-use-policy",
-    "inst": "oli2",
-    "cat": "cmr",
-    "id": "HLSL30_2.0",
-    "sat_filter": null
-   },
-   {
     "title": "Landsat Collection 2 Level-1 Product",
     "license": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/Landsat_Data_Policy.pdf",
     "license_links": [],
@@ -119,9 +86,9 @@
     ],
     "api": "https://landsatlook.usgs.gov/stac-server",
     "doi": null,
-    "matched": 1316186,
+    "matched": 1316200,
     "first": "2021-10-31T04:40:14.262694Z",
-    "last": "2026-11-24T12:08:14.317588Z",
+    "last": "2026-11-24T12:31:23.762298Z",
     "inst": "tirs2",
     "cat": "usgs",
     "id": "landsat-c2l1",
@@ -192,7 +159,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 3832397,
+    "matched": 3832412,
     "inst": "csar",
     "cat": "es",
     "id": "sentinel-1-grd",
@@ -236,7 +203,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 52219731,
+    "matched": 52220222,
     "inst": "msi",
     "cat": "es",
     "id": "sentinel-2-l2a",
@@ -257,7 +224,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 31278399,
+    "matched": 31278901,
     "inst": "msi",
     "cat": "es",
     "id": "sentinel-2-c1-l2a",
@@ -420,7 +387,6 @@
     ],
     "api": "https://cmr.earthdata.nasa.gov/stac/LPCLOUD",
     "doi": "10.5067/MODIS/MYD09GA.061",
-    "matched": 2816476,
     "short_name": "MYD09GA",
     "version": "061",
     "title_umm": "MODIS/Aqua Surface Reflectance Daily L2G Global 1km and 500m SIN Grid V061",
@@ -436,39 +402,6 @@
     "inst": "modis",
     "cat": "cmr",
     "id": "MYD09GA_061",
-    "sat_filter": null
-   },
-   {
-    "title": "Aqua/AIRS L3 Daily Standard Physical Retrieval (AIRS-only) 1 degree x 1 degree V7.0",
-    "license": "CC0-1.0",
-    "license_links": [
-     "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
-    ],
-    "license_links_declared": [
-     "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
-    ],
-    "period": [
-     "2002-08-31T00:00:00.000Z",
-     null
-    ],
-    "api": "https://cmr.earthdata.nasa.gov/stac/GES_DISC",
-    "doi": "10.5067/UO3Q64CTTS1U",
-    "matched": 8764,
-    "short_name": "AIRS3STD",
-    "version": "7.0",
-    "title_umm": "Aqua/AIRS L3 Daily Standard Physical Retrieval (AIRS-only) 1 degree x 1 degree V7.0",
-    "period_umm": [
-     "2002-08-31T00:00:00.000Z",
-     null
-    ],
-    "level": "3",
-    "concept": "C1701805652-GES_DISC",
-    "page": "https://cmr.earthdata.nasa.gov/search/concepts/C1701805652-GES_DISC.html",
-    "matched_all": 8764,
-    "use": "The Earth Observing System Data and Information System (EOSDIS) data use and citation guidance for NASA data can be accessed at https://earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance. For information on how to properly cite and acknowledge data from the NASA GES DISC, refer to https://disc.gsfc.nasa.gov/data-guidelines.",
-    "inst": "airs",
-    "cat": "cmr",
-    "id": "AIRS3STD_7.0",
     "sat_filter": null
    }
   ],
@@ -504,39 +437,6 @@
     "inst": "atlas",
     "cat": "cmr",
     "id": "ATL06_007",
-    "sat_filter": null
-   },
-   {
-    "title": "ATLAS/ICESat-2 L2A Global Geolocated Photon Data V007",
-    "license": "CC0-1.0",
-    "license_links": [
-     "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
-    ],
-    "license_links_declared": [
-     "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
-    ],
-    "period": [
-     "2018-10-13T00:00:00.000Z",
-     null
-    ],
-    "api": "https://cmr.earthdata.nasa.gov/stac/NSIDC_CPRD",
-    "doi": "10.5067/ATLAS/ATL03.007",
-    "matched": 597432,
-    "short_name": "ATL03",
-    "version": "007",
-    "title_umm": "ATLAS/ICESat-2 L2A Global Geolocated Photon Data V007",
-    "period_umm": [
-     "2018-10-13T00:00:00.000Z",
-     null
-    ],
-    "level": "2A",
-    "concept": "C3326974349-NSIDC_CPRD",
-    "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3326974349-NSIDC_CPRD.html",
-    "matched_all": 597432,
-    "use": null,
-    "inst": "atlas",
-    "cat": "cmr",
-    "id": "ATL03_007",
     "sat_filter": null
    }
   ],

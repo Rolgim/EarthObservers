@@ -259,7 +259,7 @@
    "file": "data/sentinel3-olci.jpg",
    "title": "S3A_OL_2_WFR_20261122T105431_20261122T105731_0179_146_265_2160",
    "instrument": "OLCI",
-   "source": "https://sentinel3euwest.blob.core.windows.net/sentinel-3/OLCI/OL_2_WFR___/2026/11/22/S3A_OL_2_WFR____20261122T105431_20261122T105731_20261123T161811_0179_146_265_2160_MAR_O_NT_004.SEN3/browse.jpg?st=2026-11-23T14%3A19%3A41Z&se=2026-11-24T15%3A04%3A41Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-11-20T01%3A24%3A03Z&ske=2026-11-27T01%3A24%3A03Z&sks=b&skv=2025-07-05&sig=2EofrmXsfEYi1yIS3/KiqCewvH0tc3/mwBKTmixA0gs%3D",
+   "source": "https://sentinel3euwest.blob.core.windows.net/sentinel-3/OLCI/OL_2_WFR___/2026/11/22/S3A_OL_2_WFR____20261122T105431_20261122T105731_20261123T161811_0179_146_265_2160_MAR_O_NT_004.SEN3/browse.jpg?st=2026-11-23T14%3A53%3A46Z&se=2026-11-24T15%3A38%3A46Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-11-20T01%3A24%3A03Z&ske=2026-11-27T01%3A24%3A03Z&sks=b&skv=2025-07-05&sig=JqKAVvTJYpZjGuLHYi%2BSbNyBh2DPa1Z4KU8yxxZ4ma0%3D",
    "page": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-wfr-l2-netcdf/items/S3A_OL_2_WFR_20261122T105431_20261122T105731_0179_146_265_2160",
    "archive": "Microsoft Planetary Computer (catalogue STAC)",
    "license": "Données Copernicus Sentinel, libres et gratuites ; mention « Contains modified Copernicus Sentinel data 2026 »",
@@ -336,7 +336,7 @@
    "license": "Aucune licence écrite : la politique d'usage de CelesTrak (22/05/2026) parle de données « freely available to all users » et ne fixe que des limites d'accès (un téléchargement par mise à jour, toutes les 2 h au plus) ; ce site les respecte (un téléchargement par jour) et cite la source. Éléments dérivés du catalogue de la Space Force américaine",
    "license_url": "https://celestrak.org/usage-policy.php",
    "credit": "CelesTrak (T.S. Kelso)",
-   "fetched": "2026-11-24T14:20Z",
+   "fetched": "2026-11-24T14:54Z",
    "transform": "aucune : propagés par SGP4 dans le navigateur",
    "status": "à confirmer"
   },
