@@ -26,6 +26,6 @@ Version de travail du cahier des charges (document partagé : « EarthObservers 
 4. Les neuf autres satellites : Sentinel-1, -2, -3, -5P, Terra, Aqua, ICESat-2, GRACE-FO, SWOT (fait le 24/11/2026 ; images publiées pour SWOT, GRACE-FO et Sentinel-5P, sans compte, décision du 24/11/2026).
 5. Pages Flotte et Comparer (fait).
 6. Galerie « le même lieu vu par plusieurs satellites » : Comparer › Le même lieu (fait le 24/11/2026 ; Mont-Blanc et est du Léman, Sentinel-1, Sentinel-2, Landsat 9, Terra, Aqua, avec un gros plan à la taille réelle des pixels).
-7. Audit complet (traductions, accessibilité, liens, licences) et version 1.0.
+7. Audit complet (traductions, accessibilité, liens, licences) et version 1.0 (fait le 24/11/2026 : `tools/i18n-scan.js` et `tools/a11y.js` sans erreur en français et en anglais, thèmes clair et sombre ; liens vérifiés par `tools/probe/probe_links.py` ; seul statut « à confirmer » du registre : les éléments CelesTrak, publiés sans licence écrite).
 
 Couleur de surlignage : vert #127A46 (décision du 24/11/2026).
