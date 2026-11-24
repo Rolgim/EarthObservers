@@ -1186,6 +1186,508 @@ var MISSIONS = [
       ]}
     ]
   }
+  ,
+  {
+    id:'pace', name:'PACE (Plankton, Aerosol, Cloud, ocean Ecosystem)', short:'PACE', year:'2024',
+    agency:'NASA (centre Goddard) ; polarimètre SPEXone néerlandais',
+    targets:['Océans', 'Atmosphère'],
+    events:[
+      { type:'launch', label:'Lancement', date:'2024-02-08', ref:'wiki' },
+      { type:'note', label:'Premières données publiques', date:'2024-04-11', ref:'gsfc' }
+    ],
+    norad:[58928], cospar:'2024-025A',
+    file:'models/pace.glb', bytes:1083192, unit:1,
+    model:{ src:'NASA Eyes on the Earth, « PACE »', license:'NASA/JPL-Caltech, usage libre (règles d\'usage des médias de la NASA, qui couvrent les maquettes 3D)', u:'https://eyes.nasa.gov/apps/earth/' },
+    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:98 },
+    view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
+    real:{ key:'pace-oci', alt:'La Terre entière vue en une journée par l\'instrument OCI de PACE, en couleurs naturelles' },
+    desc:'PACE observe la couleur de l\'océan avec un spectromètre qui découpe la lumière en bandes de 5 nm, de l\'ultraviolet à l\'infrarouge proche : il distingue les familles de plancton végétal, base de la vie marine. Deux polarimètres mesurent aussi les aérosols et les nuages. Il voit toute la Terre en deux jours.',
+    checked:'2026-11-24',
+    refs:{
+      nasa:{ t:'PACE (page de mission)', p:'NASA', u:'https://science.nasa.gov/mission/pace/' },
+      gsfc:{ t:'PACE, site du projet', p:'NASA Goddard', u:'https://pace.gsfc.nasa.gov/' },
+      osc:{ t:'PACE Mission Overview', p:'NASA Ocean Biology Processing Group', u:'https://pace.oceansciences.org/mission.htm' },
+      oci:{ t:'Ocean Color Instrument (OCI)', p:'NASA Ocean Biology Processing Group', u:'https://pace.oceansciences.org/oci.htm' },
+      wiki:{ t:'Plankton, Aerosol, Cloud, ocean Ecosystem', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/Plankton,_Aerosol,_Cloud,_ocean_Ecosystem' },
+      ct:{ t:'Éléments orbitaux GP de PACE (n° NORAD 58928)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?CATNR=58928&FORMAT=TLE' }
+    },
+    parts:[
+      { key:'bus', name:'Plateforme et instruments', desc:'Le corps du satellite, construit au centre Goddard de la NASA, et ses trois instruments : le spectromètre OCI (sous son télescope tournant), les polarimètres SPEXone et HARP2. La maquette les réunit en un seul bloc ; ils sont décrits séparément dans « Mission et instruments ».',
+        facts:[['1,5 × 1,5 × 3,2 m, au plus 1 700 kg avec ses ergols', 'osc']] },
+      { key:'solar', name:'Panneau solaire', desc:'Le panneau solaire déployé qui alimente le satellite.', facts:[['Puissance : 1 000 W', 'wiki']] }
+    ],
+    sections:[
+      { title:'Mission', rows:[
+        ['Lancement', '8 février 2024, Falcon 9, Cap Canaveral (Floride)', 'wiki'],
+        ['Agence', 'NASA ; satellite et OCI construits au centre Goddard', 'nasa'],
+        ['Durée prévue', 'au moins 3 ans ; ergols pour 10 ans', 'osc'],
+        ['Satellite', '1,5 × 1,5 × 3,2 m ; au plus 1 700 kg', 'osc']
+      ]},
+      { title:'Orbite', rows:[
+        ['Type', 'polaire, héliosynchrone', 'wiki'],
+        ['Altitude', '676,5 km', 'osc'],
+        ['Inclinaison', '98°', 'osc'],
+        ['Période', '≈ 98,3 minutes', 'gsfc'],
+        ['Passage à l\'équateur', '13 h (± 10 min), heure locale', 'wiki']
+      ]},
+      { title:'Images', rows:[
+        ['OCI', 'de 315 à 895 nm par pas de 5 nm, plus 7 bandes de l\'infrarouge court (940 à 2 260 nm)', 'osc'],
+        ['Fauchée', '≈ 2 700 km (OCI) : toute la Terre en 2 jours', 'oci'],
+        ['Résolution', '≈ 1 km² au nadir (OCI)', 'osc'],
+        ['Polarimètres', 'HARP2 : 4 couleurs, fauchée de 1 556 km ; SPEXone : 385 à 770 nm, fauchée de 100 km', 'osc']
+      ]}
+    ]
+  },
+  {
+    id:'jpss', name:'JPSS : Suomi NPP, NOAA-20 et NOAA-21', short:'JPSS', year:'2011',
+    agency:'NOAA (exploitation) et NASA (construction, lancement) ; satellites Ball Aerospace (Suomi NPP, NOAA-20) et Northrop Grumman (NOAA-21)',
+    targets:['Atmosphère', 'Océans', 'Terres émergées'],
+    events:[
+      { type:'launch', label:'Lancement de Suomi NPP', date:'2011-10-28', ref:'npp' },
+      { type:'add', label:'Lancement de NOAA-20 (JPSS-1)', date:'2017-11-18', ref:'n20' },
+      { type:'add', label:'Lancement de NOAA-21 (JPSS-2)', date:'2022-11-10', ref:'n21' },
+      { type:'loss', label:'Fin de Suomi NPP', date:'2026-11-02', ref:'npp' }
+    ],
+    norad:[43013, 54234], cospar:'2017-073A, 2022-150A',
+    file:'models/noaa20.glb', bytes:0, unit:1,
+    model:{ src:'NASA Eyes on the Earth, « NOAA-20 »', license:'NASA/JPL-Caltech, usage libre (règles d\'usage des médias de la NASA, qui couvrent les maquettes 3D)', u:'https://eyes.nasa.gov/apps/earth/' },
+    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:98.7 },
+    view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
+    real:{ key:'jpss-viirs', alt:'La France et les Alpes vues par l\'instrument VIIRS, en couleurs naturelles' },
+    desc:'Les satellites météorologiques polaires américains du programme JPSS font le tour de la Terre quatorze fois par jour et la couvrent entière deux fois par jour. Leur caméra VIIRS voit 22 bandes, du bleu à l\'infrarouge thermique, sur 3 000 km de large ; leurs sondeurs mesurent la température et l\'humidité de l\'air pour les prévisions. Suomi NPP, le premier, a été arrêté le 2 novembre 2026.',
+    checked:'2026-11-24',
+    refs:{
+      noaa:{ t:'Joint Polar Satellite System (JPSS)', p:'NOAA NESDIS', u:'https://www.nesdis.noaa.gov/our-satellites/currently-flying/joint-polar-satellite-system' },
+      viirs:{ t:'Visible Infrared Imaging Radiometer Suite (VIIRS)', p:'NOAA NESDIS', u:'https://www.nesdis.noaa.gov/our-satellites/currently-flying/joint-polar-satellite-system/visible-infrared-imaging-radiometer-suite-viirs' },
+      eop:{ t:'Suomi NPP (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/suomi-npp' },
+      eopj:{ t:'JPSS (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/jpss' },
+      npp:{ t:'Suomi NPP', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/Suomi_NPP' },
+      n20:{ t:'NOAA-20', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/NOAA-20' },
+      n21:{ t:'NOAA-21', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/NOAA-21' },
+      ct:{ t:'Éléments orbitaux GP de NOAA 20 et NOAA 21 (n° NORAD 43013, 54234)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?CATNR=43013&FORMAT=TLE' }
+    },
+    parts:[
+      { key:'bus', name:'Plateforme et instruments', desc:'Le corps de NOAA-20 et ses instruments : la caméra VIIRS, le sondeur infrarouge CrIS, le sondeur micro-onde ATMS, OMPS (ozone) et CERES (bilan radiatif). La maquette les réunit en un seul bloc.',
+        facts:[['Masse au lancement : 2 540 kg', 'n20'], ['1,3 × 1,3 × 4,2 m', 'n20']] },
+      { key:'solar', name:'Panneau solaire', desc:'L\'aile de panneaux solaires, d\'un seul côté du satellite.', facts:[['Puissance : 1 932 W (NOAA-20)', 'n20']] }
+    ],
+    sections:[
+      { title:'Mission', rows:[
+        ['Lancements', 'Suomi NPP : 28 octobre 2011 ; NOAA-20 : 18 novembre 2017 ; NOAA-21 : 10 novembre 2022, tous depuis Vandenberg', 'n21'],
+        ['Lanceurs', 'Delta II (Suomi NPP, NOAA-20), Atlas V 401 (NOAA-21)', 'n21'],
+        ['Fin de Suomi NPP', 'données arrêtées le 1er novembre 2026, satellite désactivé le 2 novembre 2026', 'npp'],
+        ['Durée de vie prévue', '7 ans (NOAA-20)', 'n20']
+      ]},
+      { title:'Orbite', rows:[
+        ['Type', 'polaire, héliosynchrone ; NOAA-21 sur la même orbite que NOAA-20', 'n21'],
+        ['Altitude', '≈ 833 km', 'eopj'],
+        ['Inclinaison', '98,75°', 'eopj'],
+        ['Période', '≈ 101 minutes, ≈ 14 orbites par jour', 'eop'],
+        ['Couverture', 'toute la Terre deux fois par jour', 'n21']
+      ]},
+      { title:'Images', rows:[
+        ['VIIRS', '22 bandes, de 412 nm à 12 µm', 'eopj'],
+        ['Fauchée', '3 000 km', 'eopj'],
+        ['Résolution', '0,4 km au nadir (bandes fines)', 'eopj'],
+        ['Autres instruments', 'CrIS, ATMS, OMPS ; CERES sur NOAA-20', 'n21']
+      ]}
+    ]
+  },
+  {
+    id:'smap', name:'SMAP (Soil Moisture Active Passive)', short:'SMAP', year:'2015',
+    agency:'NASA (JPL), avec l\'Agence spatiale canadienne',
+    targets:['Terres émergées', 'Glaces', 'Océans'],
+    events:[
+      { type:'launch', label:'Lancement', date:'2015-01-31', ref:'wiki' },
+      { type:'loss', label:'Panne du radar', date:'2015-07', ref:'eop' }
+    ],
+    norad:[40376], cospar:'2015-003A',
+    file:'models/smap.glb', bytes:2695488, unit:1,
+    model:{ src:'NASA Eyes on the Earth, « SMAP »', license:'NASA/JPL-Caltech, usage libre (règles d\'usage des médias de la NASA, qui couvrent les maquettes 3D)', u:'https://eyes.nasa.gov/apps/earth/' },
+    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:98 },
+    view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
+    real:{ key:'smap-radiometer', alt:'Carte du monde de l\'humidité du sol mesurée par le radiomètre de SMAP' },
+    desc:'SMAP mesure l\'humidité des premiers centimètres du sol et repère les sols gelés. Son radiomètre capte le faible rayonnement micro-onde émis par la Terre, plus faible quand le sol est humide. Une antenne de 6 m, qui tourne sur elle-même, balaie une bande de 1 000 km : toute la Terre en trois jours.',
+    checked:'2026-11-24',
+    refs:{
+      eop:{ t:'SMAP (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/smap' },
+      nasa:{ t:'SMAP (page de mission)', p:'NASA', u:'https://science.nasa.gov/mission/smap/' },
+      wiki:{ t:'Soil Moisture Active Passive', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/Soil_Moisture_Active_Passive' },
+      ct:{ t:'Éléments orbitaux GP de SMAP (n° NORAD 40376)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?CATNR=40376&FORMAT=TLE' }
+    },
+    parts:[
+      { key:'reflector', name:'Antenne de 6 m', desc:'Le grand réflecteur en maille, qui tourne sur lui-même et balaie le sol en cercle de part et d\'autre de la trace. Le radiomètre et le radar (en panne depuis 2015) partagent ce réflecteur.',
+        facts:[['Diamètre ≈ 6 m', 'eop'], ['Tache au sol du radiomètre ≈ 40 km', 'eop']] },
+      { key:'boom', name:'Bras du réflecteur', desc:'Le bras déployable qui tient le réflecteur au-dessus de la source micro-onde.', facts:[] },
+      { key:'solar', name:'Panneau solaire', desc:'Le panneau solaire du satellite.', facts:[['Puissance : 1 450 W', 'wiki']] },
+      { key:'bus', name:'Plateforme', desc:'Le corps du satellite, avec l\'électronique des instruments et le mécanisme qui fait tourner l\'antenne.', facts:[['Masse au lancement : 944 kg', 'eop']] }
+    ],
+    sections:[
+      { title:'Mission', rows:[
+        ['Lancement', '31 janvier 2015, Delta II 7320, base de Vandenberg', 'wiki'],
+        ['Masse', '944 kg', 'eop'],
+        ['Instruments', 'radiomètre en bande L (1,41 GHz) ; radar en bande L arrêté en juillet 2015 après une panne', 'eop'],
+        ['Agences', 'NASA (JPL) ; Agence spatiale canadienne', 'eop']
+      ]},
+      { title:'Orbite', rows:[
+        ['Type', 'héliosynchrone, à l\'aube et au crépuscule', 'eop'],
+        ['Altitude', '685 km', 'eop'],
+        ['Inclinaison', '98°', 'eop'],
+        ['Période', '98,5 minutes', 'eop'],
+        ['Passage à l\'équateur', '18 h, heure locale, en montant', 'eop'],
+        ['Cycle de répétition', '8 jours ; carte mondiale tous les 3 jours', 'eop']
+      ]},
+      { title:'Images', rows:[
+        ['Fauchée', '1 000 km', 'eop'],
+        ['Résolution', '≈ 40 km (tache du radiomètre) ; cartes d\'humidité sur une grille de 9 km', 'eop'],
+        ['Profondeur', 'les 2 à 5 premiers centimètres du sol', 'eop']
+      ]}
+    ]
+  },
+  {
+    id:'oco2', name:'OCO-2 (Orbiting Carbon Observatory 2)', short:'OCO-2', year:'2014',
+    agency:'NASA (JPL) ; satellite Orbital Sciences',
+    targets:['Atmosphère', 'Terres émergées'],
+    events:[
+      { type:'launch', label:'Lancement', date:'2014-07-02', ref:'wiki' }
+    ],
+    norad:[40059], cospar:'2014-035A',
+    file:'models/oco2.glb', bytes:1442696, unit:1,
+    model:{ src:'NASA Eyes on the Earth, « OCO-2 »', license:'NASA/JPL-Caltech, usage libre (règles d\'usage des médias de la NASA, qui couvrent les maquettes 3D)', u:'https://eyes.nasa.gov/apps/earth/' },
+    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:98.2 },
+    view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
+    real:{ key:'oco2-co2', alt:'Traces des mesures de dioxyde de carbone d\'OCO-2 sur 16 jours, sur une carte du monde' },
+    desc:'OCO-2 mesure le dioxyde de carbone de l\'air. Ses trois spectromètres analysent la lumière du Soleil renvoyée par la Terre : le CO₂ et l\'oxygène en absorbent certaines couleurs. Il en tire la quantité moyenne de CO₂ sur toute la hauteur de l\'atmosphère, sur une bande étroite de 10 km, en petites taches de 1,3 × 2,3 km.',
+    checked:'2026-11-24',
+    refs:{
+      jpl:{ t:'OCO-2 Quick Facts', p:'NASA JPL', u:'https://ocov2.jpl.nasa.gov/mission/quick-facts/' },
+      inst:{ t:'OCO-2 Instrument', p:'NASA JPL', u:'https://ocov2.jpl.nasa.gov/observatory/instrument/' },
+      eop:{ t:'OCO-2 (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/oco-2' },
+      wiki:{ t:'Orbiting Carbon Observatory 2', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/Orbiting_Carbon_Observatory_2' },
+      ct:{ t:'Éléments orbitaux GP d\'OCO 2 (n° NORAD 40059)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?CATNR=40059&FORMAT=TLE' }
+    },
+    parts:[
+      { key:'bus', name:'Plateforme et instrument', desc:'Le corps du satellite (plateforme LEOStar-2 d\'Orbital Sciences) et l\'instrument : trois spectromètres à réseau qui partagent un même télescope ; un cryoréfrigérateur garde leurs détecteurs très froids pour réduire le bruit.',
+        facts:[['Masse au lancement : 449 kg', 'eop'], ['Détecteurs refroidis par un cryoréfrigérateur', 'inst']] },
+      { key:'solar', name:'Panneaux solaires', desc:'Les deux ailes de panneaux solaires.', facts:[['Puissance : 815 W', 'wiki']] }
+    ],
+    sections:[
+      { title:'Mission', rows:[
+        ['Lancement', '2 juillet 2014, Delta II 7320, base de Vandenberg', 'wiki'],
+        ['Masse', '449 kg', 'eop'],
+        ['Durée prévue', '2 ans', 'eop'],
+        ['Contexte', 'remplace OCO, perdu au lancement en 2009', 'wiki']
+      ]},
+      { title:'Orbite', rows:[
+        ['Type', 'polaire, héliosynchrone ; dans le « train de l\'après-midi » (A-Train)', 'eop'],
+        ['Altitude', '705 km', 'eop'],
+        ['Inclinaison', '98,2°', 'eop'],
+        ['Période', '98,8 minutes', 'eop'],
+        ['Passage à l\'équateur', 'vers 13 h 30, heure locale, en montant', 'jpl'],
+        ['Cycle de répétition', '16 jours', 'eop']
+      ]},
+      { title:'Images', rows:[
+        ['Bandes', '3 : oxygène (≈ 0,76 µm), CO₂ faible (≈ 1,61 µm), CO₂ fort (≈ 2,06 µm)', 'eop'],
+        ['Fauchée', '10 km', 'eop'],
+        ['Résolution', '1,29 × 2,25 km par mesure', 'eop']
+      ]}
+    ]
+  },
+  {
+    id:'gpm', name:'GPM (Global Precipitation Measurement), satellite principal', short:'GPM', year:'2014',
+    agency:'NASA et JAXA',
+    targets:['Atmosphère', 'Océans'],
+    events:[
+      { type:'launch', label:'Lancement', date:'2014-02-27', ref:'wiki' }
+    ],
+    norad:[39574], cospar:'2014-009C',
+    file:'models/gpm.glb', bytes:2561520, unit:1,
+    model:{ src:'NASA Eyes on the Earth, « GPM »', license:'NASA/JPL-Caltech, usage libre (règles d\'usage des médias de la NASA, qui couvrent les maquettes 3D)', u:'https://eyes.nasa.gov/apps/earth/' },
+    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:65 },
+    view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
+    real:{ key:'gpm-imerg', alt:'Carte du monde des précipitations d\'une journée (produit IMERG)' },
+    desc:'Le satellite principal de GPM mesure la pluie et la neige. Son radar à deux fréquences voit la pluie en trois dimensions, gouttes et flocons compris ; son radiomètre micro-onde sert d\'étalon aux autres satellites météorologiques. Ensemble, ils donnent une carte mondiale des précipitations toutes les demi-heures (IMERG).',
+    checked:'2026-11-24',
+    refs:{
+      gpm:{ t:'GPM Core Observatory', p:'NASA', u:'https://gpm.nasa.gov/missions/GPM/core-observatory' },
+      mis:{ t:'GPM Mission', p:'NASA', u:'https://gpm.nasa.gov/missions/GPM' },
+      eop:{ t:'GPM (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/gpm' },
+      wiki:{ t:'Global Precipitation Measurement', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/Global_Precipitation_Measurement' },
+      ct:{ t:'Éléments orbitaux GP de GPM-CORE (n° NORAD 39574)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?CATNR=39574&FORMAT=TLE' }
+    },
+    parts:[
+      { key:'gmi', name:'Radiomètre GMI', desc:'L\'antenne du radiomètre micro-onde GMI, au sommet du satellite : elle tourne et balaie un cône vers l\'avant.',
+        facts:[['13 canaux, de 10 à 183 GHz', 'mis'], ['Fauchée de 885 km', 'mis']] },
+      { key:'bus', name:'Plateforme et radar DPR', desc:'Le corps du satellite, construit au centre Goddard, avec, dessous, les deux antennes plates du radar DPR fourni par la JAXA. La maquette réunit le radar et la plateforme.',
+        facts:[['13 × 6,5 × 5 m', 'eop'], ['Masse : ≈ 3 850 kg', 'eop']] }
+    ],
+    sections:[
+      { title:'Mission', rows:[
+        ['Lancement', '27 février 2014, H-IIA, Tanegashima (Japon)', 'wiki'],
+        ['Masse', '≈ 3 850 kg', 'eop'],
+        ['Durée prévue', '3 ans ; ergols pour 5 ans', 'eop'],
+        ['Agences', 'NASA (satellite, GMI) et JAXA (radar DPR, lancement)', 'eop']
+      ]},
+      { title:'Orbite', rows:[
+        ['Type', 'circulaire, non héliosynchrone (heure de passage variable)', 'eop'],
+        ['Altitude', '407 km', 'eop'],
+        ['Inclinaison', '65°', 'eop'],
+        ['Couverture', 'entre ≈ 65° N et 65° S', 'eop']
+      ]},
+      { title:'Images', rows:[
+        ['Radar DPR', 'bandes Ku (13,6 GHz) et Ka (35,5 GHz) ; fauchée de 245 km pour les deux depuis mai 2018', 'mis'],
+        ['Radiomètre GMI', '13 canaux de 10 à 183 GHz ; fauchée de 885 km', 'mis'],
+        ['Résolution', '5 km au nadir (DPR)', 'mis']
+      ]}
+    ]
+  },
+  {
+    id:'nisar', name:'NISAR (NASA-ISRO Synthetic Aperture Radar)', short:'NISAR', year:'2025',
+    agency:'NASA (JPL : radar en bande L, réflecteur) et ISRO (radar en bande S, plateforme, lancement)',
+    targets:['Terres émergées', 'Glaces'],
+    events:[
+      { type:'launch', label:'Lancement', date:'2025-07-30', ref:'wiki' }
+    ],
+    norad:[65053], cospar:'2025-163A',
+    file:'models/nisar.glb', bytes:927416, unit:1,
+    model:{ src:'NASA Eyes on the Earth, « NISAR »', license:'NASA/JPL-Caltech, usage libre (règles d\'usage des médias de la NASA, qui couvrent les maquettes 3D)', u:'https://eyes.nasa.gov/apps/earth/' },
+    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:98.4 },
+    view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
+    real:{ key:'nisar-sar', alt:'Bandes d\'images radar de NISAR en fausses couleurs, superposées sur 12 jours, sur une carte du monde' },
+    desc:'NISAR, mission commune de la NASA et de l\'agence spatiale indienne, porte deux radars (bandes L et S) qui partagent un réflecteur de 12 m, déplié au bout d\'un bras de 9 m. Il revoit toutes les terres et les glaces tous les 12 jours et mesure au centimètre près les déformations du sol : séismes, volcans, glissements, glaciers.',
+    checked:'2026-11-24',
+    refs:{
+      jpl:{ t:'NISAR Quick Facts', p:'NASA JPL', u:'https://science.nasa.gov/mission/nisar/mission-overview/' },
+      nasa:{ t:'NISAR (page de mission)', p:'NASA', u:'https://science.nasa.gov/mission/nisar/' },
+      eop:{ t:'NISAR (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/nisar' },
+      wiki:{ t:'NISAR (satellite)', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/NISAR_(satellite)' },
+      ct:{ t:'Éléments orbitaux GP de NISAR (n° NORAD 65053)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?CATNR=65053&FORMAT=TLE' }
+    },
+    parts:[
+      { key:'reflector', name:'Réflecteur de 12 m', desc:'Le grand réflecteur en maille dorée, commun aux deux radars : il éclaire toute la fauchée de 242 km.',
+        facts:[['Diamètre : 12 m', 'eop']] },
+      { key:'boom', name:'Bras de 9 m', desc:'Le bras déployable qui tient le réflecteur devant les antennes des radars.', facts:[['Longueur : 9 m', 'eop']] },
+      { key:'solar', name:'Panneaux solaires', desc:'Les panneaux solaires du satellite.', facts:[['Puissance : 6 500 W', 'wiki']] },
+      { key:'bus', name:'Plateforme et radars', desc:'La plateforme I-3K de l\'ISRO et, au-dessus, la structure qui porte l\'électronique et les antennes d\'alimentation des radars en bandes L (NASA) et S (ISRO).',
+        facts:[['Plateforme I-3K (ISRO)', 'eop'], ['Masse au lancement : 2 393 kg', 'wiki']] }
+    ],
+    sections:[
+      { title:'Mission', rows:[
+        ['Lancement', '30 juillet 2025, GSLV-F16, centre spatial Satish Dhawan (Inde)', 'wiki'],
+        ['Masse', '2 393 kg', 'wiki'],
+        ['Durée prévue', '3 ans ; ergols pour 5 ans', 'eop'],
+        ['Agences', 'NASA (JPL) et ISRO', 'eop']
+      ]},
+      { title:'Orbite', rows:[
+        ['Type', 'héliosynchrone, à l\'aube et au crépuscule', 'jpl'],
+        ['Altitude', '747 km', 'jpl'],
+        ['Inclinaison', '98,4°', 'jpl'],
+        ['Cycle de répétition', '12 jours, en montant et en descendant', 'jpl']
+      ]},
+      { title:'Images', rows:[
+        ['Radar L-SAR', 'bande L, 1,25 GHz (24 cm)', 'eop'],
+        ['Radar S-SAR', 'bande S, 3,2 GHz', 'eop'],
+        ['Fauchée', '242 km', 'eop'],
+        ['Résolution', '3 à 10 m selon le mode', 'eop']
+      ]}
+    ]
+  },
+  {
+    id:'aura', name:'Aura', short:'Aura', year:'2004',
+    agency:'NASA, avec les Pays-Bas et la Finlande (OMI) et le Royaume-Uni (HIRDLS)',
+    targets:['Atmosphère'],
+    events:[
+      { type:'launch', label:'Lancement', date:'2004-07-15', ref:'wiki' },
+      { type:'loss', label:'Panne de HIRDLS', date:'2008', ref:'eop' }
+    ],
+    norad:[28376], cospar:'2004-026A',
+    file:'models/aura.glb', bytes:1424764, unit:1,
+    model:{ src:'NASA Eyes on the Earth, « Aura »', license:'NASA/JPL-Caltech, usage libre (règles d\'usage des médias de la NASA, qui couvrent les maquettes 3D)', u:'https://eyes.nasa.gov/apps/earth/' },
+    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:98.2 },
+    view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
+    real:{ key:'aura-omi', alt:'Carte du monde de la quantité totale d\'ozone mesurée en une journée par OMI' },
+    desc:'Aura étudie la chimie de l\'atmosphère : la couche d\'ozone, la pollution de l\'air et le climat. Son spectromètre OMI voit l\'ozone, le dioxyde d\'azote et les aérosols sur une bande de 2 600 km ; MLS mesure l\'ozone et d\'autres gaz couche par couche, en visant le bord de l\'atmosphère. Lancé en 2004, il a dépassé de loin les six ans prévus.',
+    checked:'2026-11-24',
+    refs:{
+      nasa:{ t:'Aura (page de mission)', p:'NASA', u:'https://science.nasa.gov/mission/aura/' },
+      eop:{ t:'Aura (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/aura' },
+      wiki:{ t:'Aura (satellite)', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/Aura_(satellite)' },
+      ct:{ t:'Éléments orbitaux GP d\'AURA (n° NORAD 28376)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?CATNR=28376&FORMAT=TLE' }
+    },
+    parts:[
+      { key:'inst', name:'Instruments', desc:'Les quatre instruments, montés sur la plateforme : MLS (micro-ondes, vers l\'avant), HIRDLS (infrarouge, arrêté en 2008), TES (infrarouge) et OMI (ultraviolet et visible, vers le bas).',
+        facts:[['OMI : 270 à 500 nm, fauchée de 2 600 km', 'eop']] },
+      { key:'solar', name:'Panneau solaire', desc:'La grande aile de panneaux solaires ; sa production, qui baisse avec l\'âge, devrait limiter la durée de la mission.', facts:[] },
+      { key:'bus', name:'Plateforme', desc:'La plateforme modulaire AB1200 de TRW, la même que celle d\'Aqua.', facts:[['Masse : ≈ 3 000 kg', 'eop']] }
+    ],
+    sections:[
+      { title:'Mission', rows:[
+        ['Lancement', '15 juillet 2004, Delta II 7920, base de Vandenberg', 'wiki'],
+        ['Masse', '≈ 3 000 kg', 'eop'],
+        ['Durée prévue', '6 ans', 'eop'],
+        ['Instruments', 'MLS, OMI, TES ; HIRDLS en panne depuis 2008', 'eop']
+      ]},
+      { title:'Orbite', rows:[
+        ['Type', 'polaire, héliosynchrone ; dans le « train de l\'après-midi » (A-Train)', 'eop'],
+        ['Altitude', '705 km', 'eop'],
+        ['Inclinaison', '98,2°', 'eop'],
+        ['Période', '98,8 minutes', 'eop'],
+        ['Passage à l\'équateur', '13 h 45, heure locale, en montant (à l\'origine)', 'eop'],
+        ['Cycle de répétition', '16 jours', 'eop']
+      ]},
+      { title:'Images', rows:[
+        ['OMI', 'spectromètre de 270 à 500 nm ; fauchée de 2 600 km', 'eop'],
+        ['Résolution', '13 × 24 km au nadir (OMI)', 'eop'],
+        ['MLS', 'micro-ondes, visée du bord de l\'atmosphère : profils verticaux de l\'ozone et d\'autres gaz', 'eop']
+      ]}
+    ]
+  },
+  {
+    id:'tempo', name:'TEMPO (Tropospheric Emissions: Monitoring of Pollution)', short:'TEMPO', year:'2023',
+    agency:'NASA (centre Langley) et Smithsonian Astrophysical Observatory ; instrument Ball Aerospace, hébergé par le satellite de télécommunications Intelsat 40e (Maxar)',
+    targets:['Atmosphère'],
+    events:[
+      { type:'launch', label:'Lancement (sur Intelsat 40e)', date:'2023-04-07', ref:'wiki' }
+    ],
+    norad:[56174], cospar:'2023-052A',
+    file:'models/tempo.glb', bytes:2391484, unit:1,
+    model:{ src:'NASA Eyes on the Earth, « TEMPO »', license:'NASA/JPL-Caltech, usage libre (règles d\'usage des médias de la NASA, qui couvrent les maquettes 3D)', u:'https://eyes.nasa.gov/apps/earth/' },
+    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:0 },
+    view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
+    real:{ key:'tempo-no2', alt:'Carte de l\'Amérique du Nord du dioxyde d\'azote mesuré par TEMPO en un balayage' },
+    desc:'TEMPO est un spectromètre posé sur un satellite de télécommunications, en orbite géostationnaire au-dessus de l\'Amérique du Nord. Il reste face au continent et le balaie toutes les heures, le jour, de Mexico aux sables bitumineux du Canada : ozone, dioxyde d\'azote, formaldéhyde. On voit ainsi la pollution des villes monter et descendre au fil de la journée.',
+    checked:'2026-11-24',
+    refs:{
+      sao:{ t:'TEMPO, Overview', p:'Smithsonian Astrophysical Observatory', u:'https://tempo.si.edu/overview.html' },
+      nasa:{ t:'TEMPO (page de mission)', p:'NASA', u:'https://science.nasa.gov/mission/tempo/' },
+      eop:{ t:'TEMPO (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/tempo' },
+      wiki:{ t:'Tropospheric Emissions: Monitoring of Pollution', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/Tropospheric_Emissions:_Monitoring_of_Pollution' },
+      is40:{ t:'Intelsat 40e', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/Intelsat_40e' },
+      ct:{ t:'Éléments orbitaux GP d\'INTELSAT 40E, qui porte TEMPO (n° NORAD 56174)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?CATNR=56174&FORMAT=TLE' }
+    },
+    parts:[
+      { key:'bus', name:'Satellite hôte et TEMPO', desc:'Le corps du satellite de télécommunications Intelsat 40e (plateforme Maxar), sur la face duquel est fixé l\'instrument TEMPO, tourné vers la Terre. La maquette ne distingue pas l\'instrument.',
+        facts:[['Instrument : 1,4 × 1,1 × 1,2 m, 148 kg', 'eop'], ['Satellite hôte : 5 440 kg au lancement', 'is40']] },
+      { key:'antenna', name:'Antennes de télécommunications', desc:'Les antennes d\'Intelsat 40e, dont la mission première est de relayer des télécommunications ; elles ne servent pas à TEMPO.', facts:[] },
+      { key:'solar', name:'Panneaux solaires', desc:'Les deux ailes de panneaux solaires du satellite hôte.', facts:[] }
+    ],
+    sections:[
+      { title:'Mission', rows:[
+        ['Lancement', '7 avril 2023, Falcon 9, Cap Canaveral, à bord d\'Intelsat 40e', 'wiki'],
+        ['Instrument', '1,4 × 1,1 × 1,2 m ; 148 kg ; construit par Ball Aerospace', 'eop'],
+        ['Responsables', 'Smithsonian Astrophysical Observatory (science, centre d\'opérations) ; NASA Langley (projet)', 'eop'],
+        ['Satellite hôte', 'Intelsat 40e, télécommunications, prévu pour 15 ans', 'is40']
+      ]},
+      { title:'Orbite', rows:[
+        ['Type', 'géostationnaire : le satellite reste au-dessus du même point de l\'équateur', 'wiki'],
+        ['Altitude', '≈ 35 786 km', 'eop'],
+        ['Position', '91° ouest', 'is40']
+      ]},
+      { title:'Images', rows:[
+        ['Spectre', '290 à 490 nm et 540 à 740 nm ; résolution spectrale de 0,57 nm', 'eop'],
+        ['Résolution', '2,2 × 5 km au sol (2,21 × 4,97 km au centre de la zone)', 'eop'],
+        ['Fréquence', 'un balayage par heure, le jour', 'sao'],
+        ['Zone', 'Amérique du Nord, de Mexico aux sables bitumineux du Canada, de l\'Atlantique au Pacifique', 'eop']
+      ]}
+    ]
+  },
+  {
+    id:'goes', name:'GOES-East (GOES-19)', short:'GOES-East', year:'2024',
+    agency:'NOAA (exploitation) et NASA (construction, lancement) ; satellite Lockheed Martin, imageur L3Harris',
+    targets:['Atmosphère', 'Océans'],
+    events:[
+      { type:'launch', label:'Lancement de GOES-U', date:'2024-06-25', ref:'wiki' },
+      { type:'orbit', label:'Orbite géostationnaire atteinte, renommé GOES-19', date:'2024-07-07', ref:'eop' },
+      { type:'note', label:'Mis en service comme GOES-East', date:'2025-04-07', ref:'wiki' }
+    ],
+    norad:[60133], cospar:'2024-119A',
+    file:null, bytes:0, unit:1,
+    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:0 },
+    view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
+    real:{ key:'goes-abi', alt:'Le disque de la Terre vu par GOES-East, des Amériques à l\'Afrique de l\'Ouest (image GeoColor)' },
+    desc:'GOES-19 est le satellite météorologique géostationnaire américain qui surveille l\'est des Amériques et l\'Atlantique, sous le nom de GOES-East. Son imageur ABI photographie tout le disque de la Terre toutes les dix minutes en 16 bandes, et certaines zones toutes les minutes : orages, ouragans, incendies, brouillard. Son détecteur GLM compte les éclairs.',
+    checked:'2026-11-24',
+    refs:{
+      noaa:{ t:'Geostationary satellites', p:'NOAA NESDIS', u:'https://www.nesdis.noaa.gov/our-satellites/currently-flying/geostationary-satellites' },
+      abi:{ t:'Advanced Baseline Imager (ABI)', p:'NOAA NESDIS', u:'https://www.nesdis.noaa.gov/our-satellites/currently-flying/goes-east-west/advanced-baseline-imager-abi' },
+      eop:{ t:'GOES-R series (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/goes-r' },
+      wiki:{ t:'GOES-19', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/GOES-19' },
+      ct:{ t:'Éléments orbitaux GP de GOES 19 (n° NORAD 60133)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?CATNR=60133&FORMAT=TLE' }
+    },
+    parts:[],
+    sections:[
+      { title:'Mission', rows:[
+        ['Lancement', '25 juin 2024, Falcon Heavy, centre spatial Kennedy (Floride)', 'wiki'],
+        ['Mise en service', '7 avril 2025, comme GOES-East', 'wiki'],
+        ['Série', 'dernier des quatre satellites GOES-R (GOES-16 à 19)', 'eop'],
+        ['Constructeur', 'Lockheed Martin', 'eop']
+      ]},
+      { title:'Orbite', rows:[
+        ['Type', 'géostationnaire', 'wiki'],
+        ['Altitude', '≈ 35 786 km', 'eop'],
+        ['Position', '75,2° ouest', 'wiki']
+      ]},
+      { title:'Images', rows:[
+        ['Imageur ABI', '16 bandes : 2 visibles, 4 du proche infrarouge, 10 infrarouges', 'abi'],
+        ['Résolution', '0,5 km (visible), 1 km (proche infrarouge), 2 km (infrarouge)', 'eop'],
+        ['Fréquence', 'disque entier toutes les 10 min ; États-Unis toutes les 5 min ; petites zones toutes les 30 à 60 s', 'abi'],
+        ['Éclairs', 'détecteur GLM, qui cartographie les éclairs en continu', 'noaa']
+      ]}
+    ]
+  },
+  {
+    id:'sentinel6', name:'Sentinel-6 Michael Freilich et Sentinel-6B', short:'Sentinel-6', year:'2020',
+    agency:'Union européenne (Copernicus), ESA, EUMETSAT, NASA, NOAA, avec le CNES ; satellites Airbus',
+    targets:['Océans'],
+    events:[
+      { type:'launch', label:'Lancement de Sentinel-6 Michael Freilich', date:'2020-11-21', ref:'esa' },
+      { type:'add', label:'Lancement de Sentinel-6B', date:'2025-11-17', ref:'esa' }
+    ],
+    norad:[46984, 66514], cospar:'2020-086A, 2025-264A',
+    file:'models/sentinel6.glb', bytes:940048, unit:1,
+    model:{ src:'NASA Eyes on the Earth, « Sentinel-6 Michael Freilich »', license:'NASA/JPL-Caltech, usage libre (règles d\'usage des médias de la NASA, qui couvrent les maquettes 3D)', u:'https://eyes.nasa.gov/apps/earth/' },
+    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:66 },
+    view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
+    real:{ key:'sentinel6-poseidon', alt:'Carte du monde de l\'écart de hauteur de la mer mesuré par Sentinel-6 Michael Freilich' },
+    desc:'Les Sentinel-6 sont les altimètres de référence pour le niveau des océans : ils prolongent la série de mesures commencée en 1992 avec TOPEX/Poseidon, puis les Jason. Leur radar Poseidon-4 mesure la hauteur de la mer à la verticale du satellite ; en dix jours, ils couvrent 95 % des océans. Sentinel-6B a été lancé en novembre 2025.',
+    checked:'2026-11-24',
+    refs:{
+      esa:{ t:'Sentinel-6', p:'ESA', u:'https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-6' },
+      eum:{ t:'Sentinel-6', p:'EUMETSAT', u:'https://www.eumetsat.int/sentinel-6' },
+      eop:{ t:'Copernicus: Sentinel-6 (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/sentinel-6' },
+      wiki:{ t:'Sentinel-6 Michael Freilich', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/Sentinel-6_Michael_Freilich' },
+      wikib:{ t:'Sentinel-6B', p:'Wikipedia', u:'https://en.wikipedia.org/wiki/Sentinel-6B' },
+      ct:{ t:'Éléments orbitaux GP de SENTINEL-6A et -6B (n° NORAD 46984, 66514)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?NAME=SENTINEL-6&FORMAT=TLE' }
+    },
+    parts:[
+      { key:'poseidon', name:'Altimètre Poseidon-4', desc:'L\'antenne de l\'altimètre radar, tournée vers la Terre : elle envoie des impulsions radar à la verticale et chronomètre leur écho sur la mer.', facts:[] },
+      { key:'amr', name:'Radiomètre AMR-C', desc:'Le radiomètre micro-onde, fourni par la NASA : il mesure la vapeur d\'eau de l\'air, qui ralentit les ondes radar, pour corriger la hauteur mesurée.', facts:[] },
+      { key:'doris', name:'Antenne DORIS', desc:'Le récepteur du système français DORIS, qui situe le satellite au centimètre près grâce à un réseau de balises au sol.', facts:[] },
+      { key:'gnss', name:'Antennes GNSS', desc:'Les antennes des récepteurs de navigation par satellite (GNSS), pour l\'orbite précise (POD) et la radio-occultation (profils de température de l\'atmosphère).', facts:[] },
+      { key:'lra', name:'Réflecteur laser', desc:'Le rétroréflecteur, visé depuis le sol par des stations laser pour vérifier l\'orbite.', facts:[] },
+      { key:'solar', name:'Panneaux solaires', desc:'Les panneaux solaires du satellite.', facts:[['Puissance : 891 W', 'wiki']] },
+      { key:'bus', name:'Plateforme', desc:'La plateforme, construite par Airbus, au toit en pente.', facts:[['Masse : 1 192 kg', 'wiki'], ['5,13 × 4,17 × 2,34 m', 'wikib']] }
+    ],
+    sections:[
+      { title:'Mission', rows:[
+        ['Lancements', 'Sentinel-6 Michael Freilich : 21 novembre 2020 ; Sentinel-6B : 17 novembre 2025 ; Falcon 9, base de Vandenberg', 'esa'],
+        ['Masse', '1 192 kg', 'wiki'],
+        ['Durée prévue', '5 ans et demi par satellite', 'wiki'],
+        ['Rôle', 'mission de référence de l\'altimétrie, à la suite de Jason-3', 'eum']
+      ]},
+      { title:'Orbite', rows:[
+        ['Type', 'non héliosynchrone', 'wiki'],
+        ['Altitude', '1 336 km', 'esa'],
+        ['Inclinaison', '66°', 'esa'],
+        ['Cycle de répétition', '≈ 10 jours', 'wiki']
+      ]},
+      { title:'Images', rows:[
+        ['Altimètre', 'radar Poseidon-4, à la verticale du satellite', 'esa'],
+        ['Couverture', '95 % des océans', 'esa'],
+        ['Autres instruments', 'radiomètre AMR-C, DORIS, GNSS, réflecteur laser, radio-occultation GNSS', 'wiki']
+      ]}
+    ]
+  }
 ];
 
 /* FLOTTE — « qui a fait quoi » par mission : FLEET[id] = { agencies:[…], who:[[agence, rôle, …, clé(s) de source]] }.
@@ -1209,7 +1711,8 @@ var INST_TYPES = {
   radar: { c:'#B86A00', l:L('Radar', 'Radar') },
   alt:   { c:'#0F8A7A', l:L('Altimètre', 'Altimeter') },
   rad:   { c:'#8A5A00', l:L('Radiomètre', 'Radiometer') },
-  grav:  { c:'#5B6770', l:L('Gravimétrie', 'Gravimetry') }
+  grav:  { c:'#5B6770', l:L('Gravimétrie', 'Gravimetry') },
+  pol:   { c:'#5B4BB7', l:L('Polarimètre', 'Polarimeter') }
 };
 var USGS_EE = { label:'USGS EarthExplorer', desc:L('Archive Landsat de l\'USGS : recherche et téléchargement des scènes (compte gratuit)', 'USGS Landsat archive: scene search and download (free account)'), url:'https://earthexplorer.usgs.gov/' };
 var LP_DAAC = { label:'NASA LP DAAC', desc:L('Archive des produits terrestres de la NASA (HLS, MODIS, ASTER)', 'NASA archive of land products (HLS, MODIS, ASTER)'), url:'https://www.earthdata.nasa.gov/centers/lp-daac' };
@@ -1225,6 +1728,14 @@ var GESDISC = { label:'NASA GES DISC', desc:L('Archive de la NASA pour l\'atmosp
 var AVISO = { label:'AVISO+ (CNES)', desc:L('Distribution des données d\'altimétrie du CNES, dont SWOT', 'CNES altimetry data distribution, including SWOT'), url:'https://www.aviso.altimetry.fr/' };
 var ISDC = { label:'GFZ ISDC', desc:L('Centre de données du GFZ (produits GRACE-FO)', 'GFZ data centre (GRACE-FO products)'), url:'https://isdc.gfz-potsdam.de/' };
 
+var OBDAAC = { label:'NASA OB.DAAC', desc:L('Archive de la NASA pour la couleur de l\'océan (PACE) ; compte Earthdata pour télécharger', 'NASA ocean colour archive (PACE); Earthdata account to download'), url:'https://oceancolor.gsfc.nasa.gov/' };
+var LAADS = { label:'NASA LAADS DAAC', desc:L('Archive de la NASA pour les produits VIIRS et MODIS de l\'atmosphère', 'NASA archive for VIIRS and MODIS atmosphere products'), url:'https://ladsweb.modaps.eosdis.nasa.gov/' };
+var NSIDC_SMAP = { label:'NSIDC DAAC (SMAP)', desc:L('Archive de la NASA pour les produits d\'humidité du sol de SMAP', 'NASA archive for SMAP soil moisture products'), url:'https://nsidc.org/data/smap' };
+var GPMPPS = { label:'GPM Data Directory', desc:L('Les produits de GPM (radar, radiomètre, IMERG) et leurs archives', 'GPM products (radar, radiometer, IMERG) and their archives'), url:'https://gpm.nasa.gov/data/directory' };
+var ASF = { label:'ASF DAAC', desc:L('Archive radar de la NASA (Alaska Satellite Facility), dont NISAR ; compte Earthdata pour télécharger', 'NASA radar archive (Alaska Satellite Facility), including NISAR; Earthdata account to download'), url:'https://asf.alaska.edu/' };
+var ASDC = { label:'NASA ASDC', desc:L('Archive de la NASA (centre Langley) pour TEMPO', 'NASA archive (Langley center) for TEMPO'), url:'https://www.earthdata.nasa.gov/centers/asdc-daac' };
+var NOAA_AWS = { label:'NOAA Open Data (AWS)', desc:L('Images GOES brutes et produits ABI en accès libre, sans compte', 'Raw GOES imagery and ABI products in open access, no account'), url:'https://registry.opendata.aws/noaa-goes/' };
+var EUMDS = { label:'EUMETSAT Data Store', desc:L('Archive des produits Sentinel-6 d\'EUMETSAT (compte gratuit)', 'EUMETSAT archive of Sentinel-6 products (free account)'), url:'https://data.eumetsat.int/' };
 var INST_DATA = {
 landsat9:{
   summary:L('Deux instruments qui regardent ensemble la même bande de 185 km : la caméra OLI-2 (neuf bandes, du bleu à l\'infrarouge moyen) et le capteur thermique TIRS-2 (deux bandes vers 11 µm). Ce sont des copies améliorées de ceux de Landsat 8 : codage sur 14 bits pour OLI-2, lumière parasite réduite et durée de vie allongée pour TIRS-2.',
@@ -1428,6 +1939,189 @@ swot:{
       docs:[{ l:'SWOT (eoPortal)', u:'https://www.eoportal.org/satellite-missions/swot' }] }
   ]
 }
+,
+pace:{
+  summary:L('Trois instruments : le spectromètre OCI, qui mesure la couleur de l\'océan en continu de l\'ultraviolet à l\'infrarouge proche, et deux polarimètres, HARP2 et SPEXone, qui mesurent aussi comment la lumière est polarisée et sous quels angles elle est renvoyée, pour les aérosols et les nuages.',
+            'Three instruments: the OCI spectrometer, which measures ocean colour continuously from ultraviolet to near infrared, and two polarimeters, HARP2 and SPEXone, which also measure how light is polarised and at which angles it is scattered, for aerosols and clouds.'),
+  refs:{}, archives:[OBDAAC, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'oci', name:'OCI', full:'Ocean Color Instrument', type:'spec',
+      use:L('Mesurer la couleur de l\'océan pour suivre le plancton végétal et ses différentes familles, ainsi que les aérosols et les nuages.', 'Measure ocean colour to track phytoplankton and its different groups, as well as aerosols and clouds.'),
+      summary:L('Spectromètre à télescope tournant, qui balaie la Terre d\'un bord à l\'autre. Il mesure un spectre continu de 315 à 895 nm, par pas de 5 nm, et sept bandes de l\'infrarouge court. Il peut s\'incliner de 20° vers l\'avant ou l\'arrière pour éviter le reflet du Soleil sur la mer.',
+                'Spectrometer with a rotating telescope, which scans the Earth from edge to edge. It measures a continuous spectrum from 315 to 895 nm, in 5 nm steps, and seven shortwave infrared bands. It can tilt 20° forward or backward to avoid sun glint on the sea.'),
+      bands:[{ l:L('315 à 895 nm, par pas de 5 nm', '315 to 895 nm, in 5 nm steps'), lo:0.315, hi:0.895 }, { l:L('7 bandes de 940 à 2 260 nm (étendue ≈)', '7 bands from 940 to 2,260 nm (≈ extent)'), lo:0.94, hi:2.26 }],
+      specs:[[L('Spectre', 'Spectrum'), L('315 à 895 nm par pas de 5 nm ; 7 bandes de 940 à 2 260 nm', '315 to 895 nm in 5 nm steps; 7 bands from 940 to 2,260 nm'), 'osc'], [L('Pixel au sol', 'Ground pixel'), L('≈ 1,2 km au nadir', '≈ 1.2 km at nadir'), 'oci'],
+        [L('Fauchée', 'Swath'), '≈ 2 700 km', 'oci'], [L('Inclinaison', 'Tilt'), '± 20°', 'oci']],
+      docs:[{ l:'Ocean Color Instrument (NASA OBPG)', u:'https://pace.oceansciences.org/oci.htm' }] },
+    { id:'harp2', name:'HARP2', full:'Hyper-Angular Rainbow Polarimeter #2', type:'pol',
+      use:L('Mesurer la polarisation de la lumière renvoyée par les nuages et les aérosols, sous de nombreux angles.', 'Measure the polarisation of light scattered by clouds and aerosols, from many angles.'),
+      summary:L('Polarimètre grand angle en quatre couleurs (440, 550, 670 et 870 nm).', 'Wide-angle polarimeter in four colours (440, 550, 670 and 870 nm).'),
+      specs:[[L('Longueurs d\'onde', 'Wavelengths'), '440, 550, 670, 870 nm', 'osc'], [L('Fauchée', 'Swath'), '1 556 km', 'osc']],
+      docs:[{ l:'PACE Mission Overview', u:'https://pace.oceansciences.org/mission.htm' }] },
+    { id:'spexone', name:'SPEXone', full:'Spectro-polarimeter for Planetary Exploration', type:'pol',
+      use:L('Caractériser finement les aérosols (taille, forme, composition) grâce à la polarisation, sous cinq angles de vue.', 'Characterise aerosols in detail (size, shape, composition) using polarisation, from five viewing angles.'),
+      summary:L('Spectropolarimètre néerlandais à bande étroite, qui regarde chaque point sous cinq angles.', 'Dutch narrow-swath spectropolarimeter, which looks at each point from five angles.'),
+      bands:[{ l:'385 – 770 nm', lo:0.385, hi:0.77 }],
+      specs:[[L('Spectre', 'Spectrum'), L('385 à 770 nm', '385 to 770 nm'), 'osc'], [L('Fauchée', 'Swath'), '100 km', 'osc'], [L('Angles de vue', 'Viewing angles'), '5', 'osc']],
+      docs:[{ l:'PACE Mission Overview', u:'https://pace.oceansciences.org/mission.htm' }] }
+  ]
+},
+jpss:{
+  summary:L('Les satellites JPSS portent la caméra VIIRS (images, nuages, incendies, couleur de l\'océan, lumières de nuit), deux sondeurs qui mesurent la température et l\'humidité de l\'air couche par couche (CrIS dans l\'infrarouge, ATMS en micro-ondes), OMPS pour l\'ozone et, sur NOAA-20, CERES pour le bilan d\'énergie de la Terre.',
+            'The JPSS satellites carry the VIIRS camera (images, clouds, fires, ocean colour, night lights), two sounders that measure air temperature and humidity layer by layer (CrIS in the infrared, ATMS in microwaves), OMPS for ozone and, on NOAA-20, CERES for the Earth\'s energy budget.'),
+  refs:{}, archives:[LAADS, LP_DAAC, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'viirs', name:'VIIRS', full:'Visible Infrared Imaging Radiometer Suite', type:'cam',
+      use:L('Photographier toute la Terre deux fois par jour : nuages, incendies, neige, couleur de l\'océan, et lumières de la nuit grâce à une bande très sensible.', 'Photograph the whole Earth twice a day: clouds, fires, snow, ocean colour, and night lights thanks to a very sensitive band.'),
+      summary:L('Radiomètre à balayage à 22 bandes du bleu à l\'infrarouge thermique, dont une bande « jour-nuit » qui voit les villes éclairées.', 'Scanning radiometer with 22 bands from blue to thermal infrared, including a day-night band that sees lit cities.'),
+      bands:[{ l:L('22 bandes de 412 nm à 12 µm (étendue ≈)', '22 bands from 412 nm to 12 µm (≈ extent)'), lo:0.412, hi:12 }],
+      specs:[[L('Bandes', 'Bands'), L('22, de 412 nm à 12 µm', '22, from 412 nm to 12 µm'), 'eopj'], [L('Pixel au sol', 'Ground pixel'), L('0,4 km au nadir', '0.4 km at nadir'), 'eopj'],
+        [L('Fauchée', 'Swath'), '3 000 km', 'eopj'], [L('Champ de vue', 'Field of view'), '≈ ± 55,84°', 'eop']],
+      docs:[{ l:'VIIRS (NOAA NESDIS)', u:'https://www.nesdis.noaa.gov/our-satellites/currently-flying/joint-polar-satellite-system/visible-infrared-imaging-radiometer-suite-viirs' }] },
+    { id:'atms', name:'ATMS', full:'Advanced Technology Microwave Sounder', type:'rad',
+      use:L('Mesurer la température et l\'humidité de l\'air sur toute la hauteur de l\'atmosphère, même à travers les nuages, pour les modèles de prévision.', 'Measure air temperature and humidity through the whole atmosphere, even through clouds, for forecast models.'),
+      summary:L('Sondeur micro-onde à 22 canaux, utilisé avec le sondeur infrarouge CrIS.', '22-channel microwave sounder, used together with the CrIS infrared sounder.'),
+      specs:[[L('Canaux', 'Channels'), '22', 'eop'], [L('Fauchée', 'Swath'), '2 300 km', 'eop']],
+      docs:[{ l:'Suomi NPP (eoPortal)', u:'https://www.eoportal.org/satellite-missions/suomi-npp' }] }
+  ]
+},
+smap:{
+  summary:L('Deux instruments en bande L partageaient la grande antenne tournante : un radiomètre, qui fonctionne toujours, et un radar, en panne depuis juillet 2015. Le radiomètre mesure la température de brillance du sol, d\'où l\'on tire son humidité et son état (gelé ou non) ; il mesure aussi la salinité de la mer.',
+            'Two L-band instruments shared the large rotating antenna: a radiometer, which still works, and a radar, which failed in July 2015. The radiometer measures the brightness temperature of the ground, from which its moisture and state (frozen or not) are derived; it also measures sea salinity.'),
+  refs:{}, archives:[NSIDC_SMAP, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'radiometer', name:L('Radiomètre', 'Radiometer'), full:'L-band Radiometer', type:'rad',
+      use:L('Mesurer l\'humidité des premiers centimètres du sol et repérer les sols gelés, sur toute la Terre en trois jours.', 'Measure the moisture of the top few centimetres of soil and detect frozen ground, over the whole Earth in three days.'),
+      summary:L('Radiomètre micro-onde passif en bande L (1,41 GHz) : un sol humide émet moins qu\'un sol sec à cette fréquence.', 'Passive L-band microwave radiometer (1.41 GHz): wet soil emits less than dry soil at this frequency.'),
+      specs:[[L('Fréquence', 'Frequency'), '1,41 GHz', 'eop'], [L('Pixel au sol', 'Ground pixel'), L('≈ 40 km (tache de l\'antenne)', '≈ 40 km (antenna footprint)'), 'eop'], [L('Fauchée', 'Swath'), '1 000 km', 'eop']],
+      docs:[{ l:'SMAP (eoPortal)', u:'https://www.eoportal.org/satellite-missions/smap' }] },
+    { id:'radar', name:'Radar', full:'L-band Radar', type:'radar',
+      use:L('Affiner la carte d\'humidité du radiomètre à quelques kilomètres.', 'Sharpen the radiometer\'s moisture map to a few kilometres.'),
+      summary:L('Radar en bande L (1,26 GHz) ; il a cessé de fonctionner en juillet 2015.', 'L-band radar (1.26 GHz); it stopped working in July 2015.'),
+      specs:[[L('Fréquence', 'Frequency'), '1,26 GHz', 'eop'], [L('Statut', 'Status'), L('en panne depuis juillet 2015', 'failed in July 2015'), 'eop']],
+      docs:[{ l:'SMAP (eoPortal)', u:'https://www.eoportal.org/satellite-missions/smap' }] }
+  ]
+},
+oco2:{
+  summary:L('Un seul instrument : trois spectromètres à réseau, nourris par un même télescope. Chacun découpe finement une bande étroite du spectre, où l\'oxygène ou le CO₂ absorbent la lumière du Soleil renvoyée par la Terre.',
+            'A single instrument: three grating spectrometers, fed by the same telescope. Each finely splits a narrow band of the spectrum, where oxygen or CO₂ absorbs sunlight reflected by the Earth.'),
+  refs:{}, archives:[GESDISC, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'oco2', name:L('Spectromètres', 'Spectrometers'), full:'OCO-2 Instrument (three grating spectrometers)', type:'spec',
+      use:L('Mesurer la quantité moyenne de CO₂ dans toute la colonne d\'air (XCO₂), pour trouver où le carbone est émis et où il est absorbé.', 'Measure the average amount of CO₂ in the whole air column (XCO₂), to find where carbon is emitted and where it is absorbed.'),
+      summary:L('La bande de l\'oxygène sert à mesurer la quantité totale d\'air et la pression au sol ; les deux bandes du CO₂ donnent la quantité de gaz. Les détecteurs sont refroidis par un cryoréfrigérateur.', 'The oxygen band measures the total amount of air and the surface pressure; the two CO₂ bands give the amount of gas. The detectors are cooled by a cryocooler.'),
+      bands:[{ l:L('oxygène', 'oxygen'), lo:0.758, hi:0.772 }, { l:L('CO₂ faible', 'weak CO₂'), lo:1.594, hi:1.619 }, { l:L('CO₂ fort', 'strong CO₂'), lo:2.042, hi:2.082 }],
+      specs:[[L('Bandes', 'Bands'), '758–772 nm, 1 594–1 619 nm, 2 042–2 082 nm', 'eop'], [L('Pixel au sol', 'Ground pixel'), '1,29 × 2,25 km', 'eop'], [L('Fauchée', 'Swath'), '10 km', 'eop']],
+      docs:[{ l:'OCO-2 Instrument (NASA JPL)', u:'https://ocov2.jpl.nasa.gov/observatory/instrument/' }] }
+  ]
+},
+gpm:{
+  summary:L('Deux instruments : le radar DPR, fourni par la JAXA, qui mesure la pluie en trois dimensions à deux fréquences, et le radiomètre micro-onde GMI de la NASA, qui sert d\'étalon aux radiomètres des autres satellites de la constellation GPM.',
+            'Two instruments: the DPR radar, supplied by JAXA, which measures rain in three dimensions at two frequencies, and NASA\'s GMI microwave radiometer, which serves as the reference for the radiometers of the other satellites in the GPM constellation.'),
+  refs:{}, archives:[GPMPPS, GESDISC, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'dpr', name:'DPR', full:'Dual-frequency Precipitation Radar', type:'radar',
+      use:L('Mesurer la structure verticale de la pluie et de la neige, et la taille des gouttes.', 'Measure the vertical structure of rain and snow, and the size of the drops.'),
+      summary:L('Deux radars : en bande Ku (13,6 GHz) pour la pluie forte, en bande Ka (35,5 GHz) pour la pluie faible et la neige. La comparaison des deux échos renseigne sur la taille des gouttes.', 'Two radars: Ku band (13.6 GHz) for heavy rain, Ka band (35.5 GHz) for light rain and snow. Comparing the two echoes tells about drop size.'),
+      specs:[[L('Fréquences', 'Frequencies'), '13,6 GHz (Ku), 35,5 GHz (Ka)', 'mis'], [L('Pixel au sol', 'Ground pixel'), L('5 km au nadir', '5 km at nadir'), 'mis'], [L('Fauchée', 'Swath'), L('245 km (les deux bandes, depuis mai 2018)', '245 km (both bands, since May 2018)'), 'mis']],
+      docs:[{ l:'GPM Mission (NASA)', u:'https://gpm.nasa.gov/missions/GPM' }] },
+    { id:'gmi', name:'GMI', full:'GPM Microwave Imager', type:'rad',
+      use:L('Mesurer la pluie et la neige sur une large bande, et étalonner les autres satellites qui servent au produit mondial IMERG.', 'Measure rain and snow over a wide swath, and calibrate the other satellites used for the global IMERG product.'),
+      summary:L('Radiomètre micro-onde conique à 13 canaux, de 10 à 183 GHz.', 'Conical-scanning microwave radiometer with 13 channels, from 10 to 183 GHz.'),
+      specs:[[L('Canaux', 'Channels'), L('13, de 10 à 183 GHz', '13, from 10 to 183 GHz'), 'mis'], [L('Fauchée', 'Swath'), '885 km', 'mis']],
+      docs:[{ l:'GPM Core Observatory (NASA)', u:'https://gpm.nasa.gov/missions/GPM/core-observatory' }] }
+  ]
+},
+nisar:{
+  summary:L('Deux radars à synthèse d\'ouverture, en bande L (NASA) et en bande S (ISRO), qui partagent le réflecteur de 12 m. En comparant deux passages, à 12 jours d\'intervalle, on mesure les déplacements du sol au centimètre près (interférométrie).',
+            'Two synthetic aperture radars, L band (NASA) and S band (ISRO), sharing the 12 m reflector. By comparing two passes, 12 days apart, ground movements are measured to the centimetre (interferometry).'),
+  refs:{}, archives:[ASF, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'lsar', name:'L-SAR', full:'L-band Synthetic Aperture Radar', type:'radar',
+      use:L('Mesurer les déformations du sol, la biomasse des forêts et le mouvement des glaces ; la grande longueur d\'onde traverse la végétation.', 'Measure ground deformation, forest biomass and ice motion; the long wavelength passes through vegetation.'),
+      summary:L('Radar en bande L (longueur d\'onde de 24 cm), fourni par le JPL.', 'L-band radar (24 cm wavelength), supplied by JPL.'),
+      specs:[[L('Fréquence', 'Frequency'), '1,25 GHz (24 cm)', 'eop'], [L('Fauchée', 'Swath'), '242 km', 'eop'], [L('Pixel au sol', 'Ground pixel'), L('3 à 10 m selon le mode', '3 to 10 m depending on mode'), 'eop']],
+      docs:[{ l:'NISAR (eoPortal)', u:'https://www.eoportal.org/satellite-missions/nisar' }] },
+    { id:'ssar', name:'S-SAR', full:'S-band Synthetic Aperture Radar', type:'radar',
+      use:L('Compléter la bande L pour les cultures, les sols et la végétation basse.', 'Complement the L band for crops, soils and low vegetation.'),
+      summary:L('Radar en bande S (3,2 GHz), fourni par l\'ISRO.', 'S-band radar (3.2 GHz), supplied by ISRO.'),
+      specs:[[L('Fréquence', 'Frequency'), '3,2 GHz', 'eop'], [L('Fauchée', 'Swath'), '242 km', 'eop']],
+      docs:[{ l:'NISAR (eoPortal)', u:'https://www.eoportal.org/satellite-missions/nisar' }] }
+  ]
+},
+aura:{
+  summary:L('Quatre instruments au départ : OMI (ultraviolet et visible, vers le bas), MLS (micro-ondes, vers le bord de l\'atmosphère), TES (infrarouge) et HIRDLS (infrarouge, en panne depuis 2008). Ils mesurent l\'ozone, les gaz qui le détruisent, la pollution et les aérosols.',
+            'Four instruments at launch: OMI (ultraviolet and visible, looking down), MLS (microwaves, looking at the edge of the atmosphere), TES (infrared) and HIRDLS (infrared, failed in 2008). They measure ozone, the gases that destroy it, pollution and aerosols.'),
+  refs:{}, archives:[GESDISC, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'omi', name:'OMI', full:'Ozone Monitoring Instrument', type:'spec',
+      use:L('Cartographier chaque jour l\'ozone, le dioxyde d\'azote, le dioxyde de soufre et les aérosols sur toute la Terre.', 'Map ozone, nitrogen dioxide, sulphur dioxide and aerosols over the whole Earth every day.'),
+      summary:L('Spectromètre imageur à large fauchée, fourni par les Pays-Bas (NIVR) avec l\'institut météorologique finlandais (FMI).', 'Wide-swath imaging spectrometer, supplied by the Netherlands (NIVR) with the Finnish Meteorological Institute (FMI).'),
+      bands:[{ l:'270 – 500 nm', lo:0.27, hi:0.5 }],
+      specs:[[L('Spectre', 'Spectrum'), L('270 à 500 nm', '270 to 500 nm'), 'eop'], [L('Pixel au sol', 'Ground pixel'), L('13 × 24 km au nadir', '13 × 24 km at nadir'), 'eop'], [L('Fauchée', 'Swath'), '2 600 km', 'eop']],
+      docs:[{ l:'Aura (eoPortal)', u:'https://www.eoportal.org/satellite-missions/aura' }] },
+    { id:'mls', name:'MLS', full:'Microwave Limb Sounder', type:'rad',
+      use:L('Mesurer, couche par couche, l\'ozone et les gaz qui le détruisent (chlore), ainsi que la vapeur d\'eau de la haute atmosphère.', 'Measure, layer by layer, ozone and the gases that destroy it (chlorine), as well as upper-atmosphere water vapour.'),
+      summary:L('Radiomètre micro-onde qui vise le bord de l\'atmosphère (le limbe), vers l\'avant du satellite, et en tire des profils verticaux.', 'Microwave radiometer that looks at the edge of the atmosphere (the limb), ahead of the satellite, and derives vertical profiles.'),
+      specs:[[L('Visée', 'Viewing'), L('au limbe, vers l\'avant', 'limb, forward'), 'eop']],
+      docs:[{ l:'Aura (eoPortal)', u:'https://www.eoportal.org/satellite-missions/aura' }] },
+    { id:'tes', name:'TES', full:'Tropospheric Emission Spectrometer', type:'spec',
+      use:L('Mesurer l\'ozone et d\'autres gaz de la basse atmosphère, là où ils touchent la santé et le climat.', 'Measure ozone and other gases in the lower atmosphere, where they affect health and climate.'),
+      summary:L('Spectromètre infrarouge à transformée de Fourier, du JPL.', 'Fourier transform infrared spectrometer, from JPL.'),
+      bands:[{ l:'3,2 – 15,4 µm', lo:3.2, hi:15 }],
+      specs:[[L('Spectre', 'Spectrum'), L('3,2 à 15,4 µm', '3.2 to 15.4 µm'), 'eop'], [L('Pixel au sol', 'Ground pixel'), '0,43 × 5,3 km', 'eop']],
+      docs:[{ l:'Aura (eoPortal)', u:'https://www.eoportal.org/satellite-missions/aura' }] }
+  ]
+},
+tempo:{
+  summary:L('Un spectromètre ultraviolet-visible, en orbite géostationnaire, qui balaie l\'Amérique du Nord d\'est en ouest toutes les heures le jour. Il fait partie, avec GEMS (Corée du Sud) et Sentinel-4 (Europe), d\'une constellation qui suit la pollution de l\'air au-dessus de l\'hémisphère Nord.',
+            'An ultraviolet-visible spectrometer in geostationary orbit, which scans North America from east to west every hour during daytime. Together with GEMS (South Korea) and Sentinel-4 (Europe), it is part of a constellation that tracks air pollution over the Northern Hemisphere.'),
+  refs:{}, archives:[ASDC, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'tempo', name:'TEMPO', full:'Tropospheric Emissions: Monitoring of Pollution', type:'spec',
+      use:L('Mesurer heure par heure l\'ozone, le dioxyde d\'azote, le formaldéhyde et les aérosols au-dessus de l\'Amérique du Nord.', 'Measure ozone, nitrogen dioxide, formaldehyde and aerosols over North America hour by hour.'),
+      summary:L('Spectromètre à réseau qui couvre deux plages, de l\'ultraviolet au visible, avec une résolution spectrale de 0,57 nm. Construit par Ball Aerospace, il est fixé sur le satellite de télécommunications Intelsat 40e.', 'Grating spectrometer covering two ranges, from ultraviolet to visible, with a spectral resolution of 0.57 nm. Built by Ball Aerospace, it is mounted on the Intelsat 40e communications satellite.'),
+      bands:[{ l:'290 – 490 nm', lo:0.29, hi:0.49 }, { l:'540 – 740 nm', lo:0.54, hi:0.74 }],
+      specs:[[L('Spectre', 'Spectrum'), L('290 à 490 nm et 540 à 740 nm', '290 to 490 nm and 540 to 740 nm'), 'eop'], [L('Pixel au sol', 'Ground pixel'), '2,21 × 4,97 km', 'eop'],
+        [L('Fréquence', 'Frequency'), L('toutes les heures, le jour', 'every hour, in daytime'), 'sao'], [L('Masse', 'Mass'), '148 kg', 'eop']],
+      docs:[{ l:'TEMPO (Smithsonian)', u:'https://tempo.si.edu/overview.html' }] }
+  ]
+},
+goes:{
+  summary:L('L\'imageur ABI photographie la Terre en 16 bandes ; le détecteur GLM cartographie les éclairs en continu. D\'autres instruments surveillent le Soleil et l\'environnement spatial (SUVI, EXIS, SEISS, magnétomètre) et un coronographe, CCOR-1, observe les éjections de masse coronale.',
+            'The ABI imager photographs the Earth in 16 bands; the GLM detector maps lightning continuously. Other instruments monitor the Sun and the space environment (SUVI, EXIS, SEISS, magnetometer) and a coronagraph, CCOR-1, observes coronal mass ejections.'),
+  refs:{ ccor:{ t:'GOES-19', p:'Wikipédia (en anglais)', u:'https://en.wikipedia.org/wiki/GOES-19' } }, archives:[NOAA_AWS, WORLDVIEW],
+  instruments:[
+    { id:'abi', name:'ABI', full:'Advanced Baseline Imager', type:'cam',
+      use:L('Suivre heure par heure, et même minute par minute, les nuages, les orages, les ouragans, les incendies, la fumée et le brouillard.', 'Track clouds, storms, hurricanes, fires, smoke and fog hour by hour, and even minute by minute.'),
+      summary:L('Imageur à 16 bandes construit par L3Harris : 2 visibles, 4 du proche infrarouge, 10 infrarouges qui voient de jour comme de nuit.', '16-band imager built by L3Harris: 2 visible, 4 near-infrared, 10 infrared that see by day and night.'),
+      specs:[[L('Bandes', 'Bands'), L('16 (2 visibles, 4 proche infrarouge, 10 infrarouges)', '16 (2 visible, 4 near-infrared, 10 infrared)'), 'abi'], [L('Pixel au sol', 'Ground pixel'), L('0,5 km (visible) à 2 km (infrarouge)', '0.5 km (visible) to 2 km (infrared)'), 'eop'],
+        [L('Fréquence', 'Frequency'), L('disque entier toutes les 10 min ; États-Unis toutes les 5 min', 'full disk every 10 min; United States every 5 min'), 'abi']],
+      docs:[{ l:'ABI (NOAA NESDIS)', u:'https://www.nesdis.noaa.gov/our-satellites/currently-flying/goes-east-west/advanced-baseline-imager-abi' }] },
+    { id:'glm', name:'GLM', full:'Geostationary Lightning Mapper', type:'cam',
+      use:L('Détecter tous les éclairs, dans les nuages et vers le sol, pour repérer les orages qui se renforcent.', 'Detect all lightning, in-cloud and cloud-to-ground, to spot strengthening storms.'),
+      summary:L('Premier cartographe d\'éclairs opérationnel en orbite géostationnaire.', 'First operational lightning mapper in geostationary orbit.'),
+      specs:[[L('Mesure', 'Measurement'), L('éclairs dans les nuages et vers le sol', 'in-cloud and cloud-to-ground lightning'), 'noaa']],
+      docs:[{ l:'Geostationary satellites (NOAA NESDIS)', u:'https://www.nesdis.noaa.gov/our-satellites/currently-flying/geostationary-satellites' }] }
+  ]
+},
+sentinel6:{
+  summary:L('L\'altimètre radar Poseidon-4 mesure la hauteur de la mer ; le radiomètre AMR-C, fourni par la NASA, corrige l\'effet de la vapeur d\'eau ; DORIS, les récepteurs GNSS et le réflecteur laser donnent l\'orbite au centimètre près. Un récepteur GNSS de radio-occultation mesure aussi la température de l\'atmosphère.',
+            'The Poseidon-4 radar altimeter measures sea height; the AMR-C radiometer, supplied by NASA, corrects for water vapour; DORIS, the GNSS receivers and the laser reflector give the orbit to the centimetre. A GNSS radio-occultation receiver also measures atmospheric temperature.'),
+  refs:{}, archives:[PODAAC, EUMDS, EARTHDATA],
+  instruments:[
+    { id:'poseidon4', name:'Poseidon-4', full:'Poseidon-4 radar altimeter', type:'alt',
+      use:L('Mesurer la hauteur de la mer, la hauteur des vagues et la vitesse du vent, pour suivre la montée du niveau des océans.', 'Measure sea height, wave height and wind speed, to track sea-level rise.'),
+      summary:L('Altimètre radar qui vise à la verticale et chronomètre l\'écho sur la mer. Il fonctionne à la fois en mode classique et en mode à synthèse d\'ouverture, plus fin le long de la trace.', 'Radar altimeter that points straight down and times the echo from the sea. It works in both classic mode and synthetic aperture mode, finer along the track.'),
+      specs:[[L('Couverture', 'Coverage'), L('95 % des océans en 10 jours', '95% of the oceans in 10 days'), 'esa'], [L('Visée', 'Viewing'), L('à la verticale (nadir)', 'straight down (nadir)'), 'esa']],
+      docs:[{ l:'Sentinel-6 (ESA)', u:'https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-6' }] },
+    { id:'amrc', name:'AMR-C', full:'Advanced Microwave Radiometer for Climate', type:'rad',
+      use:L('Mesurer la vapeur d\'eau de l\'air sous le satellite, qui retarde l\'écho radar, pour corriger la hauteur de la mer.', 'Measure water vapour in the air below the satellite, which delays the radar echo, to correct sea height.'),
+      summary:L('Radiomètre micro-onde fourni par la NASA.', 'Microwave radiometer supplied by NASA.'),
+      specs:[[L('Fournisseur', 'Supplier'), 'NASA', 'wiki']],
+      docs:[{ l:'Sentinel-6 Michael Freilich (Wikipedia)', u:'https://en.wikipedia.org/wiki/Sentinel-6_Michael_Freilich' }] }
+  ]
+}
 };
 
 /* =================================================================
@@ -1588,6 +2282,98 @@ swot:{
     [L('Exploitation', 'Operations'), L('NASA (JPL) et CNES', 'NASA (JPL) and CNES'), 'jpl'], [L('Statut', 'Status'), L('en exploitation', 'in operation'), 'cnes'],
     [L('Archives', 'Archives'), 'NASA PO.DAAC, AVISO+ (CNES)', 'cnes']
   ], refs:{}, checked:'2026-11-24'
+},
+pace:{
+  intro:L('PACE est une mission de la NASA conduite par le centre Goddard, qui a construit le satellite et le spectromètre OCI. Elle prolonge les mesures de couleur de l\'océan de SeaWiFS, MODIS et VIIRS, avec un spectre bien plus détaillé.',
+          'PACE is a NASA mission led by the Goddard center, which built the satellite and the OCI spectrometer. It extends the ocean colour measurements of SeaWiFS, MODIS and VIIRS, with a much more detailed spectrum.'),
+  phases:[
+    [L('8 février 2024', '8 February 2024'), L('Lancement', 'Launch'), L('Falcon 9 depuis Cap Canaveral.', 'Falcon 9 from Cape Canaveral.'), 'wiki'],
+    [L('11 avril 2024', '11 April 2024'), L('Premières données publiques', 'First public data'), L('Début de la diffusion des données au public.', 'Start of public data release.'), 'gsfc']
+  ],
+  ops:[[L('Exploitation', 'Operations'), L('NASA (centre Goddard)', 'NASA (Goddard center)'), 'nasa'], [L('Archive', 'Archive'), 'NASA OB.DAAC', 'gsfc']], refs:{}, checked:'2026-11-24'
+},
+jpss:{
+  intro:L('Le Joint Polar Satellite System est le programme américain de satellites météorologiques en orbite polaire. La NOAA le finance et l\'exploite ; la NASA construit et lance les satellites. Suomi NPP, d\'abord prévu comme démonstrateur, a servi aux prévisions pendant quinze ans.',
+          'The Joint Polar Satellite System is the US programme of polar-orbiting weather satellites. NOAA funds and operates it; NASA builds and launches the satellites. Suomi NPP, first planned as a demonstrator, served forecasting for fifteen years.'),
+  phases:[
+    [L('28 octobre 2011', '28 October 2011'), L('Suomi NPP', 'Suomi NPP'), L('Delta II depuis Vandenberg.', 'Delta II from Vandenberg.'), 'npp'],
+    [L('18 novembre 2017', '18 November 2017'), L('NOAA-20 (JPSS-1)', 'NOAA-20 (JPSS-1)'), L('Delta II depuis Vandenberg.', 'Delta II from Vandenberg.'), 'n20'],
+    [L('10 novembre 2022', '10 November 2022'), L('NOAA-21 (JPSS-2)', 'NOAA-21 (JPSS-2)'), L('Atlas V 401 depuis Vandenberg, dernier Atlas V lancé de cette base ; déclaré opérationnel le 8 novembre 2023.', 'Atlas V 401 from Vandenberg, the last Atlas V launched from this base; declared operational on 8 November 2023.'), 'n21'],
+    [L('2 novembre 2026', '2 November 2026'), L('Fin de Suomi NPP', 'End of Suomi NPP'), L('Données arrêtées le 1er novembre, satellite désactivé le 2 ; rentrée dans l\'atmosphère prévue en décembre 2026.', 'Data stopped on 1 November, satellite deactivated on the 2nd; re-entry planned for December 2026.'), 'npp']
+  ],
+  ops:[[L('Exploitation', 'Operations'), 'NOAA', 'noaa'], [L('Archives', 'Archives'), 'NASA LAADS DAAC, LP DAAC', 'eopj']], refs:{}, checked:'2026-11-24'
+},
+smap:{
+  intro:L('SMAP, mission de la NASA conduite par le JPL, devait combiner un radar et un radiomètre pour cartographier l\'humidité du sol à quelques kilomètres. Le radar est tombé en panne en juillet 2015 ; le radiomètre poursuit seul la mission.',
+          'SMAP, a NASA mission led by JPL, was to combine a radar and a radiometer to map soil moisture at a few kilometres. The radar failed in July 2015; the radiometer carries on the mission alone.'),
+  phases:[
+    [L('31 janvier 2015', '31 January 2015'), L('Lancement', 'Launch'), L('Delta II depuis Vandenberg.', 'Delta II from Vandenberg.'), 'wiki'],
+    [L('juillet 2015', 'July 2015'), L('Panne du radar', 'Radar failure'), L('Le radar cesse de fonctionner ; le radiomètre continue.', 'The radar stops working; the radiometer continues.'), 'eop']
+  ],
+  ops:[[L('Exploitation', 'Operations'), 'NASA (JPL)', 'eop'], [L('Archive', 'Archive'), 'NSIDC DAAC', 'eop']], refs:{}, checked:'2026-11-24'
+},
+oco2:{
+  intro:L('OCO-2 remplace l\'Orbiting Carbon Observatory, perdu en 2009 quand la coiffe de sa fusée ne s\'est pas séparée. Il vole dans le « train de l\'après-midi », une file de satellites qui passent à quelques minutes d\'intervalle.',
+          'OCO-2 replaces the Orbiting Carbon Observatory, lost in 2009 when its rocket fairing failed to separate. It flies in the "afternoon train", a line of satellites passing a few minutes apart.'),
+  phases:[
+    [L('2 juillet 2014', '2 July 2014'), L('Lancement', 'Launch'), L('Delta II depuis Vandenberg.', 'Delta II from Vandenberg.'), 'wiki']
+  ],
+  ops:[[L('Exploitation', 'Operations'), 'NASA (JPL)', 'jpl'], [L('Archive', 'Archive'), 'NASA GES DISC', 'eop']], refs:{}, checked:'2026-11-24'
+},
+gpm:{
+  intro:L('GPM associe le satellite principal de la NASA et de la JAXA à une constellation de satellites d\'autres pays, munis de radiomètres micro-ondes. Le satellite principal sert de référence pour étalonner les autres et en tirer une carte mondiale des précipitations.',
+          'GPM pairs the NASA–JAXA core satellite with a constellation of satellites from other countries carrying microwave radiometers. The core satellite serves as the reference to calibrate the others and derive a global precipitation map.'),
+  phases:[
+    [L('27 février 2014', '27 February 2014'), L('Lancement', 'Launch'), L('H-IIA depuis Tanegashima (Japon).', 'H-IIA from Tanegashima (Japan).'), 'wiki'],
+    [L('mai 2018', 'May 2018'), L('Nouvelle fauchée du radar', 'New radar swath'), L('Le radar en bande Ka couvre désormais 245 km, comme la bande Ku.', 'The Ka-band radar now covers 245 km, like the Ku band.'), 'mis']
+  ],
+  ops:[[L('Exploitation', 'Operations'), L('NASA et JAXA', 'NASA and JAXA'), 'eop'], [L('Archive', 'Archive'), 'NASA GES DISC, PPS', 'mis']], refs:{}, checked:'2026-11-24'
+},
+nisar:{
+  intro:L('NISAR est la première mission commune de la NASA et de l\'agence spatiale indienne (ISRO). Le JPL a fourni le radar en bande L, le réflecteur et son bras ; l\'ISRO, le radar en bande S, la plateforme et le lancement.',
+          'NISAR is the first joint mission of NASA and the Indian Space Research Organisation (ISRO). JPL supplied the L-band radar, the reflector and its boom; ISRO the S-band radar, the platform and the launch.'),
+  phases:[
+    [L('30 juillet 2025', '30 July 2025'), L('Lancement', 'Launch'), L('GSLV-F16 depuis le centre spatial Satish Dhawan (Sriharikota).', 'GSLV-F16 from the Satish Dhawan Space Centre (Sriharikota).'), 'wiki']
+  ],
+  ops:[[L('Exploitation', 'Operations'), L('NASA (JPL) et ISRO', 'NASA (JPL) and ISRO'), 'eop'], [L('Archive', 'Archive'), 'ASF DAAC', 'eop']], refs:{}, checked:'2026-11-24'
+},
+aura:{
+  intro:L('Aura est le troisième grand satellite du programme EOS de la NASA, après Terra et Aqua. Ses instruments viennent de la NASA, des Pays-Bas, de la Finlande et du Royaume-Uni.',
+          'Aura is the third large satellite of NASA\'s EOS programme, after Terra and Aqua. Its instruments come from NASA, the Netherlands, Finland and the United Kingdom.'),
+  phases:[
+    [L('15 juillet 2004', '15 July 2004'), L('Lancement', 'Launch'), L('Delta II depuis Vandenberg.', 'Delta II from Vandenberg.'), 'wiki'],
+    ['2008', L('Panne de HIRDLS', 'HIRDLS failure'), L('Le sondeur infrarouge HIRDLS cesse de fonctionner.', 'The HIRDLS infrared sounder stops working.'), 'eop']
+  ],
+  ops:[[L('Exploitation', 'Operations'), 'NASA', 'nasa'], [L('Archive', 'Archive'), 'NASA GES DISC', 'eop']], refs:{}, checked:'2026-11-24'
+},
+tempo:{
+  intro:L('TEMPO est un instrument de la NASA hébergé sur un satellite de télécommunications commercial. Il appartient au programme Earth Venture Instrument ; le Smithsonian Astrophysical Observatory dirige la science et les opérations, le centre Langley de la NASA le projet.',
+          'TEMPO is a NASA instrument hosted on a commercial communications satellite. It belongs to the Earth Venture Instrument programme; the Smithsonian Astrophysical Observatory leads science and operations, NASA\'s Langley center the project.'),
+  phases:[
+    [L('3 février 2020', '3 February 2020'), L('Satellite hôte choisi', 'Host satellite chosen'), L('Intelsat annonce qu\'Intelsat 40e portera TEMPO.', 'Intelsat announces that Intelsat 40e will carry TEMPO.'), 'wiki'],
+    [L('7 avril 2023', '7 April 2023'), L('Lancement', 'Launch'), L('Falcon 9 depuis Cap Canaveral, à bord d\'Intelsat 40e.', 'Falcon 9 from Cape Canaveral, aboard Intelsat 40e.'), 'wiki']
+  ],
+  ops:[[L('Exploitation', 'Operations'), L('Smithsonian Astrophysical Observatory', 'Smithsonian Astrophysical Observatory'), 'eop'], [L('Archive', 'Archive'), 'NASA ASDC', 'nasa']], refs:{}, checked:'2026-11-24'
+},
+goes:{
+  intro:L('GOES-19 est le quatrième et dernier satellite de la série GOES-R, après GOES-16, 17 et 18. Lancé sous le nom de GOES-U, il a remplacé GOES-16 à la position Est.',
+          'GOES-19 is the fourth and last satellite of the GOES-R series, after GOES-16, 17 and 18. Launched as GOES-U, it replaced GOES-16 at the East position.'),
+  phases:[
+    [L('25 juin 2024', '25 June 2024'), L('Lancement', 'Launch'), L('Falcon Heavy depuis le centre spatial Kennedy.', 'Falcon Heavy from Kennedy Space Center.'), 'wiki'],
+    [L('7 juillet 2024', '7 July 2024'), L('Orbite géostationnaire', 'Geostationary orbit'), L('GOES-U atteint son orbite et devient GOES-19.', 'GOES-U reaches its orbit and becomes GOES-19.'), 'eop'],
+    [L('7 avril 2025', '7 April 2025'), L('GOES-East', 'GOES-East'), L('Déclaré opérationnel à la position Est.', 'Declared operational at the East position.'), 'wiki']
+  ],
+  ops:[[L('Exploitation', 'Operations'), 'NOAA', 'noaa'], [L('Archive', 'Archive'), 'NOAA (AWS Open Data)', 'noaa']], refs:{}, checked:'2026-11-24'
+},
+sentinel6:{
+  intro:L('Les deux Sentinel-6 forment la mission Copernicus d\'altimétrie de référence, menée par l\'Union européenne, l\'ESA, EUMETSAT, la NASA et la NOAA, avec le soutien du CNES. Le premier porte le nom de Michael Freilich, ancien directeur des sciences de la Terre de la NASA.',
+          'The two Sentinel-6 satellites form the Copernicus reference altimetry mission, run by the European Union, ESA, EUMETSAT, NASA and NOAA, with support from CNES. The first is named after Michael Freilich, former head of NASA\'s Earth science division.'),
+  phases:[
+    [L('21 novembre 2020', '21 November 2020'), L('Sentinel-6 Michael Freilich', 'Sentinel-6 Michael Freilich'), L('Falcon 9 depuis Vandenberg ; il prend ensuite le relais de Jason-3 comme mission de référence.', 'Falcon 9 from Vandenberg; it then takes over from Jason-3 as the reference mission.'), 'eum'],
+    [L('17 novembre 2025', '17 November 2025'), L('Sentinel-6B', 'Sentinel-6B'), L('Falcon 9 depuis Vandenberg.', 'Falcon 9 from Vandenberg.'), 'esa'],
+    [L('16 décembre 2025', '16 December 2025'), L('Premières données de Sentinel-6B', 'First Sentinel-6B data'), L('Variations du niveau de la mer dans l\'Atlantique Nord.', 'Sea-level variations in the North Atlantic.'), 'esa']
+  ],
+  ops:[[L('Exploitation', 'Operations'), 'EUMETSAT', 'eum'], [L('Archives', 'Archives'), 'EUMETSAT, NASA PO.DAAC', 'eum']], refs:{}, checked:'2026-11-24'
 }
 };
 
@@ -1790,6 +2576,181 @@ var EN_MISSIONS = {
         ['Type', 'near-circular, not sun-synchronous'], ['Altitude', '890 km'], ['Inclination', '77.6°'], ['Repeat cycle', '21 days (science orbit since July 2023)'], ['Coverage', 'between 78° N and 78° S, 90 to 95% of the surface'] ]},
       { title:'Images', rows:[
         ['KaRIn', 'Ka-band interferometric radar, two 50 km strips on either side of the track'], ['Swath', '≈ 120 km'], ['Resolution', '15 km (ocean); eddies visible from ≈ 20 km'], ['Water bodies', 'lakes and reservoirs from 250 × 250 m'] ]}
+    ]
+  },
+  pace:{
+    name:'PACE (Plankton, Aerosol, Cloud, ocean Ecosystem)',
+    agency:'NASA (Goddard center); Dutch SPEXone polarimeter',
+    targets:['Oceans', 'Atmosphere'],
+    desc:'PACE observes ocean colour with a spectrometer that splits light into 5 nm bands, from ultraviolet to near infrared: it can tell apart the groups of phytoplankton, the base of marine life. Two polarimeters also measure aerosols and clouds. It sees the whole Earth in two days.',
+    refs:{ nasa:'PACE (mission page)', gsfc:'PACE, project site', wiki:'Plankton, Aerosol, Cloud, ocean Ecosystem', ct:'GP elements of PACE (NORAD no. 58928)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      bus:{ name:'Platform and instruments', desc:'The satellite body, built at NASA Goddard, and its three instruments: the OCI spectrometer (under its rotating telescope), the SPEXone and HARP2 polarimeters. The model merges them into a single block; they are described separately under “Mission and instruments”.', facts:['1.5 × 1.5 × 3.2 m, at most 1,700 kg with propellant'] },
+      solar:{ name:'Solar array', desc:'The deployed solar array that powers the satellite.', facts:['Power: 1,000 W'] }
+    },
+    sections:[
+      { title:'Mission', rows:[['Launch', '8 February 2024, Falcon 9, Cape Canaveral (Florida)'], ['Agency', 'NASA; satellite and OCI built at the Goddard center'], ['Planned duration', 'at least 3 years; propellant for 10 years'], ['Satellite', '1.5 × 1.5 × 3.2 m; at most 1,700 kg'] ]},
+      { title:'Orbit', rows:[['Type', 'polar, sun-synchronous'], ['Altitude', '676.5 km'], ['Inclination', '98°'], ['Period', '≈ 98.3 minutes'], ['Equator crossing', '1 p.m. (± 10 min) local time'] ]},
+      { title:'Images', rows:[['OCI', '315 to 895 nm in 5 nm steps, and 7 shortwave infrared bands (940 to 2,260 nm)'], ['Swath', '≈ 2,700 km (OCI): the whole Earth in 2 days'], ['Resolution', '≈ 1 km² at nadir (OCI)'], ['Polarimeters', 'HARP2: 4 colours, 1,556 km swath; SPEXone: 385 to 770 nm, 100 km swath'] ]}
+    ]
+  },
+  jpss:{
+    name:'JPSS: Suomi NPP, NOAA-20 and NOAA-21',
+    agency:'NOAA (operations) and NASA (building, launch); Ball Aerospace (Suomi NPP, NOAA-20) and Northrop Grumman (NOAA-21) satellites',
+    targets:['Atmosphere', 'Oceans', 'Land'],
+    desc:'The US polar weather satellites of the JPSS programme circle the Earth fourteen times a day and cover all of it twice a day. Their VIIRS camera sees 22 bands, from blue to thermal infrared, over a 3,000 km swath; their sounders measure air temperature and humidity for forecasts. Suomi NPP, the first one, was switched off on 2 November 2026.',
+    refs:{ eop:'Suomi NPP (eoPortal)', eopj:'JPSS (eoPortal)', npp:'Suomi NPP', n20:'NOAA-20', n21:'NOAA-21', ct:'GP elements of NOAA 20 and NOAA 21 (NORAD nos. 43013, 54234)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      bus:{ name:'Platform and instruments', desc:'The body of NOAA-20 and its instruments: the VIIRS camera, the CrIS infrared sounder, the ATMS microwave sounder, OMPS (ozone) and CERES (radiation budget). The model merges them into a single block.', facts:['Launch mass: 2,540 kg', '1.3 × 1.3 × 4.2 m'] },
+      solar:{ name:'Solar array', desc:'The solar wing, on one side of the satellite.', facts:['Power: 1,932 W (NOAA-20)'] }
+    },
+    sections:[
+      { title:'Mission', rows:[['Launches', 'Suomi NPP: 28 October 2011; NOAA-20: 18 November 2017; NOAA-21: 10 November 2022, all from Vandenberg'], ['Launchers', 'Delta II (Suomi NPP, NOAA-20), Atlas V 401 (NOAA-21)'], ['End of Suomi NPP', 'data stopped on 1 November 2026, satellite deactivated on 2 November 2026'], ['Design life', '7 years (NOAA-20)'] ]},
+      { title:'Orbit', rows:[['Type', 'polar, sun-synchronous; NOAA-21 on the same orbit as NOAA-20'], ['Altitude', '≈ 833 km'], ['Inclination', '98.75°'], ['Period', '≈ 101 minutes, ≈ 14 orbits per day'], ['Coverage', 'the whole Earth twice a day'] ]},
+      { title:'Images', rows:[['VIIRS', '22 bands, from 412 nm to 12 µm'], ['Swath', '3,000 km'], ['Resolution', '0.4 km at nadir (fine bands)'], ['Other instruments', 'CrIS, ATMS, OMPS; CERES on NOAA-20'] ]}
+    ]
+  },
+  smap:{
+    name:'SMAP (Soil Moisture Active Passive)',
+    agency:'NASA (JPL), with the Canadian Space Agency',
+    targets:['Land', 'Ice', 'Oceans'],
+    desc:'SMAP measures the moisture of the top centimetres of soil and detects frozen ground. Its radiometer picks up the faint microwave radiation emitted by the Earth, weaker when the soil is wet. A 6 m antenna, spinning on itself, sweeps a 1,000 km strip: the whole Earth in three days.',
+    refs:{ nasa:'SMAP (mission page)', wiki:'Soil Moisture Active Passive', ct:'GP elements of SMAP (NORAD no. 40376)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      reflector:{ name:'6 m antenna', desc:'The large mesh reflector, which spins and sweeps the ground in a circle on either side of the track. The radiometer and the radar (failed since 2015) share this reflector.', facts:['Diameter ≈ 6 m', 'Radiometer footprint ≈ 40 km'] },
+      boom:{ name:'Reflector boom', desc:'The deployable boom that holds the reflector above the microwave feed.' },
+      solar:{ name:'Solar array', desc:'The satellite\'s solar array.', facts:['Power: 1,450 W'] },
+      bus:{ name:'Platform', desc:'The satellite body, with the instrument electronics and the mechanism that spins the antenna.', facts:['Launch mass: 944 kg'] }
+    },
+    sections:[
+      { title:'Mission', rows:[['Launch', '31 January 2015, Delta II 7320, Vandenberg Air Force Base'], ['Mass', '944 kg'], ['Instruments', 'L-band radiometer (1.41 GHz); L-band radar stopped in July 2015 after a failure'], ['Agencies', 'NASA (JPL); Canadian Space Agency'] ]},
+      { title:'Orbit', rows:[['Type', 'sun-synchronous, dawn-dusk'], ['Altitude', '685 km'], ['Inclination', '98°'], ['Period', '98.5 minutes'], ['Equator crossing', '6 p.m. local time, ascending'], ['Repeat cycle', '8 days; global map every 3 days'] ]},
+      { title:'Images', rows:[['Swath', '1,000 km'], ['Resolution', '≈ 40 km (radiometer footprint); moisture maps on a 9 km grid'], ['Depth', 'the top 2 to 5 centimetres of soil'] ]}
+    ]
+  },
+  oco2:{
+    name:'OCO-2 (Orbiting Carbon Observatory 2)',
+    agency:'NASA (JPL); Orbital Sciences satellite',
+    targets:['Atmosphere', 'Land'],
+    desc:'OCO-2 measures the carbon dioxide in the air. Its three spectrometers analyse sunlight reflected by the Earth: CO₂ and oxygen absorb some of its colours. From this it derives the average amount of CO₂ through the whole height of the atmosphere, along a narrow 10 km strip, in small 1.3 × 2.3 km footprints.',
+    refs:{ wiki:'Orbiting Carbon Observatory 2', ct:'GP elements of OCO 2 (NORAD no. 40059)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      bus:{ name:'Platform and instrument', desc:'The satellite body (Orbital Sciences LEOStar-2 platform) and the instrument: three grating spectrometers sharing one telescope; a cryocooler keeps their detectors very cold to reduce noise.', facts:['Launch mass: 449 kg', 'Detectors cooled by a cryocooler'] },
+      solar:{ name:'Solar arrays', desc:'The two solar wings.', facts:['Power: 815 W'] }
+    },
+    sections:[
+      { title:'Mission', rows:[['Launch', '2 July 2014, Delta II 7320, Vandenberg Air Force Base'], ['Mass', '449 kg'], ['Planned duration', '2 years'], ['Context', 'replaces OCO, lost at launch in 2009'] ]},
+      { title:'Orbit', rows:[['Type', 'polar, sun-synchronous; in the “afternoon train” (A-Train)'], ['Altitude', '705 km'], ['Inclination', '98.2°'], ['Period', '98.8 minutes'], ['Equator crossing', 'around 1:30 p.m. local time, ascending'], ['Repeat cycle', '16 days'] ]},
+      { title:'Images', rows:[['Bands', '3: oxygen (≈ 0.76 µm), weak CO₂ (≈ 1.61 µm), strong CO₂ (≈ 2.06 µm)'], ['Swath', '10 km'], ['Resolution', '1.29 × 2.25 km per measurement'] ]}
+    ]
+  },
+  gpm:{
+    name:'GPM (Global Precipitation Measurement), core observatory',
+    agency:'NASA and JAXA',
+    targets:['Atmosphere', 'Oceans'],
+    desc:'The GPM core observatory measures rain and snow. Its dual-frequency radar sees rain in three dimensions, drops and snowflakes included; its microwave radiometer serves as the reference for other weather satellites. Together they give a global precipitation map every half hour (IMERG).',
+    refs:{ wiki:'Global Precipitation Measurement', ct:'GP elements of GPM-CORE (NORAD no. 39574)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      gmi:{ name:'GMI radiometer', desc:'The antenna of the GMI microwave radiometer, on top of the satellite: it spins and sweeps a cone ahead.', facts:['13 channels, from 10 to 183 GHz', '885 km swath'] },
+      bus:{ name:'Platform and DPR radar', desc:'The satellite body, built at the Goddard center, with, underneath, the two flat antennas of the DPR radar supplied by JAXA. The model merges the radar and the platform.', facts:['13 × 6.5 × 5 m', 'Mass: ≈ 3,850 kg'] }
+    },
+    sections:[
+      { title:'Mission', rows:[['Launch', '27 February 2014, H-IIA, Tanegashima (Japan)'], ['Mass', '≈ 3,850 kg'], ['Planned duration', '3 years; propellant for 5 years'], ['Agencies', 'NASA (satellite, GMI) and JAXA (DPR radar, launch)'] ]},
+      { title:'Orbit', rows:[['Type', 'circular, not sun-synchronous (varying overpass time)'], ['Altitude', '407 km'], ['Inclination', '65°'], ['Coverage', 'between ≈ 65° N and 65° S'] ]},
+      { title:'Images', rows:[['DPR radar', 'Ku (13.6 GHz) and Ka (35.5 GHz) bands; 245 km swath for both since May 2018'], ['GMI radiometer', '13 channels from 10 to 183 GHz; 885 km swath'], ['Resolution', '5 km at nadir (DPR)'] ]}
+    ]
+  },
+  nisar:{
+    name:'NISAR (NASA-ISRO Synthetic Aperture Radar)',
+    agency:'NASA (JPL: L-band radar, reflector) and ISRO (S-band radar, platform, launch)',
+    targets:['Land', 'Ice'],
+    desc:'NISAR, a joint mission of NASA and the Indian space agency, carries two radars (L and S bands) sharing a 12 m reflector, unfolded at the end of a 9 m boom. It revisits all land and ice every 12 days and measures ground deformation to the centimetre: earthquakes, volcanoes, landslides, glaciers.',
+    refs:{ nasa:'NISAR (mission page)', wiki:'NISAR (satellite)', ct:'GP elements of NISAR (NORAD no. 65053)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      reflector:{ name:'12 m reflector', desc:'The large mesh reflector shared by both radars: it illuminates the whole 242 km swath.', facts:['Diameter: 12 m'] },
+      boom:{ name:'9 m boom', desc:'The deployable boom that holds the reflector in front of the radar antennas.', facts:['Length: 9 m'] },
+      solar:{ name:'Solar arrays', desc:'The satellite\'s solar arrays.', facts:['Power: 6,500 W'] },
+      bus:{ name:'Platform and radars', desc:'ISRO\'s I-3K platform and, above it, the structure carrying the electronics and the feed antennas of the L-band (NASA) and S-band (ISRO) radars.', facts:['I-3K platform (ISRO)', 'Launch mass: 2,393 kg'] }
+    },
+    sections:[
+      { title:'Mission', rows:[['Launch', '30 July 2025, GSLV-F16, Satish Dhawan Space Centre (India)'], ['Mass', '2,393 kg'], ['Planned duration', '3 years; propellant for 5 years'], ['Agencies', 'NASA (JPL) and ISRO'] ]},
+      { title:'Orbit', rows:[['Type', 'sun-synchronous, dawn-dusk'], ['Altitude', '747 km'], ['Inclination', '98.4°'], ['Repeat cycle', '12 days, ascending and descending'] ]},
+      { title:'Images', rows:[['L-SAR radar', 'L band, 1.25 GHz (24 cm)'], ['S-SAR radar', 'S band, 3.2 GHz'], ['Swath', '242 km'], ['Resolution', '3 to 10 m depending on mode'] ]}
+    ]
+  },
+  aura:{
+    agency:'NASA, with the Netherlands and Finland (OMI) and the United Kingdom (HIRDLS)',
+    targets:['Atmosphere'],
+    desc:'Aura studies the chemistry of the atmosphere: the ozone layer, air pollution and climate. Its OMI spectrometer sees ozone, nitrogen dioxide and aerosols over a 2,600 km swath; MLS measures ozone and other gases layer by layer, looking at the edge of the atmosphere. Launched in 2004, it has far outlived its planned six years.',
+    refs:{ nasa:'Aura (mission page)', wiki:'Aura (satellite)', ct:'GP elements of AURA (NORAD no. 28376)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      inst:{ name:'Instruments', desc:'The four instruments, mounted on the platform: MLS (microwaves, looking ahead), HIRDLS (infrared, stopped in 2008), TES (infrared) and OMI (ultraviolet and visible, looking down).', facts:['OMI: 270 to 500 nm, 2,600 km swath'] },
+      solar:{ name:'Solar array', desc:'The large solar wing; its output, which declines with age, is expected to limit the mission\'s length.' },
+      bus:{ name:'Platform', desc:'TRW\'s modular AB1200 platform, the same as Aqua\'s.', facts:['Mass: ≈ 3,000 kg'] }
+    },
+    sections:[
+      { title:'Mission', rows:[['Launch', '15 July 2004, Delta II 7920, Vandenberg Air Force Base'], ['Mass', '≈ 3,000 kg'], ['Planned duration', '6 years'], ['Instruments', 'MLS, OMI, TES; HIRDLS failed in 2008'] ]},
+      { title:'Orbit', rows:[['Type', 'polar, sun-synchronous; in the “afternoon train” (A-Train)'], ['Altitude', '705 km'], ['Inclination', '98.2°'], ['Period', '98.8 minutes'], ['Equator crossing', '1:45 p.m. local time, ascending (originally)'], ['Repeat cycle', '16 days'] ]},
+      { title:'Images', rows:[['OMI', 'spectrometer from 270 to 500 nm; 2,600 km swath'], ['Resolution', '13 × 24 km at nadir (OMI)'], ['MLS', 'microwaves, looking at the edge of the atmosphere: vertical profiles of ozone and other gases'] ]}
+    ]
+  },
+  tempo:{
+    name:'TEMPO (Tropospheric Emissions: Monitoring of Pollution)',
+    agency:'NASA (Langley center) and Smithsonian Astrophysical Observatory; Ball Aerospace instrument, hosted by the Intelsat 40e communications satellite (Maxar)',
+    targets:['Atmosphere'],
+    desc:'TEMPO is a spectrometer mounted on a communications satellite, in geostationary orbit above North America. It stays facing the continent and scans it every hour in daytime, from Mexico City to the Canadian oil sands: ozone, nitrogen dioxide, formaldehyde. One can watch city pollution rise and fall over the day.',
+    refs:{ nasa:'TEMPO (mission page)', wiki:'Tropospheric Emissions: Monitoring of Pollution', is40:'Intelsat 40e', ct:'GP elements of INTELSAT 40E, which carries TEMPO (NORAD no. 56174)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      bus:{ name:'Host satellite and TEMPO', desc:'The body of the Intelsat 40e communications satellite (Maxar platform), on whose face the TEMPO instrument is mounted, facing the Earth. The model does not separate the instrument.', facts:['Instrument: 1.4 × 1.1 × 1.2 m, 148 kg', 'Host satellite: 5,440 kg at launch'] },
+      antenna:{ name:'Communications antennas', desc:'The antennas of Intelsat 40e, whose primary mission is relaying communications; they are not used by TEMPO.' },
+      solar:{ name:'Solar arrays', desc:'The two solar wings of the host satellite.' }
+    },
+    sections:[
+      { title:'Mission', rows:[['Launch', '7 April 2023, Falcon 9, Cape Canaveral, aboard Intelsat 40e'], ['Instrument', '1.4 × 1.1 × 1.2 m; 148 kg; built by Ball Aerospace'], ['Leads', 'Smithsonian Astrophysical Observatory (science, operations center); NASA Langley (project)'], ['Host satellite', 'Intelsat 40e, communications, planned for 15 years'] ]},
+      { title:'Orbit', rows:[['Type', 'geostationary: the satellite stays above the same point of the equator'], ['Altitude', '≈ 35,786 km'], ['Position', '91° west'] ]},
+      { title:'Images', rows:[['Spectrum', '290 to 490 nm and 540 to 740 nm; 0.57 nm spectral resolution'], ['Resolution', '2.2 × 5 km on the ground (2.21 × 4.97 km at the centre of the area)'], ['Frequency', 'one scan per hour, in daytime'], ['Area', 'North America, from Mexico City to the Canadian oil sands, from the Atlantic to the Pacific'] ]}
+    ]
+  },
+  goes:{
+    name:'GOES-East (GOES-19)',
+    agency:'NOAA (operations) and NASA (building, launch); Lockheed Martin satellite, L3Harris imager',
+    targets:['Atmosphere', 'Oceans'],
+    desc:'GOES-19 is the US geostationary weather satellite that watches the eastern Americas and the Atlantic, as GOES-East. Its ABI imager photographs the whole Earth disk every ten minutes in 16 bands, and some areas every minute: thunderstorms, hurricanes, fires, fog. Its GLM detector counts lightning.',
+    refs:{ eop:'GOES-R series (eoPortal)', wiki:'GOES-19', ct:'GP elements of GOES 19 (NORAD no. 60133)' },
+    sections:[
+      { title:'Mission', rows:[['Launch', '25 June 2024, Falcon Heavy, Kennedy Space Center (Florida)'], ['Entered service', '7 April 2025, as GOES-East'], ['Series', 'last of the four GOES-R satellites (GOES-16 to 19)'], ['Builder', 'Lockheed Martin'] ]},
+      { title:'Orbit', rows:[['Type', 'geostationary'], ['Altitude', '≈ 35,786 km'], ['Position', '75.2° west'] ]},
+      { title:'Images', rows:[['ABI imager', '16 bands: 2 visible, 4 near-infrared, 10 infrared'], ['Resolution', '0.5 km (visible), 1 km (near infrared), 2 km (infrared)'], ['Frequency', 'full disk every 10 min; United States every 5 min; small areas every 30 to 60 s'], ['Lightning', 'GLM detector, which maps lightning continuously'] ]}
+    ]
+  },
+  sentinel6:{
+    name:'Sentinel-6 Michael Freilich and Sentinel-6B',
+    agency:'European Union (Copernicus), ESA, EUMETSAT, NASA, NOAA, with CNES; Airbus satellites',
+    targets:['Oceans'],
+    desc:'The Sentinel-6 satellites are the reference altimeters for ocean level: they extend the record begun in 1992 with TOPEX/Poseidon, then the Jason satellites. Their Poseidon-4 radar measures sea height straight below the satellite; in ten days they cover 95% of the oceans. Sentinel-6B was launched in November 2025.',
+    refs:{ eop:'Copernicus: Sentinel-6 (eoPortal)', wiki:'Sentinel-6 Michael Freilich', wikib:'Sentinel-6B', ct:'GP elements of SENTINEL-6A and -6B (NORAD nos. 46984, 66514)' },
+    model:{ license:'NASA/JPL-Caltech, free use (NASA media usage guidelines, which cover 3D models)' },
+    parts:{
+      poseidon:{ name:'Poseidon-4 altimeter', desc:'The antenna of the radar altimeter, facing the Earth: it sends radar pulses straight down and times their echo from the sea.' },
+      amr:{ name:'AMR-C radiometer', desc:'The microwave radiometer, supplied by NASA: it measures water vapour in the air, which slows radar waves, to correct the measured height.' },
+      doris:{ name:'DORIS antenna', desc:'The receiver of the French DORIS system, which locates the satellite to the centimetre using a network of ground beacons.' },
+      gnss:{ name:'GNSS antennas', desc:'The antennas of the satellite navigation (GNSS) receivers, for precise orbit determination (POD) and radio occultation (atmospheric temperature profiles).' },
+      lra:{ name:'Laser reflector', desc:'The retroreflector, targeted from the ground by laser stations to check the orbit.' },
+      solar:{ name:'Solar arrays', desc:'The satellite\'s solar arrays.', facts:['Power: 891 W'] },
+      bus:{ name:'Platform', desc:'The platform, built by Airbus, with its sloping roof.', facts:['Mass: 1,192 kg', '5.13 × 4.17 × 2.34 m'] }
+    },
+    sections:[
+      { title:'Mission', rows:[['Launches', 'Sentinel-6 Michael Freilich: 21 November 2020; Sentinel-6B: 17 November 2025; Falcon 9, Vandenberg'], ['Mass', '1,192 kg'], ['Planned duration', '5.5 years per satellite'], ['Role', 'reference altimetry mission, following Jason-3'] ]},
+      { title:'Orbit', rows:[['Type', 'not sun-synchronous'], ['Altitude', '1,336 km'], ['Inclination', '66°'], ['Repeat cycle', '≈ 10 days'] ]},
+      { title:'Images', rows:[['Altimeter', 'Poseidon-4 radar, looking straight down'], ['Coverage', '95% of the oceans'], ['Other instruments', 'AMR-C radiometer, DORIS, GNSS, laser reflector, GNSS radio occultation'] ]}
     ]
   }
 };
@@ -2154,6 +3115,45 @@ var EN_UI = {
   "Gros plan ≈ 7,8 × 7,8 km autour de Chamonix :":"Close-up ≈ 7.8 × 7.8 km around Chamonix:",
   "pixels de l'instrument, agrandis sans lissage":"instrument pixels, enlarged without smoothing",
   "diffusion libre, sans licence écrite":"freely distributed, no written licence",
+  "Échelle logarithmique : les satellites géostationnaires, à ≈ 36 000 km, sont jusqu'à près de cent fois plus haut que ceux en orbite basse.":"Logarithmic scale: the geostationary satellites, at ≈ 36,000 km, are up to nearly a hundred times higher than those in low orbit.",
+  "Superposition des images quotidiennes du":"Overlay of the daily images from",
+  "Polarimètre":"Polarimeter",
+  "Océans":"Oceans",
+  "PACE OCI, réflectance corrigée, couleurs naturelles (une journée)":"PACE OCI, corrected reflectance, natural colour (one day)",
+  "VIIRS, réflectance corrigée, couleurs naturelles":"VIIRS, corrected reflectance, natural colour",
+  "SMAP, humidité du sol":"SMAP, soil moisture",
+  "OCO-2, CO₂ moyen sur la colonne d'air (XCO₂), traces de 16 jours":"OCO-2, column-averaged CO₂ (XCO₂), 16 days of tracks",
+  "IMERG, taux de précipitation (une journée)":"IMERG, precipitation rate (one day)",
+  "NISAR, rétrodiffusion radar en fausses couleurs (GCOV), traces de 12 jours":"NISAR, radar backscatter in false colour (GCOV), 12 days of tracks",
+  "OMI, colonne totale d'ozone (une journée)":"OMI, total ozone column (one day)",
+  "TEMPO, NO₂ troposphérique (un balayage horaire)":"TEMPO, tropospheric NO₂ (one hourly scan)",
+  "GOES-East (GOES-19) ABI, GeoColor (une image du disque)":"GOES-East (GOES-19) ABI, GeoColor (one full-disk image)",
+  "La Terre entière vue en une journée par l'instrument OCI de PACE, en couleurs naturelles":"The whole Earth seen in one day by PACE's OCI instrument, in natural colour",
+  "La France et les Alpes vues par l'instrument VIIRS, en couleurs naturelles":"France and the Alps seen by the VIIRS instrument, in natural colour",
+  "Carte du monde de l'humidité du sol mesurée par le radiomètre de SMAP":"World map of soil moisture measured by SMAP's radiometer",
+  "Traces des mesures de dioxyde de carbone d'OCO-2 sur 16 jours, sur une carte du monde":"Tracks of OCO-2 carbon dioxide measurements over 16 days, on a world map",
+  "Carte du monde des précipitations d'une journée (produit IMERG)":"World map of one day's precipitation (IMERG product)",
+  "Bandes d'images radar de NISAR en fausses couleurs, superposées sur 12 jours, sur une carte du monde":"Strips of NISAR radar images in false colour, overlaid over 12 days, on a world map",
+  "Carte du monde de la quantité totale d'ozone mesurée en une journée par OMI":"World map of the total amount of ozone measured in one day by OMI",
+  "Carte de l'Amérique du Nord du dioxyde d'azote mesuré par TEMPO en un balayage":"Map of North America of nitrogen dioxide measured by TEMPO in one scan",
+  "Le disque de la Terre vu par GOES-East, des Amériques à l'Afrique de l'Ouest (image GeoColor)":"The Earth's disk seen by GOES-East, from the Americas to West Africa (GeoColor image)",
+  "Carte du monde de l'écart de hauteur de la mer mesuré par Sentinel-6 Michael Freilich":"World map of sea surface height anomaly measured by Sentinel-6 Michael Freilich",
+  "anomalie de hauteur de la mer":"sea surface height anomaly",
+  "Radiomètre":"Radiometer",
+  "Spectromètres":"Spectrometers",
+  "Panne de HIRDLS":"HIRDLS failure",
+  "Premières données publiques":"First public data",
+  "Lancement de Suomi NPP":"Launch of Suomi NPP",
+  "Lancement de NOAA-20 (JPSS-1)":"Launch of NOAA-20 (JPSS-1)",
+  "Lancement de NOAA-21 (JPSS-2)":"Launch of NOAA-21 (JPSS-2)",
+  "Fin de Suomi NPP":"End of Suomi NPP",
+  "Panne du radar":"Radar failure",
+  "Lancement (sur Intelsat 40e)":"Launch (on Intelsat 40e)",
+  "Lancement de GOES-U":"Launch of GOES-U",
+  "Orbite géostationnaire atteinte, renommé GOES-19":"Geostationary orbit reached, renamed GOES-19",
+  "Mis en service comme GOES-East":"Entered service as GOES-East",
+  "Lancement de Sentinel-6 Michael Freilich":"Launch of Sentinel-6 Michael Freilich",
+  "Lancement de Sentinel-6B":"Launch of Sentinel-6B",
 };
 
 /* =================================================================
@@ -2379,7 +3379,8 @@ return { open:open, select:select, explode:function(v){ ex = v; }, spin:function
 var EarthPage = (function(){
 'use strict';
 var RE = 6371;   /* rayon moyen de la Terre, km (NASA NSSDCA, « Earth Fact Sheet ») */
-var COL = ['#FF6B9A', '#4DD0E1', '#B39DDB', '#FFB74D', '#81C784', '#F06292', '#64B5F6', '#FFD54F', '#A1887F', '#E57373'];   /* une couleur par satellite, dans l'ordre du registre */
+var COL = ['#FF6B9A', '#4DD0E1', '#B39DDB', '#FFB74D', '#81C784', '#F06292', '#64B5F6', '#FFD54F', '#A1887F', '#E57373',
+           '#AED581', '#FF8A65', '#9575CD', '#4DB6AC', '#F8BBD0', '#90CAF9', '#FFF176', '#BCAAA4', '#CE93D8', '#80CBC4'];   /* une couleur par satellite, dans l'ordre du registre */
 var SPEED = [[1, 'temps réel'], [10, '10 fois plus vite'], [60, 'une minute par seconde'], [600, 'dix minutes par seconde']];
 var S = { t:Date.now(), speed:1, run:true, raf:0, last:0, sel:'', az:0, el:0.35, dist:4.2, frame:0, built:false };
 var R = null;   /* objets three.js */
@@ -2482,7 +3483,7 @@ function build(){
   cv.addEventListener('pointerup', function(e){ cv.classList.remove('dragging'); if (drag && !drag.moved) pick(e); drag = null; });
   cv.addEventListener('wheel', function(e){ e.preventDefault(); zoom(1 + Math.sign(e.deltaY) * 0.1); }, { passive:false });
 }
-function zoom(f){ S.dist = Math.max(1.35, Math.min(14, S.dist * f)); kick(); }
+function zoom(f){ S.dist = Math.max(1.35, Math.min(30, S.dist * f)); kick(); }
 /* clic sur la vue : le satellite visible le plus proche du pointeur, à 14 px près */
 function pick(e){
   var rect = R.renderer.domElement.getBoundingClientRect(), best = null, bd = 14;
@@ -2491,6 +3492,9 @@ function pick(e){
 }
 function select(k){
   S.sel = S.sel === k ? '' : k;
+  /* satellite géostationnaire (≈ 6,6 rayons terrestres) : recul de la caméra pour le voir avec la Terre */
+  var s = S.sel && R && R.list.filter(function(x){ return x.key === S.sel; })[0], p = s && eci(s, S.t);
+  if (p){ var d = v3(p.position).length(); if (d > 2.5 && S.dist < d * 3.4) S.dist = Math.min(30, d * 3.4); }
   document.querySelectorAll('#eo-list [data-eo]').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-eo') === S.sel)); });
   S.orbAt = 0; kick(); info();
 }
@@ -2589,8 +3593,8 @@ function T(s){ return OBS_T(s); }
 function en(){ return OBS_LANG === 'en'; }
 function colon(){ return en() ? ': ' : ' : '; }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function day(s){ var m = /^(\d{4})-(\d{2})(?:-(\d{2}))?/.exec(s); return Date.UTC(+m[1], +m[2] - 1, m[3] ? +m[3] : 1) / DAY; }
-function fmt(s){ var o = { month:'long', year:'numeric', timeZone:'UTC' }; if (s.length > 7) o.day = 'numeric';
+function day(s){ var m = /^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/.exec(s); return Date.UTC(+m[1], m[2] ? +m[2] - 1 : 6, m[3] ? +m[3] : 1) / DAY; }   /* année seule : placée au milieu de l'année */
+function fmt(s){ if (s.length === 4) return s; var o = { month:'long', year:'numeric', timeZone:'UTC' }; if (s.length > 7) o.day = 'numeric';
   return new Date(day(s) * DAY).toLocaleDateString(en() ? 'en-GB' : 'fr-FR', o); }
 function today(){ var d = new Date(); return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) / DAY; }
 function src(m, k){ var r = k && m.refs && m.refs[k]; return r ? ' <a class="src" href="' + esc(r.u) + '" rel="noopener" target="_blank" title="' + esc(r.t) + '">' + esc(r.p) + '</a>' : ''; }
@@ -2693,9 +3697,11 @@ function row(m, idx, re){ var s = m.sections && m.sections[idx]; return s && s.r
 function num(s){ var m = /[\d][\d\s  ,.]*/.exec(s); return m ? +m[0].replace(/[\s  ]/g, '').replace(en() ? /,/g : /\./g, '').replace(',', '.') : NaN; }
 function insts(m){ return (typeof INST_DATA !== 'undefined' && INST_DATA[m.id] && INST_DATA[m.id].instruments) || []; }
 function bars(items, unit){
-  var max = Math.max.apply(null, items.map(function(i){ return i.v; }));
+  var max = Math.max.apply(null, items.map(function(i){ return i.v; })), min = Math.min.apply(null, items.map(function(i){ return i.v; }));
+  /* écarts de plus d'un facteur 20 (orbite géostationnaire) : longueur proportionnelle au logarithme, à partir d'un dixième du minimum */
+  var lg = max / min > 20, w = function(v){ return lg ? Math.log(v / (min / 10)) / Math.log(max / (min / 10)) : v / max; };
   return '<ul class="cp-bars">' + items.map(function(i){
-    return '<li><a href="#' + i.m.id + '" class="cp-n">' + esc(i.m.short) + '</a><span class="cp-t"><i style="width:' + (i.v / max * 100).toFixed(1) + '%;background:' + col(i.m) + '"></i></span><span class="cp-v">' + i.label + '</span></li>';
+    return '<li><a href="#' + i.m.id + '" class="cp-n">' + esc(i.m.short) + '</a><span class="cp-t"><i style="width:' + (w(i.v) * 100).toFixed(1) + '%;background:' + col(i.m) + '"></i></span><span class="cp-v">' + i.label + '</span></li>';
   }).join('') + '</ul>';
 }
 var RE_ALT = /^(Altitude)$/, RE_RES = /^(Résolution|Resolution)$/;
@@ -2760,7 +3766,8 @@ function compare(sec){
   if (sec === 'comparer') main += overview(L);
   else if (sec === 'comparer-orbites'){
     var al = L.map(function(m){ var r = row(m, SEC.orbit, RE_ALT); if (!r) return null; var v = num(r[1]); return isNaN(v) ? null : { m:m, v:v, label:esc(OBS_NUM(r[1])) + src(m, r[2]) }; }).filter(Boolean);
-    main += '<div class="isec"><h3>' + esc(T('Altitude')) + '</h3>' + bars(al) + '<div class="cap">' + esc(T('Altitude moyenne de l\'orbite, telle que la publie la source citée. L\'orbite réelle du jour, calculée à partir des éléments orbitaux, est sur la page « Orbite » de chaque satellite.')) + '</div></div>';
+    var lgA = al.length && Math.max.apply(null, al.map(function(i){ return i.v; })) / Math.min.apply(null, al.map(function(i){ return i.v; })) > 20;
+    main += '<div class="isec"><h3>' + esc(T('Altitude')) + '</h3>' + bars(al) + '<div class="cap">' + esc(T('Altitude moyenne de l\'orbite, telle que la publie la source citée. L\'orbite réelle du jour, calculée à partir des éléments orbitaux, est sur la page « Orbite » de chaque satellite.')) + (lgA ? ' ' + esc(T('Échelle logarithmique : les satellites géostationnaires, à ≈ 36 000 km, sont jusqu\'à près de cent fois plus haut que ceux en orbite basse.')) : '') + '</div></div>';
     main += rowsTable(L, SEC.orbit, 'Orbites', 'Valeurs de la section « Orbite » de chaque fiche.');
   } else if (sec === 'comparer-images') main += rowsTable(L, SEC.images, 'Images', 'Valeurs de la section « Images » de chaque fiche.');
   else if (sec === 'comparer-lieu') main += sameplace(L);
@@ -3370,6 +4377,8 @@ function renderPanel(m){
 /* date de l'aperçu : la date STAC d'une mosaïque assemblée après la mission n'est pas celle de la prise de vue */
 function when(m, d){
   var day = String(d.datetime).slice(0, 10), end = (m.events || []).filter(function(e){ return e.type === 'end'; })[0];
+  if (d.stack_days) return T('Superposition des images quotidiennes du') + ' ' + esc(d.date_first) + ' ' + T('au') + ' ' + esc(day) + ' (' + d.stack_days + ' ' + T('jours') + '). ';
+  if (String(d.datetime).length > 10) return T('Prise le') + ' ' + esc(day) + (OBS_LANG === 'en' ? ' at ' : ' à ') + esc(String(d.datetime).slice(11, 16)) + ' UTC. ';
   return end && day > end.date ? T('Date du produit dans le catalogue') + ' : ' + esc(day) + ' (' + T('après la fin de la mission : ce n\'est pas la date de prise de vue') + '). '
     : T('Prise le') + ' ' + esc(day) + '. ';
 }
@@ -3397,6 +4406,7 @@ function realData(m, R){
                             : 'Aperçu entier publié par l\'archive (' + d.full_size[0] + ' × ' + d.full_size[1] + ' pixels)' + (out[0] !== d.full_size[0] ? ', ramené à ' + out[0] + ' × ' + out[1] : ''));
   return '<figure class="real"><img src="data/' + key + '.jpg" width="' + out[0] + '" height="' + out[1] + '" alt="' + (R.altRaw ? esc(R.altRaw) : T(R.alt)) + ' (' + esc(T(d.product)) + ')">' +
     '<figcaption><strong>' + esc(T(d.instrument)) + ' · ' + esc(T(d.product)) + '</strong><br>' + when(m, d) + how +
+    (d.legend ? (en ? ', with the layer\'s official legend below' : ', avec la légende officielle de la couche en dessous') : '') +
     (d.stretch ? (en ? ', contrast stretched between the ' + d.stretch[0] + ' and ' + d.stretch[1] + ' percentiles' : ', contraste étiré entre les centiles ' + OBS_NUM(String(d.stretch[0]).replace('.', ',')) + ' et ' + OBS_NUM(String(d.stretch[1]).replace('.', ','))) : '') + '.<br>' +
     T('Archive') + ' : ' + T(d.archive) + ' · ' + T('collection') + ' <code>' + esc(d.collection) + '</code> · <a href="' + esc(d.href) + '" rel="noopener" target="_blank">' + T('aperçu d\'origine') + '</a> · ' + T('téléchargé le') + ' ' + esc(d.fetched) + licLine(d) + '</figcaption></figure>';
 }

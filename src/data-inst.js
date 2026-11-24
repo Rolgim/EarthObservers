@@ -15,7 +15,8 @@ var INST_TYPES = {
   radar: { c:'#B86A00', l:L('Radar', 'Radar') },
   alt:   { c:'#0F8A7A', l:L('Altimètre', 'Altimeter') },
   rad:   { c:'#8A5A00', l:L('Radiomètre', 'Radiometer') },
-  grav:  { c:'#5B6770', l:L('Gravimétrie', 'Gravimetry') }
+  grav:  { c:'#5B6770', l:L('Gravimétrie', 'Gravimetry') },
+  pol:   { c:'#5B4BB7', l:L('Polarimètre', 'Polarimeter') }
 };
 var USGS_EE = { label:'USGS EarthExplorer', desc:L('Archive Landsat de l\'USGS : recherche et téléchargement des scènes (compte gratuit)', 'USGS Landsat archive: scene search and download (free account)'), url:'https://earthexplorer.usgs.gov/' };
 var LP_DAAC = { label:'NASA LP DAAC', desc:L('Archive des produits terrestres de la NASA (HLS, MODIS, ASTER)', 'NASA archive of land products (HLS, MODIS, ASTER)'), url:'https://www.earthdata.nasa.gov/centers/lp-daac' };
@@ -31,6 +32,14 @@ var GESDISC = { label:'NASA GES DISC', desc:L('Archive de la NASA pour l\'atmosp
 var AVISO = { label:'AVISO+ (CNES)', desc:L('Distribution des données d\'altimétrie du CNES, dont SWOT', 'CNES altimetry data distribution, including SWOT'), url:'https://www.aviso.altimetry.fr/' };
 var ISDC = { label:'GFZ ISDC', desc:L('Centre de données du GFZ (produits GRACE-FO)', 'GFZ data centre (GRACE-FO products)'), url:'https://isdc.gfz-potsdam.de/' };
 
+var OBDAAC = { label:'NASA OB.DAAC', desc:L('Archive de la NASA pour la couleur de l\'océan (PACE) ; compte Earthdata pour télécharger', 'NASA ocean colour archive (PACE); Earthdata account to download'), url:'https://oceancolor.gsfc.nasa.gov/' };
+var LAADS = { label:'NASA LAADS DAAC', desc:L('Archive de la NASA pour les produits VIIRS et MODIS de l\'atmosphère', 'NASA archive for VIIRS and MODIS atmosphere products'), url:'https://ladsweb.modaps.eosdis.nasa.gov/' };
+var NSIDC_SMAP = { label:'NSIDC DAAC (SMAP)', desc:L('Archive de la NASA pour les produits d\'humidité du sol de SMAP', 'NASA archive for SMAP soil moisture products'), url:'https://nsidc.org/data/smap' };
+var GPMPPS = { label:'GPM Data Directory', desc:L('Les produits de GPM (radar, radiomètre, IMERG) et leurs archives', 'GPM products (radar, radiometer, IMERG) and their archives'), url:'https://gpm.nasa.gov/data/directory' };
+var ASF = { label:'ASF DAAC', desc:L('Archive radar de la NASA (Alaska Satellite Facility), dont NISAR ; compte Earthdata pour télécharger', 'NASA radar archive (Alaska Satellite Facility), including NISAR; Earthdata account to download'), url:'https://asf.alaska.edu/' };
+var ASDC = { label:'NASA ASDC', desc:L('Archive de la NASA (centre Langley) pour TEMPO', 'NASA archive (Langley center) for TEMPO'), url:'https://www.earthdata.nasa.gov/centers/asdc-daac' };
+var NOAA_AWS = { label:'NOAA Open Data (AWS)', desc:L('Images GOES brutes et produits ABI en accès libre, sans compte', 'Raw GOES imagery and ABI products in open access, no account'), url:'https://registry.opendata.aws/noaa-goes/' };
+var EUMDS = { label:'EUMETSAT Data Store', desc:L('Archive des produits Sentinel-6 d\'EUMETSAT (compte gratuit)', 'EUMETSAT archive of Sentinel-6 products (free account)'), url:'https://data.eumetsat.int/' };
 var INST_DATA = {
 landsat9:{
   summary:L('Deux instruments qui regardent ensemble la même bande de 185 km : la caméra OLI-2 (neuf bandes, du bleu à l\'infrarouge moyen) et le capteur thermique TIRS-2 (deux bandes vers 11 µm). Ce sont des copies améliorées de ceux de Landsat 8 : codage sur 14 bits pour OLI-2, lumière parasite réduite et durée de vie allongée pour TIRS-2.',
@@ -232,6 +241,189 @@ swot:{
       summary:L('Altimètre radar classique à deux fréquences, fourni par le CNES.', 'Classic dual-frequency radar altimeter, supplied by CNES.'),
       specs:[[L('Type', 'Type'), L('altimètre radar à deux fréquences, à la verticale', 'dual-frequency nadir radar altimeter'), 'eop']],
       docs:[{ l:'SWOT (eoPortal)', u:'https://www.eoportal.org/satellite-missions/swot' }] }
+  ]
+}
+,
+pace:{
+  summary:L('Trois instruments : le spectromètre OCI, qui mesure la couleur de l\'océan en continu de l\'ultraviolet à l\'infrarouge proche, et deux polarimètres, HARP2 et SPEXone, qui mesurent aussi comment la lumière est polarisée et sous quels angles elle est renvoyée, pour les aérosols et les nuages.',
+            'Three instruments: the OCI spectrometer, which measures ocean colour continuously from ultraviolet to near infrared, and two polarimeters, HARP2 and SPEXone, which also measure how light is polarised and at which angles it is scattered, for aerosols and clouds.'),
+  refs:{}, archives:[OBDAAC, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'oci', name:'OCI', full:'Ocean Color Instrument', type:'spec',
+      use:L('Mesurer la couleur de l\'océan pour suivre le plancton végétal et ses différentes familles, ainsi que les aérosols et les nuages.', 'Measure ocean colour to track phytoplankton and its different groups, as well as aerosols and clouds.'),
+      summary:L('Spectromètre à télescope tournant, qui balaie la Terre d\'un bord à l\'autre. Il mesure un spectre continu de 315 à 895 nm, par pas de 5 nm, et sept bandes de l\'infrarouge court. Il peut s\'incliner de 20° vers l\'avant ou l\'arrière pour éviter le reflet du Soleil sur la mer.',
+                'Spectrometer with a rotating telescope, which scans the Earth from edge to edge. It measures a continuous spectrum from 315 to 895 nm, in 5 nm steps, and seven shortwave infrared bands. It can tilt 20° forward or backward to avoid sun glint on the sea.'),
+      bands:[{ l:L('315 à 895 nm, par pas de 5 nm', '315 to 895 nm, in 5 nm steps'), lo:0.315, hi:0.895 }, { l:L('7 bandes de 940 à 2 260 nm (étendue ≈)', '7 bands from 940 to 2,260 nm (≈ extent)'), lo:0.94, hi:2.26 }],
+      specs:[[L('Spectre', 'Spectrum'), L('315 à 895 nm par pas de 5 nm ; 7 bandes de 940 à 2 260 nm', '315 to 895 nm in 5 nm steps; 7 bands from 940 to 2,260 nm'), 'osc'], [L('Pixel au sol', 'Ground pixel'), L('≈ 1,2 km au nadir', '≈ 1.2 km at nadir'), 'oci'],
+        [L('Fauchée', 'Swath'), '≈ 2 700 km', 'oci'], [L('Inclinaison', 'Tilt'), '± 20°', 'oci']],
+      docs:[{ l:'Ocean Color Instrument (NASA OBPG)', u:'https://pace.oceansciences.org/oci.htm' }] },
+    { id:'harp2', name:'HARP2', full:'Hyper-Angular Rainbow Polarimeter #2', type:'pol',
+      use:L('Mesurer la polarisation de la lumière renvoyée par les nuages et les aérosols, sous de nombreux angles.', 'Measure the polarisation of light scattered by clouds and aerosols, from many angles.'),
+      summary:L('Polarimètre grand angle en quatre couleurs (440, 550, 670 et 870 nm).', 'Wide-angle polarimeter in four colours (440, 550, 670 and 870 nm).'),
+      specs:[[L('Longueurs d\'onde', 'Wavelengths'), '440, 550, 670, 870 nm', 'osc'], [L('Fauchée', 'Swath'), '1 556 km', 'osc']],
+      docs:[{ l:'PACE Mission Overview', u:'https://pace.oceansciences.org/mission.htm' }] },
+    { id:'spexone', name:'SPEXone', full:'Spectro-polarimeter for Planetary Exploration', type:'pol',
+      use:L('Caractériser finement les aérosols (taille, forme, composition) grâce à la polarisation, sous cinq angles de vue.', 'Characterise aerosols in detail (size, shape, composition) using polarisation, from five viewing angles.'),
+      summary:L('Spectropolarimètre néerlandais à bande étroite, qui regarde chaque point sous cinq angles.', 'Dutch narrow-swath spectropolarimeter, which looks at each point from five angles.'),
+      bands:[{ l:'385 – 770 nm', lo:0.385, hi:0.77 }],
+      specs:[[L('Spectre', 'Spectrum'), L('385 à 770 nm', '385 to 770 nm'), 'osc'], [L('Fauchée', 'Swath'), '100 km', 'osc'], [L('Angles de vue', 'Viewing angles'), '5', 'osc']],
+      docs:[{ l:'PACE Mission Overview', u:'https://pace.oceansciences.org/mission.htm' }] }
+  ]
+},
+jpss:{
+  summary:L('Les satellites JPSS portent la caméra VIIRS (images, nuages, incendies, couleur de l\'océan, lumières de nuit), deux sondeurs qui mesurent la température et l\'humidité de l\'air couche par couche (CrIS dans l\'infrarouge, ATMS en micro-ondes), OMPS pour l\'ozone et, sur NOAA-20, CERES pour le bilan d\'énergie de la Terre.',
+            'The JPSS satellites carry the VIIRS camera (images, clouds, fires, ocean colour, night lights), two sounders that measure air temperature and humidity layer by layer (CrIS in the infrared, ATMS in microwaves), OMPS for ozone and, on NOAA-20, CERES for the Earth\'s energy budget.'),
+  refs:{}, archives:[LAADS, LP_DAAC, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'viirs', name:'VIIRS', full:'Visible Infrared Imaging Radiometer Suite', type:'cam',
+      use:L('Photographier toute la Terre deux fois par jour : nuages, incendies, neige, couleur de l\'océan, et lumières de la nuit grâce à une bande très sensible.', 'Photograph the whole Earth twice a day: clouds, fires, snow, ocean colour, and night lights thanks to a very sensitive band.'),
+      summary:L('Radiomètre à balayage à 22 bandes du bleu à l\'infrarouge thermique, dont une bande « jour-nuit » qui voit les villes éclairées.', 'Scanning radiometer with 22 bands from blue to thermal infrared, including a day-night band that sees lit cities.'),
+      bands:[{ l:L('22 bandes de 412 nm à 12 µm (étendue ≈)', '22 bands from 412 nm to 12 µm (≈ extent)'), lo:0.412, hi:12 }],
+      specs:[[L('Bandes', 'Bands'), L('22, de 412 nm à 12 µm', '22, from 412 nm to 12 µm'), 'eopj'], [L('Pixel au sol', 'Ground pixel'), L('0,4 km au nadir', '0.4 km at nadir'), 'eopj'],
+        [L('Fauchée', 'Swath'), '3 000 km', 'eopj'], [L('Champ de vue', 'Field of view'), '≈ ± 55,84°', 'eop']],
+      docs:[{ l:'VIIRS (NOAA NESDIS)', u:'https://www.nesdis.noaa.gov/our-satellites/currently-flying/joint-polar-satellite-system/visible-infrared-imaging-radiometer-suite-viirs' }] },
+    { id:'atms', name:'ATMS', full:'Advanced Technology Microwave Sounder', type:'rad',
+      use:L('Mesurer la température et l\'humidité de l\'air sur toute la hauteur de l\'atmosphère, même à travers les nuages, pour les modèles de prévision.', 'Measure air temperature and humidity through the whole atmosphere, even through clouds, for forecast models.'),
+      summary:L('Sondeur micro-onde à 22 canaux, utilisé avec le sondeur infrarouge CrIS.', '22-channel microwave sounder, used together with the CrIS infrared sounder.'),
+      specs:[[L('Canaux', 'Channels'), '22', 'eop'], [L('Fauchée', 'Swath'), '2 300 km', 'eop']],
+      docs:[{ l:'Suomi NPP (eoPortal)', u:'https://www.eoportal.org/satellite-missions/suomi-npp' }] }
+  ]
+},
+smap:{
+  summary:L('Deux instruments en bande L partageaient la grande antenne tournante : un radiomètre, qui fonctionne toujours, et un radar, en panne depuis juillet 2015. Le radiomètre mesure la température de brillance du sol, d\'où l\'on tire son humidité et son état (gelé ou non) ; il mesure aussi la salinité de la mer.',
+            'Two L-band instruments shared the large rotating antenna: a radiometer, which still works, and a radar, which failed in July 2015. The radiometer measures the brightness temperature of the ground, from which its moisture and state (frozen or not) are derived; it also measures sea salinity.'),
+  refs:{}, archives:[NSIDC_SMAP, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'radiometer', name:L('Radiomètre', 'Radiometer'), full:'L-band Radiometer', type:'rad',
+      use:L('Mesurer l\'humidité des premiers centimètres du sol et repérer les sols gelés, sur toute la Terre en trois jours.', 'Measure the moisture of the top few centimetres of soil and detect frozen ground, over the whole Earth in three days.'),
+      summary:L('Radiomètre micro-onde passif en bande L (1,41 GHz) : un sol humide émet moins qu\'un sol sec à cette fréquence.', 'Passive L-band microwave radiometer (1.41 GHz): wet soil emits less than dry soil at this frequency.'),
+      specs:[[L('Fréquence', 'Frequency'), '1,41 GHz', 'eop'], [L('Pixel au sol', 'Ground pixel'), L('≈ 40 km (tache de l\'antenne)', '≈ 40 km (antenna footprint)'), 'eop'], [L('Fauchée', 'Swath'), '1 000 km', 'eop']],
+      docs:[{ l:'SMAP (eoPortal)', u:'https://www.eoportal.org/satellite-missions/smap' }] },
+    { id:'radar', name:'Radar', full:'L-band Radar', type:'radar',
+      use:L('Affiner la carte d\'humidité du radiomètre à quelques kilomètres.', 'Sharpen the radiometer\'s moisture map to a few kilometres.'),
+      summary:L('Radar en bande L (1,26 GHz) ; il a cessé de fonctionner en juillet 2015.', 'L-band radar (1.26 GHz); it stopped working in July 2015.'),
+      specs:[[L('Fréquence', 'Frequency'), '1,26 GHz', 'eop'], [L('Statut', 'Status'), L('en panne depuis juillet 2015', 'failed in July 2015'), 'eop']],
+      docs:[{ l:'SMAP (eoPortal)', u:'https://www.eoportal.org/satellite-missions/smap' }] }
+  ]
+},
+oco2:{
+  summary:L('Un seul instrument : trois spectromètres à réseau, nourris par un même télescope. Chacun découpe finement une bande étroite du spectre, où l\'oxygène ou le CO₂ absorbent la lumière du Soleil renvoyée par la Terre.',
+            'A single instrument: three grating spectrometers, fed by the same telescope. Each finely splits a narrow band of the spectrum, where oxygen or CO₂ absorbs sunlight reflected by the Earth.'),
+  refs:{}, archives:[GESDISC, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'oco2', name:L('Spectromètres', 'Spectrometers'), full:'OCO-2 Instrument (three grating spectrometers)', type:'spec',
+      use:L('Mesurer la quantité moyenne de CO₂ dans toute la colonne d\'air (XCO₂), pour trouver où le carbone est émis et où il est absorbé.', 'Measure the average amount of CO₂ in the whole air column (XCO₂), to find where carbon is emitted and where it is absorbed.'),
+      summary:L('La bande de l\'oxygène sert à mesurer la quantité totale d\'air et la pression au sol ; les deux bandes du CO₂ donnent la quantité de gaz. Les détecteurs sont refroidis par un cryoréfrigérateur.', 'The oxygen band measures the total amount of air and the surface pressure; the two CO₂ bands give the amount of gas. The detectors are cooled by a cryocooler.'),
+      bands:[{ l:L('oxygène', 'oxygen'), lo:0.758, hi:0.772 }, { l:L('CO₂ faible', 'weak CO₂'), lo:1.594, hi:1.619 }, { l:L('CO₂ fort', 'strong CO₂'), lo:2.042, hi:2.082 }],
+      specs:[[L('Bandes', 'Bands'), '758–772 nm, 1 594–1 619 nm, 2 042–2 082 nm', 'eop'], [L('Pixel au sol', 'Ground pixel'), '1,29 × 2,25 km', 'eop'], [L('Fauchée', 'Swath'), '10 km', 'eop']],
+      docs:[{ l:'OCO-2 Instrument (NASA JPL)', u:'https://ocov2.jpl.nasa.gov/observatory/instrument/' }] }
+  ]
+},
+gpm:{
+  summary:L('Deux instruments : le radar DPR, fourni par la JAXA, qui mesure la pluie en trois dimensions à deux fréquences, et le radiomètre micro-onde GMI de la NASA, qui sert d\'étalon aux radiomètres des autres satellites de la constellation GPM.',
+            'Two instruments: the DPR radar, supplied by JAXA, which measures rain in three dimensions at two frequencies, and NASA\'s GMI microwave radiometer, which serves as the reference for the radiometers of the other satellites in the GPM constellation.'),
+  refs:{}, archives:[GPMPPS, GESDISC, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'dpr', name:'DPR', full:'Dual-frequency Precipitation Radar', type:'radar',
+      use:L('Mesurer la structure verticale de la pluie et de la neige, et la taille des gouttes.', 'Measure the vertical structure of rain and snow, and the size of the drops.'),
+      summary:L('Deux radars : en bande Ku (13,6 GHz) pour la pluie forte, en bande Ka (35,5 GHz) pour la pluie faible et la neige. La comparaison des deux échos renseigne sur la taille des gouttes.', 'Two radars: Ku band (13.6 GHz) for heavy rain, Ka band (35.5 GHz) for light rain and snow. Comparing the two echoes tells about drop size.'),
+      specs:[[L('Fréquences', 'Frequencies'), '13,6 GHz (Ku), 35,5 GHz (Ka)', 'mis'], [L('Pixel au sol', 'Ground pixel'), L('5 km au nadir', '5 km at nadir'), 'mis'], [L('Fauchée', 'Swath'), L('245 km (les deux bandes, depuis mai 2018)', '245 km (both bands, since May 2018)'), 'mis']],
+      docs:[{ l:'GPM Mission (NASA)', u:'https://gpm.nasa.gov/missions/GPM' }] },
+    { id:'gmi', name:'GMI', full:'GPM Microwave Imager', type:'rad',
+      use:L('Mesurer la pluie et la neige sur une large bande, et étalonner les autres satellites qui servent au produit mondial IMERG.', 'Measure rain and snow over a wide swath, and calibrate the other satellites used for the global IMERG product.'),
+      summary:L('Radiomètre micro-onde conique à 13 canaux, de 10 à 183 GHz.', 'Conical-scanning microwave radiometer with 13 channels, from 10 to 183 GHz.'),
+      specs:[[L('Canaux', 'Channels'), L('13, de 10 à 183 GHz', '13, from 10 to 183 GHz'), 'mis'], [L('Fauchée', 'Swath'), '885 km', 'mis']],
+      docs:[{ l:'GPM Core Observatory (NASA)', u:'https://gpm.nasa.gov/missions/GPM/core-observatory' }] }
+  ]
+},
+nisar:{
+  summary:L('Deux radars à synthèse d\'ouverture, en bande L (NASA) et en bande S (ISRO), qui partagent le réflecteur de 12 m. En comparant deux passages, à 12 jours d\'intervalle, on mesure les déplacements du sol au centimètre près (interférométrie).',
+            'Two synthetic aperture radars, L band (NASA) and S band (ISRO), sharing the 12 m reflector. By comparing two passes, 12 days apart, ground movements are measured to the centimetre (interferometry).'),
+  refs:{}, archives:[ASF, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'lsar', name:'L-SAR', full:'L-band Synthetic Aperture Radar', type:'radar',
+      use:L('Mesurer les déformations du sol, la biomasse des forêts et le mouvement des glaces ; la grande longueur d\'onde traverse la végétation.', 'Measure ground deformation, forest biomass and ice motion; the long wavelength passes through vegetation.'),
+      summary:L('Radar en bande L (longueur d\'onde de 24 cm), fourni par le JPL.', 'L-band radar (24 cm wavelength), supplied by JPL.'),
+      specs:[[L('Fréquence', 'Frequency'), '1,25 GHz (24 cm)', 'eop'], [L('Fauchée', 'Swath'), '242 km', 'eop'], [L('Pixel au sol', 'Ground pixel'), L('3 à 10 m selon le mode', '3 to 10 m depending on mode'), 'eop']],
+      docs:[{ l:'NISAR (eoPortal)', u:'https://www.eoportal.org/satellite-missions/nisar' }] },
+    { id:'ssar', name:'S-SAR', full:'S-band Synthetic Aperture Radar', type:'radar',
+      use:L('Compléter la bande L pour les cultures, les sols et la végétation basse.', 'Complement the L band for crops, soils and low vegetation.'),
+      summary:L('Radar en bande S (3,2 GHz), fourni par l\'ISRO.', 'S-band radar (3.2 GHz), supplied by ISRO.'),
+      specs:[[L('Fréquence', 'Frequency'), '3,2 GHz', 'eop'], [L('Fauchée', 'Swath'), '242 km', 'eop']],
+      docs:[{ l:'NISAR (eoPortal)', u:'https://www.eoportal.org/satellite-missions/nisar' }] }
+  ]
+},
+aura:{
+  summary:L('Quatre instruments au départ : OMI (ultraviolet et visible, vers le bas), MLS (micro-ondes, vers le bord de l\'atmosphère), TES (infrarouge) et HIRDLS (infrarouge, en panne depuis 2008). Ils mesurent l\'ozone, les gaz qui le détruisent, la pollution et les aérosols.',
+            'Four instruments at launch: OMI (ultraviolet and visible, looking down), MLS (microwaves, looking at the edge of the atmosphere), TES (infrared) and HIRDLS (infrared, failed in 2008). They measure ozone, the gases that destroy it, pollution and aerosols.'),
+  refs:{}, archives:[GESDISC, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'omi', name:'OMI', full:'Ozone Monitoring Instrument', type:'spec',
+      use:L('Cartographier chaque jour l\'ozone, le dioxyde d\'azote, le dioxyde de soufre et les aérosols sur toute la Terre.', 'Map ozone, nitrogen dioxide, sulphur dioxide and aerosols over the whole Earth every day.'),
+      summary:L('Spectromètre imageur à large fauchée, fourni par les Pays-Bas (NIVR) avec l\'institut météorologique finlandais (FMI).', 'Wide-swath imaging spectrometer, supplied by the Netherlands (NIVR) with the Finnish Meteorological Institute (FMI).'),
+      bands:[{ l:'270 – 500 nm', lo:0.27, hi:0.5 }],
+      specs:[[L('Spectre', 'Spectrum'), L('270 à 500 nm', '270 to 500 nm'), 'eop'], [L('Pixel au sol', 'Ground pixel'), L('13 × 24 km au nadir', '13 × 24 km at nadir'), 'eop'], [L('Fauchée', 'Swath'), '2 600 km', 'eop']],
+      docs:[{ l:'Aura (eoPortal)', u:'https://www.eoportal.org/satellite-missions/aura' }] },
+    { id:'mls', name:'MLS', full:'Microwave Limb Sounder', type:'rad',
+      use:L('Mesurer, couche par couche, l\'ozone et les gaz qui le détruisent (chlore), ainsi que la vapeur d\'eau de la haute atmosphère.', 'Measure, layer by layer, ozone and the gases that destroy it (chlorine), as well as upper-atmosphere water vapour.'),
+      summary:L('Radiomètre micro-onde qui vise le bord de l\'atmosphère (le limbe), vers l\'avant du satellite, et en tire des profils verticaux.', 'Microwave radiometer that looks at the edge of the atmosphere (the limb), ahead of the satellite, and derives vertical profiles.'),
+      specs:[[L('Visée', 'Viewing'), L('au limbe, vers l\'avant', 'limb, forward'), 'eop']],
+      docs:[{ l:'Aura (eoPortal)', u:'https://www.eoportal.org/satellite-missions/aura' }] },
+    { id:'tes', name:'TES', full:'Tropospheric Emission Spectrometer', type:'spec',
+      use:L('Mesurer l\'ozone et d\'autres gaz de la basse atmosphère, là où ils touchent la santé et le climat.', 'Measure ozone and other gases in the lower atmosphere, where they affect health and climate.'),
+      summary:L('Spectromètre infrarouge à transformée de Fourier, du JPL.', 'Fourier transform infrared spectrometer, from JPL.'),
+      bands:[{ l:'3,2 – 15,4 µm', lo:3.2, hi:15 }],
+      specs:[[L('Spectre', 'Spectrum'), L('3,2 à 15,4 µm', '3.2 to 15.4 µm'), 'eop'], [L('Pixel au sol', 'Ground pixel'), '0,43 × 5,3 km', 'eop']],
+      docs:[{ l:'Aura (eoPortal)', u:'https://www.eoportal.org/satellite-missions/aura' }] }
+  ]
+},
+tempo:{
+  summary:L('Un spectromètre ultraviolet-visible, en orbite géostationnaire, qui balaie l\'Amérique du Nord d\'est en ouest toutes les heures le jour. Il fait partie, avec GEMS (Corée du Sud) et Sentinel-4 (Europe), d\'une constellation qui suit la pollution de l\'air au-dessus de l\'hémisphère Nord.',
+            'An ultraviolet-visible spectrometer in geostationary orbit, which scans North America from east to west every hour during daytime. Together with GEMS (South Korea) and Sentinel-4 (Europe), it is part of a constellation that tracks air pollution over the Northern Hemisphere.'),
+  refs:{}, archives:[ASDC, EARTHDATA, WORLDVIEW],
+  instruments:[
+    { id:'tempo', name:'TEMPO', full:'Tropospheric Emissions: Monitoring of Pollution', type:'spec',
+      use:L('Mesurer heure par heure l\'ozone, le dioxyde d\'azote, le formaldéhyde et les aérosols au-dessus de l\'Amérique du Nord.', 'Measure ozone, nitrogen dioxide, formaldehyde and aerosols over North America hour by hour.'),
+      summary:L('Spectromètre à réseau qui couvre deux plages, de l\'ultraviolet au visible, avec une résolution spectrale de 0,57 nm. Construit par Ball Aerospace, il est fixé sur le satellite de télécommunications Intelsat 40e.', 'Grating spectrometer covering two ranges, from ultraviolet to visible, with a spectral resolution of 0.57 nm. Built by Ball Aerospace, it is mounted on the Intelsat 40e communications satellite.'),
+      bands:[{ l:'290 – 490 nm', lo:0.29, hi:0.49 }, { l:'540 – 740 nm', lo:0.54, hi:0.74 }],
+      specs:[[L('Spectre', 'Spectrum'), L('290 à 490 nm et 540 à 740 nm', '290 to 490 nm and 540 to 740 nm'), 'eop'], [L('Pixel au sol', 'Ground pixel'), '2,21 × 4,97 km', 'eop'],
+        [L('Fréquence', 'Frequency'), L('toutes les heures, le jour', 'every hour, in daytime'), 'sao'], [L('Masse', 'Mass'), '148 kg', 'eop']],
+      docs:[{ l:'TEMPO (Smithsonian)', u:'https://tempo.si.edu/overview.html' }] }
+  ]
+},
+goes:{
+  summary:L('L\'imageur ABI photographie la Terre en 16 bandes ; le détecteur GLM cartographie les éclairs en continu. D\'autres instruments surveillent le Soleil et l\'environnement spatial (SUVI, EXIS, SEISS, magnétomètre) et un coronographe, CCOR-1, observe les éjections de masse coronale.',
+            'The ABI imager photographs the Earth in 16 bands; the GLM detector maps lightning continuously. Other instruments monitor the Sun and the space environment (SUVI, EXIS, SEISS, magnetometer) and a coronagraph, CCOR-1, observes coronal mass ejections.'),
+  refs:{ ccor:{ t:'GOES-19', p:'Wikipédia (en anglais)', u:'https://en.wikipedia.org/wiki/GOES-19' } }, archives:[NOAA_AWS, WORLDVIEW],
+  instruments:[
+    { id:'abi', name:'ABI', full:'Advanced Baseline Imager', type:'cam',
+      use:L('Suivre heure par heure, et même minute par minute, les nuages, les orages, les ouragans, les incendies, la fumée et le brouillard.', 'Track clouds, storms, hurricanes, fires, smoke and fog hour by hour, and even minute by minute.'),
+      summary:L('Imageur à 16 bandes construit par L3Harris : 2 visibles, 4 du proche infrarouge, 10 infrarouges qui voient de jour comme de nuit.', '16-band imager built by L3Harris: 2 visible, 4 near-infrared, 10 infrared that see by day and night.'),
+      specs:[[L('Bandes', 'Bands'), L('16 (2 visibles, 4 proche infrarouge, 10 infrarouges)', '16 (2 visible, 4 near-infrared, 10 infrared)'), 'abi'], [L('Pixel au sol', 'Ground pixel'), L('0,5 km (visible) à 2 km (infrarouge)', '0.5 km (visible) to 2 km (infrared)'), 'eop'],
+        [L('Fréquence', 'Frequency'), L('disque entier toutes les 10 min ; États-Unis toutes les 5 min', 'full disk every 10 min; United States every 5 min'), 'abi']],
+      docs:[{ l:'ABI (NOAA NESDIS)', u:'https://www.nesdis.noaa.gov/our-satellites/currently-flying/goes-east-west/advanced-baseline-imager-abi' }] },
+    { id:'glm', name:'GLM', full:'Geostationary Lightning Mapper', type:'cam',
+      use:L('Détecter tous les éclairs, dans les nuages et vers le sol, pour repérer les orages qui se renforcent.', 'Detect all lightning, in-cloud and cloud-to-ground, to spot strengthening storms.'),
+      summary:L('Premier cartographe d\'éclairs opérationnel en orbite géostationnaire.', 'First operational lightning mapper in geostationary orbit.'),
+      specs:[[L('Mesure', 'Measurement'), L('éclairs dans les nuages et vers le sol', 'in-cloud and cloud-to-ground lightning'), 'noaa']],
+      docs:[{ l:'Geostationary satellites (NOAA NESDIS)', u:'https://www.nesdis.noaa.gov/our-satellites/currently-flying/geostationary-satellites' }] }
+  ]
+},
+sentinel6:{
+  summary:L('L\'altimètre radar Poseidon-4 mesure la hauteur de la mer ; le radiomètre AMR-C, fourni par la NASA, corrige l\'effet de la vapeur d\'eau ; DORIS, les récepteurs GNSS et le réflecteur laser donnent l\'orbite au centimètre près. Un récepteur GNSS de radio-occultation mesure aussi la température de l\'atmosphère.',
+            'The Poseidon-4 radar altimeter measures sea height; the AMR-C radiometer, supplied by NASA, corrects for water vapour; DORIS, the GNSS receivers and the laser reflector give the orbit to the centimetre. A GNSS radio-occultation receiver also measures atmospheric temperature.'),
+  refs:{}, archives:[PODAAC, EUMDS, EARTHDATA],
+  instruments:[
+    { id:'poseidon4', name:'Poseidon-4', full:'Poseidon-4 radar altimeter', type:'alt',
+      use:L('Mesurer la hauteur de la mer, la hauteur des vagues et la vitesse du vent, pour suivre la montée du niveau des océans.', 'Measure sea height, wave height and wind speed, to track sea-level rise.'),
+      summary:L('Altimètre radar qui vise à la verticale et chronomètre l\'écho sur la mer. Il fonctionne à la fois en mode classique et en mode à synthèse d\'ouverture, plus fin le long de la trace.', 'Radar altimeter that points straight down and times the echo from the sea. It works in both classic mode and synthetic aperture mode, finer along the track.'),
+      specs:[[L('Couverture', 'Coverage'), L('95 % des océans en 10 jours', '95% of the oceans in 10 days'), 'esa'], [L('Visée', 'Viewing'), L('à la verticale (nadir)', 'straight down (nadir)'), 'esa']],
+      docs:[{ l:'Sentinel-6 (ESA)', u:'https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-6' }] },
+    { id:'amrc', name:'AMR-C', full:'Advanced Microwave Radiometer for Climate', type:'rad',
+      use:L('Mesurer la vapeur d\'eau de l\'air sous le satellite, qui retarde l\'écho radar, pour corriger la hauteur de la mer.', 'Measure water vapour in the air below the satellite, which delays the radar echo, to correct sea height.'),
+      summary:L('Radiomètre micro-onde fourni par la NASA.', 'Microwave radiometer supplied by NASA.'),
+      specs:[[L('Fournisseur', 'Supplier'), 'NASA', 'wiki']],
+      docs:[{ l:'Sentinel-6 Michael Freilich (Wikipedia)', u:'https://en.wikipedia.org/wiki/Sentinel-6_Michael_Freilich' }] }
   ]
 }
 };

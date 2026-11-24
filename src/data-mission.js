@@ -156,5 +156,97 @@ swot:{
     [L('Exploitation', 'Operations'), L('NASA (JPL) et CNES', 'NASA (JPL) and CNES'), 'jpl'], [L('Statut', 'Status'), L('en exploitation', 'in operation'), 'cnes'],
     [L('Archives', 'Archives'), 'NASA PO.DAAC, AVISO+ (CNES)', 'cnes']
   ], refs:{}, checked:'2026-11-24'
+},
+pace:{
+  intro:L('PACE est une mission de la NASA conduite par le centre Goddard, qui a construit le satellite et le spectromètre OCI. Elle prolonge les mesures de couleur de l\'océan de SeaWiFS, MODIS et VIIRS, avec un spectre bien plus détaillé.',
+          'PACE is a NASA mission led by the Goddard center, which built the satellite and the OCI spectrometer. It extends the ocean colour measurements of SeaWiFS, MODIS and VIIRS, with a much more detailed spectrum.'),
+  phases:[
+    [L('8 février 2024', '8 February 2024'), L('Lancement', 'Launch'), L('Falcon 9 depuis Cap Canaveral.', 'Falcon 9 from Cape Canaveral.'), 'wiki'],
+    [L('11 avril 2024', '11 April 2024'), L('Premières données publiques', 'First public data'), L('Début de la diffusion des données au public.', 'Start of public data release.'), 'gsfc']
+  ],
+  ops:[[L('Exploitation', 'Operations'), L('NASA (centre Goddard)', 'NASA (Goddard center)'), 'nasa'], [L('Archive', 'Archive'), 'NASA OB.DAAC', 'gsfc']], refs:{}, checked:'2026-11-24'
+},
+jpss:{
+  intro:L('Le Joint Polar Satellite System est le programme américain de satellites météorologiques en orbite polaire. La NOAA le finance et l\'exploite ; la NASA construit et lance les satellites. Suomi NPP, d\'abord prévu comme démonstrateur, a servi aux prévisions pendant quinze ans.',
+          'The Joint Polar Satellite System is the US programme of polar-orbiting weather satellites. NOAA funds and operates it; NASA builds and launches the satellites. Suomi NPP, first planned as a demonstrator, served forecasting for fifteen years.'),
+  phases:[
+    [L('28 octobre 2011', '28 October 2011'), L('Suomi NPP', 'Suomi NPP'), L('Delta II depuis Vandenberg.', 'Delta II from Vandenberg.'), 'npp'],
+    [L('18 novembre 2017', '18 November 2017'), L('NOAA-20 (JPSS-1)', 'NOAA-20 (JPSS-1)'), L('Delta II depuis Vandenberg.', 'Delta II from Vandenberg.'), 'n20'],
+    [L('10 novembre 2022', '10 November 2022'), L('NOAA-21 (JPSS-2)', 'NOAA-21 (JPSS-2)'), L('Atlas V 401 depuis Vandenberg, dernier Atlas V lancé de cette base ; déclaré opérationnel le 8 novembre 2023.', 'Atlas V 401 from Vandenberg, the last Atlas V launched from this base; declared operational on 8 November 2023.'), 'n21'],
+    [L('2 novembre 2026', '2 November 2026'), L('Fin de Suomi NPP', 'End of Suomi NPP'), L('Données arrêtées le 1er novembre, satellite désactivé le 2 ; rentrée dans l\'atmosphère prévue en décembre 2026.', 'Data stopped on 1 November, satellite deactivated on the 2nd; re-entry planned for December 2026.'), 'npp']
+  ],
+  ops:[[L('Exploitation', 'Operations'), 'NOAA', 'noaa'], [L('Archives', 'Archives'), 'NASA LAADS DAAC, LP DAAC', 'eopj']], refs:{}, checked:'2026-11-24'
+},
+smap:{
+  intro:L('SMAP, mission de la NASA conduite par le JPL, devait combiner un radar et un radiomètre pour cartographier l\'humidité du sol à quelques kilomètres. Le radar est tombé en panne en juillet 2015 ; le radiomètre poursuit seul la mission.',
+          'SMAP, a NASA mission led by JPL, was to combine a radar and a radiometer to map soil moisture at a few kilometres. The radar failed in July 2015; the radiometer carries on the mission alone.'),
+  phases:[
+    [L('31 janvier 2015', '31 January 2015'), L('Lancement', 'Launch'), L('Delta II depuis Vandenberg.', 'Delta II from Vandenberg.'), 'wiki'],
+    [L('juillet 2015', 'July 2015'), L('Panne du radar', 'Radar failure'), L('Le radar cesse de fonctionner ; le radiomètre continue.', 'The radar stops working; the radiometer continues.'), 'eop']
+  ],
+  ops:[[L('Exploitation', 'Operations'), 'NASA (JPL)', 'eop'], [L('Archive', 'Archive'), 'NSIDC DAAC', 'eop']], refs:{}, checked:'2026-11-24'
+},
+oco2:{
+  intro:L('OCO-2 remplace l\'Orbiting Carbon Observatory, perdu en 2009 quand la coiffe de sa fusée ne s\'est pas séparée. Il vole dans le « train de l\'après-midi », une file de satellites qui passent à quelques minutes d\'intervalle.',
+          'OCO-2 replaces the Orbiting Carbon Observatory, lost in 2009 when its rocket fairing failed to separate. It flies in the "afternoon train", a line of satellites passing a few minutes apart.'),
+  phases:[
+    [L('2 juillet 2014', '2 July 2014'), L('Lancement', 'Launch'), L('Delta II depuis Vandenberg.', 'Delta II from Vandenberg.'), 'wiki']
+  ],
+  ops:[[L('Exploitation', 'Operations'), 'NASA (JPL)', 'jpl'], [L('Archive', 'Archive'), 'NASA GES DISC', 'eop']], refs:{}, checked:'2026-11-24'
+},
+gpm:{
+  intro:L('GPM associe le satellite principal de la NASA et de la JAXA à une constellation de satellites d\'autres pays, munis de radiomètres micro-ondes. Le satellite principal sert de référence pour étalonner les autres et en tirer une carte mondiale des précipitations.',
+          'GPM pairs the NASA–JAXA core satellite with a constellation of satellites from other countries carrying microwave radiometers. The core satellite serves as the reference to calibrate the others and derive a global precipitation map.'),
+  phases:[
+    [L('27 février 2014', '27 February 2014'), L('Lancement', 'Launch'), L('H-IIA depuis Tanegashima (Japon).', 'H-IIA from Tanegashima (Japan).'), 'wiki'],
+    [L('mai 2018', 'May 2018'), L('Nouvelle fauchée du radar', 'New radar swath'), L('Le radar en bande Ka couvre désormais 245 km, comme la bande Ku.', 'The Ka-band radar now covers 245 km, like the Ku band.'), 'mis']
+  ],
+  ops:[[L('Exploitation', 'Operations'), L('NASA et JAXA', 'NASA and JAXA'), 'eop'], [L('Archive', 'Archive'), 'NASA GES DISC, PPS', 'mis']], refs:{}, checked:'2026-11-24'
+},
+nisar:{
+  intro:L('NISAR est la première mission commune de la NASA et de l\'agence spatiale indienne (ISRO). Le JPL a fourni le radar en bande L, le réflecteur et son bras ; l\'ISRO, le radar en bande S, la plateforme et le lancement.',
+          'NISAR is the first joint mission of NASA and the Indian Space Research Organisation (ISRO). JPL supplied the L-band radar, the reflector and its boom; ISRO the S-band radar, the platform and the launch.'),
+  phases:[
+    [L('30 juillet 2025', '30 July 2025'), L('Lancement', 'Launch'), L('GSLV-F16 depuis le centre spatial Satish Dhawan (Sriharikota).', 'GSLV-F16 from the Satish Dhawan Space Centre (Sriharikota).'), 'wiki']
+  ],
+  ops:[[L('Exploitation', 'Operations'), L('NASA (JPL) et ISRO', 'NASA (JPL) and ISRO'), 'eop'], [L('Archive', 'Archive'), 'ASF DAAC', 'eop']], refs:{}, checked:'2026-11-24'
+},
+aura:{
+  intro:L('Aura est le troisième grand satellite du programme EOS de la NASA, après Terra et Aqua. Ses instruments viennent de la NASA, des Pays-Bas, de la Finlande et du Royaume-Uni.',
+          'Aura is the third large satellite of NASA\'s EOS programme, after Terra and Aqua. Its instruments come from NASA, the Netherlands, Finland and the United Kingdom.'),
+  phases:[
+    [L('15 juillet 2004', '15 July 2004'), L('Lancement', 'Launch'), L('Delta II depuis Vandenberg.', 'Delta II from Vandenberg.'), 'wiki'],
+    ['2008', L('Panne de HIRDLS', 'HIRDLS failure'), L('Le sondeur infrarouge HIRDLS cesse de fonctionner.', 'The HIRDLS infrared sounder stops working.'), 'eop']
+  ],
+  ops:[[L('Exploitation', 'Operations'), 'NASA', 'nasa'], [L('Archive', 'Archive'), 'NASA GES DISC', 'eop']], refs:{}, checked:'2026-11-24'
+},
+tempo:{
+  intro:L('TEMPO est un instrument de la NASA hébergé sur un satellite de télécommunications commercial. Il appartient au programme Earth Venture Instrument ; le Smithsonian Astrophysical Observatory dirige la science et les opérations, le centre Langley de la NASA le projet.',
+          'TEMPO is a NASA instrument hosted on a commercial communications satellite. It belongs to the Earth Venture Instrument programme; the Smithsonian Astrophysical Observatory leads science and operations, NASA\'s Langley center the project.'),
+  phases:[
+    [L('3 février 2020', '3 February 2020'), L('Satellite hôte choisi', 'Host satellite chosen'), L('Intelsat annonce qu\'Intelsat 40e portera TEMPO.', 'Intelsat announces that Intelsat 40e will carry TEMPO.'), 'wiki'],
+    [L('7 avril 2023', '7 April 2023'), L('Lancement', 'Launch'), L('Falcon 9 depuis Cap Canaveral, à bord d\'Intelsat 40e.', 'Falcon 9 from Cape Canaveral, aboard Intelsat 40e.'), 'wiki']
+  ],
+  ops:[[L('Exploitation', 'Operations'), L('Smithsonian Astrophysical Observatory', 'Smithsonian Astrophysical Observatory'), 'eop'], [L('Archive', 'Archive'), 'NASA ASDC', 'nasa']], refs:{}, checked:'2026-11-24'
+},
+goes:{
+  intro:L('GOES-19 est le quatrième et dernier satellite de la série GOES-R, après GOES-16, 17 et 18. Lancé sous le nom de GOES-U, il a remplacé GOES-16 à la position Est.',
+          'GOES-19 is the fourth and last satellite of the GOES-R series, after GOES-16, 17 and 18. Launched as GOES-U, it replaced GOES-16 at the East position.'),
+  phases:[
+    [L('25 juin 2024', '25 June 2024'), L('Lancement', 'Launch'), L('Falcon Heavy depuis le centre spatial Kennedy.', 'Falcon Heavy from Kennedy Space Center.'), 'wiki'],
+    [L('7 juillet 2024', '7 July 2024'), L('Orbite géostationnaire', 'Geostationary orbit'), L('GOES-U atteint son orbite et devient GOES-19.', 'GOES-U reaches its orbit and becomes GOES-19.'), 'eop'],
+    [L('7 avril 2025', '7 April 2025'), L('GOES-East', 'GOES-East'), L('Déclaré opérationnel à la position Est.', 'Declared operational at the East position.'), 'wiki']
+  ],
+  ops:[[L('Exploitation', 'Operations'), 'NOAA', 'noaa'], [L('Archive', 'Archive'), 'NOAA (AWS Open Data)', 'noaa']], refs:{}, checked:'2026-11-24'
+},
+sentinel6:{
+  intro:L('Les deux Sentinel-6 forment la mission Copernicus d\'altimétrie de référence, menée par l\'Union européenne, l\'ESA, EUMETSAT, la NASA et la NOAA, avec le soutien du CNES. Le premier porte le nom de Michael Freilich, ancien directeur des sciences de la Terre de la NASA.',
+          'The two Sentinel-6 satellites form the Copernicus reference altimetry mission, run by the European Union, ESA, EUMETSAT, NASA and NOAA, with support from CNES. The first is named after Michael Freilich, former head of NASA\'s Earth science division.'),
+  phases:[
+    [L('21 novembre 2020', '21 November 2020'), L('Sentinel-6 Michael Freilich', 'Sentinel-6 Michael Freilich'), L('Falcon 9 depuis Vandenberg ; il prend ensuite le relais de Jason-3 comme mission de référence.', 'Falcon 9 from Vandenberg; it then takes over from Jason-3 as the reference mission.'), 'eum'],
+    [L('17 novembre 2025', '17 November 2025'), L('Sentinel-6B', 'Sentinel-6B'), L('Falcon 9 depuis Vandenberg.', 'Falcon 9 from Vandenberg.'), 'esa'],
+    [L('16 décembre 2025', '16 December 2025'), L('Premières données de Sentinel-6B', 'First Sentinel-6B data'), L('Variations du niveau de la mer dans l\'Atlantique Nord.', 'Sea-level variations in the North Atlantic.'), 'esa']
+  ],
+  ops:[[L('Exploitation', 'Operations'), 'EUMETSAT', 'eum'], [L('Archives', 'Archives'), 'EUMETSAT, NASA PO.DAAC', 'eum']], refs:{}, checked:'2026-11-24'
 }
 };

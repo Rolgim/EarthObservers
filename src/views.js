@@ -13,8 +13,8 @@ function T(s){ return OBS_T(s); }
 function en(){ return OBS_LANG === 'en'; }
 function colon(){ return en() ? ': ' : ' : '; }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function day(s){ var m = /^(\d{4})-(\d{2})(?:-(\d{2}))?/.exec(s); return Date.UTC(+m[1], +m[2] - 1, m[3] ? +m[3] : 1) / DAY; }
-function fmt(s){ var o = { month:'long', year:'numeric', timeZone:'UTC' }; if (s.length > 7) o.day = 'numeric';
+function day(s){ var m = /^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/.exec(s); return Date.UTC(+m[1], m[2] ? +m[2] - 1 : 6, m[3] ? +m[3] : 1) / DAY; }   /* année seule : placée au milieu de l'année */
+function fmt(s){ if (s.length === 4) return s; var o = { month:'long', year:'numeric', timeZone:'UTC' }; if (s.length > 7) o.day = 'numeric';
   return new Date(day(s) * DAY).toLocaleDateString(en() ? 'en-GB' : 'fr-FR', o); }
 function today(){ var d = new Date(); return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) / DAY; }
 function src(m, k){ var r = k && m.refs && m.refs[k]; return r ? ' <a class="src" href="' + esc(r.u) + '" rel="noopener" target="_blank" title="' + esc(r.t) + '">' + esc(r.p) + '</a>' : ''; }
@@ -117,9 +117,11 @@ function row(m, idx, re){ var s = m.sections && m.sections[idx]; return s && s.r
 function num(s){ var m = /[\d][\d\s  ,.]*/.exec(s); return m ? +m[0].replace(/[\s  ]/g, '').replace(en() ? /,/g : /\./g, '').replace(',', '.') : NaN; }
 function insts(m){ return (typeof INST_DATA !== 'undefined' && INST_DATA[m.id] && INST_DATA[m.id].instruments) || []; }
 function bars(items, unit){
-  var max = Math.max.apply(null, items.map(function(i){ return i.v; }));
+  var max = Math.max.apply(null, items.map(function(i){ return i.v; })), min = Math.min.apply(null, items.map(function(i){ return i.v; }));
+  /* écarts de plus d'un facteur 20 (orbite géostationnaire) : longueur proportionnelle au logarithme, à partir d'un dixième du minimum */
+  var lg = max / min > 20, w = function(v){ return lg ? Math.log(v / (min / 10)) / Math.log(max / (min / 10)) : v / max; };
   return '<ul class="cp-bars">' + items.map(function(i){
-    return '<li><a href="#' + i.m.id + '" class="cp-n">' + esc(i.m.short) + '</a><span class="cp-t"><i style="width:' + (i.v / max * 100).toFixed(1) + '%;background:' + col(i.m) + '"></i></span><span class="cp-v">' + i.label + '</span></li>';
+    return '<li><a href="#' + i.m.id + '" class="cp-n">' + esc(i.m.short) + '</a><span class="cp-t"><i style="width:' + (w(i.v) * 100).toFixed(1) + '%;background:' + col(i.m) + '"></i></span><span class="cp-v">' + i.label + '</span></li>';
   }).join('') + '</ul>';
 }
 var RE_ALT = /^(Altitude)$/, RE_RES = /^(Résolution|Resolution)$/;
@@ -184,7 +186,8 @@ function compare(sec){
   if (sec === 'comparer') main += overview(L);
   else if (sec === 'comparer-orbites'){
     var al = L.map(function(m){ var r = row(m, SEC.orbit, RE_ALT); if (!r) return null; var v = num(r[1]); return isNaN(v) ? null : { m:m, v:v, label:esc(OBS_NUM(r[1])) + src(m, r[2]) }; }).filter(Boolean);
-    main += '<div class="isec"><h3>' + esc(T('Altitude')) + '</h3>' + bars(al) + '<div class="cap">' + esc(T('Altitude moyenne de l\'orbite, telle que la publie la source citée. L\'orbite réelle du jour, calculée à partir des éléments orbitaux, est sur la page « Orbite » de chaque satellite.')) + '</div></div>';
+    var lgA = al.length && Math.max.apply(null, al.map(function(i){ return i.v; })) / Math.min.apply(null, al.map(function(i){ return i.v; })) > 20;
+    main += '<div class="isec"><h3>' + esc(T('Altitude')) + '</h3>' + bars(al) + '<div class="cap">' + esc(T('Altitude moyenne de l\'orbite, telle que la publie la source citée. L\'orbite réelle du jour, calculée à partir des éléments orbitaux, est sur la page « Orbite » de chaque satellite.')) + (lgA ? ' ' + esc(T('Échelle logarithmique : les satellites géostationnaires, à ≈ 36 000 km, sont jusqu\'à près de cent fois plus haut que ceux en orbite basse.')) : '') + '</div></div>';
     main += rowsTable(L, SEC.orbit, 'Orbites', 'Valeurs de la section « Orbite » de chaque fiche.');
   } else if (sec === 'comparer-images') main += rowsTable(L, SEC.images, 'Images', 'Valeurs de la section « Images » de chaque fiche.');
   else if (sec === 'comparer-lieu') main += sameplace(L);

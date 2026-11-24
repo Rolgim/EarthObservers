@@ -10,6 +10,15 @@ Reprise de SolarExplorers. Les fichiers `models/<id>.glb` du site sont produits 
 | `icesat2.glb` | NASA Eyes on the Earth « ICESat-2 » (NASA/JPL-Caltech) | `gltf-transform copy` → `rename.mjs` + `maps/icesat2.json` → `resize` 1024 → `weld` → `quantize` → `webp` |
 | `gracefo.glb` | NASA Eyes on the Earth « GRACE-FO » (NASA/JPL-Caltech) | `gltf-transform copy` → `rename.mjs` + `maps/gracefo.json` → `resize` 1024 → `weld` → `quantize` → `webp` |
 | `swot.glb` | NASA Eyes on the Earth « SWOT » (NASA/JPL-Caltech) | `gltf-transform copy` → `rename.mjs` + `maps/swot.json` → `resize` 1024 → `weld` → `quantize` → `webp` ; pièces attribuées par boîte englobante (`bbox.mjs`) |
+| `pace.glb` | NASA Eyes on the Earth « PACE » (NASA/JPL-Caltech) | `rename.mjs` + `maps/pace.json` (clé `*` pour les nœuds non listés) → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `noaa20.glb` | NASA Eyes on the Earth « NOAA-20 » (utilisée pour la fiche JPSS) (NASA/JPL-Caltech) | `rename.mjs` + `maps/noaa20.json` (clé `*` pour les nœuds non listés) → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `smap.glb` | NASA Eyes on the Earth « SMAP » (NASA/JPL-Caltech) | `rename.mjs` + `maps/smap.json` (clé `*` pour les nœuds non listés) → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `oco2.glb` | NASA Eyes on the Earth « OCO-2 » (NASA/JPL-Caltech) | `rename.mjs` + `maps/oco2.json` (clé `*` pour les nœuds non listés) → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `gpm.glb` | NASA Eyes on the Earth « GPM » (NASA/JPL-Caltech) | `rename.mjs` + `maps/gpm.json` (clé `*` pour les nœuds non listés) → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `nisar.glb` | NASA Eyes on the Earth « NISAR » (NASA/JPL-Caltech) | `rename.mjs` + `maps/nisar.json` (clé `*` pour les nœuds non listés) → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `aura.glb` | NASA Eyes on the Earth « Aura » (NASA/JPL-Caltech) | `rename.mjs` + `maps/aura.json` (clé `*` pour les nœuds non listés) → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `tempo.glb` | NASA Eyes on the Earth « TEMPO » (NASA/JPL-Caltech) | `rename.mjs` + `maps/tempo.json` (clé `*` pour les nœuds non listés) → `resize` 1024 → `weld` → `quantize` → `webp` |
+| `sentinel6.glb` | NASA Eyes on the Earth « Sentinel-6 Michael Freilich » (NASA/JPL-Caltech) | `rename.mjs` + `maps/sentinel6.json` (clé `*` pour les nœuds non listés) → `resize` 1024 → `weld` → `quantize` → `webp` |
 
 Les Sentinel n'ont pas de maquette libre de droits : le site les montre comme un point bleu (`file: null`).
 
