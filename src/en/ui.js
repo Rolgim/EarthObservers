@@ -354,7 +354,7 @@ var EN_UI = {
   "latitudes":"latitudes",
   "Les images Copernicus et Landsat sont découpées par le service de rendu du Planetary Computer avec les réglages de son aperçu officiel ; celles de MODIS viennent de GIBS, le même jour que Sentinel-2 quand c'est possible. Les dates diffèrent : neige et nuages changent d'une image à l'autre.":"The Copernicus and Landsat images are cut by the Planetary Computer rendering service with the settings of its official preview; the MODIS ones come from GIBS, on the same day as Sentinel-2 when possible. The dates differ: snow and clouds change from one image to the next.",
   "Microsoft Planetary Computer (catalogue STAC, découpe par son service de rendu)":"Microsoft Planetary Computer (STAC catalogue, cut by its rendering service)",
-  "Gros plan sur Chamonix et la Mer de Glace vus par":"Close-up of Chamonix and the Mer de Glace seen by",
-  "Gros plan ≈ 7,8 × 7,8 km (Chamonix, Mer de Glace) :":"Close-up ≈ 7.8 × 7.8 km (Chamonix, Mer de Glace):",
+  "Gros plan autour de Chamonix vu par":"Close-up around Chamonix seen by",
+  "Gros plan ≈ 7,8 × 7,8 km autour de Chamonix :":"Close-up ≈ 7.8 × 7.8 km around Chamonix:",
   "pixels de l'instrument, agrandis sans lissage":"instrument pixels, enlarged without smoothing",
 };

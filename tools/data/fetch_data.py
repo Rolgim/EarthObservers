@@ -230,9 +230,9 @@ def lieu_pc(key, sat, collection, query, instrument, src, credit, days, ms):
     raise RuntimeError("lieu : aucun jour de " + collection + " ne couvre toute la zone")
 def lieu():
     bad = 0; dates = {}
-    for key, args in (("sentinel2", ("sentinel2", "sentinel-2-l2a", {"eo:cloud_cover": {"lt": 10}}, "MSI", "copernicus", "Contains modified Copernicus Sentinel data {y} ; découpe : Microsoft Planetary Computer", 120, 10)),
-                      ("landsat9", ("landsat9", "landsat-c2-l2", {"platform": {"in": ["landsat-9"]}, "eo:cloud_cover": {"lt": 15}}, "OLI-2", "usgs-pd", "Landsat 9 : USGS ; découpe : Microsoft Planetary Computer", 120, 30)),
-                      ("sentinel1", ("sentinel1", "sentinel-1-rtc", {"sar:instrument_mode": {"eq": "IW"}}, "C-SAR", "copernicus", "Contains modified Copernicus Sentinel data {y} ; correction de relief et découpe : Microsoft Planetary Computer", 30, 10))):
+    for key, args in (("sentinel2", ("sentinel2", "sentinel-2-l2a", {"eo:cloud_cover": {"lt": 10}}, "MSI", "copernicus", "Contains modified Copernicus Sentinel data {y} (via Microsoft Planetary Computer)", 120, 10)),
+                      ("landsat9", ("landsat9", "landsat-c2-l2", {"platform": {"in": ["landsat-9"]}, "eo:cloud_cover": {"lt": 15}}, "OLI-2", "usgs-pd", "Landsat 9: USGS (via Microsoft Planetary Computer)", 120, 30)),
+                      ("sentinel1", ("sentinel1", "sentinel-1-rtc", {"sar:instrument_mode": {"eq": "IW"}}, "C-SAR", "copernicus", "Contains modified Copernicus Sentinel data {y} (terrain correction: Microsoft Planetary Computer)", 30, 10))):
         try: dates[key] = lieu_pc(key, *args)
         except Exception as e: bad += 1; print("ÉCHEC lieu", key, repr(e)[:200])
     d = (dates.get("sentinel2") or days_ago(3))[:10]   # MODIS le même jour que Sentinel-2 (passages du matin et de l'après-midi)

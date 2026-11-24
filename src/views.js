@@ -206,10 +206,10 @@ function sameplace(L){
     return '<figure class="real lieu"><a href="#' + m.id + '" class="lieu-h" style="--c:' + col(m) + '">' + esc(m.short) + ' · ' + esc(T(d.instrument)) + '</a>' +
       '<img src="data/' + k + '.jpg" width="' + out[0] + '" height="' + out[1] + '" loading="lazy" alt="' + esc(T('Le massif du Mont-Blanc et l\'est du Léman vus par') + ' ' + m.short + ', ' + what) + '">' +
       (F[k + '-zoom'] ? '<img class="lieu-z" src="data/' + k + '-zoom.jpg" width="' + F[k + '-zoom'].out_size[0] + '" height="' + F[k + '-zoom'].out_size[1] + '" loading="lazy" alt="' +
-        esc(T('Gros plan sur Chamonix et la Mer de Glace vus par') + ' ' + m.short) + '"><p class="lieu-zc">' + esc(T('Gros plan ≈ 7,8 × 7,8 km (Chamonix, Mer de Glace) :')) + ' ' +
+        esc(T('Gros plan autour de Chamonix vu par') + ' ' + m.short) + '"><p class="lieu-zc">' + esc(T('Gros plan ≈ 7,8 × 7,8 km autour de Chamonix :')) + ' ' +
         esc(OBS_NUM(F[k + '-zoom'].out_size[0] + ' × ' + F[k + '-zoom'].out_size[1])) + ' ' + esc(T('pixels de l\'instrument, agrandis sans lissage')) + '</p>' : '') +
       '<figcaption>' + esc(what) + ' · ' + esc(T('pixel au sol')) + ' ' + esc(OBS_NUM(String(d.res_m))) + ' m · ' + esc(T('date')) + ' ' + esc(String(d.datetime || '').slice(0, 10)) + '<br>' +
-      T('Produit') + ' <a href="' + esc(d.page) + '" rel="noopener" target="_blank"><code>' + esc(T(d.product)) + '</code></a> · ' + T(d.archive) + (typeof licLine === 'function' ? licLine(d) : '') + '</figcaption></figure>';
+      T('Produit') + ' <a href="' + esc(d.page) + '" rel="noopener" target="_blank"><code>' + esc(T(d.product)) + '</code></a> · ' + T(d.archive) + (window.licLine ? window.licLine(d) : '') + '</figcaption></figure>';
   }).join('') + '</div><div class="cap">' + esc(T('Zone : longitudes')) + ' ' + esc(OBS_NUM(String(z[0]).replace('.', en ? '.' : ','))) + '° E ' + esc(T('à')) + ' ' + esc(OBS_NUM(String(z[2]).replace('.', en ? '.' : ','))) + '° E, ' + esc(T('latitudes')) + ' ' +
     esc(OBS_NUM(String(z[1]).replace('.', en ? '.' : ','))) + '° N ' + esc(T('à')) + ' ' + esc(OBS_NUM(String(z[3]).replace('.', en ? '.' : ','))) + '° N. ' +
     esc(T('Les images Copernicus et Landsat sont découpées par le service de rendu du Planetary Computer avec les réglages de son aperçu officiel ; celles de MODIS viennent de GIBS, le même jour que Sentinel-2 quand c\'est possible. Les dates diffèrent : neige et nuages changent d\'une image à l\'autre.')) + '</div>';

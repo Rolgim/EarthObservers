@@ -121,6 +121,7 @@ function when(m, d){
 }
 /* licence et crédit de l'image, écrits dans data/*.json par tools/data/credits.py ; registre complet : CREDITS.md */
 var CREDITS_URL = 'https://github.com/Rolgim/EarthObservers/blob/main/CREDITS.md';
+window.licLine = licLine;
 function licLine(d, noCredit){
   if (!d.license_fr) return '';
   var en = OBS_LANG === 'en', l = en ? d.license_en : d.license_fr;
