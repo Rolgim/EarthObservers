@@ -202,5 +202,13 @@
   "https://en.wikipedia.org/wiki/NOAA-21",
   "https://en.wikipedia.org/wiki/NOAA-20",
   "https://en.wikipedia.org/wiki/Suomi_NPP"
+ ],
+ "pace3": [
+  "https://en.wikipedia.org/wiki/Plankton,_Aerosol,_Cloud,_ocean_Ecosystem",
+  "https://en.wikipedia.org/wiki/Orbiting_Carbon_Observatory_2",
+  "https://en.wikipedia.org/wiki/Global_Precipitation_Measurement",
+  "https://en.wikipedia.org/wiki/Soil_Moisture_Active_Passive",
+  "https://en.wikipedia.org/wiki/NISAR_(satellite)",
+  "https://en.wikipedia.org/wiki/Aura_(satellite)"
  ]
 }
