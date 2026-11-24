@@ -53,29 +53,6 @@
     }
    },
    {
-    "title": "Landsat Collection 2 Level-2 UTM Surface Reflectance (SR) Product",
-    "license": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/Landsat_Data_Policy.pdf",
-    "license_links": [],
-    "license_links_declared": [],
-    "period": [
-     "1982-08-22T00:00:00.000Z",
-     null
-    ],
-    "api": "https://landsatlook.usgs.gov/stac-server",
-    "doi": null,
-    "matched": 1112927,
-    "first": "2021-10-31T04:40:14.262694Z",
-    "last": "2026-11-19T23:41:04.577507Z",
-    "inst": "oli2",
-    "cat": "usgs",
-    "id": "landsat-c2l2-sr",
-    "sat_filter": {
-     "platform": {
-      "eq": "LANDSAT_9"
-     }
-    }
-   },
-   {
     "title": "HLS Landsat Operational Land Imager Surface Reflectance and TOA Brightness Daily Global 30m v2.0",
     "license": "CC0-1.0",
     "license_links": [
@@ -107,29 +84,6 @@
     "cat": "cmr",
     "id": "HLSL30_2.0",
     "sat_filter": null
-   },
-   {
-    "title": "Landsat Collection 2 Level-1 Product",
-    "license": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/Landsat_Data_Policy.pdf",
-    "license_links": [],
-    "license_links_declared": [],
-    "period": [
-     "1972-07-25T00:00:00.000Z",
-     null
-    ],
-    "api": "https://landsatlook.usgs.gov/stac-server",
-    "doi": null,
-    "matched": 1316218,
-    "first": "2021-10-31T04:40:14.262694Z",
-    "last": "2026-11-24T15:15:15.012679Z",
-    "inst": "tirs2",
-    "cat": "usgs",
-    "id": "landsat-c2l1",
-    "sat_filter": {
-     "platform": {
-      "eq": "LANDSAT_9"
-     }
-    }
    },
    {
     "title": "Landsat Collection 2 Level-2 UTM Surface Temperature (ST) Product",
@@ -192,7 +146,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 3832649,
+    "matched": 3832657,
     "inst": "csar",
     "cat": "es",
     "id": "sentinel-1-grd",
@@ -236,7 +190,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 52221857,
+    "matched": 52221914,
     "inst": "msi",
     "cat": "es",
     "id": "sentinel-2-l2a",
@@ -257,7 +211,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 31280538,
+    "matched": 31280599,
     "inst": "msi",
     "cat": "es",
     "id": "sentinel-2-c1-l2a",
@@ -607,7 +561,7 @@
     "doi": "10.5067/SWOT-RASTER-D",
     "concept": "C3233942299-POCLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3233942299-POCLOUD.html",
-    "matched_all": 1346391,
+    "matched_all": 1346475,
     "use": null,
     "title": "SWOT Level 2 Water Mask Raster Image 250m Data Product, Version D",
     "period": [
@@ -615,7 +569,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 1346391,
+    "matched": 1346475,
     "inst": "karin",
     "cat": "cmr",
     "id": "SWOT_L2_HR_Raster_250m_D",
@@ -957,7 +911,7 @@
     "doi": "10.5067/NIL1RSLC-V1",
     "concept": "C3622236985-ASF",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3622236985-ASF.html",
-    "matched_all": 45912,
+    "matched_all": 45916,
     "use": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
     "title": "NISAR Validated Range Doppler Single Look Complex Product (Version 1) ",
     "period": [
@@ -965,7 +919,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 45912,
+    "matched": 45916,
     "inst": "lsar",
     "cat": "cmr",
     "id": "NISAR_L1_RSLC_V1",
@@ -983,7 +937,7 @@
     "doi": "10.5067/NIL2GCOV-V1",
     "concept": "C3622241360-ASF",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3622241360-ASF.html",
-    "matched_all": 45729,
+    "matched_all": 45733,
     "use": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
     "title": "NISAR Validated Geocoded Polarimetric Covariance Product (Version 1)",
     "period": [
@@ -991,7 +945,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 45729,
+    "matched": 45733,
     "inst": "lsar",
     "cat": "cmr",
     "id": "NISAR_L2_GCOV_V1",

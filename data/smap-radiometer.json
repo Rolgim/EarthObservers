@@ -16,13 +16,14 @@
  "credit": "NASA ; Imagery from NASA's Global Imagery Browse Services (GIBS), part of NASA's Earth Science Data and Information System (ESDIS)",
  "stack_days": 3,
  "date_first": "2026-11-19",
+ "legend": "https://gibs.earthdata.nasa.gov/legends/SMAP_Soil_Moisture_H.png",
  "full_size": [
   1000,
-  500
+  603
  ],
  "out_size": [
   1000,
-  500
+  603
  ],
  "fetched": "2026-11-24",
  "license_fr": "CC0 1.0 (données des missions de la NASA, politique d'usage d'Earthdata) ; citer le jeu de données",
