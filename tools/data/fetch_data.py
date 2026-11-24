@@ -126,9 +126,9 @@ def gibs_cap(layer):
     if "x" not in _CAP: _CAP["x"] = S.get("https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabilities.xml", timeout=180).text
     cap = _CAP["x"]; i = cap.find("<ows:Identifier>" + layer + "</ows:Identifier>")
     if i < 0: raise RuntimeError("couche GIBS absente : " + layer)
-    blk = cap[i - 4000:][:9000]
-    leg = re.findall(r'xlink:href="([^"]+?(?:_H|horizontal)[^"]*?\.png)"', blk) or re.findall(r'xlink:href="([^"]+?\.png)"', blk)
-    dflt = re.search(r'<Dimension>.*?<Default>([^<]+)</Default>', blk[4000:], re.S)
+    blk = cap[i:cap.find("</Layer>", i)]   # la couche seule, de son identifiant à sa fin (attributs entre apostrophes)
+    leg = re.findall(r"""xlink:href=['"]([^'"]+?_H\.(?:svg|png))['"]""", blk) or re.findall(r"""LegendURL[^>]*xlink:href=['"]([^'"]+)['"]""", blk)
+    dflt = re.search(r'<Dimension>.*?<Default>([^<]+)</Default>', blk, re.S)
     return (dflt.group(1) if dflt else None), (leg[0] if leg else None)
 def gibs(name, layer, bbox, size, instrument, product, date=None, legend=None, stack=0, extra=None):
     """Image d'une couche GIBS. stack = n : superpose les n jours qui finissent à date (couches à traces étroites, comme OCO-2 ou NISAR)."""
@@ -147,9 +147,16 @@ def gibs(name, layer, bbox, size, instrument, product, date=None, legend=None, s
     if stack: meta.update(stack_days=stack, date_first=days[0])
     if extra: meta.update(extra)
     if legend:   # légende officielle de la couche (GIBS), collée sous l'image
-        lg = S.get(legend, timeout=60)
-        if lg.ok and lg.headers.get("content-type", "").startswith("image/png"):
-            L = Image.open(io.BytesIO(lg.content)).convert("RGBA"); k = min(1.0, im.width / L.width); L = L.resize((round(L.width * k), round(L.height * k)))
+        lg = S.get(legend[:-4] + ".png" if legend.endswith(".svg") else legend, timeout=60)   # GIBS publie chaque légende en SVG et en PNG
+        L = None
+        if lg.ok and lg.headers.get("content-type", "").startswith("image/png"): legend = lg.url; L = Image.open(io.BytesIO(lg.content)).convert("RGBA")
+        elif legend.endswith(".svg"):   # sinon : le SVG, converti en PNG par cairosvg
+            sv = S.get(legend, timeout=60)
+            if sv.ok:
+                import cairosvg
+                L = Image.open(io.BytesIO(cairosvg.svg2png(bytestring=sv.content, output_width=min(im.width, 760)))).convert("RGBA")
+        if L is not None:
+            k = min(1.0, im.width / L.width); L = L.resize((round(L.width * k), round(L.height * k)))
             out = Image.new("RGB", (im.width, im.height + L.height + 8), (255, 255, 255)); out.paste(im, (0, 0)); out.paste(L, ((im.width - L.width) // 2, im.height + 4), L); im = out
             meta["legend"] = legend
     save(name, im, meta, max_px=1000)
@@ -193,7 +200,7 @@ def commons(name, title, instrument, what_fr, max_px=1000):
     if not re.search(r"public domain|^PD|CC BY-SA 3\.0 igo|CC BY 4\.0|CC BY-SA 4\.0", lic, re.I): raise RuntimeError("licence refusée : " + lic)
     im = Image.open(io.BytesIO(S.get(ii.get("thumburl") or ii["url"], timeout=300).content))
     save(name, im, {"src": "commons", "press": True, "archive": "Wikimedia Commons", "collection": "", "product": title[5:], "title": v("ObjectName") or title[5:],
-         "datetime": v("DateTimeOriginal")[:10] or ii.get("timestamp", "")[:10], "instrument": instrument, "href": ii["url"], "page": ii.get("descriptionurl"),
+         "datetime": v("DateTimeOriginal")[:10] if re.match(r"\d{4}-\d{2}-\d{2}", v("DateTimeOriginal")) else ii.get("timestamp", "")[:10], "instrument": instrument, "href": ii["url"], "page": ii.get("descriptionurl"),
          "credit": (v("Artist") if v("Artist") and not v("Artist").startswith("http") else v("Credit"))[:240], "license": lic, "license_url": v("LicenseUrl"), "source": v("Credit")[:240],
          "description": v("ImageDescription")[:500], "what_fr": what_fr}, max_px)
 def sentinel5p(): commons("sentinel5p-tropomi", "File:Nitrogen dioxide over the Netherlands (TROPOMI, 2017-12-01).png", "TROPOMI", "dioxyde d'azote")
