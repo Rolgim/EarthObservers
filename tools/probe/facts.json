@@ -178,5 +178,29 @@
   "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-6",
   "https://sealevel.jpl.nasa.gov/missions/jason-cs-sentinel-6/summary/",
   "https://science.nasa.gov/mission/sentinel-6/"
+ ],
+ "pace2": [
+  "https://en.wikipedia.org/wiki/PACE_(spacecraft)",
+  "https://www.eoportal.org/satellite-missions/pace-plankton-aerosol-cloud-ocean-ecosystem"
+ ],
+ "goes2": [
+  "https://en.wikipedia.org/wiki/GOES-19",
+  "https://en.wikipedia.org/wiki/GOES-16",
+  "https://www.ospo.noaa.gov/operations/goes/index.html"
+ ],
+ "sentinel62": [
+  "https://en.wikipedia.org/wiki/Sentinel-6_Michael_Freilich",
+  "https://en.wikipedia.org/wiki/Sentinel-6B",
+  "https://www.eumetsat.int/sentinel-6",
+  "https://www.eoportal.org/satellite-missions/sentinel-6"
+ ],
+ "tempo2": [
+  "https://en.wikipedia.org/wiki/Intelsat_40e",
+  "https://en.wikipedia.org/wiki/Tropospheric_Emissions:_Monitoring_of_Pollution"
+ ],
+ "jpss2": [
+  "https://en.wikipedia.org/wiki/NOAA-21",
+  "https://en.wikipedia.org/wiki/NOAA-20",
+  "https://en.wikipedia.org/wiki/Suomi_NPP"
  ]
 }
