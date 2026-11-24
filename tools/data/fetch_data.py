@@ -159,8 +159,69 @@ def sentinel5p(): commons("sentinel5p-tropomi", "File:Nitrogen dioxide over the 
 def swot(): commons("swot-karin", "File:Global sea surface height by the Surface Water and Ocean Topography (SWOT) mission – the first 21-day cycle (SVS31265 - swot 2023-10-30-A 0001).tiff", "KaRIn", "hauteur de la mer")
 def icesat2(): commons("icesat2-atlas", "File:ICESat-2 Sea Ice Thickness 2023 (SVS5100 - sea ice thickness 2023 1570 print).jpg", "ATLAS", "épaisseur de la banquise")
 
+# ---------- galerie « le même lieu » : la même zone, découpée à l'identique dans les images de plusieurs satellites ----------
+LIEU = [6.3, 45.8, 7.0, 46.4]   # lon min, lat min, lon max, lat max : Mont-Blanc, Chamonix, Annecy et l'est du Léman (≈ 54 × 67 km)
+LIEU_PX = 800
+def lieu_size(px=LIEU_PX):
+    import math
+    w = (LIEU[2] - LIEU[0]) * math.cos(math.radians((LIEU[1] + LIEU[3]) / 2)); h = LIEU[3] - LIEU[1]
+    return (px, round(px * h / w)) if w >= h else (round(px * w / h), px)
+def inside(geom, pts):
+    """Tous les points (lon, lat) dans le polygone (premier anneau ; MultiPolygon : n'importe lequel des polygones)."""
+    polys = [geom["coordinates"]] if geom["type"] == "Polygon" else geom["coordinates"]
+    def pin(r, x, y):
+        c = False
+        for (x1, y1), (x2, y2) in zip(r, r[1:] + r[:1]):
+            if (y1 > y) != (y2 > y) and x < (x2 - x1) * (y - y1) / (y2 - y1) + x1: c = not c
+        return c
+    return all(any(pin([tuple(q[:2]) for q in pl[0]], x, y) for pl in polys) for x, y in pts)
+def corners(b): return [(b[0], b[1]), (b[2], b[1]), (b[2], b[3]), (b[0], b[3]), ((b[0] + b[2]) / 2, (b[1] + b[3]) / 2)]
+def pc_crop(f, w, h):
+    """Découpe LIEU dans un produit du Planetary Computer, avec les réglages de rendu de son aperçu officiel (rendered_preview)."""
+    from urllib.parse import urlsplit, parse_qsl
+    pv = f["assets"]["rendered_preview"]["href"]; q = [(k, v) for k, v in parse_qsl(urlsplit(pv).query) if k != "format"]
+    bb = ",".join(str(v) for v in LIEU)
+    for path in ("item/bbox/%s/%dx%d.png" % (bb, w, h), "item/crop/%s/%dx%d.png" % (bb, w, h)):
+        r = S.get("https://planetarycomputer.microsoft.com/api/data/v1/" + path, params=q, timeout=300)
+        if r.ok and (r.content[:4] == b"\x89PNG" or r.content[:3] == b"\xff\xd8\xff"): return r.url, Image.open(io.BytesIO(r.content))
+        print("  découpe refusée", path.split("/")[1], r.status_code, r.text[:160])
+    return None, None
+def black_share(im):
+    g = im.convert("L").resize((100, 100)); return sum(1 for v in g.getdata() if v < 4) / 10000
+def lieu_pc(key, sat, collection, query, instrument, src, credit, days, ms):
+    w, h = lieu_size()
+    for f in pc_items(collection, query, days, n=100, bbox=LIEU):
+        if "rendered_preview" not in f["assets"] or not inside(f["geometry"], corners(LIEU)): continue
+        url, im = pc_crop(f, w, h)
+        if im is None: continue
+        if im.mode in ("RGBA", "LA", "P"): im = im.convert("RGBA"); bg = Image.new("RGB", im.size, (0, 0, 0)); bg.paste(im, mask=im.split()[3]); im = bg
+        if black_share(im) > 0.02: print("  zone incomplète", f["id"]); continue
+        p = f["properties"]
+        save("lieu-" + key, im, {"src": src, "lieu": LIEU, "sat": sat, "res_m": ms, "archive": "Microsoft Planetary Computer (catalogue STAC, découpe par son service de rendu)",
+             "collection": collection, "product": f["id"], "datetime": p.get("datetime"), "instrument": instrument, "platform": p.get("platform"),
+             "cloud": p.get("eo:cloud_cover"), "href": url.split("&st=")[0], "page": PC + "/collections/" + collection + "/items/" + f["id"],
+             "credit": credit.replace("{y}", str(p.get("datetime", ""))[:4]), "crop_lieu": True}, max_px=LIEU_PX)
+        print("lieu", key, f["id"], p.get("datetime")); return p.get("datetime")
+    raise RuntimeError("lieu : aucun produit de " + collection + " ne couvre toute la zone")
+def lieu():
+    bad = 0; dates = {}
+    for key, args in (("sentinel2", ("sentinel2", "sentinel-2-l2a", {"eo:cloud_cover": {"lt": 10}}, "MSI", "copernicus", "Contains modified Copernicus Sentinel data {y} ; découpe : Microsoft Planetary Computer", 120, 10)),
+                      ("landsat9", ("landsat9", "landsat-c2-l2", {"platform": {"in": ["landsat-9"]}, "eo:cloud_cover": {"lt": 15}}, "OLI-2", "usgs-pd", "Landsat 9 : USGS ; découpe : Microsoft Planetary Computer", 120, 30)),
+                      ("sentinel1", ("sentinel1", "sentinel-1-rtc", {"sar:instrument_mode": {"eq": "IW"}}, "C-SAR", "copernicus", "Contains modified Copernicus Sentinel data {y} ; correction de relief et découpe : Microsoft Planetary Computer", 30, 10))):
+        try: dates[key] = lieu_pc(key, *args)
+        except Exception as e: bad += 1; print("ÉCHEC lieu", key, repr(e)[:200])
+    d = (dates.get("sentinel2") or days_ago(3))[:10]   # MODIS le même jour que Sentinel-2 (passages du matin et de l'après-midi)
+    bb = [LIEU[1], LIEU[0], LIEU[3], LIEU[2]]; w, h = lieu_size(400)
+    for key, sat, layer in (("terra", "terra", "MODIS_Terra_CorrectedReflectance_TrueColor"), ("aqua", "aqua", "MODIS_Aqua_CorrectedReflectance_TrueColor")):
+        try:
+            gibs("lieu-" + key, layer, bb, (w, h), "MODIS", "MODIS " + key.capitalize() + ", réflectance corrigée, couleurs naturelles", d)
+            f = os.path.join(DATA, "lieu-" + key + ".json"); m = json.load(open(f, encoding="utf-8")); m.update(lieu=LIEU, sat=sat, res_m=250, crop_lieu=True)
+            json.dump(m, open(f, "w", encoding="utf-8"), indent=1, ensure_ascii=False); print("lieu", key, d)
+        except Exception as e: bad += 1; print("ÉCHEC lieu", key, repr(e)[:200])
+    if bad == 5: raise RuntimeError("lieu : aucune image")
+
 RECIPES = {"textures": earth_texture, "landsat9": landsat9, "sentinel1": sentinel1, "sentinel2": sentinel2, "sentinel3": sentinel3, "sentinel5p": sentinel5p,
-           "terra": terra, "aqua": aqua, "icesat2": icesat2, "gracefo": gracefo, "swot": swot}
+           "terra": terra, "aqua": aqua, "icesat2": icesat2, "gracefo": gracefo, "swot": swot, "lieu": lieu}
 if __name__ == "__main__":
     want = sys.argv[1:] or list(RECIPES); bad = 0
     for k in want:

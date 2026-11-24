@@ -48,6 +48,7 @@ def transform(d):
     """Ce que le site a fait au fichier d'origine (en français), d'après les champs écrits au téléchargement."""
     if d.get("plot"): return "tracé par ce site (matplotlib) à partir du fichier de données : " + (d.get("how_fr") or "")[:220]
     t = []
+    if d.get("crop_lieu"): t.append("découpé sur la zone de la galerie (lon %s à %s, lat %s à %s)" % (d["lieu"][0], d["lieu"][2], d["lieu"][1], d["lieu"][3]))
     if d.get("crop"): t.append("recadré (partie centrale %d × %d px)" % tuple(d["crop"][:2]))
     if d.get("crop_px"): t.append("carré central de %d px" % d["crop_px"])
     fs, os_ = d.get("full_size"), d.get("out_size")
