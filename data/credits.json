@@ -2,6 +2,60 @@
  "generated": "2026-11-24",
  "items": [
   {
+   "kind": "orbites",
+   "file": "data/cat.json",
+   "title": "Relevé des catalogues (titres, niveaux, licences déclarées, nombres de produits)",
+   "source": null,
+   "page": null,
+   "license": "métadonnées publiques des catalogues, citées comme faits",
+   "license_url": null,
+   "credit": "NASA CMR, USGS, Element 84, Copernicus",
+   "fetched": "2026-11-24",
+   "transform": "extraits par tools/data/catalog.py",
+   "status": "ok"
+  },
+  {
+   "kind": "aperçu d'archive",
+   "file": "data/landsat9-oli.jpg",
+   "title": "HLS.L30.T57LXJ.2026323T232506.v2.0",
+   "instrument": "OLI-2",
+   "source": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-public/HLSL30.020/HLS.L30.T57LXJ.2026323T232506.v2.0/HLS.L30.T57LXJ.2026323T232506.v2.0.jpg",
+   "page": "https://cmr.earthdata.nasa.gov/search/concepts/G4420036001-LPCLOUD.html",
+   "archive": "NASA LP DAAC (Earthdata), catalogue CMR",
+   "license": "CC0 1.0 (données des missions de la NASA, politique d'usage d'Earthdata) ; citer le jeu de données (DOI 10.5067/HLS/HLSL30.002)",
+   "license_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+   "credit": "NASA/USGS Landsat 9 ; HLS : NASA LP DAAC",
+   "fetched": "2026-11-24",
+   "transform": "réduit de 1000 × 1000 à 900 × 900 px, enregistré en JPEG",
+   "status": "ok"
+  },
+  {
+   "kind": "texture",
+   "file": "data/tex-earth.jpg",
+   "title": "Whole world - land and oceans 12000.jpg",
+   "source": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Whole_world_-_land_and_oceans_12000.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "page": "https://commons.wikimedia.org/wiki/File:Whole_world_-_land_and_oceans_12000.jpg",
+   "license": "Domaine public (données et images de la NASA, non protégées par le droit d'auteur)",
+   "license_url": "https://commons.wikimedia.org/wiki/File:Whole_world_-_land_and_oceans_12000.jpg",
+   "credit": "NASA/Goddard Space Flight Center",
+   "fetched": "2026-11-24",
+   "transform": "réduite à 2048 × 1024 px, enregistrée en JPEG",
+   "status": "ok"
+  },
+  {
+   "kind": "orbites",
+   "file": "data/tle.json",
+   "title": "CelesTrak, éléments GP au format TLE (gp.php?CATNR=…&FORMAT=TLE)",
+   "source": "https://celestrak.org/NORAD/elements/",
+   "page": "https://celestrak.org/NORAD/elements/",
+   "license": "Éléments publiés librement par CelesTrak (d'après le catalogue de la Space Force américaine) ; aucune licence écrite trouvée",
+   "license_url": "https://celestrak.org/NORAD/elements/",
+   "credit": "CelesTrak (T.S. Kelso)",
+   "fetched": "2026-11-24T12:21Z",
+   "transform": "aucune : propagés par SGP4 dans le navigateur",
+   "status": "à confirmer"
+  },
+  {
    "kind": "maquette 3D",
    "file": "models/landsat9.glb",
    "title": "NASA Eyes on the Earth, « Landsat 9 »",
@@ -11,7 +65,7 @@
    "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
    "credit": "NASA/JPL-Caltech",
    "fetched": null,
-   "transform": "convertie en glTF binaire, redécoupée en pièces, géométrie quantifiée (voir tools/models/README.md)",
+   "transform": "convertie en glTF binaire, nœuds renommés par pièce, textures réduites à 1024 px (WebP), géométrie quantifiée (voir tools/models/README.md)",
    "status": "ok"
   },
   {

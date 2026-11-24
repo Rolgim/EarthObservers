@@ -18,11 +18,30 @@ Généré le 2026-11-24. Statuts : **ok** (licence vérifiée sur la page citée
 | Maquettes NASA Eyes on the Earth et NASA 3D Resources | Usage libre (règles d'usage des médias de la NASA, qui couvrent les maquettes 3D) | https://www.nasa.gov/nasa-brand-center/images-and-media/ |
 | Éléments orbitaux CelesTrak | à confirmer : diffusés librement, sans licence écrite | https://celestrak.org/NORAD/elements/ |
 
+## Aperçu d'archive (1)
+
+| Fichier | Titre / produit | Crédit | Licence | Statut | Source | Téléchargé le | Transformations |
+|---|---|---|---|---|---|---|---|
+| `data/landsat9-oli.jpg` | HLS.L30.T57LXJ.2026323T232506.v2.0 (OLI-2) | NASA/USGS Landsat 9 ; HLS : NASA LP DAAC | [CC0 1.0 (données des missions de la NASA, politique d'usage d'Earthdata) ; citer le jeu de données (DOI 10.5067/HLS/HLSL30.002)](https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance) | ok | [fichier](https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-public/HLSL30.020/HLS.L30.T57LXJ.2026323T232506.v2.0/HLS.L30.T57LXJ.2026323T232506.v2.0.jpg) · [page](https://cmr.earthdata.nasa.gov/search/concepts/G4420036001-LPCLOUD.html) | 2026-11-24 | réduit de 1000 × 1000 à 900 × 900 px, enregistré en JPEG |
+
+## Texture (1)
+
+| Fichier | Titre / produit | Crédit | Licence | Statut | Source | Téléchargé le | Transformations |
+|---|---|---|---|---|---|---|---|
+| `data/tex-earth.jpg` | Whole world - land and oceans 12000.jpg | NASA/Goddard Space Flight Center | [Domaine public (données et images de la NASA, non protégées par le droit d'auteur)](https://commons.wikimedia.org/wiki/File:Whole_world_-_land_and_oceans_12000.jpg) | ok | [fichier](https://upload.wikimedia.org/wikipedia/commons/8/8f/Whole_world_-_land_and_oceans_12000.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original) · [page](https://commons.wikimedia.org/wiki/File:Whole_world_-_land_and_oceans_12000.jpg) | 2026-11-24 | réduite à 2048 × 1024 px, enregistrée en JPEG |
+
+## Orbites (2)
+
+| Fichier | Titre / produit | Crédit | Licence | Statut | Source | Téléchargé le | Transformations |
+|---|---|---|---|---|---|---|---|
+| `data/cat.json` | Relevé des catalogues (titres, niveaux, licences déclarées, nombres de produits) | NASA CMR, USGS, Element 84, Copernicus | métadonnées publiques des catalogues, citées comme faits | ok | fichier | 2026-11-24 | extraits par tools/data/catalog.py |
+| `data/tle.json` | CelesTrak, éléments GP au format TLE (gp.php?CATNR=…&FORMAT=TLE) | CelesTrak (T.S. Kelso) | [Éléments publiés librement par CelesTrak (d'après le catalogue de la Space Force américaine) ; aucune licence écrite trouvée](https://celestrak.org/NORAD/elements/) | à confirmer | [fichier](https://celestrak.org/NORAD/elements/) | 2026-11-24T12:21Z | aucune : propagés par SGP4 dans le navigateur |
+
 ## Maquette 3D (1)
 
 | Fichier | Titre / produit | Crédit | Licence | Statut | Source | Téléchargé le | Transformations |
 |---|---|---|---|---|---|---|---|
-| `models/landsat9.glb` | NASA Eyes on the Earth, « Landsat 9 » | NASA/JPL-Caltech | [NASA/JPL-Caltech, usage libre (règles d'usage des médias de la NASA, qui couvrent les maquettes 3D)](https://www.nasa.gov/nasa-brand-center/images-and-media/) | ok | [fichier](https://eyes.nasa.gov/apps/earth/) | — | convertie en glTF binaire, redécoupée en pièces, géométrie quantifiée (voir tools/models/README.md) |
+| `models/landsat9.glb` | NASA Eyes on the Earth, « Landsat 9 » | NASA/JPL-Caltech | [NASA/JPL-Caltech, usage libre (règles d'usage des médias de la NASA, qui couvrent les maquettes 3D)](https://www.nasa.gov/nasa-brand-center/images-and-media/) | ok | [fichier](https://eyes.nasa.gov/apps/earth/) | — | convertie en glTF binaire, nœuds renommés par pièce, textures réduites à 1024 px (WebP), géométrie quantifiée (voir tools/models/README.md) |
 
 ## Police (1)
 

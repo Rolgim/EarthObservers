@@ -1,0 +1,140 @@
+{
+ "fetched": "2026-11-24",
+ "cats": {
+  "cmr": {
+   "label": "NASA CMR (Earthdata)",
+   "api": "https://cmr.earthdata.nasa.gov/stac/",
+   "page": "https://search.earthdata.nasa.gov/"
+  },
+  "usgs": {
+   "label": "USGS LandsatLook STAC",
+   "api": "https://landsatlook.usgs.gov/stac-server",
+   "page": "https://landsatlook.usgs.gov/"
+  },
+  "es": {
+   "label": "Earth Search (Element 84, AWS)",
+   "api": "https://earth-search.aws.element84.com/v1",
+   "page": "https://element84.com/earth-search/"
+  },
+  "cdse": {
+   "label": "Copernicus Data Space Ecosystem",
+   "api": "https://stac.dataspace.copernicus.eu/v1",
+   "page": "https://dataspace.copernicus.eu/"
+  }
+ },
+ "cols": {
+  "landsat9": [
+   {
+    "title": "Landsat Collection 2 Level-1 Product",
+    "license": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/Landsat_Data_Policy.pdf",
+    "license_links": [],
+    "period": [
+     "1972-07-25T00:00:00.000Z",
+     null
+    ],
+    "api": "https://landsatlook.usgs.gov/stac-server",
+    "doi": null,
+    "matched": 1316127,
+    "first": "2021-10-31T04:40:14.262694Z",
+    "last": "2026-11-24T09:19:13.470992Z",
+    "inst": "oli2",
+    "cat": "usgs",
+    "id": "landsat-c2l1",
+    "sat_filter": {
+     "platform": {
+      "eq": "LANDSAT_9"
+     }
+    }
+   },
+   {
+    "title": "Landsat Collection 2 Level-2 UTM Surface Reflectance (SR) Product",
+    "license": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/Landsat_Data_Policy.pdf",
+    "license_links": [],
+    "period": [
+     "1982-08-22T00:00:00.000Z",
+     null
+    ],
+    "api": "https://landsatlook.usgs.gov/stac-server",
+    "doi": null,
+    "matched": 1112927,
+    "first": "2021-10-31T04:40:14.262694Z",
+    "last": "2026-11-19T23:41:04.577507Z",
+    "inst": "oli2",
+    "cat": "usgs",
+    "id": "landsat-c2l2-sr",
+    "sat_filter": {
+     "platform": {
+      "eq": "LANDSAT_9"
+     }
+    }
+   },
+   {
+    "title": "HLS Landsat Operational Land Imager Surface Reflectance and TOA Brightness Daily Global 30m v2.0",
+    "license": "CC0-1.0",
+    "license_links": [
+     "https://earthdata.nasa.gov/earth-observation-data/data-use-policy"
+    ],
+    "period": [
+     "2013-04-11T00:00:00.000Z",
+     null
+    ],
+    "api": "https://cmr.earthdata.nasa.gov/stac/LPCLOUD",
+    "doi": "10.5067/HLS/HLSL30.002",
+    "matched": 16274387,
+    "level": "3",
+    "concept": "C2021957657-LPCLOUD",
+    "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2021957657-LPCLOUD.html",
+    "matched_all": 16274387,
+    "use": "https://earthdata.nasa.gov/earth-observation-data/data-use-policy",
+    "inst": "oli2",
+    "cat": "cmr",
+    "id": "HLSL30_2.0",
+    "sat_filter": null
+   },
+   {
+    "title": "Landsat Collection 2 Level-1 Product",
+    "license": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/Landsat_Data_Policy.pdf",
+    "license_links": [],
+    "period": [
+     "1972-07-25T00:00:00.000Z",
+     null
+    ],
+    "api": "https://landsatlook.usgs.gov/stac-server",
+    "doi": null,
+    "matched": 1316127,
+    "first": "2021-10-31T04:40:14.262694Z",
+    "last": "2026-11-24T09:19:13.470992Z",
+    "inst": "tirs2",
+    "cat": "usgs",
+    "id": "landsat-c2l1",
+    "sat_filter": {
+     "platform": {
+      "eq": "LANDSAT_9"
+     }
+    }
+   },
+   {
+    "title": "Landsat Collection 2 Level-2 UTM Surface Temperature (ST) Product",
+    "license": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/Landsat_Data_Policy.pdf",
+    "license_links": [],
+    "period": [
+     "1982-08-22T00:00:00.000Z",
+     null
+    ],
+    "api": "https://landsatlook.usgs.gov/stac-server",
+    "doi": null,
+    "matched": 940884,
+    "first": "2021-10-31T04:40:14.262694Z",
+    "last": "2026-11-19T23:25:54.147662Z",
+    "inst": "tirs2",
+    "cat": "usgs",
+    "id": "landsat-c2l2-st",
+    "sat_filter": {
+     "platform": {
+      "eq": "LANDSAT_9"
+     }
+    }
+   }
+  ]
+ }
+}
