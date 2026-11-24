@@ -8,6 +8,9 @@ o = []
 for a in sys.argv[1:]:
     k, v = a.split("=", 1); v = v.replace("_", " ")
     for f in ("TLE", "JSON"):
-        r = S.get("https://celestrak.org/NORAD/elements/gp.php", params={k: v, "FORMAT": f}, timeout=60)
+        try:
+            r = S.get("https://celestrak.org/NORAD/elements/gp.php", params={k: v, "FORMAT": f}, timeout=60)
+        except Exception as e:
+            o.append("### %s=%s %s erreur %s" % (k, v, f, e)); continue
         o.append("### %s=%s %s (%s)\n%s\n" % (k, v, f, r.status_code, r.text[:3000] if f == "TLE" else "\n".join("%s %s %s" % (x["OBJECT_NAME"], x["OBJECT_ID"], x["NORAD_CAT_ID"]) for x in (r.json() if r.status_code == 200 and r.text.startswith("[") else []))))
 open(os.path.join(OUT, "gp.txt"), "w").write("\n".join(o)); print("\n".join(o)[:4000])
