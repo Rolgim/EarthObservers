@@ -1,0 +1,31 @@
+{
+ "src": "commons",
+ "press": true,
+ "archive": "Wikimedia Commons",
+ "collection": "",
+ "product": "ICESat-2 Sea Ice Thickness 2023 (SVS5100 - sea ice thickness 2023 1570 print).jpg",
+ "title": "ICESat-2 Sea Ice Thickness 2023 (SVS5100 - sea ice thickness 2023 1570 print)",
+ "datetime": "25 April 2",
+ "instrument": "ATLAS",
+ "href": "https://upload.wikimedia.org/wikipedia/commons/f/ff/ICESat-2_Sea_Ice_Thickness_2023_%28SVS5100_-_sea_ice_thickness_2023_1570_print%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+ "page": "https://commons.wikimedia.org/wiki/File:ICESat-2_Sea_Ice_Thickness_2023_(SVS5100_-_sea_ice_thickness_2023_1570_print).jpg",
+ "credit": "NASA's Scientific Visualization Studio - Kel Elkins, Alek A. Petty, Nathan T. Kurtz, Thomas A. Neumann, Ryan Fitzgibbons",
+ "license": "Public domain",
+ "license_url": "https://commons.wikimedia.org/wiki/File:ICESat-2_Sea_Ice_Thickness_2023_(SVS5100_-_sea_ice_thickness_2023_1570_print).jpg",
+ "source": "ICESat-2 Sea Ice Thickness 2023",
+ "description": "Print resolution image showing ICESat-2 sea ice thickness data for March 2020",
+ "what_fr": "épaisseur de la banquise",
+ "full_size": [
+  1024,
+  576
+ ],
+ "out_size": [
+  1000,
+  562
+ ],
+ "fetched": "2026-11-24",
+ "license_fr": "Domaine public (données et images de la NASA, non protégées par le droit d'auteur)",
+ "license_en": "Public domain (NASA data and images, not copyrighted)",
+ "credit_line": "NASA's Scientific Visualization Studio - Kel Elkins, Alek A. Petty, Nathan T. Kurtz, Thomas A. Neumann, Ryan Fitzgibbons",
+ "status": "ok"
+}

@@ -1,0 +1,31 @@
+{
+ "src": "commons",
+ "press": true,
+ "archive": "Wikimedia Commons",
+ "collection": "",
+ "product": "Nitrogen dioxide over the Netherlands (TROPOMI, 2017-12-01).png",
+ "title": "Nitrogen dioxide over the Netherlands (TROPOMI, 2017-12-01)",
+ "datetime": "2017-11-07",
+ "instrument": "TROPOMI",
+ "href": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Nitrogen_dioxide_over_the_Netherlands_%28TROPOMI%2C_2017-12-01%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+ "page": "https://commons.wikimedia.org/wiki/File:Nitrogen_dioxide_over_the_Netherlands_(TROPOMI,_2017-12-01).png",
+ "credit": "http://www.esa.int/spaceinimages/Images/2017/12/Nitrogen_dioxide_over_the_Netherlands",
+ "license": "CC BY-SA 3.0 igo",
+ "license_url": "https://creativecommons.org/licenses/by-sa/3.0/igo/deed.en",
+ "source": "European Space Agency",
+ "description": "The Copernicus Sentinel-5P satellite imaged high levels of atmospheric nitrogen dioxide over the Netherlands and the Ruhr area in west Germany on 7 November 2017. Launched on 13 October 2017, Sentinel-5P is the first Copernicus mission dedicated to monitoring our atmosphere. This new satellite carries the state-of-the-art Tropomi instrument to map a multitude of trace gases and aerosols that affect the air we breathe and our climate. This is one of the first images delivered by this new mission.",
+ "what_fr": "dioxyde d'azote",
+ "full_size": [
+  1920,
+  1915
+ ],
+ "out_size": [
+  1000,
+  997
+ ],
+ "fetched": "2026-11-24",
+ "license_fr": "CC BY-SA 3.0 igo ; attribution : http://www.esa.int/spaceinimages/Images/2017/12/Nitrogen_dioxide_over_the_Netherlands ; image réduite par ce site, publiée sous la même licence",
+ "license_en": "CC BY-SA 3.0 igo; attribution: http://www.esa.int/spaceinimages/Images/2017/12/Nitrogen_dioxide_over_the_Netherlands; image scaled down by this site, shared under the same licence",
+ "credit_line": "http://www.esa.int/spaceinimages/Images/2017/12/Nitrogen_dioxide_over_the_Netherlands",
+ "status": "ok"
+}

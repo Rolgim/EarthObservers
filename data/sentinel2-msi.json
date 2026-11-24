@@ -1,0 +1,27 @@
+{
+ "src": "copernicus",
+ "archive": "Microsoft Planetary Computer (catalogue STAC)",
+ "collection": "sentinel-2-l2a",
+ "product": "S2B_MSIL2A_20261124T035059_R104_T49UCP_20261124T055651",
+ "datetime": "2026-11-24T03:50:59.024000Z",
+ "instrument": "MSI",
+ "platform": "Sentinel-2B",
+ "cloud": 0.003543,
+ "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-2-l2a&item=S2B_MSIL2A_20261124T035059_R104_T49UCP_20261124T055651&assets=visual&asset_bidx=visual%7C1,2,3&nodata=0&format=png",
+ "page": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2B_MSIL2A_20261124T035059_R104_T49UCP_20261124T055651",
+ "credit": "Contains modified Copernicus Sentinel data 2026 ; aperçu : Microsoft Planetary Computer",
+ "full_size": [
+  1024,
+  1024
+ ],
+ "out_size": [
+  900,
+  900
+ ],
+ "fetched": "2026-11-24",
+ "license_fr": "Données Copernicus Sentinel, libres et gratuites ; mention « Contains modified Copernicus Sentinel data 2026 »",
+ "license_en": "Copernicus Sentinel data, free and open; notice “Contains modified Copernicus Sentinel data 2026”",
+ "license_url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+ "credit_line": "Contains modified Copernicus Sentinel data 2026",
+ "status": "ok"
+}
