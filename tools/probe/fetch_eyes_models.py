@@ -8,7 +8,8 @@ import requests
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_out", "eyes"); os.makedirs(OUT, exist_ok=True)
 S = requests.Session(); S.headers["User-Agent"] = "Mozilla/5.0 (earthobservers-probe/1.0; +https://github.com/Rolgim/EarthObservers)"
 ROOT = "https://eyes.nasa.gov/assets/static/models/"
-PATHS = ["sc_landsat_9/Landsat9.gltf", "sc_terra/Terra.gltf", "sc_aqua/Aqua.gltf", "sc_icesatii/ICESat2.gltf", "sc_grace_fo/graceFO.gltf", "sc_swot_v2/swot.gltf"]
+import sys
+PATHS = sys.argv[1:] or ["sc_landsat_9/Landsat9.gltf", "sc_terra/Terra.gltf", "sc_aqua/Aqua.gltf", "sc_icesatii/ICESat2.gltf", "sc_grace_fo/graceFO.gltf", "sc_swot_v2/swot.gltf"]
 REP = []
 def log(*a):
     s = " ".join(str(x) for x in a); print(s, flush=True); REP.append(s)
