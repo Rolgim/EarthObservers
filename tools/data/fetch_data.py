@@ -66,7 +66,7 @@ def landsat9():
              "product": umm.get("GranuleUR"), "datetime": umm.get("TemporalExtent", {}).get("RangeDateTime", {}).get("BeginningDateTime"),
              "instrument": "OLI-2", "landsat_id": next((v for v in a.values() if v and re.search(r"LC09", str(v))), None),
              "cloud": a.get("CLOUD_COVERAGE"), "tile": a.get("MGRS_TILE_ID"), "href": href,
-             "page": CMR + "/search/concepts/" + meta["concept-id"] + ".html", "doi": "10.5067/HLS/HLSL30.002",
+             "page": CMR + "/search/concepts/" + meta["concept-id"] + ".umm_json",   # la page .html des granules répond 400 "doi": "10.5067/HLS/HLSL30.002",
              "credit": "NASA/USGS Landsat 9 ; HLS : NASA LP DAAC", "attrs": {k: a[k] for k in list(a)[:40]}})
         return
     raise RuntimeError("aucune scène HLS Landsat 9 retenue")

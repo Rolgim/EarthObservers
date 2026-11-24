@@ -38,10 +38,15 @@ COLS = [
   ("swot", "karin", "cmr", "SWOT_L2_LR_SSH", None, "POCLOUD:short"),
   ("swot", "karin", "cmr", "SWOT_L2_HR_Raster", None, "POCLOUD:short"),
 ]
+# liens de licence déclarés par les catalogues mais morts (sites fermés) -> page actuelle de la même notice
+LEGAL = "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice"
+DEAD = {"https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice": LEGAL,
+        "https://scihub.copernicus.eu/twiki/pub/SciHubWebPortal/TermsConditions/Sentinel_Data_Terms_and_Conditions.pdf": LEGAL}
 def stac_col(cat, cid, q, prov):
     root = CATS[cat]["api"] + (prov or "")
     c = S.get(root.rstrip("/") + "/collections/" + cid, timeout=90); c.raise_for_status(); c = c.json()
-    rec = {"title": c.get("title"), "license": c.get("license"), "license_links": [l["href"] for l in c.get("links", []) if l.get("rel") == "license"],
+    links = [l["href"] for l in c.get("links", []) if l.get("rel") == "license"]
+    rec = {"title": c.get("title"), "license": c.get("license"), "license_links": [DEAD.get(u, u) for u in links], "license_links_declared": links,
            "period": (c.get("extent", {}).get("temporal", {}).get("interval") or [[None, None]])[0], "api": root, "doi": c.get("sci:doi")}
     body = {"collections": [cid], "limit": 1}
     if q: body["query"] = q
