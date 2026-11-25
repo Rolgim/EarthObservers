@@ -18,7 +18,7 @@ concurrency: { group: data, cancel-in-progress: true }
 jobs:
   fetch:
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -35,6 +35,11 @@ jobs:
         with: { node-version: 22 }
       - name: Reconstruire le site avec les nouvelles données
         run: node build.js
+      - name: Parcours du site avant publication (rien n'est commité si une page casse)
+        run: |
+          git diff --quiet -- data index.html && echo "Rien de nouveau" && exit 0
+          npm install --no-save playwright@1.56.0 && npx playwright install --with-deps chromium
+          node tools/smoke.js
       - name: Commiter les données
         run: |
           git config user.name "github-actions[bot]"

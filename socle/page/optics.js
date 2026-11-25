@@ -2,7 +2,7 @@
    TRAJET DE LA LUMIÈRE (ou du signal) dans chaque instrument.
    Schémas de principe paramétriques, d'après le module optique d'Observatories v1.0 : formes, tailles et distances NE sont PAS
    à l'échelle (règle 2), ce que dit la légende de chaque figure. Les seules valeurs chiffrées affichées viennent d'OPTICS
-   ci-dessous, chacune avec sa source (clés de INST_DATA[mission].refs ou des refs de la mission, règle 1).
+   du site (OPTICS_SITE.data, src/optics-data.js de chaque site), chacune avec sa source (clés de INST_DATA[mission].refs ou des refs de la mission, règle 1).
    Couleurs neutres : ramenées aux jetons du thème par les règles « svg [fill=…] » de style.css.
 ================================================================= */
 var Optics = (function(){
@@ -99,7 +99,7 @@ var Optics = (function(){
       var W = 560, H = 240, yg = 206, fx = 275, s = '';
       /* flèche posée sur le segment, à la fraction t, dans le sens du trajet */
       function on(x1, y1, x2, y2, t, c){ return arrow(x1 + (x2-x1)*t, y1 + (y2-y1)*t, Math.atan2(y2-y1, x2-x1)*180/Math.PI, c); }
-      s += '<rect x="150" y="20" width="250" height="40" rx="4" fill="none" stroke="'+SOFT+'" stroke-dasharray="4 3"/>' + T(275, 14, L('satellite', 'satellite'), 'middle');
+      s += '<rect x="150" y="20" width="250" height="40" rx="4" fill="none" stroke="'+SOFT+'" stroke-dasharray="4 3"/>' + T(275, 14, OPTICS_SITE.craft(), 'middle');
       s += '<rect x="206" y="30" width="44" height="22" rx="3" fill="rgba(219,90,20,0.15)" stroke="'+RAY+'"/>' + T(196, 80, L('laser', 'laser'), 'end', true);
       s += '<rect x="300" y="26" width="40" height="28" rx="3" fill="rgba(61,107,224,0.10)" stroke="'+DET+'"/>' + Ln(300, 54, 340, 54, INK, 3) + T(352, 80, L('télescope récepteur', 'receiving telescope'), 'start', true);
       /* lumière renvoyée dans toutes les directions par le sol : le télescope n'en capte qu'une petite partie */
@@ -136,7 +136,7 @@ var Optics = (function(){
     radio: function(){
       var W = 560, H = 210, s = '';
       s += '<circle cx="420" cy="150" r="52" fill="none" stroke="'+GND+'" stroke-width="3"/>' + T(420, 154, L('corps étudié', 'body studied'), 'middle');
-      s += '<rect x="408" y="48" width="24" height="16" rx="2" fill="none" stroke="'+INK+'" stroke-width="2"/>' + T(440, 44, L('satellite', 'satellite'), null, true);
+      s += '<rect x="408" y="48" width="24" height="16" rx="2" fill="none" stroke="'+INK+'" stroke-width="2"/>' + T(440, 44, OPTICS_SITE.craft(), null, true);
       s += Pa('M58 160 Q80 192 102 160', INK, 3) + Ln(80, 176, 80, 194, INK, 2) + T(80, 204, L('antenne sur Terre', 'antenna on Earth'), 'middle', true);
       s += P([[96, 164], [404, 60]], RAY, 1.2, '6 4') + arrow(400, 61, -18, RAY) + arrow(100, 163, 162, RAY);
       s += T(250, 92, L('signal radio aller et retour', 'two-way radio signal'), 'middle', true) + T(250, 108, L('décalage Doppler → vitesse → gravité', 'Doppler shift → speed → gravity'), 'middle');
@@ -156,21 +156,16 @@ var Optics = (function(){
     xray:[L('Les rayons X du Soleil frappent le sol, dont les atomes réémettent des rayons X à des énergies propres à chaque élément (fluorescence).', 'X-rays from the Sun strike the ground, whose atoms re-emit X-rays at energies specific to each element (fluorescence).'), L('Un collimateur limite le champ de vue ; aucune lentille ne focalise ces rayons.', 'A collimator limits the field of view; no lens focuses these rays.'), L('Le détecteur mesure l\'énergie de chaque photon X ; le spectre donne la composition du sol.', 'The detector measures the energy of each X-ray photon; the spectrum gives the composition of the ground.')],
     alt:[L('Le laser envoie une impulsion très brève vers le sol.', 'The laser sends a very short pulse towards the ground.'), L('Une petite partie de la lumière revient vers un télescope récepteur.', 'A small part of the light comes back to a receiving telescope.'), L('Le temps aller-retour donne la distance, donc l\'altitude du sol sous la sonde.', 'The round-trip time gives the distance, hence the height of the ground below the spacecraft.')],
     radar:[L('L\'antenne émet une impulsion radio.', 'The antenna emits a radio pulse.'), L('L\'onde traverse les nuages, et à basse fréquence une partie entre dans le sol.', 'The wave crosses clouds, and at low frequency part of it enters the ground.'), L('Les échos reviennent à l\'antenne ; leur retard et leur force donnent l\'image, le relief ou les couches du sous-sol.', 'The echoes return to the antenna; their delay and strength give the image, the relief or the subsurface layers.')],
-    radio:[L('Une antenne sur Terre envoie un signal radio de fréquence très stable.', 'An antenna on Earth sends a radio signal of very stable frequency.'), L('Le satellite le renvoie ; son mouvement décale la fréquence (effet Doppler).', 'The spacecraft sends it back; its motion shifts the frequency (Doppler effect).'), L('Les variations de vitesse révèlent le champ de gravité, ou l\'atmosphère traversée par le signal.', 'Speed changes reveal the gravity field, or the atmosphere crossed by the signal.')]
+    radio:[L('Une antenne sur Terre envoie un signal radio de fréquence très stable.', 'An antenna on Earth sends a radio signal of very stable frequency.'), OPTICS_SITE.echo(), L('Les variations de vitesse révèlent le champ de gravité, ou l\'atmosphère traversée par le signal.', 'Speed changes reveal the gravity field, or the atmosphere crossed by the signal.')]
   }[k]; }
 
   /* ---------- données sourcées des caméras principales ----------
      figs : un dessin par voie (petit champ, grand champ) ; rows : combinaison optique, [libellé, valeur, clé de source] */
-  function OPTICS(){ return {
-    'landsat9:tirs2':{ figs:[{ kind:'refr', lens:L('télescope à quatre lentilles, f/1,64', 'four-lens telescope, f/1.64'), filt:true, det:L('3 barrettes QWIP à 43 K', '3 QWIP arrays at 43 K') }],
-      rows:[[L('Télescope', 'Telescope'), L('réfracteur à quatre lentilles, faisceau à f/1,64', 'four-element refractor, f/1.64 beam'), 'tirs'], [L('Champ', 'Field of view'), '15°', 'tirs'],
-        [L('Filtres', 'Filters'), L('deux filtres interférentiels (bandes 10 et 11)', 'two interference filters (bands 10 and 11)'), 'tirs'],
-        [L('Détecteurs', 'Detectors'), L('3 barrettes QWIP de 640 détecteurs, refroidies à 43 K', '3 QWIP arrays of 640 detectors, cooled to 43 K'), 'tirs']] }
-  }; }
+  function OPTICS(){ return OPTICS_SITE.data(); }
   var GAMMA = /^(grns|grs|ns|gs)$/, FTS = /^(cirs|pfs)$/, SOUNDER = /^(sharad|marsis|lrs)$/;
   function kindOf(it){
     if (it.type === 'spec') return it.id === 'xrs' ? 'xray' : GAMMA.test(it.id) ? 'gamma' : FTS.test(it.id) ? 'fts' : 'spec';
-    return { cam:'cam', therm:'cam', rad:'rad', alt:'alt', radar:'radar', grav:'radio' }[it.type] || null;
+    return OPTICS_SITE.types[it.type] || null;
   }
 
   /* section « Trajet de la lumière » de la page d'un instrument */

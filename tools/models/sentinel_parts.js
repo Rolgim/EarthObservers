@@ -1,7 +1,7 @@
 // Pièces des maquettes Sentinel-1, -2 et -3 de Space Radar (MIT) : chaque îlot est rangé d'après sa place et sa taille,
 // relevées sur les rendus six vues (render.py) et sur les dimensions citées par Space Radar (pages models.spaceradar.ai/sentinel-N/).
 // Repère de Space Radar : +Z vers la Terre. Usage : node sentinel_parts.js 1|2|3 entrée.glb sortie.glb
-const { segment } = require('./seg_lib.js');
+const { segment } = require('../../socle/models/seg_lib.js');
 const sz = c => c.max.map((v, k) => v - c.min[k]);
 const C = {
   // Sentinel-1 : antenne radar de 12,3 m le long de X (14 tuiles et son liseré doré), deux ailes solaires de 10 m, plateforme de 3,4 × 1,3 × 1,3 m.

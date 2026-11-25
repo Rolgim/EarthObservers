@@ -1,5 +1,7 @@
 # Chaîne de préparation des maquettes
 
+> **Outils génériques dans le socle.** `seg_lib.js`, `dump.js`, `islands.js`, `cls_view.js`, `render.py`, `notex.mjs`, `slim.mjs`, `slimtex.mjs`, `split_mats.mjs` et `schema.mjs` sont dans `socle/models/` (commun aux sites, voir `socle/README.md`) : `cd socle/models && npm ci` une fois, puis par exemple `node socle/models/dump.js in.glb out.json`. Ce dossier garde ce qui est propre au site (classifieurs, scripts de découpage).
+
 Reprise de SolarExplorers. Les fichiers `models/<id>.glb` du site sont produits ici à partir des maquettes d'origine, qui ne sont pas dans le dépôt : NASA Eyes on the Earth (`tools/probe/fetch_eyes_models.py` les télécharge depuis la CI, sur la branche `probe-out`).
 
 | Maquette | Source | Traitement |

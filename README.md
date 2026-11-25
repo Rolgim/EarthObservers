@@ -13,12 +13,13 @@ Pour le lancer en local : `node build.js`, puis `python3 -m http.server` et ouvr
 | Chemin | Rôle |
 |---|---|
 | `index.html`, `models/*.glb` | le site tel qu'il est servi par GitHub Pages |
-| `build.js` | `node build.js` assemble `src/` en `index.html` ; `node build.js artifact` produit une variante dans `dist/` (maquettes en base64) pour l'artifact claude.ai |
+| `build.js` | `node build.js` assemble `src/` et le socle en `index.html` (aucune dépendance) ; `node build.js artifact` produit une variante dans `dist/` (maquettes encodées en base64) pour l'artifact claude.ai |
+| `socle/`, `socle.lock.json`, `site.json` | **socle commun** aux sites de la série (construction, langue, traduction, visionneuse 3D, styles de base, outils de test), copié depuis [Rolgim/rolgim.github.io](https://github.com/Rolgim/rolgim.github.io/tree/main/socle) par `node socle/sync.js` et à ne pas modifier ici (`node socle/check.js` le vérifie) ; `site.json` règle le socle pour ce site (titre, couleur, ordre des sources) |
 | `src/data-missions.js` | **registre des satellites** (`MISSIONS`) : fiche, thèmes, numéros NORAD, maquette ; schéma en tête du fichier |
 | `src/data-inst.js`, `src/data-mission.js`, `src/data-fleet.js` | instruments ; déroulé des missions et niveaux de traitement ; « qui a fait quoi » |
 | `src/earth.js` | accueil : globe et satellites en temps réel (three.js et satellite.js) |
-| `src/app.js`, `src/viewer.js`, `src/missionpage.js`, `src/views.js`, `src/optics.js` | en-tête, routage, vue 3D, page « Mission et instruments », Flotte et Comparer, trajets de la lumière |
-| `src/en/`, `src/i18n.js`, `src/lang.js` | version anglaise |
+| `src/app.js`, `src/missionpage.js`, `src/views.js`, `src/optics.js` | en-tête, routage, vue 3D, page « Mission et instruments », Flotte et Comparer, trajets de la lumière |
+| `src/en/` | version anglaise |
 | `data/` | données réelles produites par `tools/data/` (ne pas modifier à la main) : aperçus et leurs fiches, `tle.json` (éléments orbitaux du jour), `cat.json` (relevé des catalogues), `credits.json` |
 | `tools/data/` | `fetch_data.py` (aperçus), `fetch_tle.py` (éléments orbitaux), `catalog.py` (relevé des catalogues), `credits.py` (registre des licences) |
 | `tools/probe/` | sondes lancées depuis GitHub Actions ; résultats sur la branche `probe-out` |
@@ -31,10 +32,12 @@ Après une modification dans `src/`, relancer `node build.js` et commiter `index
 
 | Workflow | Quand | Rôle |
 |---|---|---|
-| Données réelles | chaque jour (éléments orbitaux seuls), à la demande et à chaque changement de `tools/data/` (tout) | télécharge, met à jour le registre des crédits, reconstruit `index.html` et commite |
+| Données réelles | chaque jour (éléments orbitaux seuls), à la demande et à chaque changement de `tools/data/` (tout) | télécharge, met à jour le registre des crédits, reconstruit `index.html`, parcourt le site, puis commite |
 | Site (GitHub Pages) | après chaque mise à jour du site ou des données | publie le site |
-| Tests | à chaque push touchant le site | `index.html` à jour, parcours, accessibilité, traduction |
+| Tests | à chaque push touchant le site | socle non modifié, `index.html` à jour, parcours, accessibilité, traduction |
 | Sonde | à la demande | lance un script de `tools/probe/` |
+| Liens et licences | le 1er de chaque mois, et à la demande | `socle/data/check_links.py` : vérifie toutes les adresses citées et le texte des pages de licence ; ouvre ou complète l'issue « Liens et licences à relire » ; ne retire rien |
+| Socle commun | chaque lundi soir, et à la demande | copie le socle depuis Rolgim/rolgim.github.io ; s'il a changé, pousse la mise à jour sur la branche `socle-maj` (à fusionner après les tests) |
 
 ## Crédits et licences
 
