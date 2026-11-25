@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-24",
+ "fetched": "2026-11-25",
  "cats": {
   "cmr": {
    "label": "NASA CMR (Earthdata)",
@@ -40,9 +40,9 @@
     ],
     "api": "https://landsatlook.usgs.gov/stac-server",
     "doi": null,
-    "matched": 1316218,
+    "matched": 1316288,
     "first": "2021-10-31T04:40:14.262694Z",
-    "last": "2026-11-24T15:15:15.012679Z",
+    "last": "2026-11-24T15:51:09.702718Z",
     "inst": "oli2",
     "cat": "usgs",
     "id": "landsat-c2l1",
@@ -90,7 +90,7 @@
     ],
     "api": "https://cmr.earthdata.nasa.gov/stac/LPCLOUD",
     "doi": "10.5067/HLS/HLSL30.002",
-    "matched": 16274387,
+    "matched": 16288966,
     "short_name": "HLSL30",
     "version": "2.0",
     "title_umm": "HLS Landsat Operational Land Imager Surface Reflectance and TOA Brightness Daily Global 30m v2.0",
@@ -101,7 +101,7 @@
     "level": "3",
     "concept": "C2021957657-LPCLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2021957657-LPCLOUD.html",
-    "matched_all": 16274387,
+    "matched_all": 16288972,
     "use": "https://earthdata.nasa.gov/earth-observation-data/data-use-policy",
     "inst": "oli2",
     "cat": "cmr",
@@ -119,9 +119,9 @@
     ],
     "api": "https://landsatlook.usgs.gov/stac-server",
     "doi": null,
-    "matched": 1316218,
+    "matched": 1316288,
     "first": "2021-10-31T04:40:14.262694Z",
-    "last": "2026-11-24T15:15:15.012679Z",
+    "last": "2026-11-24T15:51:09.702718Z",
     "inst": "tirs2",
     "cat": "usgs",
     "id": "landsat-c2l1",
@@ -159,12 +159,8 @@
    {
     "title": "Sentinel 1 Level-1 Ground Range Detected (GRD)",
     "license": "proprietary",
-    "license_links": [
-     "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice"
-    ],
-    "license_links_declared": [
-     "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
-    ],
+    "license_links": [],
+    "license_links_declared": [],
     "period": [
      "2014-10-10T00:28:21Z",
      null
@@ -192,7 +188,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 3832662,
+    "matched": 3833385,
     "inst": "csar",
     "cat": "es",
     "id": "sentinel-1-grd",
@@ -236,7 +232,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 52221928,
+    "matched": 52228589,
     "inst": "msi",
     "cat": "es",
     "id": "sentinel-2-l2a",
@@ -257,7 +253,7 @@
     ],
     "api": "https://earth-search.aws.element84.com/v1",
     "doi": null,
-    "matched": 31280611,
+    "matched": 31287318,
     "inst": "msi",
     "cat": "es",
     "id": "sentinel-2-c1-l2a",
@@ -352,7 +348,7 @@
     ],
     "api": "https://cmr.earthdata.nasa.gov/stac/LPCLOUD",
     "doi": "10.5067/MODIS/MOD09GA.061",
-    "matched": 3092345,
+    "matched": 3092654,
     "short_name": "MOD09GA",
     "version": "061",
     "title_umm": "MODIS/Terra Surface Reflectance Daily L2G Global 1km and 500m SIN Grid V061",
@@ -363,7 +359,7 @@
     "level": "2G",
     "concept": "C2202497474-LPCLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2202497474-LPCLOUD.html",
-    "matched_all": 3092345,
+    "matched_all": 3092654,
     "use": "https://earthdata.nasa.gov/earth-observation-data/data-use-policy",
     "inst": "modis",
     "cat": "cmr",
@@ -453,7 +449,7 @@
     ],
     "api": "https://cmr.earthdata.nasa.gov/stac/GES_DISC",
     "doi": "10.5067/UO3Q64CTTS1U",
-    "matched": 8766,
+    "matched": 8767,
     "short_name": "AIRS3STD",
     "version": "7.0",
     "title_umm": "Aqua/AIRS L3 Daily Standard Physical Retrieval (AIRS-only) 1 degree x 1 degree V7.0",
@@ -464,7 +460,7 @@
     "level": "3",
     "concept": "C1701805652-GES_DISC",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C1701805652-GES_DISC.html",
-    "matched_all": 8766,
+    "matched_all": 8767,
     "use": "The Earth Observing System Data and Information System (EOSDIS) data use and citation guidance for NASA data can be accessed at https://earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance. For information on how to properly cite and acknowledge data from the NASA GES DISC, refer to https://disc.gsfc.nasa.gov/data-guidelines.",
     "inst": "airs",
     "cat": "cmr",
@@ -607,7 +603,7 @@
     "doi": "10.5067/SWOT-RASTER-D",
     "concept": "C3233942299-POCLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3233942299-POCLOUD.html",
-    "matched_all": 1346557,
+    "matched_all": 1347144,
     "use": null,
     "title": "SWOT Level 2 Water Mask Raster Image 250m Data Product, Version D",
     "period": [
@@ -615,7 +611,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 1346557,
+    "matched": 1347144,
     "inst": "karin",
     "cat": "cmr",
     "id": "SWOT_L2_HR_Raster_250m_D",
@@ -635,7 +631,7 @@
     "doi": "10.5067/PACE/OCI/L1B/SCI/3",
     "concept": "C3392966952-OB_CLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3392966952-OB_CLOUD.html",
-    "matched_all": 234640,
+    "matched_all": 234729,
     "use": null,
     "title": "PACE OCI Level-1B Science Data, version 3",
     "period": [
@@ -643,7 +639,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 234640,
+    "matched": 234729,
     "inst": "oci",
     "cat": "cmr",
     "id": "PACE_OCI_L1B_SCI",
@@ -687,7 +683,7 @@
     "doi": "10.5067/PACE/HARP2/L1C/SCI/4",
     "concept": "C4126552613-OB_CLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C4126552613-OB_CLOUD.html",
-    "matched_all": 137259,
+    "matched_all": 137346,
     "use": null,
     "title": "PACE HARP2 Level-1C Science Data, version 4",
     "period": [
@@ -695,7 +691,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 137259,
+    "matched": 137346,
     "inst": "harp2",
     "cat": "cmr",
     "id": "PACE_HARP2_L1C_SCI",
@@ -741,7 +737,7 @@
     "doi": "10.5067/VIIRS/VJ109GA.002",
     "concept": "C2631841524-LPCLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2631841524-LPCLOUD.html",
-    "matched_all": 1191154,
+    "matched_all": 1192642,
     "use": null,
     "title": "VIIRS/JPSS1 Surface Reflectance Daily L2G Global 1km and 500m SIN Grid V002",
     "period": [
@@ -749,7 +745,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 1191154,
+    "matched": 1192642,
     "inst": "viirs",
     "cat": "cmr",
     "id": "VJ109GA",
@@ -767,7 +763,7 @@
     "doi": "10.5067/VIIRS/VJ209GA.002",
     "concept": "C2817354878-LPCLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2817354878-LPCLOUD.html",
-    "matched_all": 455789,
+    "matched_all": 457337,
     "use": null,
     "title": "VIIRS/JPSS2 Surface Reflectance Daily L2G Global 1km and 500m SIN Grid V002",
     "period": [
@@ -775,7 +771,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 455789,
+    "matched": 457337,
     "inst": "viirs",
     "cat": "cmr",
     "id": "VJ209GA",
@@ -795,7 +791,7 @@
     "doi": "10.5067/BN36FXOMMC4C",
     "concept": "C2938663676-NSIDC_CPRD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2938663676-NSIDC_CPRD.html",
-    "matched_all": 120184,
+    "matched_all": 120194,
     "use": null,
     "title": "SMAP Enhanced L2 Radiometer Half-Orbit 9 km EASE-Grid Soil Moisture V006",
     "period": [
@@ -803,7 +799,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 120184,
+    "matched": 120194,
     "inst": "radiometer",
     "cat": "cmr",
     "id": "SPL2SMP_E",
@@ -821,7 +817,7 @@
     "doi": "10.5067/M20OXIZHY3RJ",
     "concept": "C2938664763-NSIDC_CPRD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2938664763-NSIDC_CPRD.html",
-    "matched_all": 4173,
+    "matched_all": 4169,
     "use": null,
     "title": "SMAP Enhanced L3 Radiometer Global and Polar Grid Daily 9 km EASE-Grid Soil Moisture V006",
     "period": [
@@ -829,7 +825,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 4173,
+    "matched": 4169,
     "inst": "radiometer",
     "cat": "cmr",
     "id": "SPL3SMP_E",
@@ -877,7 +873,7 @@
     "doi": "10.5067/GPM/GMI/GPM/1C/08",
     "concept": "C4054954550-GES_DISC",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C4054954550-GES_DISC.html",
-    "matched_all": 71859,
+    "matched_all": 71863,
     "use": "The Earth Observing System Data and Information System (EOSDIS) data use and citation guidance for NASA data can be accessed at https://earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance. For information on how to properly cite and acknowledge data from the NASA GES DISC, refer to https://disc.gsfc.nasa.gov/data-guidelines.",
     "title": "GPM GMI Common Calibrated Brightness Temperatures Collocated L1C 1.5 hours 13 km V08 (GPM_1CGPMGMI)",
     "period": [
@@ -885,7 +881,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 71859,
+    "matched": 71863,
     "inst": "gmi",
     "cat": "cmr",
     "id": "GPM_1CGPMGMI",
@@ -903,7 +899,7 @@
     "doi": "10.5067/GPM/DPR/GPM/2A/08",
     "concept": "C4054954501-GES_DISC",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C4054954501-GES_DISC.html",
-    "matched_all": 71353,
+    "matched_all": 71359,
     "use": "The Earth Observing System Data and Information System (EOSDIS) data use and citation guidance for NASA data can be accessed at https://earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance. For information on how to properly cite and acknowledge data from the NASA GES DISC, refer to https://disc.gsfc.nasa.gov/data-guidelines.",
     "title": "GPM DPR Precipitation Profile L2A 1.5 hours 5 km V08 (GPM_2ADPR)",
     "period": [
@@ -911,7 +907,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 71353,
+    "matched": 71359,
     "inst": "dpr",
     "cat": "cmr",
     "id": "GPM_2ADPR",
@@ -929,7 +925,7 @@
     "doi": "10.5067/GPM/IMERG/3B-HH-L/07",
     "concept": "C2723754845-GES_DISC",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C2723754845-GES_DISC.html",
-    "matched_all": 506598,
+    "matched_all": 506624,
     "use": "The Earth Observing System Data and Information System (EOSDIS) data use and citation guidance for NASA data can be accessed at https://earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance. For information on how to properly cite and acknowledge data from the NASA GES DISC, refer to https://disc.gsfc.nasa.gov/data-guidelines.",
     "title": "GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V07 (GPM_3IMERGHHL)",
     "period": [
@@ -937,7 +933,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 506598,
+    "matched": 506624,
     "inst": "gmi",
     "cat": "cmr",
     "id": "GPM_3IMERGHHL",
@@ -957,7 +953,7 @@
     "doi": "10.5067/NIL1RSLC-V1",
     "concept": "C3622236985-ASF",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3622236985-ASF.html",
-    "matched_all": 45917,
+    "matched_all": 46802,
     "use": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
     "title": "NISAR Validated Range Doppler Single Look Complex Product (Version 1) ",
     "period": [
@@ -965,7 +961,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 45917,
+    "matched": 46802,
     "inst": "lsar",
     "cat": "cmr",
     "id": "NISAR_L1_RSLC_V1",
@@ -983,7 +979,7 @@
     "doi": "10.5067/NIL2GCOV-V1",
     "concept": "C3622241360-ASF",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3622241360-ASF.html",
-    "matched_all": 45737,
+    "matched_all": 46686,
     "use": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
     "title": "NISAR Validated Geocoded Polarimetric Covariance Product (Version 1)",
     "period": [
@@ -991,7 +987,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 45737,
+    "matched": 46686,
     "inst": "lsar",
     "cat": "cmr",
     "id": "NISAR_L2_GCOV_V1",
@@ -1037,7 +1033,7 @@
     "doi": "10.5067/Aura/OMI/DATA2424",
     "concept": "C3377057082-GES_DISC",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3377057082-GES_DISC.html",
-    "matched_all": 114448,
+    "matched_all": 114449,
     "use": "The Earth Observing System Data and Information System (EOSDIS) data use and citation guidance for NASA data can be accessed at https://earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance. For information on how to properly cite and acknowledge data from the NASA GES DISC, refer to https://disc.gsfc.nasa.gov/data-guidelines.",
     "title": "OMI/Aura Ozone(O3) Total Column 1-Orbit L2 Swath 13x24 km V004 (OMTO3) ",
     "period": [
@@ -1045,7 +1041,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 114448,
+    "matched": 114449,
     "inst": "omi",
     "cat": "cmr",
     "id": "OMTO3",
@@ -1063,7 +1059,7 @@
     "doi": "10.5067/Aura/MLS/DATA2616",
     "concept": "C3127198326-GES_DISC",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3127198326-GES_DISC.html",
-    "matched_all": 8074,
+    "matched_all": 8076,
     "use": "The Earth Observing System Data and Information System (EOSDIS) data use and citation guidance for NASA data can be accessed at https://earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance. For information on how to properly cite and acknowledge data from the NASA GES DISC, refer to https://disc.gsfc.nasa.gov/data-guidelines.",
     "title": "MLS/Aura Level 2 Ozone (O3) Mixing Ratio V006 (ML2O3) ",
     "period": [
@@ -1071,7 +1067,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 8074,
+    "matched": 8076,
     "inst": "mls",
     "cat": "cmr",
     "id": "ML2O3",
@@ -1091,7 +1087,7 @@
     "doi": "10.5067/IS-40e/TEMPO/NO2_L2.004",
     "concept": "C3685896872-LARC_CLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3685896872-LARC_CLOUD.html",
-    "matched_all": 129375,
+    "matched_all": 129411,
     "use": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
     "title": "TEMPO NO2 tropospheric and stratospheric columns V04 (PROVISIONAL)",
     "period": [
@@ -1099,7 +1095,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 129375,
+    "matched": 129411,
     "inst": "tempo",
     "cat": "cmr",
     "id": "TEMPO_NO2_L2",
@@ -1117,7 +1113,7 @@
     "doi": "10.5067/IS-40e/TEMPO/NO2_L3.004",
     "concept": "C3685896708-LARC_CLOUD",
     "page": "https://cmr.earthdata.nasa.gov/search/concepts/C3685896708-LARC_CLOUD.html",
-    "matched_all": 17917,
+    "matched_all": 17921,
     "use": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
     "title": "TEMPO gridded NO2 tropospheric and stratospheric columns V04  (PROVISIONAL)",
     "period": [
@@ -1125,7 +1121,7 @@
      null
     ],
     "api": "https://cmr.earthdata.nasa.gov/search/",
-    "matched": 17917,
+    "matched": 17921,
     "inst": "tempo",
     "cat": "cmr",
     "id": "TEMPO_NO2_L3",
