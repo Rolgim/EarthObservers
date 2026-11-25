@@ -3,7 +3,7 @@
  "archive": "NASA GIBS (Worldview)",
  "collection": "GOES-East_ABI_GeoColor",
  "product": "GOES-East (GOES-19) ABI, GeoColor (une image du disque)",
- "datetime": "2026-11-25T07:20:00Z",
+ "datetime": "2026-11-25T16:20:00Z",
  "instrument": "ABI",
  "bbox_lat_lon": [
   -81.3,
@@ -11,8 +11,8 @@
   81.3,
   6.2
  ],
- "href": "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS=GOES-East_ABI_GeoColor&CRS=EPSG%3A4326&STYLES=&BBOX=-81.3%2C-156.2%2C81.3%2C6.2&WIDTH=900&HEIGHT=900&FORMAT=image%2Fpng&TIME=2026-11-25T07%3A20%3A00Z",
- "page": "https://worldview.earthdata.nasa.gov/?l=GOES-East_ABI_GeoColor&t=2026-11-25T07:20:00Z",
+ "href": "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS=GOES-East_ABI_GeoColor&CRS=EPSG%3A4326&STYLES=&BBOX=-81.3%2C-156.2%2C81.3%2C6.2&WIDTH=900&HEIGHT=900&FORMAT=image%2Fpng&TIME=2026-11-25T16%3A20%3A00Z",
+ "page": "https://worldview.earthdata.nasa.gov/?l=GOES-East_ABI_GeoColor&t=2026-11-25T16:20:00Z",
  "credit": "NASA ; Imagery from NASA's Global Imagery Browse Services (GIBS), part of NASA's Earth Science Data and Information System (ESDIS)",
  "full_size": [
   900,
