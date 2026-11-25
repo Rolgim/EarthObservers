@@ -5,7 +5,13 @@ import os, re, sys, requests
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_out"); os.makedirs(OUT, exist_ok=True)
 S = requests.Session(); S.headers["User-Agent"] = "earthobservers-probe/1.0 (+https://github.com/Rolgim/EarthObservers)"
 o = []
-for q in [a.replace("_", " ") for a in sys.argv[1:]]:
+for a in [a for a in sys.argv[1:] if a.startswith("sketchfab:")]:   # fiche d'un modèle Sketchfab : licence, auteur, description
+    try:
+        m = S.get("https://api.sketchfab.com/v3/models/" + a[10:], timeout=60).json()
+        o.append("## sketchfab:%s\n%s | %s | licence %s | téléchargeable %s | %s\n%s" % (a[10:], m.get("name"), (m.get("user") or {}).get("username"), (m.get("license") or {}),
+                 m.get("isDownloadable"), m.get("viewerUrl"), (m.get("description") or "")[:1500]))
+    except Exception as e: o.append("  erreur %r" % e)
+for q in [a.replace("_", " ") for a in sys.argv[1:] if not a.startswith("sketchfab:")]:
     o.append("## commons " + q)
     try:
         r = S.get("https://commons.wikimedia.org/w/api.php", params={"action": "query", "generator": "search", "gsrsearch": q + " filetype:3d|filetype:drawing|stl|glb", "gsrnamespace": 6,
