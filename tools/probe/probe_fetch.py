@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Télécharge des pages ou fichiers publics et suit leurs liens d'un niveau sur le même hôte (sans compte).
-Usage : python tools/probe/probe_fetch.py https://exemple/page/ …  Écrit tools/probe/_out/fetch/ (pages, fichiers .glb/.gltf/.bin/LICENSE,
+Usage : python tools/probe/probe_fetch.py https://exemple/page/ 0:https://exemple/fichier …  Écrit tools/probe/_out/fetch/ (pages, fichiers .glb/.gltf/.bin/LICENSE,
 en-têtes) et tools/probe/_out/fetch.txt (liste des liens trouvés, statut et taille de chaque fichier)."""
 import os, re, sys, requests
 from urllib.parse import urljoin, urlparse
@@ -24,5 +24,6 @@ def get(u, depth):
         for l in sorted(links):
             a = urljoin(u, l); o.append("    lien %s" % a)
             if depth > 0 and urlparse(a).netloc == urlparse(u).netloc and KEEP.search(urlparse(a).path): get(a, depth - 1)
-for a in sys.argv[1:]: o.append("## " + a); get(a, 2)
+for a in sys.argv[1:]:   # « 0:URL » : sans suivre les liens
+    d, u = (int(a[0]), a[2:]) if re.match(r"\d:", a) else (2, a); o.append("## " + u); get(u, d)
 open(os.path.join(OUT, "fetch.txt"), "w").write("\n".join(o)); print("\n".join(o)[:8000])
