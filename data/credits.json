@@ -486,7 +486,7 @@
    "license": "Aucune licence écrite : la politique d'usage de CelesTrak (22/05/2026) parle de données « freely available to all users » et ne fixe que des limites d'accès (un téléchargement par mise à jour, toutes les 2 h au plus) ; ce site les respecte (un téléchargement par jour) et cite la source. Éléments dérivés du catalogue de la Space Force américaine",
    "license_url": "https://celestrak.org/usage-policy.php",
    "credit": "CelesTrak (T.S. Kelso)",
-   "fetched": "2026-11-25T08:23Z",
+   "fetched": "2026-11-25T14:27Z",
    "transform": "aucune : propagés par SGP4 dans le navigateur",
    "status": "à confirmer"
   },
