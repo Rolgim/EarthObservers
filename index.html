@@ -2802,6 +2802,7 @@ var EN_MISSIONS = {
 
 /* Textes d'interface en anglais : clé = texte français tel qu'il est écrit dans le code ou dans body.html. */
 var EN_UI = {
+  'Mise à jour automatique en retard : cette donnée date de {n} jours.':'Automatic update overdue: this data is {n} days old.',
   "Page d'accueil des trois sites":"Home page of the three sites",
   'orbite en schéma de principe (tailles, altitude, inclinaison et vitesse non respectées)':'schematic orbit (sizes, altitude, inclination and speed not to scale)',
   'Vue d\'orbite':'Orbit view', 'Pause':'Pause', 'Sonde':'Spacecraft',
@@ -3229,6 +3230,23 @@ var OBS_T = function(s){ return s; }, OBS_I18N = { static:function(){} };
   };
 })();
 
+/* Données vivantes (socle) : une donnée mise à jour automatiquement affiche sa date ; si la mise à jour prend du retard,
+   la page le dit au lieu de présenter la donnée comme actuelle.
+   LIVE.age(date)            âge en jours (date ISO « 2026-11-25 » ou « 2026-11-25T08:23Z »), null si illisible
+   LIVE.warn(date, maxJours)  '' si la donnée a moins de maxJours, sinon un avertissement en ligne (<strong>, traduit par OBS_T),
+                              à placer en tête de la note qui donne la date de la donnée */
+var LIVE = (function(){
+  function age(s){
+    var t = Date.parse(/^\d{4}-\d\d-\d\d$/.test(s || '') ? s + 'T00:00:00Z' : String(s || '').replace(/Z?$/, 'Z').replace(/(T\d\d:\d\d)Z$/, '$1:00Z'));
+    return isNaN(t) ? null : (Date.now() - t) / 864e5;
+  }
+  function warn(s, max){
+    var a = age(s); if (a == null || a <= max) return '';
+    return '<strong class="live-old">' + OBS_T('Mise à jour automatique en retard : cette donnée date de {n} jours.').replace('{n}', Math.floor(a)) + '</strong> ';
+  }
+  return { age:age, warn:warn };
+})();
+
 /* =================================================================
    VUE 3D — maquette d'une sonde : rotation, zoom, pièces cliquables, vue éclatée.
    Version allégée de la vue d'Observatories v1.0 (src/app.js là-bas) : même lecture des maquettes quantifiées
@@ -3604,7 +3622,7 @@ function mount(){
   if (S.az === 0) S.az = -satellite.gstime(new Date(S.t)) + Math.PI / 2 + 0.2;   /* première ouverture : l'Europe et l'Afrique face à la caméra */
   list(R.list); info();
   var tx = d.fetched;
-  $('eo-note').innerHTML = esc(T('Positions : éléments orbitaux de CelesTrak téléchargés le') + ' ' + tx.replace('T', ' ').replace('Z', en() ? ' UTC' : ' TU') + ', ' +
+  $('eo-note').innerHTML = LIVE.warn(tx, 7) + esc(T('Positions : éléments orbitaux de CelesTrak téléchargés le') + ' ' + tx.replace('T', ' ').replace('Z', en() ? ' UTC' : ' TU') + ', ' +
     T('propagés par le modèle SGP4 (satellite.js) ; précision ≈ quelques kilomètres. La Terre, les altitudes et les orbites sont à l\'échelle ; les points des satellites sont agrandis. Éclairage d\'après la position calculée du Soleil.')) +
     ' <a class="src" href="https://celestrak.org/NORAD/elements/" rel="noopener" target="_blank">CelesTrak</a> (<a class="src" href="https://celestrak.org/usage-policy.php" rel="noopener" target="_blank">' + esc(T('diffusion libre, sans licence écrite')) + '</a>) <a class="src" href="https://github.com/shashwatak/satellite-js" rel="noopener" target="_blank">satellite.js</a>' + texCredit();
   $('eo-play').addEventListener('click', function(){ play(!S.run); });

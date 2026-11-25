@@ -192,7 +192,7 @@ function mount(){
   if (S.az === 0) S.az = -satellite.gstime(new Date(S.t)) + Math.PI / 2 + 0.2;   /* première ouverture : l'Europe et l'Afrique face à la caméra */
   list(R.list); info();
   var tx = d.fetched;
-  $('eo-note').innerHTML = esc(T('Positions : éléments orbitaux de CelesTrak téléchargés le') + ' ' + tx.replace('T', ' ').replace('Z', en() ? ' UTC' : ' TU') + ', ' +
+  $('eo-note').innerHTML = LIVE.warn(tx, 7) + esc(T('Positions : éléments orbitaux de CelesTrak téléchargés le') + ' ' + tx.replace('T', ' ').replace('Z', en() ? ' UTC' : ' TU') + ', ' +
     T('propagés par le modèle SGP4 (satellite.js) ; précision ≈ quelques kilomètres. La Terre, les altitudes et les orbites sont à l\'échelle ; les points des satellites sont agrandis. Éclairage d\'après la position calculée du Soleil.')) +
     ' <a class="src" href="https://celestrak.org/NORAD/elements/" rel="noopener" target="_blank">CelesTrak</a> (<a class="src" href="https://celestrak.org/usage-policy.php" rel="noopener" target="_blank">' + esc(T('diffusion libre, sans licence écrite')) + '</a>) <a class="src" href="https://github.com/shashwatak/satellite-js" rel="noopener" target="_blank">satellite.js</a>' + texCredit();
   $('eo-play').addEventListener('click', function(){ play(!S.run); });
