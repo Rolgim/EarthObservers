@@ -6,10 +6,12 @@ images et tracés de data/, textures, éléments orbitaux, maquettes 3D, polices
 - Écrit la licence dans chaque data/*.json (champs license_fr, license_en, license_url, credit_line, status) pour que le site l'affiche
   sous l'image, puis écrit data/credits.json et CREDITS.md (le registre lisible).
 Lancé par le workflow « Données réelles » après les téléchargements ; peut se relancer seul : python tools/data/credits.py"""
-import os, re, json, glob, datetime
+import os, re, sys, json, glob
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 DATA = os.path.join(ROOT, "data")
+sys.path.insert(0, os.path.join(ROOT, "socle", "data"))   # parties communes du registre (socle/data/credits_lib.py)
+from credits_lib import transform, dep, fonts_row, own_code_row, socle_row, write_register
 
 NASA_MEDIA = "https://www.nasa.gov/nasa-brand-center/images-and-media/"
 SPACERADAR_LICENSE = "https://github.com/Sara-Managed-Projects/space-radar/blob/main/LICENSE"
@@ -46,23 +48,6 @@ def rule(name, d):
     if d.get("press"):
         return (PD[0] + " ; sans logo de la NASA", PD[1] + "; no NASA logo", NASA_MEDIA, d.get("credit") or "NASA", "ok")
     return ("inconnue", "unknown", None, None, "à confirmer")
-
-def transform(d):
-    """Ce que le site a fait au fichier d'origine (en français), d'après les champs écrits au téléchargement."""
-    if d.get("plot"): return "tracé par ce site (matplotlib) à partir du fichier de données : " + (d.get("how_fr") or "")[:220]
-    t = []
-    if d.get("crop_lieu"): t.append("découpé sur la zone de la galerie (lon %s à %s, lat %s à %s)" % (d["lieu"][0], d["lieu"][2], d["lieu"][1], d["lieu"][3]))
-    if d.get("mosaic", 1) > 1: t.append("assemblage de %d produits du même jour" % d["mosaic"])
-    if d.get("stack_days"): t.append("superposition des images quotidiennes de GIBS du %s au %s (%d jours)" % (d.get("date_first"), str(d.get("datetime"))[:10], d["stack_days"]))
-    if d.get("legend"): t.append("légende officielle de la couche collée sous l'image")
-    if d.get("native_px"): t.append("à la taille réelle des pixels de l'instrument (agrandi à l'affichage, sans lissage)")
-    if d.get("crop"): t.append("recadré (partie centrale %d × %d px)" % tuple(d["crop"][:2]))
-    if d.get("crop_px"): t.append("carré central de %d px" % d["crop_px"])
-    fs, os_ = d.get("full_size"), d.get("out_size")
-    if fs and os_ and list(fs)[:1] != list(os_)[:1]: t.append("réduit de %s × %s à %s × %s px" % (fs[0], fs[1], os_[0], os_[1]))
-    if d.get("stretch"): t.append("contraste étiré (centiles %s–%s)" % tuple(d["stretch"][:2]))
-    t.append("enregistré en JPEG")
-    return ", ".join(t)
 
 def main():
     rows = []
@@ -111,19 +96,13 @@ def main():
                          license_url=(u if st != "ok" else NASA_MEDIA), credit=("ESA" if st != "ok" else ("NASA/JPL-Caltech" if "Eyes" in s else "NASA")),
                          fetched=None, transform="convertie en glTF binaire, nœuds renommés par pièce, textures réduites à 1024 px (WebP), géométrie quantifiée (voir tools/models/README.md)", status=st))
     rows += [
-        dict(kind="police", file="Google Fonts", title="Archivo ; IBM Plex Mono", source="https://fonts.google.com/", page="https://fonts.google.com/", license="SIL Open Font License 1.1",
-             license_url="https://openfontlicense.org/", credit="Omnibus-Type (Archivo) ; IBM (Plex)", fetched=None, transform="aucune (chargées depuis Google Fonts)", status="ok"),
+        fonts_row(),
         dict(kind="schémas", file="src/optics.js, src/missionpage.js (SVG)", title="Trajets de la lumière, traces au sol, bandes spectrales", source=None, page=None,
              license="créés pour ce site", license_url=None, credit="Observateurs de la Terre", fetched=None, transform="schémas de principe dessinés à partir des références citées sous chaque schéma", status="ok")]
     # Code : celui du dépôt, celui repris d'Observatories, et les dépendances (versions relevées le 24/11/2026)
-    lic = os.path.join(ROOT, "LICENSE")
-    own = ("Apache-2.0 (code seulement : les médias gardent leur licence, voir NOTICE)" if "Apache License" in open(lic, encoding="utf-8").read(400) else "voir LICENSE") if os.path.exists(lic) else "aucune licence déclarée (tous droits réservés)"
-    def dep(name, use, license, url, served=False):
-        return dict(kind="code", file=name, title=use, source=url, page=url, license=license, license_url=url, credit=None, fetched=None,
-                    transform="servi aux visiteurs tel quel" if served else "outil de préparation ou de test, pas distribué avec le site", status="ok")
     rows += [
-        dict(kind="code", file="src/, build.js, tools/", title="Code du site (Observateurs de la Terre)", source="https://github.com/Rolgim/EarthObservers", page=None,
-             license=own, license_url=("https://github.com/Rolgim/EarthObservers/blob/main/LICENSE" if os.path.exists(lic) else None), credit="Rolgim", fetched=None, transform="—", status="ok" if os.path.exists(lic) else "à confirmer"),
+        own_code_row(ROOT, "Observateurs de la Terre", "Rolgim/EarthObservers"),
+        socle_row(),
         dict(kind="code", file="build.js, src/, tools/", title="Architecture reprise de SolarExplorers (même auteur, Apache-2.0), elle-même issue d'Observatories v1.0",
              source="https://github.com/Rolgim/SolarExplorers", page=None, license="Apache-2.0 (code du même auteur)",
              license_url="https://github.com/Rolgim/SolarExplorers/blob/main/LICENSE", credit="Rolgim", fetched=None, transform="adapté aux satellites d'observation de la Terre", status="ok"),
@@ -137,38 +116,15 @@ def main():
         dep("requests", "téléchargements (tools/data, tools/probe)", "Apache-2.0", "https://github.com/psf/requests/blob/main/LICENSE"),
         dep("Pillow", "traitement des images", "MIT-CMU (HPND)", "https://github.com/python-pillow/Pillow/blob/main/LICENSE"),
         dep("NumPy", "calculs sur les images", "BSD-3-Clause", "https://github.com/numpy/numpy/blob/main/LICENSE.txt")]
-    today = datetime.date.today().isoformat()
-    json.dump({"generated": today, "items": rows}, open(os.path.join(DATA, "credits.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
-
-    def cell(x): return (str(x) if x else "—").replace("|", "\\|").replace("\n", " ")
-    def link(t, u): return "[" + cell(t) + "](" + u + ")" if u else cell(t)
-    out = ["# Crédits et licences", "",
-           "Registre de tout ce que le site affiche et qui ne vient pas de lui : images, tracés de données, textures, éléments orbitaux, maquettes 3D, polices et bibliothèques.",
-           "Il est **généré** par `tools/data/credits.py` à partir des métadonnées écrites au téléchargement (`data/*.json`) et de `src/data-missions.js` : ne pas le modifier à la main.",
-           "La licence de chaque image est aussi affichée sous l'image, sur le site.", "",
-           "Généré le " + today + ". Statuts : **ok** (licence vérifiée sur la page citée), **à confirmer** (aucune licence écrite trouvée : voir la colonne licence), **ok (site non commercial)** (licence limitée à l'usage non commercial, ce qui est le cas de ce site).", "",
-           "## Règles appliquées, par source", "",
-           "| Source | Licence retenue | Page qui l'énonce |", "|---|---|---|",
-           "| Données des missions de la NASA (Earthdata : LP DAAC, NSIDC, PO.DAAC, GES DISC) | CC0 1.0, citer le jeu de données | " + EARTHDATA + " |",
+    write_register(ROOT, rows, "images, tracés de données, textures, éléments orbitaux, maquettes 3D, polices et bibliothèques",
+        ["| Données des missions de la NASA (Earthdata : LP DAAC, NSIDC, PO.DAAC, GES DISC) | CC0 1.0, citer le jeu de données | " + EARTHDATA + " |",
            "| Landsat (USGS) | Domaine public, crédit demandé | " + USGS + " |",
            "| Copernicus Sentinel | Libres et gratuites, mention « Contains modified Copernicus Sentinel data [année] » | " + COPERNICUS + " |",
            "| Wikimedia Commons | Licence relue dans les métadonnées de Commons au téléchargement ; seul le domaine public est accepté pour le globe | https://commons.wikimedia.org/ |",
            "| Bibliothèque d'images de la NASA | Domaine public, sans logo de la NASA | " + NASA_MEDIA + " |",
            "| Maquettes NASA Eyes on the Earth et NASA 3D Resources | Usage libre (règles d'usage des médias de la NASA, qui couvrent les maquettes 3D) | " + NASA_MEDIA + " |",
            "| Maquettes Space Radar (models.spaceradar.ai) | MIT (licence du dépôt Space Radar), avec la ligne de crédit donnée sur la page de chaque maquette | " + SPACERADAR_LICENSE + " |",
-           "| Éléments orbitaux CelesTrak | à confirmer : diffusés librement (« freely available to all users »), sans licence écrite ; politique d'usage respectée (un téléchargement par jour) | " + CELESTRAK_POLICY + " |", ""]
-    for kind in ("aperçu d'archive", "tracé", "image de presse", "image Commons", "texture", "orbites", "maquette 3D", "police", "bibliothèque", "schémas", "code"):
-        sel = [r for r in rows if r["kind"] == kind]
-        if not sel: continue
-        out += ["## " + kind[0].upper() + kind[1:] + " (" + str(len(sel)) + ")", "",
-                "| Fichier | Titre / produit | Crédit | Licence | Statut | Source | Téléchargé le | Transformations |", "|---|---|---|---|---|---|---|---|"]
-        for r in sel:
-            out.append("| `" + cell(r["file"]) + "` | " + cell(r.get("title")) + (" (" + cell(r.get("instrument")) + ")" if r.get("instrument") else "") + " | " + cell(r.get("credit")) + " | " +
-                       link(r.get("license"), r.get("license_url")) + " | " + cell(r.get("status")) + " | " + link("fichier", r.get("source")) + (" · " + link("page", r.get("page")) if r.get("page") and r.get("page") != r.get("source") else "") +
-                       " | " + cell(r.get("fetched")) + " | " + cell(r.get("transform")) + " |")
-        out.append("")
-    open(os.path.join(ROOT, "CREDITS.md"), "w", encoding="utf-8").write("\n".join(out))
-    bad = [r["file"] for r in rows if not r["status"].startswith("ok")]
-    print("crédits :", len(rows), "entrées ;", len(bad), "à confirmer ou restreintes :", ", ".join(bad))
+           "| Éléments orbitaux CelesTrak | à confirmer : diffusés librement (« freely available to all users »), sans licence écrite ; politique d'usage respectée (un téléchargement par jour) | " + CELESTRAK_POLICY + " |"],
+        ("aperçu d'archive", "tracé", "image de presse", "image Commons", "texture", "orbites", "maquette 3D", "police", "bibliothèque", "schémas", "code"))
 
 if __name__ == "__main__": main()
