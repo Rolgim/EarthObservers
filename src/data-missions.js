@@ -91,8 +91,9 @@ var MISSIONS = [
       { type:'loss', label:'Fin de Sentinel-1A', date:'2026-06', ref:'esa' }
     ],
     norad:[62261, 66315], cospar:'2024-235A, 2025-251A',
-    file:null, bytes:0, unit:1,
-    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:98.18 },
+    file:'models/sentinel1.glb', bytes:0, unit:1,
+    model:{ src:'Space Radar, « Sentinel-1 » (forme reconstituée par Space Radar à partir des dimensions publiées et de photos ; détails simplifiés)', license:'MIT (licence du dépôt Space Radar) ; crédit : « Sentinel-1 3D model by Space Radar (spaceradar.ai), MIT License »', u:'https://models.spaceradar.ai/sentinel-1/' },
+    body:{ name:'Terre', tex:'earth', nadir:[0, 0, 1], inc:98.18 },
     view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
     real:{ key:'sentinel1-sar', alt:'Image radar de Sentinel-1 en fausses couleurs (polarisations VV et VH)' },
     desc:'Les satellites Sentinel-1 du programme européen Copernicus portent un radar en bande C, qui voit le sol de jour comme de nuit et à travers les nuages : banquise, glaciers, marées noires, inondations, déformations du sol après un séisme. Sentinel-1C (2024) et Sentinel-1D (2025) ont pris le relais de Sentinel-1B, arrêté en 2022, et de Sentinel-1A, arrêté en juin 2026.',
@@ -103,7 +104,11 @@ var MISSIONS = [
       eop:{ t:'Copernicus: Sentinel-1 (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/copernicus-sentinel-1' },
       ct:{ t:'Éléments orbitaux GP de SENTINEL-1C et -1D (n° NORAD 62261, 66315)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?NAME=SENTINEL-1&FORMAT=TLE' }
     },
-    parts:[],
+    parts:[
+      { key:'sar', name:'Antenne radar C-SAR', desc:'L\'antenne du radar à synthèse d\'ouverture en bande C, repliée au lancement et déployée en orbite. Tournée vers la Terre, elle vise sur le côté droit du satellite : la maquette la montre inclinée d\'environ 29°.', facts:[['12,3 × 0,82 m', 'eop'], ['14 tuiles, en 5 panneaux', 'eop']] },
+      { key:'solar', name:'Panneaux solaires', desc:'Deux ailes de 10 m, de cinq panneaux chacune.', facts:[['Puissance : 4 800 W en moyenne (fin de vie)', 'eop']] },
+      { key:'bus', name:'Plateforme', desc:'La plateforme, qui porte aussi un terminal de communication laser.', facts:[['3,4 × 1,3 × 1,3 m', 'eop']] }
+    ],
     sections:[
       { title:'Mission', rows:[
         ['Lancements', '1A : 3 avril 2014 ; 1B : 25 avril 2016 ; 1C : 5 décembre 2024 ; 1D : 4 novembre 2025', 'esa'],
@@ -138,8 +143,9 @@ var MISSIONS = [
       { type:'add', label:'Lancement de Sentinel-2C', date:'2024-09-05', ref:'esa' }
     ],
     norad:[40697, 42063, 60989], cospar:'2015-028A, 2017-013A, 2024-157A',
-    file:null, bytes:0, unit:1,
-    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:98.62 },
+    file:'models/sentinel2.glb', bytes:0, unit:1,
+    model:{ src:'Space Radar, « Sentinel-2 » (forme reconstituée par Space Radar à partir des dimensions publiées et de photos ; détails simplifiés)', license:'MIT (licence du dépôt Space Radar) ; crédit : « Sentinel-2 3D model by Space Radar (spaceradar.ai), MIT License »', u:'https://models.spaceradar.ai/sentinel-2/' },
+    body:{ name:'Terre', tex:'earth', nadir:[0, 0, 1], inc:98.62 },
     view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
     real:{ key:'sentinel2-msi', alt:'Scène en couleurs naturelles prise par Sentinel-2' },
     desc:'Les Sentinel-2 photographient toutes les terres émergées et les côtes en treize bandes, du bleu à l\'infrarouge, avec des pixels de 10 m. Deux satellites placés à l\'opposé sur la même orbite revoient chaque lieu tous les cinq jours à l\'équateur : cultures, forêts, villes, eaux côtières, catastrophes.',
@@ -150,7 +156,11 @@ var MISSIONS = [
       eop:{ t:'Copernicus: Sentinel-2 (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/copernicus-sentinel-2' },
       ct:{ t:'Éléments orbitaux GP de SENTINEL-2A, -2B et -2C (n° NORAD 40697, 42063, 60989)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?NAME=SENTINEL-2&FORMAT=TLE' }
     },
-    parts:[],
+    parts:[
+      { key:'msi', name:'Caméra MSI', desc:'L\'instrument multispectral : un télescope à trois miroirs, fixé à la plateforme par trois bipieds. Les viseurs d\'étoiles sont montés sur sa structure.', facts:[['Structure : 1,47 × 0,93 × 0,62 m ; 44 kg', 'eop'], ['Pupille : 150 mm', 'eop']] },
+      { key:'solar', name:'Panneau solaire', desc:'Une aile orientable de trois panneaux.', facts:[['Surface : 7,1 m²', 'eop']] },
+      { key:'bus', name:'Plateforme', desc:'La plateforme AstroBus-L d\'Airbus.', facts:[['Satellite : 3,4 × 1,8 × 2,35 m', 'esa'], ['Masse : 1 140 kg', 'esa']] }
+    ],
     sections:[
       { title:'Mission', rows:[
         ['Lancements', '2A : 23 juin 2015 ; 2B : 7 mars 2017 ; 2C : 5 septembre 2024', 'esa'],
@@ -184,8 +194,9 @@ var MISSIONS = [
       { type:'add', label:'Lancement de Sentinel-3C', date:'2026-09-15', ref:'esa' }
     ],
     norad:[41335, 43437, 100690], cospar:'2016-011A, 2018-039A, 2026-209B',
-    file:null, bytes:0, unit:1,
-    body:{ name:'Terre', tex:'earth', nadir:[0, -1, 0], inc:98.65 },
+    file:'models/sentinel3.glb', bytes:0, unit:1,
+    model:{ src:'Space Radar, « Sentinel-3 » (forme reconstituée par Space Radar à partir des dimensions publiées et de photos ; détails simplifiés)', license:'MIT (licence du dépôt Space Radar) ; crédit : « Sentinel-3 3D model by Space Radar (spaceradar.ai), MIT License »', u:'https://models.spaceradar.ai/sentinel-3/' },
+    body:{ name:'Terre', tex:'earth', nadir:[0, 0, 1], inc:98.65 },
     view:{ az:0.7, el:0.3, dist:1.5 }, sun:[0.5, 0.8, 0.4],
     real:{ key:'sentinel3-olci', alt:'Aperçu publié avec le produit OLCI de niveau 2 « eaux » (WFR) de Sentinel-3' },
     desc:'Les Sentinel-3 surveillent surtout les océans : couleur de l\'eau (plancton, sédiments), température de la mer et des terres, hauteur de la mer, des lacs et des fleuves. Chaque satellite porte une caméra à 21 bandes (OLCI), un radiomètre infrarouge (SLSTR) et un altimètre radar (SRAL). Sentinel-3C a rejoint les deux premiers en septembre 2026.',
@@ -195,9 +206,17 @@ var MISSIONS = [
       wiki:{ t:'S3 Mission (SentiWiki)', p:'ESA / Copernicus', u:'https://sentiwiki.copernicus.eu/web/s3-mission' },
       olci:{ t:'S3 OLCI Instrument (SentiWiki)', p:'ESA / Copernicus', u:'https://sentiwiki.copernicus.eu/web/s3-olci-instrument' },
       slstr:{ t:'S3 SLSTR Instrument (SentiWiki)', p:'ESA / Copernicus', u:'https://sentiwiki.copernicus.eu/web/s3-slstr-instrument' },
+      eop:{ t:'Copernicus: Sentinel-3 (eoPortal)', p:'ESA eoPortal', u:'https://www.eoportal.org/satellite-missions/copernicus-sentinel-3' },
       ct:{ t:'Éléments orbitaux GP de SENTINEL-3A, -3B et -3C (n° NORAD 41335, 43437, 100690)', p:'CelesTrak', u:'https://celestrak.org/NORAD/elements/gp.php?NAME=SENTINEL-3&FORMAT=TLE' }
     },
-    parts:[],
+    parts:[
+      { key:'sral', name:'Altimètre SRAL', desc:'L\'antenne de l\'altimètre radar en bandes C et Ku : un réflecteur parabolique tourné vers la Terre, avec sa source tenue par trois bras.', facts:[['Réflecteur de 1,20 m', 'eop']] },
+      { key:'mwr', name:'Radiomètre MWR', desc:'Le radiomètre micro-onde, qui mesure la vapeur d\'eau de l\'air pour corriger la mesure de l\'altimètre.', facts:[['Réflecteur de 60 cm', 'eop']] },
+      { key:'slstr', name:'Radiomètre SLSTR', desc:'Le radiomètre de température de surface de la mer et des terres, qui vise à la verticale et vers l\'arrière : deux ouvertures courbes, dessinées de façon simplifiée.', facts:[] },
+      { key:'olci', name:'Caméra OLCI', desc:'Le spectromètre de la couleur de l\'océan et des terres : cinq caméras sur une structure commune. La maquette les montre en rangée ; les vraies regardent par une seule ouverture, en éventail.', facts:[['1,24 × 0,83 × 1,32 m ; ≈ 150 kg', 'eop']] },
+      { key:'solar', name:'Panneau solaire', desc:'Une aile orientable de trois panneaux.', facts:[['10,5 m² ; 2 300 W en fin de vie', 'eop']] },
+      { key:'bus', name:'Plateforme', desc:'La plateforme, couverte de couvertures thermiques noires.', facts:[['3,9 × 2,2 × 2,21 m', 'eop']] }
+    ],
     sections:[
       { title:'Mission', rows:[
         ['Lancements', '3A : 16 février 2016 ; 3B : 25 avril 2018 ; 3C : 15 septembre 2026', 'esa'],

@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24",
+ "generated": "2026-11-25",
  "items": [
   {
    "kind": "aperçu d'archive",
@@ -501,6 +501,45 @@
    "credit": "NASA/JPL-Caltech",
    "fetched": null,
    "transform": "convertie en glTF binaire, nœuds renommés par pièce, textures réduites à 1024 px (WebP), géométrie quantifiée (voir tools/models/README.md)",
+   "status": "ok"
+  },
+  {
+   "kind": "maquette 3D",
+   "file": "models/sentinel1.glb",
+   "title": "Space Radar, « Sentinel-1 » (forme reconstituée par Space Radar à partir des dimensions publiées et de photos ; détails simplifiés)",
+   "source": "https://raw.githubusercontent.com/Sara-Managed-Projects/space-radar/main/site/models/sentinel-1.glb",
+   "page": "https://models.spaceradar.ai/sentinel-1/",
+   "license": "MIT (licence du dépôt Space Radar) ; crédit : « Sentinel-1 3D model by Space Radar (spaceradar.ai), MIT License »",
+   "license_url": "https://github.com/Sara-Managed-Projects/space-radar/blob/main/LICENSE",
+   "credit": "Sentinel-1 3D model by Space Radar (spaceradar.ai), MIT License",
+   "fetched": "2026-11-25",
+   "transform": "décompressée (meshopt), découpée en pièces d'après la place et la taille de chaque îlot (tools/models/sentinel_parts.js), géométrie quantifiée (voir tools/models/README.md)",
+   "status": "ok"
+  },
+  {
+   "kind": "maquette 3D",
+   "file": "models/sentinel2.glb",
+   "title": "Space Radar, « Sentinel-2 » (forme reconstituée par Space Radar à partir des dimensions publiées et de photos ; détails simplifiés)",
+   "source": "https://raw.githubusercontent.com/Sara-Managed-Projects/space-radar/main/site/models/sentinel-2.glb",
+   "page": "https://models.spaceradar.ai/sentinel-2/",
+   "license": "MIT (licence du dépôt Space Radar) ; crédit : « Sentinel-2 3D model by Space Radar (spaceradar.ai), MIT License »",
+   "license_url": "https://github.com/Sara-Managed-Projects/space-radar/blob/main/LICENSE",
+   "credit": "Sentinel-2 3D model by Space Radar (spaceradar.ai), MIT License",
+   "fetched": "2026-11-25",
+   "transform": "décompressée (meshopt), découpée en pièces d'après la place et la taille de chaque îlot (tools/models/sentinel_parts.js), géométrie quantifiée (voir tools/models/README.md)",
+   "status": "ok"
+  },
+  {
+   "kind": "maquette 3D",
+   "file": "models/sentinel3.glb",
+   "title": "Space Radar, « Sentinel-3 » (forme reconstituée par Space Radar à partir des dimensions publiées et de photos ; détails simplifiés)",
+   "source": "https://raw.githubusercontent.com/Sara-Managed-Projects/space-radar/main/site/models/sentinel-3.glb",
+   "page": "https://models.spaceradar.ai/sentinel-3/",
+   "license": "MIT (licence du dépôt Space Radar) ; crédit : « Sentinel-3 3D model by Space Radar (spaceradar.ai), MIT License »",
+   "license_url": "https://github.com/Sara-Managed-Projects/space-radar/blob/main/LICENSE",
+   "credit": "Sentinel-3 3D model by Space Radar (spaceradar.ai), MIT License",
+   "fetched": "2026-11-25",
+   "transform": "décompressée (meshopt), découpée en pièces d'après la place et la taille de chaque îlot (tools/models/sentinel_parts.js), géométrie quantifiée (voir tools/models/README.md)",
    "status": "ok"
   },
   {

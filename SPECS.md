@@ -17,7 +17,7 @@ Version de travail du cahier des charges (document partagé : « EarthObservers 
 
 1. Sonde des sources (fait le 24/11/2026) : `tools/probe/probe_sources.py`, `probe_sources2.py`, `fetch_eyes_models.py`, `probe_facts.py`.
    - Éléments orbitaux CelesTrak pour tous les satellites ; satellite.js (MIT) sur jsDelivr.
-   - Maquettes NASA Eyes on the Earth : Landsat 9, Terra, Aqua, ICESat-2, GRACE-FO, SWOT (règles d'usage des médias de la NASA, qui couvrent les maquettes 3D). Rien de libre pour les Sentinel : point bleu.
+   - Maquettes NASA Eyes on the Earth : Landsat 9, Terra, Aqua, ICESat-2, GRACE-FO, SWOT (règles d'usage des médias de la NASA, qui couvrent les maquettes 3D). Sentinel-1, 2 et 3 : maquettes Space Radar (models.spaceradar.ai, licence MIT), reconstituées par Space Radar à partir des dimensions publiées.
    - Aperçus publics sans compte : MODIS (Terra, Aqua), ASTER, HLS, ICESat-2 (NASA, CC0) ; Sentinel-2 sur Earth Search (Copernicus).
    - Compte Earthdata nécessaire pour SWOT, les grilles GRACE-FO et Sentinel-5P : refusé, on prend des images déjà publiées (Commons, GIBS).
    - Globe : Blue Marble de la NASA via Wikimedia Commons (domaine public), le serveur de la NASA refusant GitHub Actions.

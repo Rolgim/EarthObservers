@@ -12,6 +12,8 @@ ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
 DATA = os.path.join(ROOT, "data")
 
 NASA_MEDIA = "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+SPACERADAR_LICENSE = "https://github.com/Sara-Managed-Projects/space-radar/blob/main/LICENSE"
+SPACERADAR_RAW = "https://raw.githubusercontent.com/Sara-Managed-Projects/space-radar/main/site/models/"
 EARTHDATA = "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
 USGS = "https://www.usgs.gov/information-policies-and-instructions/acknowledging-or-crediting-usgs"
 COPERNICUS = "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice"
@@ -98,6 +100,12 @@ def main():
         fm = re.search(r"file:'(models/[^']+)'", body)
         if not mm or not fm: continue
         s, lic, u = (x.replace("\\'", "'") for x in mm.groups())
+        if "Space Radar" in s:   # maquettes Space Radar : faites par l'équipe en code, licence MIT du dépôt (page de chaque maquette et LICENSE relus le 25/11/2026)
+            slug = u.rstrip("/").rsplit("/", 1)[-1]
+            rows.append(dict(kind="maquette 3D", file=fm.group(1), title=s, source=SPACERADAR_RAW + slug + ".glb", page=u, license=lic, license_url=SPACERADAR_LICENSE,
+                             credit=re.sub(r"^.*?« (.*) ».*$", r"\1", s) + " 3D model by Space Radar (spaceradar.ai), MIT License", fetched="2026-11-25",
+                             transform="décompressée (meshopt), découpée en pièces d'après la place et la taille de chaque îlot (tools/models/sentinel_parts.js), géométrie quantifiée (voir tools/models/README.md)", status="ok"))
+            continue
         st = "à confirmer" if "ESA" in s.split(",")[0] else "ok"
         rows.append(dict(kind="maquette 3D", file=fm.group(1), title=s, source=u, page=u, license=lic,
                          license_url=(u if st != "ok" else NASA_MEDIA), credit=("ESA" if st != "ok" else ("NASA/JPL-Caltech" if "Eyes" in s else "NASA")),
@@ -147,6 +155,7 @@ def main():
            "| Wikimedia Commons | Licence relue dans les métadonnées de Commons au téléchargement ; seul le domaine public est accepté pour le globe | https://commons.wikimedia.org/ |",
            "| Bibliothèque d'images de la NASA | Domaine public, sans logo de la NASA | " + NASA_MEDIA + " |",
            "| Maquettes NASA Eyes on the Earth et NASA 3D Resources | Usage libre (règles d'usage des médias de la NASA, qui couvrent les maquettes 3D) | " + NASA_MEDIA + " |",
+           "| Maquettes Space Radar (models.spaceradar.ai) | MIT (licence du dépôt Space Radar), avec la ligne de crédit donnée sur la page de chaque maquette | " + SPACERADAR_LICENSE + " |",
            "| Éléments orbitaux CelesTrak | à confirmer : diffusés librement (« freely available to all users »), sans licence écrite ; politique d'usage respectée (un téléchargement par jour) | " + CELESTRAK_POLICY + " |", ""]
     for kind in ("aperçu d'archive", "tracé", "image de presse", "image Commons", "texture", "orbites", "maquette 3D", "police", "bibliothèque", "schémas", "code"):
         sel = [r for r in rows if r["kind"] == kind]

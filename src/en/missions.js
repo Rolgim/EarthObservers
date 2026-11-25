@@ -30,6 +30,12 @@ var EN_MISSIONS = {
     targets:['Land', 'Ice', 'Oceans'],
     desc:'The Sentinel-1 satellites of the European Copernicus programme carry a C-band radar, which sees the ground by day and night and through clouds: sea ice, glaciers, oil spills, floods, ground deformation after an earthquake. Sentinel-1C (2024) and Sentinel-1D (2025) took over from Sentinel-1B, stopped in 2022, and Sentinel-1A, stopped in June 2026.',
     refs:{ ct:'GP elements of SENTINEL-1C and -1D (NORAD nos. 62261, 66315)' },
+    model:{ src:'Space Radar, “Sentinel-1” (shape rebuilt by Space Radar from published dimensions and photographs; details simplified)', license:'MIT (licence of the Space Radar repository); credit: “Sentinel-1 3D model by Space Radar (spaceradar.ai), MIT License”' },
+    parts:{
+      sar:{ name:'C-SAR radar antenna', desc:'The antenna of the C-band synthetic aperture radar, folded at launch and deployed in orbit. Facing the Earth, it looks to the right-hand side of the satellite: the model shows it tilted by about 29°.', facts:['12.3 × 0.82 m', '14 tiles, in 5 panels'] },
+      solar:{ name:'Solar arrays', desc:'Two 10 m wings of five panels each.', facts:['Power: 4,800 W average (end of life)'] },
+      bus:{ name:'Platform', desc:'The platform, which also carries a laser communication terminal.', facts:['3.4 × 1.3 × 1.3 m'] }
+    },
     sections:[
       { title:'Mission', rows:[
         ['Launches', '1A: 3 April 2014; 1B: 25 April 2016; 1C: 5 December 2024; 1D: 4 November 2025'], ['Launchers', 'Soyuz (1A, 1B), Vega-C (1C), Ariane 6 (1D), from Kourou'],
@@ -48,6 +54,12 @@ var EN_MISSIONS = {
     targets:['Land', 'Oceans'],
     desc:'The Sentinel-2 satellites photograph all land and coasts in thirteen bands, from blue to infrared, with 10 m pixels. Two satellites placed opposite each other on the same orbit revisit every place every five days at the equator: crops, forests, cities, coastal waters, disasters.',
     refs:{ ct:'GP elements of SENTINEL-2A, -2B and -2C (NORAD nos. 40697, 42063, 60989)' },
+    model:{ src:'Space Radar, “Sentinel-2” (shape rebuilt by Space Radar from published dimensions and photographs; details simplified)', license:'MIT (licence of the Space Radar repository); credit: “Sentinel-2 3D model by Space Radar (spaceradar.ai), MIT License”' },
+    parts:{
+      msi:{ name:'MSI camera', desc:'The multispectral instrument: a three-mirror telescope, fixed to the platform by three bipods. The star trackers are mounted on its structure.', facts:['Structure: 1.47 × 0.93 × 0.62 m; 44 kg', 'Pupil: 150 mm'] },
+      solar:{ name:'Solar array', desc:'One steerable wing of three panels.', facts:['Area: 7.1 m²'] },
+      bus:{ name:'Platform', desc:'The Airbus AstroBus-L platform.', facts:['Satellite: 3.4 × 1.8 × 2.35 m', 'Mass: 1,140 kg'] }
+    },
     sections:[
       { title:'Mission', rows:[
         ['Launches', '2A: 23 June 2015; 2B: 7 March 2017; 2C: 5 September 2024'], ['Launcher', 'Vega, from Kourou'], ['Design life', 'at least 7 years'],
@@ -64,6 +76,15 @@ var EN_MISSIONS = {
     targets:['Oceans', 'Land', 'Ice'],
     desc:'The Sentinel-3 satellites mainly watch the oceans: water colour (plankton, sediments), sea and land temperature, the height of the sea, lakes and rivers. Each satellite carries a 21-band camera (OLCI), an infrared radiometer (SLSTR) and a radar altimeter (SRAL). Sentinel-3C joined the first two in September 2026.',
     refs:{ ct:'GP elements of SENTINEL-3A, -3B and -3C (NORAD nos. 41335, 43437, 100690)' },
+    model:{ src:'Space Radar, “Sentinel-3” (shape rebuilt by Space Radar from published dimensions and photographs; details simplified)', license:'MIT (licence of the Space Radar repository); credit: “Sentinel-3 3D model by Space Radar (spaceradar.ai), MIT License”' },
+    parts:{
+      sral:{ name:'SRAL altimeter', desc:'The antenna of the C- and Ku-band radar altimeter: a parabolic reflector facing the Earth, with its feed held by three struts.', facts:['1.20 m reflector'] },
+      mwr:{ name:'MWR radiometer', desc:'The microwave radiometer, which measures water vapour in the air to correct the altimeter measurement.', facts:['60 cm reflector'] },
+      slstr:{ name:'SLSTR radiometer', desc:'The sea and land surface temperature radiometer, which looks straight down and backwards: two curved openings, drawn in simplified form.', facts:[] },
+      olci:{ name:'OLCI camera', desc:'The ocean and land colour spectrometer: five cameras on a common structure. The model shows them in a row; the real ones look out through a single opening, in a fan.', facts:['1.24 × 0.83 × 1.32 m; ≈ 150 kg'] },
+      solar:{ name:'Solar array', desc:'One steerable wing of three panels.', facts:['10.5 m²; 2,300 W at end of life'] },
+      bus:{ name:'Platform', desc:'The platform, covered in black thermal blankets.', facts:['3.9 × 2.2 × 2.21 m'] }
+    },
     sections:[
       { title:'Mission', rows:[
         ['Launches', '3A: 16 February 2016; 3B: 25 April 2018; 3C: 15 September 2026'], ['Launchers', 'Rockot from Plesetsk (3A, 3B); Vega-C from Kourou (3C)'],

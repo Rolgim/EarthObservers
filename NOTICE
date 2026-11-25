@@ -4,3 +4,8 @@ Copyright 2026 Rolgim
 Ce produit contient du code sous licence Apache 2.0 (voir LICENSE).
 Les images, données, textures et maquettes 3D affichées par le site ne sont PAS couvertes par cette licence :
 chacune garde la licence de sa source, listée dans CREDITS.md.
+
+Les maquettes models/sentinel1.glb, models/sentinel2.glb et models/sentinel3.glb sont adaptées des maquettes de
+Space Radar (https://models.spaceradar.ai, dépôt https://github.com/Sara-Managed-Projects/space-radar), sous licence MIT :
+« Sentinel-1 3D model by Space Radar (spaceradar.ai), MIT License » (de même pour Sentinel-2 et Sentinel-3).
+Le texte de cette licence, avec sa mention de copyright, est dans models/LICENSES/space-radar-MIT.txt.
