@@ -4,7 +4,7 @@ Registre de tout ce que le site affiche et qui ne vient pas de lui : images, tra
 Il est **généré** par `tools/data/credits.py` à partir des métadonnées écrites au téléchargement (`data/*.json`) et de `src/data-missions.js` : ne pas le modifier à la main.
 La licence de chaque image est aussi affichée sous l'image, sur le site.
 
-Généré le 2026-11-26. Statuts : **ok** (licence vérifiée sur la page citée), **à confirmer** (aucune licence écrite trouvée : voir la colonne licence), **ok (site non commercial)** (licence limitée à l'usage non commercial, ce qui est le cas de ce site).
+Généré le 2026-11-27. Statuts : **ok** (licence vérifiée sur la page citée), **à confirmer** (aucune licence écrite trouvée : voir la colonne licence), **ok (site non commercial)** (licence limitée à l'usage non commercial, ce qui est le cas de ce site).
 
 ## Règles appliquées, par source
 
@@ -70,7 +70,7 @@ Généré le 2026-11-26. Statuts : **ok** (licence vérifiée sur la page citée
 | Fichier | Titre / produit | Crédit | Licence | Statut | Source | Téléchargé le | Transformations |
 |---|---|---|---|---|---|---|---|
 | `data/cat.json` | Relevé des catalogues (titres, niveaux, licences déclarées, nombres de produits) | NASA CMR, USGS, Element 84, Copernicus | métadonnées publiques des catalogues, citées comme faits | ok | fichier | 2026-11-25 | extraits par tools/data/catalog.py |
-| `data/tle.json` | CelesTrak, éléments GP au format TLE (gp.php?CATNR=…&FORMAT=TLE ; au-delà du n° 99999, FORMAT=JSON remis en TLE avec un numéro Alpha-5) | CelesTrak (T.S. Kelso) | [Aucune licence écrite : la politique d'usage de CelesTrak (22/05/2026) parle de données « freely available to all users » et ne fixe que des limites d'accès (un téléchargement par mise à jour, toutes les 2 h au plus) ; ce site les respecte (un téléchargement par jour) et cite la source. Éléments dérivés du catalogue de la Space Force américaine](https://celestrak.org/usage-policy.php) | à confirmer | [fichier](https://celestrak.org/NORAD/elements/) | 2026-11-26T13:56Z | aucune : propagés par SGP4 dans le navigateur |
+| `data/tle.json` | CelesTrak, éléments GP au format TLE (gp.php?CATNR=…&FORMAT=TLE ; au-delà du n° 99999, FORMAT=JSON remis en TLE avec un numéro Alpha-5) | CelesTrak (T.S. Kelso) | [Aucune licence écrite : la politique d'usage de CelesTrak (22/05/2026) parle de données « freely available to all users » et ne fixe que des limites d'accès (un téléchargement par mise à jour, toutes les 2 h au plus) ; ce site les respecte (un téléchargement par jour) et cite la source. Éléments dérivés du catalogue de la Space Force américaine](https://celestrak.org/usage-policy.php) | à confirmer | [fichier](https://celestrak.org/NORAD/elements/) | 2026-11-27T13:54Z | aucune : propagés par SGP4 dans le navigateur |
 
 ## Maquette 3D (18)
 
